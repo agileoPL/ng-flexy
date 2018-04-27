@@ -1,0 +1,4 @@
+/**
+ * @license ng-flexy
+ * MIT license
+ */
