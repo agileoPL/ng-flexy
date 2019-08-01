@@ -119,6 +119,46 @@
           }
         }
       }
+    },
+    "freezer": {
+      "projectType": "library",
+      "root": "projects/freezer",
+      "sourceRoot": "projects/freezer/src",
+      "prefix": "flexy",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/freezer/tsconfig.lib.json",
+            "project": "projects/freezer/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/freezer/src/test.ts",
+            "tsConfig": "projects/freezer/tsconfig.spec.json",
+            "karmaConfig": "projects/freezer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/freezer/tsconfig.lib.json",
+              "projects/freezer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "home"
 }
