@@ -2,6 +2,20 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
 
+git clone ...
+npm install --no-optional
+ng build freezer
+npm i
+
+npm login
+
+cd dist/freezer
+tar -czvf freezer.tar.gz ./
+cd ../..
+npm publish --access=public ./dist/freezer/freezer.tar.gz
+
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project freezer` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project freezer`.

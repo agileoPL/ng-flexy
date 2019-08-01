@@ -1,9 +1,9 @@
 {
-  "name": "@flexy/freezer",
+  "name": "ng-flexy-freezer",
   "version": "0.0.1",
   "description": "Angular freezer package",
   "keywords" :["Angular","Library"],
-  "license" : "SEE LICENSE IN LICENSE",
+  "license" : "MIT",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/agileoPL/ng-flexy"
