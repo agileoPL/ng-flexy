@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FreezerModule} from 'ng-flexy-freezer';
+import { FreezerModule } from '@ng-flexy/freezer';
 
 @NgModule({
   declarations: [

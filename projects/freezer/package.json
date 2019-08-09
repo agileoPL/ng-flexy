@@ -1,6 +1,6 @@
 {
-  "name": "ng-flexy-freezer",
-  "version": "0.0.1",
+  "name": "@ng-flexy/freezer",
+  "version": "1.0.1",
   "description": "Angular freezer package",
   "keywords" :["Angular","Library"],
   "license" : "MIT",

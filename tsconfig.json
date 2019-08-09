@@ -19,10 +19,10 @@
       "dom"
     ],
     "paths": {
-      "freezer": [
+      "@ng-flexy/freezer": [
         "dist/freezer"
       ],
-      "freezer/*": [
+      "@ng-flexy/freezer/*": [
         "dist/freezer/*"
       ]
     }
