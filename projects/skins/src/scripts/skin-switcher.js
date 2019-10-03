@@ -2,6 +2,7 @@ var STYLE_SKIN_LOCAL_STORAGE_ID = 'SKIN_NAME';
 var STYLE_SKIN_DEFAULT = 'default';
 
 var skinState = new (function() {
+
   this.findLink = function(skin) {
     var links = document.querySelectorAll('link[data-skin]');
     var skinLink;
@@ -13,27 +14,42 @@ var skinState = new (function() {
         }
       }
     }
-    return link;
+    return skinLink;
+  };
+
+  this.isLoaded = function(skinLink) {
+    if (skinLink) {
+      var styleSheet = [].slice.call(document.styleSheets).find(function (item) {
+        return item.href && item.href.indexOf(skinLink.getAttribute('href')) !== -1;
+      });
+      return !!styleSheet;
+    }
+    return false;
+  }
+
+  this.disableSkins = function(skin) {
+    var links = document.querySelectorAll('link[data-skin]');
+    for (var i = 0; i < links.length; i++) {
+      var link = links[i];
+      if (link.dataset && link.dataset.skin) {
+        if (link.dataset.skin !== skin) {
+          link.disabled = true;
+        }
+      }
+    }
   };
 
   this.switch = function(skin) {
     var skinLink = this.findLink(skin);
-    if (skinLink) {
-      var links = document.querySelectorAll('link[data-skin]');
-      for (var i = 0; i < links.length; i++) {
-        var link = links[i];
-        if (link.dataset && link.dataset.skin) {
-          if (link.dataset.skin === skin) {
-            link.disabled = false;
-          } else {
-            link.disabled = true;
-          }
-        }
-      }
-      this.setDefault(skin);
-      return true;
+    if (!this.isLoaded(skinLink)) {
+      skinLink.onload = function () {
+        this.disableSkins(skin);
+      }.bind(this);
+    } else {
+      this.disableSkins(skin);
     }
-    return false;
+    skinLink.disabled = false
+    this.setDefault(skin);
   };
 
   this.getDefault = function() {
