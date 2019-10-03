@@ -43,6 +43,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
     "cpx": "^1.5.0",
+    "husky": "^1.3.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -51,11 +52,14 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "ng-packagr": "^5.1.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": "^0.35.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "~3.4.3",
+    "lint-staged": "^8.2.1"
   },
   "optionalDependencies": {
     "@flexy/freezer": "file:dist/freezer",
@@ -72,5 +76,15 @@
   "bugs": {
     "url": "https://github.com/agileoPL/ng-flexy/issues"
   },
-  "homepage": "https://github.com/agileoPL/ng-flexy#readme"
+  "homepage": "https://github.com/agileoPL/ng-flexy#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "pretty-quick --staged"
+    ]
+  }
 }

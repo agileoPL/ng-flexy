@@ -2,42 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ded1e0f-29e9-4700-b8dd-cb357d2a68cd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/projects/demo/src/scss/_demo/demo.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/demo/src/scss/dark-skin/_bootswatch.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/demo/src/scss/dark-skin/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/demo/src/scss/dark-skin/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/demo/src/scss/light-skin/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/skins/src/scripts/skin-switcher.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/browserslist" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/browserslist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/e2e/protractor.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/e2e/protractor.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/e2e/src/app.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/e2e/src/app.e2e-spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/e2e/src/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/e2e/src/app.po.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/e2e/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/e2e/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/karma.conf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/app/app.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/app/app.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/app/app.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/assets/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/assets/.gitkeep" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/environments/environment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/polyfills.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/src/test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/tsconfig.app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/tsconfig.spec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projects/home/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/projects/demo/tslint.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/skins/src/lib/skins.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/projects/skins/src/lib/skins.service.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +36,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.TypeScript" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../ultra-ui/angular.json" />
