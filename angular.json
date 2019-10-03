@@ -1,0 +1,201 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/demo",
+      "sourceRoot": "projects/demo/src",
+      "prefix": "demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demo",
+            "index": "projects/demo/src/index.html",
+            "main": "projects/demo/src/main.ts",
+            "polyfills": "projects/demo/src/polyfills.ts",
+            "tsConfig": "projects/demo/tsconfig.app.json",
+            "aot": false,
+            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets"],
+            "extractCss": true,
+            "styles": [
+              "node_modules/font-awesome/css/font-awesome.css",
+              "projects/demo/src/styles.scss",
+              {
+                "input": "projects/demo/src/scss/light-skin/index.scss",
+                "lazy": true,
+                "bundleName": "styles/default"
+              },
+              {
+                "input": "projects/demo/src/scss/dark-skin/index.scss",
+                "lazy": true,
+                "bundleName": "styles/dark"
+              }
+            ],
+            "scripts": ["projects/skins/src/scripts/skin-switcher.js"]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/demo/src/environments/environment.ts",
+                  "with": "projects/demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/demo/src/test.ts",
+            "polyfills": "projects/demo/src/polyfills.ts",
+            "tsConfig": "projects/demo/tsconfig.spec.json",
+            "karmaConfig": "projects/demo/karma.conf.js",
+            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets"],
+            "styles": [
+              "node_modules/font-awesome/css/font-awesome.css",
+              "projects/demo/src/styles.scss",
+              {
+                "input": "projects/demo/src/scss/light-skin/index.scss",
+                "inject": false,
+                "bundleName": "styles/default"
+              },
+              {
+                "input": "projects/demo/src/scss/dark-skin/index.scss",
+                "inject": false,
+                "bundleName": "styles/dark"
+              }
+            ],
+            "scripts": ["projects/skins/src/scripts/skin-switcher.js"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/demo/tsconfig.app.json", "projects/demo/tsconfig.spec.json", "projects/demo/e2e/tsconfig.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/demo/e2e/protractor.conf.js",
+            "devServerTarget": "demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "freezer": {
+      "projectType": "library",
+      "root": "projects/freezer",
+      "sourceRoot": "projects/freezer/src",
+      "prefix": "flexy",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/freezer/tsconfig.lib.json",
+            "project": "projects/freezer/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/freezer/src/test.ts",
+            "tsConfig": "projects/freezer/tsconfig.spec.json",
+            "karmaConfig": "projects/freezer/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/freezer/tsconfig.lib.json", "projects/freezer/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "skins": {
+      "projectType": "library",
+      "root": "projects/skins",
+      "sourceRoot": "projects/skins/src",
+      "prefix": "flexy",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/skins/tsconfig.lib.json",
+            "project": "projects/skins/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/skins/src/test.ts",
+            "tsConfig": "projects/skins/tsconfig.spec.json",
+            "karmaConfig": "projects/skins/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/skins/tsconfig.lib.json", "projects/skins/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "demo"
+}

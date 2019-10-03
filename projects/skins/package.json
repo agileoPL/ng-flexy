@@ -1,0 +1,19 @@
+{
+  "name": "@ng-flexy/skins",
+  "version": "1.0.4",
+  "description": "Angular freezer package",
+  "keywords": [
+    "Angular",
+    "Library"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agileoPL/ng-flexy"
+  },
+  "homepage": "https://github.com/agileoPL/ng-flexy",
+  "peerDependencies": {
+    "@angular/common": "^8.1.3",
+    "@angular/core": "^8.1.3"
+  }
+}
