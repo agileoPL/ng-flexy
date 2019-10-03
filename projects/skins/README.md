@@ -1,24 +1,44 @@
 # Skins
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
+## Install
 
-## Code scaffolding
+Run `npm i @ng-flexy/skins --save`
 
-Run `ng generate component component-name --project skins` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project skins`.
-> Note: Don't forget to add `--project skins` or else it will be added to the default project in your `angular.json` file. 
+In app-module.ts import
 
-## Build
+`FlexySkinsModule.forRoot(['default', 'dark'])`
 
-Run `ng build skins` to build the project. The build artifacts will be stored in the `dist/` directory.
+In index.html add
 
-## Publishing
+```javascript
+let buildId = 123;
+document.write('<link href="styles/default.css?b=' + buildId + '" rel="stylesheet" data-skin="default" disabled/>');
+document.write('<link href="styles/dark.css?b=' + buildId + '" rel="stylesheet" data-skin="dark" disabled/>');
+```
 
-After building your library with `ng build skins`, go to the dist folder `cd dist/skins` and run `npm publish`.
+In angular.json
 
-## Running unit tests
-
-Run `ng test skins` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```json
+"build": {
+    "builder": "@angular-devkit/build-angular:browser",
+    "options": {
+      "extractCss": true,
+      "styles": [
+        {
+          "input": "projects/demo/src/scss/light-skin/index.scss",
+          "lazy": true,
+          "bundleName": "styles/default"
+        },
+        {
+          "input": "projects/demo/src/scss/dark-skin/index.scss",
+          "lazy": true,
+          "bundleName": "styles/dark"
+        }
+      ],
+      "scripts": [
+        "node_modules/@ng-flexy/skins/scripts/skin-switcher.js"
+      ]
+    }
+  }
+}
+```

@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
-import { FlexySkinsService } from '@flexy/skins';
-
-enum Skins {
-  Default = 'default',
-  Dark = 'dark'
-}
-const SUPPORTED_SKINS = [Skins.Default, Skins.Dark];
+import { FlexySkinsService } from '@ng-flexy/skins';
+import { Skins } from './app.skins';
 
 @Component({
   selector: 'demo-root',
@@ -13,17 +8,15 @@ const SUPPORTED_SKINS = [Skins.Default, Skins.Dark];
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'demo';
+  title = 'NG Flexy Demo';
 
-  constructor(private skinService: FlexySkinsService) {
-    this.skinService.init(SUPPORTED_SKINS);
-  }
+  constructor(private skinService: FlexySkinsService) {}
 
   changeSkin() {
-    if (this.skinService.currentSkin === Skins.Default) {
-      this.skinService.initSkin(Skins.Dark);
+    if (this.skinService.getCurrent() === Skins.Default) {
+      this.skinService.set(Skins.Dark);
     } else {
-      this.skinService.initSkin(Skins.Default);
+      this.skinService.set(Skins.Default);
     }
   }
 }

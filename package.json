@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "demo": "ng serve demo --port 3000",
+    "demo": "ng serve demo",
     "demo:build": "ng build demo",
     "freezer:watch": "ng build freezer --watch",
     "freezer:build": "ng build freezer",
@@ -62,8 +62,8 @@
     "lint-staged": "^8.2.1"
   },
   "optionalDependencies": {
-    "@flexy/freezer": "file:dist/freezer",
-    "@flexy/skins": "file:dist/skins"
+    "@ng-flexy/freezer": "file:dist/freezer",
+    "@ng-flexy/skins": "file:dist/skins"
   },
   "description": "Flexy components to build webapps",
   "main": "index.js",
