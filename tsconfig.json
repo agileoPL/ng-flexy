@@ -24,6 +24,12 @@
       ],
       "@ng-flexy/freezer/*": [
         "dist/freezer/*"
+      ],
+      "skins": [
+        "dist/skins"
+      ],
+      "skins/*": [
+        "dist/skins/*"
       ]
     }
   },

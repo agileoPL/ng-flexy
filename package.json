@@ -8,8 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "home:start": "ng serve home -o --port 3000",
-    "home:build": "ng build home --prod --watch"
+    "demo": "ng serve demo --port 3000",
+    "demo:build": "ng build demo",
+    "freezer:watch": "ng build freezer --watch",
+    "freezer:build": "ng build freezer",
+    "skins:build": "ng build skins && npm run skins:copy-scripts",
+    "skins:copy-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\""
   },
   "private": true,
   "dependencies": {
@@ -21,6 +25,9 @@
     "@angular/platform-browser": "~8.1.1",
     "@angular/platform-browser-dynamic": "~8.1.1",
     "@angular/router": "~8.1.1",
+    "bootstrap": "^4.3.1",
+    "ngx-bootstrap": "^5.1.0",
+    "font-awesome": "^4.7.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
@@ -31,10 +38,11 @@
     "@angular/cli": "~8.1.1",
     "@angular/compiler-cli": "~8.1.1",
     "@angular/language-service": "~8.1.1",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cpx": "^1.5.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -50,7 +58,8 @@
     "typescript": "~3.4.3"
   },
   "optionalDependencies": {
-    "@flexy/freezer": "file:dist/freezer"
+    "@flexy/freezer": "file:dist/freezer",
+    "@flexy/skins": "file:dist/skins"
   },
   "description": "Flexy components to build webapps",
   "main": "index.js",
