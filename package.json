@@ -84,8 +84,7 @@
   "optionalDependencies": {
     "@ng-flexy/freezer": "file:dist/freezer",
     "@ng-flexy/skins": "file:dist/skins",
-    "@ng-flexy/storage": "file:dist/storage",
-    "@ng-flexy/logger": "file:dist/logger"
+    "@ng-flexy/core": "file:dist/core"
   },
   "husky": {
     "hooks": {

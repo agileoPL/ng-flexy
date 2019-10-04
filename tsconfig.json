@@ -21,7 +21,9 @@
       "logger": ["dist/logger"],
       "logger/*": ["dist/logger/*"],
       "storage": ["dist/storage"],
-      "storage/*": ["dist/storage/*"]
+      "storage/*": ["dist/storage/*"],
+      "core": ["dist/core"],
+      "core/*": ["dist/core/*"]
     }
   },
   "angularCompilerOptions": {

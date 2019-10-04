@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FreezerModule } from '@ng-flexy/freezer';
 import { FlexySkinsModule } from '@ng-flexy/skins';
 import { SUPPORTED_SKINS } from './app.skins';
-import { FlexyLoggerModule } from '@ng-flexy/logger';
+import { FlexyLoggerModule } from '@ng-flexy/core';
 
 @NgModule({
   declarations: [AppComponent],
