@@ -49,8 +49,8 @@ Run `npm install dist/freezer --save-optional`
 #### Init Demo
 
 Run `npm install --no-optional`
-then build library `ng build ng7-common`
-finally, `run npm install`, this will install optional dependency which was skipped in 1.
+then build library `ng build freezer`
+finally, run `npm install`, this will install optional dependency which was skipped in 1.
 
 ### Developing
 
