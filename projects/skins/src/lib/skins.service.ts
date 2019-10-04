@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { FLEXY_SKINS_LIST_TOKEN } from './skins.provider-token';
-import { FlexyLoggerService } from '@ng-flexy/logger';
+import { FlexyLoggerService } from '@ng-flexy/core';
 
 const SKIN_STATE_WINDOW_NAME = 'skinState';
 

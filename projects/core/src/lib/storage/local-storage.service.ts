@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FlexySessionStorageService {
+export class FlexyLocalStorageService {
   setData(key: string, data: any) {
-    sessionStorage.setItem(key, JSON.stringify({ data }));
+    localStorage.setItem(key, JSON.stringify({ data }));
   }
 
   getData(key: string): any {
-    const data = sessionStorage.getItem(key);
+    const data = localStorage.getItem(key);
     return data ? JSON.parse(data).data : void 0;
+  }
+
+  removeData(key: string) {
+    localStorage.removeItem(key);
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FlexySessionStorageService } from '@ng-flexy/storage';
+import { FlexySessionStorageService } from '../storage/session-storage.service';
 
 const LOG_LEVEL_SESSION_STORAGE_NAME = 'FlexyLogLevel';
 

@@ -1,6 +1,25 @@
 {
   "name": "@ng-flexy/demo",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "",
+  "description": "Flexy components and tools to build Angular 8+ applications",
+  "keywords": [
+    "Angular",
+    "Library",
+    "Components",
+    "UI",
+    "Typescript",
+    "MIT"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agileoPL/ng-flexy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agileoPL/ng-flexy/issues"
+  },
+  "homepage": "https://github.com/agileoPL/ng-flexy#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -17,7 +36,6 @@
     "skins:watch-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\" --watch",
     "skins:copy-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\""
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~8.1.1",
     "@angular/common": "~8.1.1",
@@ -66,21 +84,8 @@
   "optionalDependencies": {
     "@ng-flexy/freezer": "file:dist/freezer",
     "@ng-flexy/skins": "file:dist/skins",
-    "@ng-flexy/storage": "file:dist/storage",
-    "@ng-flexy/logger": "file:dist/logger"
+    "@ng-flexy/core": "file:dist/core"
   },
-  "description": "Flexy components to build webapps",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/agileoPL/ng-flexy.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/agileoPL/ng-flexy/issues"
-  },
-  "homepage": "https://github.com/agileoPL/ng-flexy#readme",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

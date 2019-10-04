@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexySkinsService } from './skins.service';
 import { FLEXY_SKINS_LIST_TOKEN } from './skins.provider-token';
-import { FlexyLoggerModule } from '@ng-flexy/logger';
+import { FlexyLoggerModule } from '@ng-flexy/core';
 
 const FLEXY_SKIN_DEFAULT_SKIN = 'default';
 

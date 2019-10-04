@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FlexySkinsService } from '@ng-flexy/skins';
 import { Skins } from './app.skins';
-import { FlexyLoggerService, FlexyLoggerLevelEnum } from '@ng-flexy/logger';
+import { FlexyLoggerService } from '@ng-flexy/core';
 
 @Component({
   selector: 'demo-root',
