@@ -65,7 +65,9 @@
   },
   "optionalDependencies": {
     "@ng-flexy/freezer": "file:dist/freezer",
-    "@ng-flexy/skins": "file:dist/skins"
+    "@ng-flexy/skins": "file:dist/skins",
+    "@ng-flexy/storage": "file:dist/storage",
+    "@ng-flexy/logger": "file:dist/logger"
   },
   "description": "Flexy components to build webapps",
   "main": "index.js",

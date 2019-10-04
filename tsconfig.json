@@ -11,26 +11,17 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@ng-flexy/freezer": [
-        "dist/freezer"
-      ],
-      "@ng-flexy/freezer/*": [
-        "dist/freezer/*"
-      ],
-      "skins": [
-        "dist/skins"
-      ],
-      "skins/*": [
-        "dist/skins/*"
-      ]
+      "@ng-flexy/freezer": ["dist/freezer"],
+      "@ng-flexy/freezer/*": ["dist/freezer/*"],
+      "skins": ["dist/skins"],
+      "skins/*": ["dist/skins/*"],
+      "logger": ["dist/logger"],
+      "logger/*": ["dist/logger/*"],
+      "storage": ["dist/storage"],
+      "storage/*": ["dist/storage/*"]
     }
   },
   "angularCompilerOptions": {

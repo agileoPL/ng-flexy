@@ -79,7 +79,6 @@ class FlexySkinState {
 
   setSkin(skin) {
     localStorage.setItem(STYLE_SKIN_LOCAL_STORAGE_ID, skin);
-    console.log('Init skin ' + skin);
   }
 }
 
