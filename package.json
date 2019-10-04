@@ -30,7 +30,7 @@
     "demo": "ng serve demo --port 4201",
     "demo:build": "ng build demo",
     "freezer:watch": "ng build freezer --watch",
-    "freezer:build": "ng build freezer",
+    "freezer:build": "ng build freezer && cpx \"projects/freezer/src/lib/freezer.scss\" \"dist/freezer\"",
     "skins:build": "ng build skins && npm run skins:copy-scripts",
     "skins:watch": "ng build skins --watch",
     "skins:watch-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\" --watch",
@@ -48,6 +48,8 @@
     "bootstrap": "^4.3.1",
     "ngx-bootstrap": "^5.1.0",
     "font-awesome": "^4.7.0",
+    "lodash": "^4.17.14",
+    "moment": "^2.24.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

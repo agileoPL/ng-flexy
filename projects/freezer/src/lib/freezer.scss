@@ -1,0 +1,15 @@
+body.freezer * {
+  cursor: not-allowed !important;
+}
+body.freezer a,
+body.freezer button,
+body.freezer input[type='button'],
+body.freezer input[type='submit'] {
+  opacity: 0.7 !important;
+}
+body.freezer input,
+body.freezer textarea,
+body.freezer .form-control {
+  opacity: 0.7 !important;
+  cursor: text !important;
+}

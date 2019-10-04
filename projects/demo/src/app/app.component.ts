@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FlexySkinsService } from '@ng-flexy/skins';
 import { Skins } from './app.skins';
-import { FlexyLoggerService } from '@ng-flexy/core';
+import { FlexyEnvService, FlexyLoggerService } from '@ng-flexy/core';
 
 @Component({
   selector: 'demo-root',
@@ -10,8 +10,10 @@ import { FlexyLoggerService } from '@ng-flexy/core';
 })
 export class AppComponent {
   title = 'NG Flexy Demo';
-
-  constructor(private skinService: FlexySkinsService, private logger: FlexyLoggerService) {}
+  version: string;
+  constructor(private skinService: FlexySkinsService, private logger: FlexyLoggerService, private env: FlexyEnvService) {
+    this.version = '' + this.env.get('version');
+  }
 
   changeSkin() {
     if (this.skinService.getCurrent() === Skins.Default) {
