@@ -10,7 +10,7 @@ class FlexySkinState {
     if (enforcer != singletonEnforcer) {
       throw 'Cannot construct singleton';
     }
-    this.switch(this.getDefault());
+    this.switch(this.getCurrent());
   }
 
   static getInstance() {
@@ -67,10 +67,12 @@ class FlexySkinState {
       }
       skinLink.disabled = false;
       this.setSkin(skin);
+    } else {
+      console.warn(`Skin [${skin}] is not supported`);
     }
   }
 
-  getDefault() {
+  getCurrent() {
     const skin = localStorage.getItem(STYLE_SKIN_LOCAL_STORAGE_ID);
     return skin ? skin : STYLE_SKIN_DEFAULT;
   }
