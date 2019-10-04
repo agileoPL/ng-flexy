@@ -12,4 +12,8 @@ export class FlexySessionStorageService {
     const data = sessionStorage.getItem(key);
     return data ? JSON.parse(data).data : void 0;
   }
+
+  removeData(key: string) {
+    sessionStorage.removeItem(key);
+  }
 }
