@@ -85,8 +85,6 @@
 
     <hr />
 
-    <flexy-freezer></flexy-freezer>
-
     <button type="button" (click)="changeSkin()">Toggle skin</button>
 
     <router-outlet></router-outlet>
@@ -95,6 +93,6 @@
 </main>
 
 <footer class="container">
-  <p>&copy; Company 2017-2019</p>
+  <p>&copy; Company 2017-2019 | Version: {{ version }}</p>
   <flexy-log-level></flexy-log-level>
 </footer>

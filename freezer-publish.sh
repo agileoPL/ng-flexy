@@ -1,5 +1,5 @@
 #!/bin/bash
-ng build freezer
+npm run freezer:build
 cd dist/freezer
 tar -czvf freezer.tar.gz ./
 cd ../..
