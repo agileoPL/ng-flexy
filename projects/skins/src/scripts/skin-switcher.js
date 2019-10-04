@@ -66,7 +66,7 @@ class FlexySkinState {
         this.disableSkins(skin);
       }
       skinLink.disabled = false;
-      this.setDefault(skin);
+      this.setSkin(skin);
     }
   }
 
@@ -75,8 +75,9 @@ class FlexySkinState {
     return skin ? skin : STYLE_SKIN_DEFAULT;
   }
 
-  setDefault(skin) {
+  setSkin(skin) {
     localStorage.setItem(STYLE_SKIN_LOCAL_STORAGE_ID, skin);
+    console.log('Init skin ' + skin);
   }
 }
 
