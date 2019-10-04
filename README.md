@@ -1,4 +1,5 @@
 # ng-flexy
+
 Flexy components to build webapps
 
 ## Development server
@@ -26,6 +27,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Library
+
 Based on https://medium.com/better-programming/angular-7-series-part-2-create-custom-library-8d7a0494b2cc
 
 Run `ng g library {lib_name} --prefix=flexy`
@@ -33,29 +35,31 @@ Run `ng g library {lib_name} --prefix=flexy`
 e.g.: `ng g library freezer --prefix=flexy`
 
 ### Build library and add to Demo
+
 Run `ng build {lib_name}`
 
 e.g.: `ng build freezer`
 
 #### Add to package json
-`"optionalDependencies": {
-"@flexy/freezer": "file:dist/freezer"
-}
-`
-or 
+
+`"optionalDependencies": { "@flexy/freezer": "file:dist/freezer" }`
+or
 Run `npm install dist/freezer --save-optional`
 
 #### Init Demo
+
 Run `npm install --no-optional`
 then build library `ng build ng7-common`
 finally, `run npm install`, this will install optional dependency which was skipped in 1.
 
-
-
 ### Developing
-npm run demo:start
 
-npm run demo:start
-  
+`npm run demo`
 
+#### Skins
 
+Run `npm run skins:watch`
+
+Run `npm run skins:watch-scripts`
+
+Run `npm run demo`
