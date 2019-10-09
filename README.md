@@ -1,6 +1,6 @@
 # ng-flexy
 
-Flexy components to build webapps
+Flexy components and tools to build Angular 8+ applications
 
 ## Development server
 
