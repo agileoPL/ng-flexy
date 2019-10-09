@@ -34,7 +34,9 @@
     "skins:build": "ng build skins && npm run skins:copy-scripts",
     "skins:watch": "ng build skins --watch",
     "skins:watch-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\" --watch",
-    "skins:copy-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\""
+    "skins:copy-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\"",
+    "toasts:watch": "ng build toasts --watch",
+    "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\""
   },
   "dependencies": {
     "@angular/animations": "~8.1.1",
