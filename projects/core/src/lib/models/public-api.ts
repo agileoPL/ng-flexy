@@ -3,5 +3,3 @@
  */
 export * from './data';
 export * from './model';
-export * from './pagination.data';
-export * from './pagination.model';
