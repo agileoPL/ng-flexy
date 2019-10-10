@@ -86,9 +86,10 @@
     "lint-staged": "^8.2.1"
   },
   "optionalDependencies": {
+    "@ng-flexy/core": "file:dist/core",
     "@ng-flexy/freezer": "file:dist/freezer",
     "@ng-flexy/skins": "file:dist/skins",
-    "@ng-flexy/core": "file:dist/core"
+    "@ng-flexy/toasts": "file:dist/toasts"
   },
   "husky": {
     "hooks": {
