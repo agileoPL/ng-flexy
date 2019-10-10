@@ -23,7 +23,9 @@
       "storage": ["dist/storage"],
       "storage/*": ["dist/storage/*"],
       "core": ["dist/core"],
-      "core/*": ["dist/core/*"]
+      "core/*": ["dist/core/*"],
+      "toasts": ["dist/toasts"],
+      "toasts/*": ["dist/toasts/*"]
     }
   },
   "angularCompilerOptions": {
