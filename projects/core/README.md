@@ -75,6 +75,13 @@ export class User extends FlexyModel<UserData> {
 <strong>Service</strong>
 
 ```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { User } from 'user.model';
+import { UserData } from 'user.data';
+
 @Injectable({
   providedIn: 'root'
 })
