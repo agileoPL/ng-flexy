@@ -2,31 +2,48 @@
 
 Flexy components and tools to build Angular 8+ applications
 
-## Development server
+## Modules
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### core
+Install: `npm i --save @ng-flexy/core`
 
-## Code scaffolding
+Docs: <a href="./projects/core/README.md">Readme</a>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### freezer
+Install: `npm i --save @ng-flexy/freezer`
 
-## Build
+Docs: <a href="./projects/freezer/README.md">Readme</a>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### skins
+Install: `npm i --save @ng-flexy/skins`
 
-## Running unit tests
+Docs: <a href="./projects/skins/README.md">Readme</a>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### toasts
+Install: `npm i --save @ng-flexy/toasts`
 
-## Running end-to-end tests
+Docs: <a href="./projects/toasts/README.md">Readme</a>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+# Development
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Install
+Init dependencies `npm install --no-optional`
 
-## Library
+Build core `npm run core:build`
+Install core `npm install`
+
+Build projects
+
+- freezer `npm run freezer:build`
+- skins `npm run skins:build`
+- toasts `npm run toasts:build`
+
+Install projects `npm install`
+
+Start demo `npm run demo`
+
+## Create new library
 
 Based on https://medium.com/better-programming/angular-7-series-part-2-create-custom-library-8d7a0494b2cc
 
@@ -46,20 +63,15 @@ e.g.: `ng build freezer`
 or
 Run `npm install dist/freezer --save-optional`
 
-#### Init Demo
-
-Run `npm install --no-optional`
-then build library `ng build freezer`
-finally, run `npm install`, this will install optional dependency which was skipped in 1.
-
-### Developing
+## Develop
 
 `npm run demo`
 
-#### Skins
+### Watch project e.g.
 
 Run `npm run skins:watch`
 
 Run `npm run skins:watch-scripts`
 
 Run `npm run demo`
+
