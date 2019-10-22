@@ -2,24 +2,139 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
 
-## Code scaffolding
+## Install
 
-Run `ng generate component component-name --project core` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project core`.
+run `npm i --save @ng-flexy/core`
 
-> Note: Don't forget to add `--project core` or else it will be added to the default project in your `angular.json` file.
+### Models
 
-## Build
+Flexy model is a very easy/loose implementation of domain object / data transfer object pattern.
 
-Run `ng build core` to build the project. The build artifacts will be stored in the `dist/` directory.
+FlexyModel separates the application layer from the API layer - FlexyData
 
-## Publishing
+Example:
 
-After building your library with `ng build core`, go to the dist folder `cd dist/core` and run `npm publish`.
+<strong>DTO</strong>
 
-## Running unit tests
+```typescript
+import { FlexyData } from '@ng-flexy/core';
+export interface UserData extends FlexyData {
+  email: string;
+  first_name: string;
+  last_name: string;
+  role: string;
+}
+```
 
-Run `ng test core` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<strong>Domain Object</strong>
 
-## Further help
+```typescript
+import { FlexyModel } from '@ng-flexy/core';
+import { UserData } from 'user.data.ts';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+export class User extends FlexyModel<UserData> {
+  get id(): string {
+    return this.data && this.data.email;
+  }
+
+  get email(): string {
+    return this.data && this.data.email;
+  }
+
+  get name(): string {
+    return this.data && this.data.first_name;
+  }
+  set name(name: string) {
+    this.data.first_name = name;
+  }
+  get surname(): string {
+    return this.data && this.data.last_name;
+  }
+  set surname(name: string) {
+    this.data.last_name = name;
+  }
+
+  get role(): string {
+    return this.data && this.data.role;
+  }
+
+  toString() {
+    return this.getFullName();
+  }
+
+  getFullName(): string {
+    return this.name || this.surname ? this.name + ' ' + this.surname : '[' + this.email + ']';
+  }
+
+  isAdmin() {
+    return this.role === 'admin';
+  }
+}
+```
+
+<strong>Service</strong>
+
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class UsersService {
+  constructor(private httpClient: HttpClient) {}
+  fetch(id: string): Promise<User> {
+    return this.httpClient
+      .get(environment.apiPath + '/users/' + id)
+      .pipe(map((userData: UserData) => new User(userData)))
+      .toPromise();
+  }
+
+  update(user: User): Promise<User> {
+    return this.httpClient
+      .put(environment.apiPath + '/users/' + user.id, user.toJSON())
+      .pipe(map((userData: UserData) => new User(userData)))
+      .toPromise();
+  }
+}
+```
+
+### Pipes
+
+#### flexyTruncate
+
+Based on <a href="https://lodash.com/docs/4.17.15#truncate" target="_blank">Lodash truncate</a>. Truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
+
+Parameters
+
+- length: number - required
+- omission: default: '...'
+- separator: default: ' '
+
+e.g.
+`{{ 'Lorem ipsum dolor sit amet' | flexyTruncate:10 }}` => `Lorem...`
+
+`{{ 'Lorem ipsum dolor sit amet' | flexyTruncate:10:'.':'' }}` => `Lorem ips.`
+
+#### flexyEmpty
+
+Expose empty values
+
+Parameters
+
+- emptyMark: default: '---'
+
+e.g.
+`{{ '' | flexyEmpty }}` => `---`
+
+`{{ null | flexyEmpty:'--' }}` => `--`
+
+`{{ false | flexyEmpty:'--' }}` => `--`
+
+#### flexyCamelCase
+
+Based on <a href="https://lodash.com/docs/4.17.15#camelCase" target="_blank">Lodash camelCase</a>. Converts string to camel case.
+
+e.g.
+`{{ 'Foo Bar' | flexyCamelCase }}` => `fooBar`
+
+`{{ '--foo-bar--' | flexyCamelCase }}` => `fooBar`
+
+`{{ '__FOO_BAR__' | flexyCamelCase }}` => `fooBar`

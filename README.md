@@ -5,29 +5,33 @@ Flexy components and tools to build Angular 8+ applications
 ## Modules
 
 ### core
+
 Install: `npm i --save @ng-flexy/core`
 
 Docs: <a href="./projects/core/README.md">Readme</a>
 
 ### freezer
+
 Install: `npm i --save @ng-flexy/freezer`
 
 Docs: <a href="./projects/freezer/README.md">Readme</a>
 
 ### skins
+
 Install: `npm i --save @ng-flexy/skins`
 
 Docs: <a href="./projects/skins/README.md">Readme</a>
 
 ### toasts
+
 Install: `npm i --save @ng-flexy/toasts`
 
 Docs: <a href="./projects/toasts/README.md">Readme</a>
 
-
-# Development
+# Library development
 
 ## Install
+
 Init dependencies `npm install --no-optional`
 
 Build core `npm run core:build`
@@ -74,4 +78,3 @@ Run `npm run skins:watch`
 Run `npm run skins:watch-scripts`
 
 Run `npm run demo`
-
