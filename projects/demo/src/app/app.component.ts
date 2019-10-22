@@ -4,6 +4,8 @@ import { Skins } from './app.skins';
 import { FlexyEnvService, FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyToastsContainerComponent, FlexyToastsService } from '@ng-flexy/toasts';
 
+export declare var PR: any;
+
 @Component({
   selector: 'demo-root',
   templateUrl: './app.component.html',
@@ -14,6 +16,10 @@ export class AppComponent implements AfterViewInit {
 
   title = 'NG Flexy Demo';
   version: string;
+
+  componentCode = require('!!raw-loader!./app.component.ts');
+  htmlCode = require('!!raw-loader!./app.component.html');
+
   constructor(
     private skinService: FlexySkinsService,
     private logger: FlexyLoggerService,
@@ -28,6 +34,8 @@ export class AppComponent implements AfterViewInit {
       this.toastsService.init(this.toastsContainer);
       this.toastsService.success('Toasts is ready');
     }
+
+    PR.prettyPrint();
   }
 
   changeSkin() {

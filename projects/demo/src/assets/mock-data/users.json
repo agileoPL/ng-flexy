@@ -1,0 +1,16 @@
+[
+  {
+    "id": "abc1",
+    "email": "john.doe@mail.com",
+    "first_name": "John",
+    "last_name": "Doe",
+    "role": "user"
+  },
+  {
+    "id": "dsf2",
+    "email": "jane.roe@mail.com",
+    "first_name": "Jane",
+    "last_name": "Roe",
+    "role": "administrator"
+  }
+]

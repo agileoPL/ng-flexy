@@ -27,6 +27,7 @@
             "extractCss": true,
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/google-code-prettify/bin/prettify.min.css",
               "projects/demo/src/styles.scss",
               {
                 "input": "projects/demo/src/scss/light-skin/index.scss",
@@ -39,7 +40,7 @@
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": ["projects/skins/src/scripts/skin-switcher.js"]
+            "scripts": ["projects/skins/src/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"]
           },
           "configurations": {
             "production": {

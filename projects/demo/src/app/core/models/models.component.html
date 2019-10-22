@@ -1,0 +1,41 @@
+<h1>NgFlexy Core - Models</h1>
+
+<h3>Install</h3>
+
+run <code>`npm i --save @ng-flexy/core`</code>
+
+<h3>Description</h3>
+
+<p>Flexy model is a very easy/loose implementation of domain object / data transfer object pattern.</p>
+
+<p>FlexyModel separates the application layer from the API layer - FlexyData</p>
+
+<h3>Example</h3>
+
+<fieldset>
+  <demo-models-users></demo-models-users>
+</fieldset>
+
+<h3>Sources</h3>
+<div>
+  <tabset>
+    <tab heading="Component">
+      <pre class="prettyprint">{{ usersComponentContent }}</pre>
+    </tab>
+    <tab heading="Template">
+      <pre class="prettyprint">{{ usersComponentHtmlContent }}</pre>
+    </tab>
+    <tab heading="Domain object" id="tab1">
+      <pre class="prettyprint">{{ userModelContent }}</pre>
+    </tab>
+    <tab heading="Data transfer object">
+      <pre class="prettyprint">{{ userDataContent }}</pre>
+    </tab>
+    <tab heading="Service">
+      <pre class="prettyprint">{{ usersServiceContent }}</pre>
+    </tab>
+    <tab heading="API Data">
+      <pre class="prettyprint">{{ mockContent | json }}</pre>
+    </tab>
+  </tabset>
+</div>

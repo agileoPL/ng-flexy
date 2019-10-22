@@ -6,6 +6,18 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 run `npm i --save @ng-flexy/core`
 
+## Logger
+
+-- todo --
+
+## Env
+
+-- todo --
+
+## Storage
+
+-- todo --
+
 ## Models
 
 Flexy model is a very easy/loose implementation of domain object / data transfer object pattern.
@@ -13,7 +25,6 @@ Flexy model is a very easy/loose implementation of domain object / data transfer
 FlexyModel separates the application layer from the API layer - FlexyData
 
 Docs: <a href="./src/lib/models/README.md">Readme</a>
-
 
 ## Pipes
 
@@ -57,3 +68,25 @@ e.g.
 `{{ '--foo-bar--' | flexyCamelCase }}` => `fooBar`
 
 `{{ '__FOO_BAR__' | flexyCamelCase }}` => `fooBar`
+
+## Utils
+
+### Errors
+
+-- todo --
+
+### Http
+
+-- todo --
+
+### Date
+
+-- todo --
+
+### Subject
+
+-- todo --
+
+### Types
+
+-- todo --

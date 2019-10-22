@@ -6,16 +6,23 @@ import { FlexySkinsModule } from '@ng-flexy/skins';
 import { SUPPORTED_SKINS } from './app.skins';
 import { FlexyEnvModule, FlexyLoggerModule } from '@ng-flexy/core';
 import { FlexyToastsModule } from '@ng-flexy/toasts';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { TabsModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    RouterModule,
+    HttpClientModule,
     AppRoutingModule,
     FlexySkinsModule.forRoot(SUPPORTED_SKINS),
     FlexyEnvModule.forRoot({ version: '1.2' }),
     FlexyLoggerModule.forRoot(),
-    FlexyToastsModule.forRoot()
+    FlexyToastsModule.forRoot(),
+
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
