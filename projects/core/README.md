@@ -2,11 +2,11 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
 
-## Install
+#### Install
 
 run `npm i --save @ng-flexy/core`
 
-### Models
+## Models
 
 Flexy model is a very easy/loose implementation of domain object / data transfer object pattern.
 
@@ -103,7 +103,7 @@ export class UsersService {
 }
 ```
 
-### Pipes
+## Pipes
 
 #### flexyTruncate
 
