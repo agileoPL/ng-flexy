@@ -1,0 +1,34 @@
+<h2>Domain Model</h2>
+
+<p>Flexy model is a very easy/loose implementation of domain object / data transfer object pattern.</p>
+
+<p>FlexyModel separates the application layer from the API layer - FlexyData</p>
+
+<h3>Usage</h3>
+<div>
+  <tabset>
+    <tab heading="Data transfer object">
+      <demo-pretty-code [code]="userDataContent"></demo-pretty-code>
+    </tab>
+    <tab heading="Domain object" id="tab1">
+      <demo-pretty-code [code]="userModelContent"></demo-pretty-code>
+    </tab>
+    <tab heading="Component">
+      <demo-pretty-code [code]="usersComponentContent"></demo-pretty-code>
+    </tab>
+    <tab heading="Template">
+      <demo-pretty-code [code]="usersComponentHtmlContent"></demo-pretty-code>
+    </tab>
+    <tab heading="Service">
+      <demo-pretty-code [code]="usersServiceContent"></demo-pretty-code>
+    </tab>
+    <tab heading="API Data">
+      <demo-pretty-code [code]="mockContent | json"></demo-pretty-code>
+    </tab>
+  </tabset>
+</div>
+
+<h3>Demo</h3>
+<fieldset>
+  <demo-models-users></demo-models-users>
+</fieldset>

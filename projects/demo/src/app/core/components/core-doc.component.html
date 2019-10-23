@@ -1,0 +1,29 @@
+<h1>NgFlexy Core</h1>
+
+<h3>Install</h3>
+
+<p>run <code>`npm i --save @ng-flexy/core`</code></p>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{ active: !currentUrl || currentUrl.includes('/core/logger') }" [routerLink]="['/core/logger']"
+      >Logger</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{ active: currentUrl && currentUrl.includes('/core/env') }" [routerLink]="['/core/env']">Env</a>
+  </li>
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [ngClass]="{ active: currentUrl && currentUrl.includes('/core/feature-toggle') }"
+      [routerLink]="['/core/feature-toggle']"
+      >Feature toggle</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [ngClass]="{ active: currentUrl && currentUrl.includes('/core/model') }" [routerLink]="['/core/model']">Model</a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>
