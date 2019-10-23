@@ -1,0 +1,31 @@
+<button
+  class="btn btn-success"
+  type="button"
+  (click)="toastSuccess('Lorem ipsum dolor sit amet, <i>consectetur adipiscing elit</i>', 'Nullam venenatis dui')"
+>
+  Success (auto hide)
+</button>
+<button
+  class="btn btn-info"
+  type="button"
+  (click)="toastInfo('Lorem ipsum dolor sit amet, <i>consectetur adipiscing elit</i>', 'Nullam venenatis dui')"
+>
+  Info (auto hide)
+</button>
+<button
+  class="btn btn-warning"
+  type="button"
+  (click)="toastWarning('Lorem ipsum dolor sit amet, <i>consectetur adipiscing elit</i>', 'Nullam venenatis dui')"
+>
+  Warning (auto hide after 20s)
+</button>
+<button
+  class="btn btn-danger"
+  type="button"
+  (click)="toastError('Lorem ipsum dolor sit amet, <i>consectetur adipiscing elit</i>', 'Nullam venenatis dui')"
+>
+  Error (without auto hide)
+</button>
+<button class="btn btn-primary" type="button" (click)="toastConfirm('Lorem ipsum dolor sit amet?', '')">
+  Confirm toast
+</button>

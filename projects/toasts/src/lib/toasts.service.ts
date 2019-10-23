@@ -46,7 +46,7 @@ export class FlexyToastsService {
       ['callback']: callback
     };
 
-    const options = { autoDismiss: false, toastLife: 0, buttons: [cancelButton, confirmButton] };
+    const options = { toastLife: 0, buttons: [cancelButton, confirmButton] };
 
     return this.show(new FlexyToast('confirm', message, title, options));
   }

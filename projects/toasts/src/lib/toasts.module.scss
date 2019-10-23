@@ -79,7 +79,7 @@ flexy-toasts-container {
       &::before {
         position: absolute;
         top: 50%;
-        left: auto;
+        left: calc(2 * 1.8rem);
         font-family: FontAwesome;
         font-size: 1.8rem;
         transform: translate(-35px, -50%);

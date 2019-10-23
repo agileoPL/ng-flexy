@@ -62,4 +62,4 @@ const routes: Routes = [
     DemoCoreDocUtilsComponent
   ]
 })
-export class CoreModule {}
+export class DemoCoreModule {}

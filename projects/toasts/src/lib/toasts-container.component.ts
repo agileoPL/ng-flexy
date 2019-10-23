@@ -4,7 +4,6 @@ import { FlexyToast, FlexyToastsOptions } from './toast.model';
 const DEFAULT_OPTIONS: FlexyToastsOptions = {
   maxShown: 6,
   position: 'top-right',
-  autoDismiss: true,
   toastLife: 5000
 };
 

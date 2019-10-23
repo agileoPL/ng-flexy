@@ -27,7 +27,6 @@ export class AppComponent implements AfterViewInit {
   ngAfterViewInit() {
     if (this.toastsContainer) {
       this.toastsService.init(this.toastsContainer);
-      this.toastsService.success('Toasts is ready');
     }
   }
 

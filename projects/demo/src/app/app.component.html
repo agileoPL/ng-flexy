@@ -21,6 +21,9 @@
         <a class="nav-link" [routerLink]="['/core']">Core</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/toasts']">Toasts</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" (click)="changeSkin()" role="button">Toggle skin</a>
       </li>
     </ul>
@@ -28,7 +31,7 @@
 </nav>
 
 <main role="main">
-  <div class="container">
+  <div class="container-fluid">
     <router-outlet></router-outlet>
   </div>
   <!-- /container -->
