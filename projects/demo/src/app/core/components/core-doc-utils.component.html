@@ -1,0 +1,54 @@
+<h2>Utils</h2>
+
+<h3>Http cache interceptor</h3>
+
+<demo-pretty-code
+  code="import { FlexyHttpCacheInterceptor } from '@ng-flexy/core';
+
+@NgModule({
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FlexyHttpCacheInterceptor,
+      multi: true
+    },
+  ]
+})
+"
+></demo-pretty-code>
+
+<demo-pretty-code
+  code="@Injectable({
+  providedIn: 'root'
+})
+export class UsersService {
+  constructor(private httpClient: HttpClient) {}
+
+  all(): Observable<User[]> {
+    return this.httpClient
+      .get('/api/users', {
+        headers: { 'cache-control': 'cache' }
+      })
+      .pipe(
+        map((data: UserData[]) => {
+          return data.map(item => new User(item));
+        })
+      );
+  }
+
+  add(name: string): Promise<boolean> {
+    return this.httpClient
+      .post(
+        environment.apiPath + '/user',
+        {
+          name: name
+        },
+        {
+          headers: { 'clear-cache': '/api/users' }
+        }
+      );
+  }
+
+}
+"
+></demo-pretty-code>

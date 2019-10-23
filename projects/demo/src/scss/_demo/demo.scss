@@ -1,3 +1,21 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@ng-flexy/freezer/freezer';
 @import '~@ng-flexy/toasts/toasts.module';
+
+main {
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: rgba($secondary, 0.7);
+  font-size: 10px;
+  padding: 3px;
+  text-align: right;
+  color: $body-bg;
+}

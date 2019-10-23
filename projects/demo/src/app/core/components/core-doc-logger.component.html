@@ -1,5 +1,5 @@
 <h2>Logger</h2>
-<p>FlexyLogger is log level support display logs module.</p>
+<p>FlexyLogger logs module with log level support.</p>
 
 <h3>Usage</h3>
 
@@ -13,50 +13,3 @@
 
 <h3>Demo</h3>
 <demo-logs></demo-logs>
-
-<h2>Env</h2>
-<p>Alternative env app configuration module</p>
-
-<h3>Usage</h3>
-
-<demo-pretty-code
-  code="import {
-  FLEXY_ENV_TOKEN,
-  FlexyEnv,
-  FlexyEnvModule,
-} from '@ng-flexy/core';
-
-// import in app module
-@NgModule({
-  imports: [FlexyEnvModule.forRoot({ version: '1.2' })],
-})
-
-// or import declared var
-export declare var Env: FlexyEnv;
-@NgModule({
-  imports: [FlexyEnvModule],
-  providers: [
-    {
-      provide: FLEXY_ENV_TOKEN,
-      useValue: Env ? Env : {}
-    }
-  ]
-})
-"
-></demo-pretty-code>
-
-<demo-pretty-code
-  code="@Component({
-  selector: 'demo'
-})
-export class DemoComponent {
-  version: string;
-
-  constructor(
-    private env: FlexyEnvService,
-  ) {
-    this.version = '' + this.env.get('version');
-  }
-}
-"
-></demo-pretty-code>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">{{ title }}</a>
+  <a class="navbar-brand" [routerLink]="['/']">{{ title }}</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -14,35 +14,28 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/']">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/core']">Core</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" (click)="changeSkin()" role="button">Toggle skin</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
 
-<main role="main" style="margin-top: 80px">
+<main role="main">
   <div class="container">
     <router-outlet></router-outlet>
   </div>
   <!-- /container -->
 </main>
 
-<footer class="container">
-  <p>&copy; Company 2017-2019 | Version: {{ version }}</p>
+<footer>
+  <p>&copy; Cledar 2009-{{ today | date: 'yyyy' }} | Version: {{ version }}</p>
 </footer>
 
 <flexy-toasts-container></flexy-toasts-container>

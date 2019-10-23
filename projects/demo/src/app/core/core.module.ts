@@ -12,6 +12,7 @@ import { DemoCoreDocFeatureToggleComponent } from './components/core-doc-feature
 import { DemoCoreDocLoggerComponent } from './components/core-doc-logger.component';
 import { DemoCoreDocModelComponent } from './components/core-doc-model.component';
 import { DemoCoreDocEnvComponent } from './components/core-doc-env.component';
+import { DemoCoreDocUtilsComponent } from './components/core-doc-utils.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path: 'model',
         component: DemoCoreDocModelComponent
+      },
+      {
+        path: 'utils',
+        component: DemoCoreDocUtilsComponent
       }
     ]
   }
@@ -53,7 +58,8 @@ const routes: Routes = [
     DemoCoreDocFeatureToggleComponent,
     DemoCoreDocLoggerComponent,
     DemoCoreDocModelComponent,
-    DemoCoreDocEnvComponent
+    DemoCoreDocEnvComponent,
+    DemoCoreDocUtilsComponent
   ]
 })
 export class CoreModule {}

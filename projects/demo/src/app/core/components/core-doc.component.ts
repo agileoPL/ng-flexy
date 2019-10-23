@@ -3,12 +3,36 @@ import { NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
+const SUB_PAGES = [
+  {
+    url: '/core/logger',
+    label: 'Logger'
+  },
+  {
+    url: '/core/env',
+    label: 'Env'
+  },
+  {
+    url: '/core/feature-toggle',
+    label: 'Feature toggle'
+  },
+  {
+    url: '/core/model',
+    label: 'Model'
+  },
+  {
+    url: '/core/utils',
+    label: 'Utils'
+  }
+];
+
 @Component({
   selector: 'demo-core-doc',
   templateUrl: './core-doc.component.html'
 })
 export class DemoCoreDocComponent implements OnInit, OnDestroy {
-  currentUrl: string;
+  currentUrl = '/core/logger';
+  subPages = SUB_PAGES;
 
   private routerSub: Subscription;
 

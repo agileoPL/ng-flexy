@@ -1,4 +1,4 @@
-# NgFlexy Core - Models
+# @ng-flexy Core - Models
 
 #### Install
 

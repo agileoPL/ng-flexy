@@ -6,14 +6,14 @@ import { FlexyToastsContainerComponent, FlexyToastsService } from '@ng-flexy/toa
 
 @Component({
   selector: 'demo-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild(FlexyToastsContainerComponent, { static: false }) private toastsContainer!: FlexyToastsContainerComponent;
 
-  title = 'NG Flexy Demo';
+  title = '@ng-flexy';
   version: string;
+  today: number = Date.now();
 
   constructor(
     private skinService: FlexySkinsService,
