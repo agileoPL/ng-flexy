@@ -5,9 +5,9 @@ import { truncate } from 'lodash';
 export class FlexyTruncatePipe implements PipeTransform {
   transform(value, length: number, omission: '...', separator: ' '): string {
     return truncate(value, {
-      length: length,
-      separator: separator,
-      omission: omission
+      length,
+      separator,
+      omission
     });
   }
 }

@@ -1,0 +1,9 @@
+<h1>Users</h1>
+
+<table class="table table-striped">
+  <tr *ngFor="let user of users$ | async; let index = index">
+    <td>{{ index + 1 }}.</td>
+    <td>{{ user }}</td>
+    <td>{{ user.email }}</td>
+  </tr>
+</table>

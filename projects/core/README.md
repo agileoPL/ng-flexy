@@ -2,24 +2,91 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
 
-## Code scaffolding
+#### Install
 
-Run `ng generate component component-name --project core` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project core`.
+run `npm i --save @ng-flexy/core`
 
-> Note: Don't forget to add `--project core` or else it will be added to the default project in your `angular.json` file.
+## Logger
 
-## Build
+-- todo --
 
-Run `ng build core` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Env
 
-## Publishing
+-- todo --
 
-After building your library with `ng build core`, go to the dist folder `cd dist/core` and run `npm publish`.
+## Storage
 
-## Running unit tests
+-- todo --
 
-Run `ng test core` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Models
 
-## Further help
+Flexy model is a very easy/loose implementation of domain object / data transfer object pattern.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+FlexyModel separates the application layer from the API layer - FlexyData
+
+Docs: <a href="./src/lib/models/README.md">Readme</a>
+
+## Pipes
+
+#### flexyTruncate
+
+Based on <a href="https://lodash.com/docs/4.17.15#truncate" target="_blank">Lodash truncate</a>. Truncates string if it's longer than the given maximum string length. The last characters of the truncated string are replaced with the omission string which defaults to "...".
+
+Parameters
+
+- length: number - required
+- omission: default: '...'
+- separator: default: ' '
+
+e.g.
+`{{ 'Lorem ipsum dolor sit amet' | flexyTruncate:10 }}` => `Lorem...`
+
+`{{ 'Lorem ipsum dolor sit amet' | flexyTruncate:10:'.':'' }}` => `Lorem ips.`
+
+#### flexyEmpty
+
+Expose empty values
+
+Parameters
+
+- emptyMark: default: '---'
+
+e.g.
+`{{ '' | flexyEmpty }}` => `---`
+
+`{{ null | flexyEmpty:'--' }}` => `--`
+
+`{{ false | flexyEmpty:'--' }}` => `--`
+
+#### flexyCamelCase
+
+Based on <a href="https://lodash.com/docs/4.17.15#camelCase" target="_blank">Lodash camelCase</a>. Converts string to camel case.
+
+e.g.
+`{{ 'Foo Bar' | flexyCamelCase }}` => `fooBar`
+
+`{{ '--foo-bar--' | flexyCamelCase }}` => `fooBar`
+
+`{{ '__FOO_BAR__' | flexyCamelCase }}` => `fooBar`
+
+## Utils
+
+### Errors
+
+-- todo --
+
+### Http
+
+-- todo --
+
+### Date
+
+-- todo --
+
+### Subject
+
+-- todo --
+
+### Types
+
+-- todo --
