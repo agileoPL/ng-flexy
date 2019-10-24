@@ -78,3 +78,14 @@ Run `npm run skins:watch`
 Run `npm run skins:watch-scripts`
 
 Run `npm run demo`
+
+### Npm publish
+
+`./publish {project_name}`
+
+### Demo publish
+
+npm install -g firebase-tools
+firebase login
+firebase init
+firebase deploy

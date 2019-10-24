@@ -1,0 +1,60 @@
+<demo-doc-layout [activeModule]="activeModule">
+  <h1>@ng-flexy/toasts</h1>
+
+  <h3>Install</h3>
+
+  <p>run <code>npm i --save @ng-flexy/toasts</code></p>
+
+  <tabset>
+    <tab heading="app.module.ts">
+      <demo-pretty-code
+        code="@NgModule({
+  imports: [
+    FlexyToastsModule.forRoot()
+  ]
+}"
+      ></demo-pretty-code>
+    </tab>
+    <tab heading="app.component.ts">
+      <demo-pretty-code
+        code="@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html'
+})
+export class AppComponent implements AfterViewInit {
+  constructor(
+    private toastsService: FlexyToastsService
+  ) {
+  }
+
+  ngAfterViewInit() {
+    if (this.toastsContainer) {
+      this.toastsService.init(this.toastsContainer);
+    }
+  }
+}"
+      ></demo-pretty-code>
+    </tab>
+    <tab heading="app.component.html">
+      <demo-pretty-code [code]="'<flexy-toasts-container></flexy-toasts-container>'"></demo-pretty-code>
+    </tab>
+  </tabset>
+
+  <h3>Usage</h3>
+
+  <div>
+    <tabset>
+      <tab heading="Component">
+        <demo-pretty-code [code]="typesComponentContent"></demo-pretty-code>
+      </tab>
+      <tab heading="Template">
+        <demo-pretty-code [code]="typesHtmlContent"></demo-pretty-code>
+      </tab>
+    </tabset>
+  </div>
+
+  <h3>Demo</h3>
+  <div class="bd-example">
+    <demo-toasts-types></demo-toasts-types>
+  </div>
+</demo-doc-layout>
