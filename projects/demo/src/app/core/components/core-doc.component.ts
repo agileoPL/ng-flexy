@@ -1,7 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { DemoModules } from '../../common/components/doc-layout.component';
 
 const SUB_PAGES = [
   {
@@ -30,23 +28,7 @@ const SUB_PAGES = [
   selector: 'demo-core-doc',
   templateUrl: './core-doc.component.html'
 })
-export class DemoCoreDocComponent implements OnInit, OnDestroy {
-  currentUrl = '/core/logger';
+export class DemoCoreDocComponent {
   subPages = SUB_PAGES;
-
-  private routerSub: Subscription;
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    this.routerSub = this.router.events.pipe(filter(event => event instanceof NavigationStart)).subscribe((event: NavigationStart) => {
-      this.currentUrl = event.url;
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.routerSub) {
-      this.routerSub.unsubscribe();
-    }
-  }
+  activeModule = DemoModules.Core;
 }

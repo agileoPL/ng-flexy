@@ -1,20 +1,3 @@
-<h1>@ng-flexy/core</h1>
-
-<h3>Install</h3>
-
-<p>run <code>npm i --save @ng-flexy/core</code></p>
-
-<div class="card">
-  <div class="card-header">
-    <ul class="nav nav-pills">
-      <li class="nav-item" *ngFor="let page of subPages">
-        <a class="nav-link" [ngClass]="{ active: currentUrl && currentUrl.includes(page.url) }" [routerLink]="[page.url]">{{
-          page.label
-        }}</a>
-      </li>
-    </ul>
-  </div>
-  <div class="card-body">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<demo-doc-layout [activeModule]="activeModule" [subMenu]="subPages">
+  <router-outlet></router-outlet>
+</demo-doc-layout>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
   <a class="navbar-brand" [routerLink]="['/']">{{ title }}</a>
   <button
     class="navbar-toggler"
@@ -31,10 +31,7 @@
 </nav>
 
 <main role="main">
-  <div class="container-fluid">
-    <router-outlet></router-outlet>
-  </div>
-  <!-- /container -->
+  <router-outlet></router-outlet>
 </main>
 
 <footer>

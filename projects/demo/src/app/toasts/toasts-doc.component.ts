@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DemoModules } from '../common/components/doc-layout.component';
 
 @Component({
   selector: 'demo-toasts-doc',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styles: []
 })
 export class DemoToastsDocComponent {
+  activeModule = DemoModules.Toasts;
+
   typesComponentContent = require('!!raw-loader!./toasts-types.component.ts');
   typesHtmlContent = require('!!raw-loader!./toasts-types.component.html');
 

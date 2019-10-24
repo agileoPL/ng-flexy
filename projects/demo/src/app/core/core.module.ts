@@ -13,6 +13,7 @@ import { DemoCoreDocLoggerComponent } from './components/core-doc-logger.compone
 import { DemoCoreDocModelComponent } from './components/core-doc-model.component';
 import { DemoCoreDocEnvComponent } from './components/core-doc-env.component';
 import { DemoCoreDocUtilsComponent } from './components/core-doc-utils.component';
+import { DemoCoreDocInfoComponent } from './components/core-doc-info.component';
 
 const routes: Routes = [
   {
@@ -21,8 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'logger',
-        pathMatch: 'full'
+        component: DemoCoreDocInfoComponent
       },
       {
         path: 'logger',
@@ -59,7 +59,8 @@ const routes: Routes = [
     DemoCoreDocLoggerComponent,
     DemoCoreDocModelComponent,
     DemoCoreDocEnvComponent,
-    DemoCoreDocUtilsComponent
+    DemoCoreDocUtilsComponent,
+    DemoCoreDocInfoComponent
   ]
 })
 export class DemoCoreModule {}
