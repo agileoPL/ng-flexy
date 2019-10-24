@@ -14,6 +14,7 @@ import { DemoCoreDocModelComponent } from './components/core-doc-model.component
 import { DemoCoreDocEnvComponent } from './components/core-doc-env.component';
 import { DemoCoreDocUtilsComponent } from './components/core-doc-utils.component';
 import { DemoCoreDocInfoComponent } from './components/core-doc-info.component';
+import { DemoHttpCacheComponent } from './components/http-cache-demo.component';
 
 const routes: Routes = [
   {
@@ -60,7 +61,8 @@ const routes: Routes = [
     DemoCoreDocModelComponent,
     DemoCoreDocEnvComponent,
     DemoCoreDocUtilsComponent,
-    DemoCoreDocInfoComponent
+    DemoCoreDocInfoComponent,
+    DemoHttpCacheComponent
   ]
 })
 export class DemoCoreModule {}

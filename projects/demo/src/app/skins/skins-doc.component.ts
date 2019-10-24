@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { DemoModules } from '../common/components/doc-layout.component';
 
 @Component({
-  selector: 'demo-toasts-doc',
-  templateUrl: 'skins-doc.component.html',
-  styles: []
+  selector: 'demo-skins-doc',
+  templateUrl: 'skins-doc.component.html'
 })
-export class DemoToastsDocComponent {
-  activeModule = DemoModules.Toasts;
+export class DemoSkinsDocComponent {
+  activeModule = DemoModules.Skins;
 
-  typesComponentContent = require('!!raw-loader!./toasts-types.component.ts');
-  typesHtmlContent = require('!!raw-loader!./toasts-types.component.html');
+  angularJsonContent = require('./angular-partial.skins.json');
+  indexContent = require('!!raw-loader!./index-partial.html');
+  exampleContent = require('!!raw-loader!./skin-toggle.component.ts');
+  appSkinsConfigContent = require('!!raw-loader!./../../app/app.skins.ts');
 
   constructor() {}
 }

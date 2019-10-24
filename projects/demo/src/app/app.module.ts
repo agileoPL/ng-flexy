@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FlexySkinsModule } from '@ng-flexy/skins';
 import { SUPPORTED_SKINS } from './app.skins';
-import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyLoggerModule } from '@ng-flexy/core';
+import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyHttpCacheInterceptor, FlexyLoggerModule } from '@ng-flexy/core';
 import { FlexyToastsModule } from '@ng-flexy/toasts';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TabsModule } from 'ngx-bootstrap';
 import { DemoHomeComponent } from './home/home.component';
+import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 
 const routes: Routes = [
   {
@@ -22,6 +23,14 @@ const routes: Routes = [
   {
     path: 'toasts',
     loadChildren: () => import('./toasts/toasts.module').then(m => m.DemoToastsModule)
+  },
+  {
+    path: 'skins',
+    loadChildren: () => import('./skins/skins.module').then(m => m.DemoSkinsModule)
+  },
+  {
+    path: 'freezer',
+    loadChildren: () => import('./freezer/freezer.module').then(m => m.DemoFreezerModule)
   }
 ];
 
@@ -39,7 +48,18 @@ const routes: Routes = [
     TabsModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FlexyHttpCacheInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FlexyHttpFreezerInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

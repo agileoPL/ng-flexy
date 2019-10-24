@@ -1,60 +1,43 @@
 <demo-doc-layout [activeModule]="activeModule">
-  <h1>@ng-flexy/toasts</h1>
+  <h1>@ng-flexy/skins</h1>
+  <p>The module allows you to create independent, separately loading skins</p>
 
-  <h3>Install</h3>
+  <figure class="highlight">
+    <code>npm i --save @ng-flexy/skins</code>
+  </figure>
 
-  <p>run <code>npm i --save @ng-flexy/toasts</code></p>
+  <h3>Demo</h3>
+  <div class="bd-example">
+    <demo-skin-toggle></demo-skin-toggle>
+  </div>
+
+  <h3>Configuration</h3>
 
   <tabset>
+    <tab heading="angular.json">
+      <demo-pretty-code [code]="angularJsonContent | json"></demo-pretty-code>
+    </tab>
+    <tab heading="index.html">
+      <demo-pretty-code [code]="indexContent"></demo-pretty-code>
+    </tab>
+    <tab heading="App skins config">
+      <demo-pretty-code [code]="appSkinsConfigContent"></demo-pretty-code>
+    </tab>
     <tab heading="app.module.ts">
       <demo-pretty-code
         code="@NgModule({
-  imports: [
-    FlexyToastsModule.forRoot()
-  ]
-}"
-      ></demo-pretty-code>
-    </tab>
-    <tab heading="app.component.ts">
-      <demo-pretty-code
-        code="@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+declarations: [AppComponent, DemoHomeComponent],
+imports: [
+  FlexySkinsModule.forRoot(SUPPORTED_SKINS),
+],
+providers: [],
+bootstrap: [AppComponent]
 })
-export class AppComponent implements AfterViewInit {
-  constructor(
-    private toastsService: FlexyToastsService
-  ) {
-  }
-
-  ngAfterViewInit() {
-    if (this.toastsContainer) {
-      this.toastsService.init(this.toastsContainer);
-    }
-  }
-}"
+export class AppModule {}"
       ></demo-pretty-code>
-    </tab>
-    <tab heading="app.component.html">
-      <demo-pretty-code [code]="'<flexy-toasts-container></flexy-toasts-container>'"></demo-pretty-code>
     </tab>
   </tabset>
 
   <h3>Usage</h3>
-
-  <div>
-    <tabset>
-      <tab heading="Component">
-        <demo-pretty-code [code]="typesComponentContent"></demo-pretty-code>
-      </tab>
-      <tab heading="Template">
-        <demo-pretty-code [code]="typesHtmlContent"></demo-pretty-code>
-      </tab>
-    </tabset>
-  </div>
-
-  <h3>Demo</h3>
-  <div class="bd-example">
-    <demo-toasts-types></demo-toasts-types>
-  </div>
+  <demo-pretty-code [code]="exampleContent"></demo-pretty-code>
 </demo-doc-layout>

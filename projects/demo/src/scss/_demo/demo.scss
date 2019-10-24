@@ -33,6 +33,14 @@ demo-doc-layout {
   }
 }
 
+.bd-example {
+  margin-bottom: $spacer;
+}
+
+.bd-navbar .navbar-nav .nav-link {
+  color: $white;
+}
+
 footer {
   position: fixed;
   bottom: 0;

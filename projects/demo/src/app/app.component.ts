@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FlexySkinsService } from '@ng-flexy/skins';
-import { Skins } from './app.skins';
-import { FlexyEnvService, FlexyLoggerService } from '@ng-flexy/core';
+import { FlexyEnvService } from '@ng-flexy/core';
 import { FlexyToastsContainerComponent, FlexyToastsService } from '@ng-flexy/toasts';
 
 @Component({
@@ -15,28 +13,13 @@ export class AppComponent implements AfterViewInit {
   version: string;
   today: number = Date.now();
 
-  constructor(
-    private skinService: FlexySkinsService,
-    private logger: FlexyLoggerService,
-    private env: FlexyEnvService,
-    private toastsService: FlexyToastsService
-  ) {
+  constructor(private env: FlexyEnvService, private toastsService: FlexyToastsService) {
     this.version = '' + this.env.get('version');
   }
 
   ngAfterViewInit() {
     if (this.toastsContainer) {
       this.toastsService.init(this.toastsContainer);
-    }
-  }
-
-  changeSkin() {
-    if (this.skinService.getCurrent() === Skins.Default) {
-      this.skinService.set(Skins.Dark);
-      this.logger.debug('Change skin', Skins.Dark);
-    } else {
-      this.skinService.set(Skins.Default);
-      this.logger.debug('Change skin', Skins.Dark);
     }
   }
 }

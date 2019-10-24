@@ -40,7 +40,7 @@
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": ["projects/skins/src/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"]
+            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"]
           },
           "configurations": {
             "production": {

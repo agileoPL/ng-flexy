@@ -1,0 +1,31 @@
+{
+  "projects": {
+    "demo": {
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "styles": [
+              {
+                "input": "projects/demo/src/scss/light-skin/index.scss",
+                "lazy": true,
+                "bundleName": "styles/default"
+              },
+              {
+                "input": "projects/demo/src/scss/dark-skin/index.scss",
+                "lazy": true,
+                "bundleName": "styles/dark"
+              }
+            ],
+            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js"]
+          },
+          "configurations": {
+            "production": {
+              "extractCss": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

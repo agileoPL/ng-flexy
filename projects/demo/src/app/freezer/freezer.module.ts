@@ -1,21 +1,21 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { DemoSkinsDocComponent } from './skins-doc.component';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyToastsModule } from '../../../../toasts/src/lib/toasts.module';
 import { TabsModule } from 'ngx-bootstrap';
-import { DemoSkinToggleComponent } from './skin-toggle.component';
+import { DemoFreezerDocComponent } from './freezer-doc.component';
+import { DemoFreezerComponent } from './demo.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DemoSkinsDocComponent
+    component: DemoFreezerDocComponent
   }
 ];
 
 @NgModule({
   imports: [CommonModule, AppCommonModule, FlexyToastsModule, TabsModule, RouterModule.forChild(routes)],
-  declarations: [DemoSkinsDocComponent, DemoSkinToggleComponent]
+  declarations: [DemoFreezerDocComponent, DemoFreezerComponent]
 })
-export class DemoSkinsModule {}
+export class DemoFreezerModule {}

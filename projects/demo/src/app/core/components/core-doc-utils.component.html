@@ -1,6 +1,18 @@
-<h2>Utils</h2>
+<h1>Utils</h1>
 
-<h3>Http cache interceptor</h3>
+<h2>Http cache interceptor</h2>
+
+<h3>Demo</h3>
+<div class="bd-example">
+  <demo-http-cache></demo-http-cache>
+</div>
+<tabset>
+  <tab heading="Demo source">
+    <demo-pretty-code [code]="demoComponentContent"></demo-pretty-code>
+  </tab>
+</tabset>
+
+<h3>Configuration</h3>
 
 <demo-pretty-code
   code="import { FlexyHttpCacheInterceptor } from '@ng-flexy/core';
@@ -17,6 +29,7 @@
 "
 ></demo-pretty-code>
 
+<h3>Usage</h3>
 <demo-pretty-code
   code="@Injectable({
   providedIn: 'root'
