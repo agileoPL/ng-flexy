@@ -2,31 +2,52 @@
 
 Flexy components and tools to build Angular 8+ applications
 
-## Development server
+## Modules
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### core
 
-## Code scaffolding
+Install: `npm i --save @ng-flexy/core`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Docs: <a href="./projects/core/README.md">Readme</a>
 
-## Build
+### freezer
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Install: `npm i --save @ng-flexy/freezer`
 
-## Running unit tests
+Docs: <a href="./projects/freezer/README.md">Readme</a>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### skins
 
-## Running end-to-end tests
+Install: `npm i --save @ng-flexy/skins`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Docs: <a href="./projects/skins/README.md">Readme</a>
 
-## Further help
+### toasts
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Install: `npm i --save @ng-flexy/toasts`
 
-## Library
+Docs: <a href="./projects/toasts/README.md">Readme</a>
+
+# Library development
+
+## Install
+
+Init dependencies `npm install --no-optional`
+
+Build core `npm run core:build`
+Install core `npm install`
+
+Build projects
+
+- freezer `npm run freezer:build`
+- skins `npm run skins:build`
+- toasts `npm run toasts:build`
+
+Install projects `npm install`
+
+Start demo `npm run demo`
+
+## Create new library
 
 Based on https://medium.com/better-programming/angular-7-series-part-2-create-custom-library-8d7a0494b2cc
 
@@ -46,20 +67,25 @@ e.g.: `ng build freezer`
 or
 Run `npm install dist/freezer --save-optional`
 
-#### Init Demo
-
-Run `npm install --no-optional`
-then build library `ng build freezer`
-finally, run `npm install`, this will install optional dependency which was skipped in 1.
-
-### Developing
+## Develop
 
 `npm run demo`
 
-#### Skins
+### Watch project e.g.
 
 Run `npm run skins:watch`
 
 Run `npm run skins:watch-scripts`
 
 Run `npm run demo`
+
+### Npm publish
+
+`./publish {project_name}`
+
+### Demo publish
+
+npm install -g firebase-tools
+firebase login
+firebase init
+firebase deploy

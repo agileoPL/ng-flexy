@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row flex-xl-nowrap">
+    <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
+      <nav class="collapse bd-links" id="bd-docs-nav">
+        <div class="bd-toc-item" *ngFor="let item of menuNav" [ngClass]="{ active: currentUrl && currentUrl.includes(item.url) }">
+          <a class="bd-toc-link" [routerLink]="[item.url]">
+            {{ item.label }}
+          </a>
+          <ul class="nav bd-sidenav" *ngIf="item.children">
+            <li
+              *ngFor="let page of item.children"
+              [ngClass]="{
+                active: currentUrl && currentUrl.includes(page.url),
+                'bd-sidenav-active': currentUrl && currentUrl.includes(page.url)
+              }"
+            >
+              <a [routerLink]="[page.url]">
+                {{ page.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="d-none d-xl-block col-xl-2 bd-toc" *ngIf="sectionNav">
+      <ul class="section-nav">
+        <li class="toc-entry toc-h2" *ngFor="let item of sectionNav">
+          <a href="#{{ item.hash }}">{{ item.label }}</a>
+          <ul *ngIf="item.children">
+            <li class="toc-entry toc-h3" *ngFor="let section of item.children">
+              <a href="#{{ section.hash }}">{{ section.label }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
+      <ng-content></ng-content>
+    </main>
+  </div>
+</div>

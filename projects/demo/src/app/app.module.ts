@@ -1,23 +1,65 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexySkinsModule } from '@ng-flexy/skins';
 import { SUPPORTED_SKINS } from './app.skins';
-import { FlexyEnvModule, FlexyLoggerModule } from '@ng-flexy/core';
+import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyHttpCacheInterceptor, FlexyLoggerModule } from '@ng-flexy/core';
 import { FlexyToastsModule } from '@ng-flexy/toasts';
+import { RouterModule, Routes } from '@angular/router';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TabsModule } from 'ngx-bootstrap';
+import { DemoHomeComponent } from './home/home.component';
+import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: DemoHomeComponent
+  },
+  {
+    path: 'core',
+    loadChildren: () => import('./core/core.module').then(m => m.DemoCoreModule)
+  },
+  {
+    path: 'toasts',
+    loadChildren: () => import('./toasts/toasts.module').then(m => m.DemoToastsModule)
+  },
+  {
+    path: 'skins',
+    loadChildren: () => import('./skins/skins.module').then(m => m.DemoSkinsModule)
+  },
+  {
+    path: 'freezer',
+    loadChildren: () => import('./freezer/freezer.module').then(m => m.DemoFreezerModule)
+  }
+];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DemoHomeComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RouterModule,
+    HttpClientModule,
     FlexySkinsModule.forRoot(SUPPORTED_SKINS),
     FlexyEnvModule.forRoot({ version: '1.2' }),
+    FlexyFeatureToggleModule.forRoot(),
     FlexyLoggerModule.forRoot(),
-    FlexyToastsModule.forRoot()
+    FlexyToastsModule.forRoot(),
+    TabsModule.forRoot(),
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FlexyHttpCacheInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FlexyHttpFreezerInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

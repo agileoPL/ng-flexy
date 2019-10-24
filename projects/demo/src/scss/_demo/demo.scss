@@ -1,3 +1,55 @@
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap-site/docs';
+
 @import '~@ng-flexy/freezer/freezer';
 @import '~@ng-flexy/toasts/toasts.module';
+
+.bd-navbar {
+  background-color: #498fe1;
+}
+
+demo-toasts-types {
+  display: flex;
+  justify-content: space-between;
+  button {
+    display: block;
+  }
+}
+
+demo-pretty-code {
+  pre.prettyprint {
+    padding: 0;
+    border: 0;
+  }
+}
+
+demo-doc-layout {
+  main {
+    h1 {
+      @extend .bd-title;
+    }
+    & > p {
+      @extend .bd-lead;
+    }
+  }
+}
+
+.bd-example {
+  margin-bottom: $spacer;
+}
+
+.bd-navbar .navbar-nav .nav-link {
+  color: $white;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: rgba($secondary, 0.7);
+  font-size: 10px;
+  padding: 3px;
+  text-align: right;
+  color: $body-bg;
+}

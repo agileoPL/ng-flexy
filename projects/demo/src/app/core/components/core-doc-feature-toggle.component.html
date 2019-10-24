@@ -1,0 +1,22 @@
+<h1>Feature Toggle</h1>
+
+<p>Feature Toggle pattern implementation</p>
+
+<h3>Demo</h3>
+<div class="bd-example">
+  <demo-toggle-feature></demo-toggle-feature>
+</div>
+
+<h3>Configuration</h3>
+<demo-pretty-code
+  code="import {FlexyFeatureToggleModule} from '@ng-flexy/core';
+
+// import in app module
+@NgModule({
+  imports: [FlexyFeatureToggleModule.forRoot()],
+})
+"
+></demo-pretty-code>
+
+<h3>Usage</h3>
+<demo-pretty-code [code]="toggleFeatureComponentContent"></demo-pretty-code>
