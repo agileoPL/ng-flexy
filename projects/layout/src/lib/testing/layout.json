@@ -1,0 +1,77 @@
+[
+  {
+    "properties": { "class": "body" },
+    "children": [
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "type": "col",
+            "properties": { "class": "col-md-6" },
+            "children": [
+              {
+                "type": "component",
+                "component": "custom-cmp",
+                "componentInputs": {
+                  "p1": "Text",
+                  "p2": 1
+                }
+              }
+            ]
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-md-6" },
+            "children": [
+              {
+                "type": "component",
+                "component": "wrong-cmp",
+                "componentInputs": {
+                  "p1": 1,
+                  "p2": "p2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "type": "col",
+            "properties": { "class": "col-md-6" }
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-md-6" }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "children": [
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "type": "col",
+            "properties": { "class": "col-md-4" }
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-md-4" }
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-md-4" }
+          }
+        ]
+      }
+    ]
+  }
+]

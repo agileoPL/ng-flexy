@@ -1,4 +1,4 @@
-# ng-flexy
+# @ng-flexy
 
 Flexy components and tools to build Angular 8+ applications
 
@@ -60,6 +60,19 @@ e.g.: `ng g library freezer --prefix=flexy`
 Run `ng build {lib_name}`
 
 e.g.: `ng build freezer`
+
+#### Add prefix @ng-flexy to project package.json
+
+```json5
+{
+  name: '@ng-flexy/freezer',
+  version: '0.0.1',
+  peerDependencies: {
+    '@angular/common': '^8.1.3',
+    '@angular/core': '^8.1.3'
+  }
+}
+```
 
 #### Add to package json
 
