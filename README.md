@@ -1,6 +1,6 @@
 # @ng-flexy
 
-Flexy components and tools to build Angular 8+ applications
+Flexy components and tools to build Angular 8+ applications.
 
 ## Modules
 

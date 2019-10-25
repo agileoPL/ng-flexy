@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TabsModule } from 'ngx-bootstrap';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
+import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'freezer',
     loadChildren: () => import('./freezer/freezer.module').then(m => m.DemoFreezerModule)
+  },
+  {
+    path: 'layout',
+    loadChildren: () => import('./layout/layout.module').then(m => m.DemoLayoutModule)
   }
 ];
 
@@ -45,6 +50,7 @@ const routes: Routes = [
     FlexyFeatureToggleModule.forRoot(),
     FlexyLoggerModule.forRoot(),
     FlexyToastsModule.forRoot(),
+    FlexyLayoutModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(routes)
   ],
@@ -58,6 +64,11 @@ const routes: Routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: FlexyHttpFreezerInterceptor,
       multi: true
+    },
+    {
+      provide: FLEXY_LAYOUT_COMPONENT_MAP,
+      multi: true,
+      useValue: {}
     }
   ],
   bootstrap: [AppComponent]

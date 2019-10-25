@@ -1,0 +1,95 @@
+[
+  {
+    "properties": { "class": "container-fluid" },
+    "children": [
+      {
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "properties": { "class": "col-12" },
+            "children": [
+              {
+                "type": "component",
+                "component": "custom-cmp",
+                "componentInputs": {
+                  "p1": "Text",
+                  "p2": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "type": "col",
+            "properties": { "class": "col-6" },
+            "children": [
+              {
+                "type": "component",
+                "component": "custom-cmp",
+                "componentInputs": {
+                  "p1": "Text",
+                  "p2": 1
+                }
+              }
+            ]
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-6" },
+            "children": [
+              {
+                "type": "component",
+                "component": "wrong-cmp",
+                "componentInputs": {
+                  "p1": 1,
+                  "p2": "p2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "type": "col",
+            "properties": { "class": "col-6" }
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-6" }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "children": [
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "type": "col",
+            "properties": { "class": "col-4" }
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-4" }
+          },
+          {
+            "type": "col",
+            "properties": { "class": "col-4" }
+          }
+        ]
+      }
+    ]
+  }
+]
