@@ -8,25 +8,25 @@ Flexy components and tools to build Angular 8+ applications
 
 Install: `npm i --save @ng-flexy/core`
 
-Docs: <a href="https://ng-flexy.web.app/core">https://ng-flexy.web.app/core</a>
+Docs: <a href="https://ng-flexy.io/core">https://ng-flexy.io/core</a>
 
 ### freezer
 
 Install: `npm i --save @ng-flexy/freezer`
 
-Docs: <a href="https://ng-flexy.web.app/freezer">https://ng-flexy.web.app/freezer</a>
+Docs: <a href="https://ng-flexy.io/freezer">https://ng-flexy.io/freezer</a>
 
 ### skins
 
 Install: `npm i --save @ng-flexy/skins`
 
-Docs: <a href="https://ng-flexy.web.app/skins">https://ng-flexy.web.app/skins</a>
+Docs: <a href="https://ng-flexy.io/skins">https://ng-flexy.io/skins</a>
 
 ### toasts
 
 Install: `npm i --save @ng-flexy/toasts`
 
-Docs: <a href="https://ng-flexy.web.app/toasts">https://ng-flexy.web.app/toasts</a>
+Docs: <a href="https://ng-flexy.io/toasts">https://ng-flexy.io/toasts</a>
 
 # Library development
 
