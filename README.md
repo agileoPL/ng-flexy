@@ -1,6 +1,6 @@
 # @ng-flexy
 
-Flexy components and tools to build Angular 8+ applications.
+Rapid ui development tools for Angular 8+ applications
 
 ## Modules
 
@@ -101,4 +101,6 @@ Run `npm run demo`
 npm install -g firebase-tools
 firebase login
 firebase init
+
+ng build demo
 firebase deploy
