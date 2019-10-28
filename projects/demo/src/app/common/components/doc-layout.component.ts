@@ -25,7 +25,9 @@ export enum DemoModules {
   Core = 'Core',
   Toasts = 'Toasts',
   Skins = 'Skins',
-  Freezer = 'Freezer'
+  Freezer = 'Freezer',
+  Layout = 'Layout',
+  Form = 'Form'
 }
 
 @Component({
@@ -44,6 +46,16 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/core',
       label: DemoModules.Core
     },
+    {
+      id: DemoModules.Layout,
+      url: '/layout',
+      label: DemoModules.Layout
+    },
+    // {
+    //   id: DemoModules.Form,
+    //   url: '/form',
+    //   label: DemoModules.Form
+    // },
     {
       id: DemoModules.Toasts,
       url: '/toasts',

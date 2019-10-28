@@ -25,7 +25,11 @@
       "core": ["dist/core"],
       "core/*": ["dist/core/*"],
       "toasts": ["dist/toasts"],
-      "toasts/*": ["dist/toasts/*"]
+      "toasts/*": ["dist/toasts/*"],
+      "layout": ["dist/layout"],
+      "layout/*": ["dist/layout/*"],
+      "form": ["dist/form"],
+      "form/*": ["dist/form/*"]
     }
   },
   "angularCompilerOptions": {

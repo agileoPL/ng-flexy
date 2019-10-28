@@ -6,4 +6,4 @@
 run `npm i --save @ng-flexy/core`
 
 ## Docs
-<a href="https://ng-flexy.web.app/core">https://ng-flexy.web.app/core</a>
+<a href="https://ng-flexy.io/core">https://ng-flexy.io/core</a>

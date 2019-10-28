@@ -6,4 +6,4 @@
 run `npm i --save @ng-flexy/freezer`
 
 ## Docs
-<a href="https://ng-flexy.web.app/freezer">https://ng-flexy.web.app/freezer</a>
+<a href="https://ng-flexy.io/freezer">https://ng-flexy.io/freezer</a>
