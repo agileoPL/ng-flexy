@@ -1,12 +1,23 @@
-:host ::ng-deep .flx-container {
-  background-color: burlywood;
+demo-custom-figure {
+  figure {
+    background-color: $info;
+  }
 }
-:host ::ng-deep .flx-row {
-  background-color: olive;
-  margin: 2px;
-  padding: 10px;
+.header {
+  demo-custom-figure {
+    figure {
+      background-color: $primary;
+      padding: 10px;
+      text-align: center;
+    }
+  }
 }
-:host ::ng-deep .flx-col {
-  background-color: #3dc7ab;
-  padding: 10px;
+.footer {
+  demo-custom-figure {
+    figure {
+      background-color: $secondary;
+      text-align: right;
+      font-size: 10px;
+    }
+  }
 }

@@ -10,6 +10,8 @@ import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { DemoLayoutDocJsonComponent } from './components/layout-doc-json.component';
 import { DemoLayoutJsonComponent } from './components/layout-json.component';
 import { DemoCustomFigureComponent } from './components/custom-figure.component';
+import { DemoLayoutSchemaComponent } from './components/layout-schema.component';
+import { DemoLayoutDocSchemaComponent } from './components/layout-doc-schema.component';
 
 const routes: Routes = [
   {
@@ -23,6 +25,10 @@ const routes: Routes = [
       {
         path: 'json',
         component: DemoLayoutDocJsonComponent
+      },
+      {
+        path: 'schema',
+        component: DemoLayoutDocSchemaComponent
       }
     ]
   }
@@ -42,7 +48,9 @@ const routes: Routes = [
     DemoLayoutDocComponent,
     DemoLayoutDocInfoComponent,
     DemoLayoutDocJsonComponent,
+    DemoLayoutDocSchemaComponent,
     DemoLayoutJsonComponent,
+    DemoLayoutSchemaComponent,
     DemoCustomFigureComponent
   ]
 })

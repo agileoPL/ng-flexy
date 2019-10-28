@@ -9,8 +9,8 @@
             "properties": { "class": "col-12" },
             "children": [
               {
-                "type": "component",
                 "component": "figure",
+                "properties": { "class": "header" },
                 "componentInputs": {
                   "title": "Header"
                 }
@@ -20,33 +20,69 @@
         ]
       },
       {
-        "type": "row",
         "properties": { "class": "row" },
         "children": [
           {
-            "type": "col",
             "properties": { "class": "col-6" },
             "children": [
               {
-                "type": "component",
-                "component": "custom-cmp",
+                "component": "figure",
                 "componentInputs": {
-                  "p1": "Text",
-                  "p2": 1
+                  "title": "Left column"
                 }
               }
             ]
           },
           {
-            "type": "col",
             "properties": { "class": "col-6" },
             "children": [
               {
-                "type": "component",
-                "component": "wrong-cmp",
+                "component": "figure",
                 "componentInputs": {
-                  "p1": 1,
-                  "p2": "p2"
+                  "title": "Right column"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "properties": { "class": "container-fluid" },
+    "children": [
+      {
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "properties": { "class": "col-4" },
+            "children": [
+              {
+                "component": "figure",
+                "componentInputs": {
+                  "title": "Left column"
+                }
+              }
+            ]
+          },
+          {
+            "properties": { "class": "col-4" },
+            "children": [
+              {
+                "component": "figure",
+                "componentInputs": {
+                  "title": "Center column"
+                }
+              }
+            ]
+          },
+          {
+            "properties": { "class": "col-4" },
+            "children": [
+              {
+                "component": "figure",
+                "componentInputs": {
+                  "title": "Right column"
                 }
               }
             ]
@@ -54,38 +90,19 @@
         ]
       },
       {
-        "type": "row",
         "properties": { "class": "row" },
         "children": [
           {
-            "type": "col",
-            "properties": { "class": "col-6" }
-          },
-          {
-            "type": "col",
-            "properties": { "class": "col-6" }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "children": [
-      {
-        "type": "row",
-        "properties": { "class": "row" },
-        "children": [
-          {
-            "type": "col",
-            "properties": { "class": "col-4" }
-          },
-          {
-            "type": "col",
-            "properties": { "class": "col-4" }
-          },
-          {
-            "type": "col",
-            "properties": { "class": "col-4" }
+            "properties": { "class": "col-12" },
+            "children": [
+              {
+                "component": "figure",
+                "properties": { "class": "footer" },
+                "componentInputs": {
+                  "title": "Footer"
+                }
+              }
+            ]
           }
         ]
       }

@@ -5,8 +5,7 @@ const LAYOUT_SCHEMA = require('./layout.json');
 
 @Component({
   selector: 'demo-layout-json',
-  templateUrl: './layout-json.component.html',
-  styleUrls: ['./layout-json.component.scss']
+  templateUrl: './layout-json.component.html'
 })
 export class DemoLayoutJsonComponent implements OnInit {
   schema: FlexyLayoutSchema[];
@@ -15,5 +14,6 @@ export class DemoLayoutJsonComponent implements OnInit {
 
   ngOnInit() {
     this.schema = this.jsonMapperService.map(LAYOUT_SCHEMA);
+    console.log(this.schema);
   }
 }
