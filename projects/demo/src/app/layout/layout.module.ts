@@ -9,6 +9,7 @@ import { DemoLayoutDocComponent } from './components/layout-doc.component';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { DemoLayoutDocJsonComponent } from './components/layout-doc-json.component';
 import { DemoLayoutJsonComponent } from './components/layout-json.component';
+import { DemoCustomFigureComponent } from './components/custom-figure.component';
 
 const routes: Routes = [
   {
@@ -28,7 +29,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, AppCommonModule, RouterModule.forChild(routes), TabsModule, FlexyLoggerModule, FlexyLayoutModule.forChild({})],
-  declarations: [DemoLayoutDocComponent, DemoLayoutDocInfoComponent, DemoLayoutDocJsonComponent, DemoLayoutJsonComponent]
+  imports: [
+    CommonModule,
+    AppCommonModule,
+    RouterModule.forChild(routes),
+    TabsModule,
+    FlexyLoggerModule,
+    FlexyLayoutModule.forChild({ figure: DemoCustomFigureComponent })
+  ],
+  entryComponents: [DemoCustomFigureComponent],
+  declarations: [
+    DemoLayoutDocComponent,
+    DemoLayoutDocInfoComponent,
+    DemoLayoutDocJsonComponent,
+    DemoLayoutJsonComponent,
+    DemoCustomFigureComponent
+  ]
 })
 export class DemoLayoutModule {}

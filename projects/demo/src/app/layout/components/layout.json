@@ -10,10 +10,9 @@
             "children": [
               {
                 "type": "component",
-                "component": "custom-cmp",
+                "component": "figure",
                 "componentInputs": {
-                  "p1": "Text",
-                  "p2": 1
+                  "title": "Header"
                 }
               }
             ]
