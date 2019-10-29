@@ -187,8 +187,8 @@ export namespace FlexyFormsValidators {
       if (!(fields.lower && fields.greater && control)) {
         return null;
       }
-      const lower: FormControl = this.getControl(fields.lower.path, cloneDeep(control));
-      const greater: FormControl = this.getControl(fields.greater.path, cloneDeep(control));
+      const lower: FormControl = getControl(fields.lower.path, cloneDeep(control));
+      const greater: FormControl = getControl(fields.greater.path, cloneDeep(control));
 
       if (!(greater && greater.valid && lower && lower.valid && greater.value < lower.value)) {
         return null;
@@ -207,7 +207,7 @@ export namespace FlexyFormsValidators {
       if (!(minPath && control)) {
         return null;
       }
-      const min: FormControl = this.getControl(minPath, cloneDeep(control));
+      const min: FormControl = getControl(minPath, cloneDeep(control));
       if (!(min && control.valid && control.value < min.value)) {
         return null;
       }
@@ -225,7 +225,7 @@ export namespace FlexyFormsValidators {
       if (!(maxPath && control)) {
         return null;
       }
-      const max: FormControl = this.getControl(maxPath, cloneDeep(control));
+      const max: FormControl = getControl(maxPath, cloneDeep(control));
       if (!(max && control.valid && control.value > max.value)) {
         return null;
       }
@@ -243,7 +243,7 @@ export namespace FlexyFormsValidators {
       if (!(minPath && control)) {
         return null;
       }
-      const min: FormControl = this.getControl(minPath, cloneDeep(control));
+      const min: FormControl = getControl(minPath, cloneDeep(control));
       if (!(min && control.valid && control.value < 0 && Math.abs(control.value) > min.value)) {
         return null;
       }
@@ -278,7 +278,7 @@ export namespace FlexyFormsValidators {
       }
       const comparedValues = [];
       control.controls.forEach(item => {
-        const compared = this.getControl(data.path, item);
+        const compared = getControl(data.path, item);
         if (compared) {
           comparedValues.push(compared.value);
         }
