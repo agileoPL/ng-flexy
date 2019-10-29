@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms';
-import { FlexyLayoutComponentSchema, FlexyLayoutGridSchema, FlexyLayoutSchema } from '@ng-flexy/layout';
+import { FlexyLayoutComponentSchema, FlexyLayoutGridSchema } from '@ng-flexy/layout';
 
-export type FlexyFormLayoutSchema = FlexyFormFieldLayoutSchema | FlexyFormLayoutGridSchema | FlexyLayoutSchema;
+export type FlexyFormLayoutSchema = FlexyFormFieldLayoutSchema | FlexyFormLayoutGridSchema | FlexyLayoutComponentSchema;
 
 export interface FlexyFormFieldLayoutSchema extends FlexyLayoutComponentSchema {
   formControl: AbstractControl;
@@ -11,6 +11,7 @@ export interface FlexyFormFieldLayoutSchema extends FlexyLayoutComponentSchema {
   items?: FlexyFormFieldLayoutSchema[];
   // TODO totkink
   groupKey?: string;
+  children?: FlexyFormLayoutSchema[];
 }
 
 export interface FlexyFormLayoutGridSchema extends FlexyLayoutGridSchema {

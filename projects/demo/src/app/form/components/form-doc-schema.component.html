@@ -1,0 +1,53 @@
+<h1>Form schema based</h1>
+<p class="bd-lead">
+  Create advanced forms with custom components based on javascript schema
+</p>
+
+<h3>Demo</h3>
+<div class="bd-example">
+  <demo-form-schema></demo-form-schema>
+</div>
+
+<h3>Configuration - custom components</h3>
+
+<tabset>
+  <tab heading="custom-figure.component.ts">
+    <demo-pretty-code [code]="customFigureContent"></demo-pretty-code>
+  </tab>
+  <tab heading="custom-input.component.ts">
+    <demo-pretty-code [code]="customInputContent"></demo-pretty-code>
+  </tab>
+
+  <tab heading="declare customs">
+    <demo-pretty-code
+      code="@NgModule({
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    FlexyLayoutModule,
+    FlexyFormsModule.forChild({
+      componentsMap: {
+        figure: DemoCustomFigureComponent,
+        text: DemoCustomInputComponent
+      }
+    })
+  ],
+  entryComponents: [DemoCustomFigureComponent, DemoCustomInputComponent]
+  }"
+    ></demo-pretty-code>
+  </tab>
+</tabset>
+
+<h3>Usage</h3>
+
+<tabset>
+  <tab heading="demo component">
+    <demo-pretty-code [code]="demoComponentContent"></demo-pretty-code>
+  </tab>
+  <tab heading="demo html">
+    <demo-pretty-code [code]="demoHtmlContent"></demo-pretty-code>
+  </tab>
+  <tab heading="demo scss">
+    <demo-pretty-code [code]="demoCssContent"></demo-pretty-code>
+  </tab>
+</tabset>
