@@ -1,0 +1,55 @@
+[
+  {
+    "properties": { "class": "container-fluid" },
+    "children": [
+      {
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "properties": { "class": "col-6" },
+            "children": [
+              {
+                "component": "figure",
+                "componentInputs": {
+                  "title": "Param 1"
+                }
+              },
+              {
+                "component": "text",
+                "controlName": "param1",
+                "componentInputs": {
+                  "placeholder": "Lorem ipsum..."
+                },
+                "validators": {
+                  "required": true,
+                  "maxLength": 10
+                }
+              }
+            ]
+          },
+          {
+            "properties": { "class": "col-6" },
+            "children": [
+              {
+                "component": "figure",
+                "componentInputs": {
+                  "title": "Param 2"
+                }
+              },
+              {
+                "component": "text",
+                "controlName": "param2",
+                "componentInputs": {
+                  "placeholder": "Lorem ipsum..."
+                },
+                "validators": {
+                  "maxLength": 10
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

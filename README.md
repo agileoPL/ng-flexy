@@ -1,6 +1,6 @@
-# ng-flexy
+# @ng-flexy
 
-Flexy components and tools to build Angular 8+ applications
+Rapid ui development tools for Angular 8+ applications
 
 ## Modules
 
@@ -8,25 +8,25 @@ Flexy components and tools to build Angular 8+ applications
 
 Install: `npm i --save @ng-flexy/core`
 
-Docs: <a href="./projects/core/README.md">Readme</a>
+Docs: <a href="https://ng-flexy.io/core">https://ng-flexy.io/core</a>
 
 ### freezer
 
 Install: `npm i --save @ng-flexy/freezer`
 
-Docs: <a href="./projects/freezer/README.md">Readme</a>
+Docs: <a href="https://ng-flexy.io/freezer">https://ng-flexy.io/freezer</a>
 
 ### skins
 
 Install: `npm i --save @ng-flexy/skins`
 
-Docs: <a href="./projects/skins/README.md">Readme</a>
+Docs: <a href="https://ng-flexy.io/skins">https://ng-flexy.io/skins</a>
 
 ### toasts
 
 Install: `npm i --save @ng-flexy/toasts`
 
-Docs: <a href="./projects/toasts/README.md">Readme</a>
+Docs: <a href="https://ng-flexy.io/toasts">https://ng-flexy.io/toasts</a>
 
 # Library development
 
@@ -61,6 +61,19 @@ Run `ng build {lib_name}`
 
 e.g.: `ng build freezer`
 
+#### Add prefix @ng-flexy to project package.json
+
+```json5
+{
+  name: '@ng-flexy/freezer',
+  version: '0.0.1',
+  peerDependencies: {
+    '@angular/common': '^8.1.3',
+    '@angular/core': '^8.1.3'
+  }
+}
+```
+
 #### Add to package json
 
 `"optionalDependencies": { "@flexy/freezer": "file:dist/freezer" }`
@@ -88,4 +101,6 @@ Run `npm run demo`
 npm install -g firebase-tools
 firebase login
 firebase init
+
+ng build demo
 firebase deploy
