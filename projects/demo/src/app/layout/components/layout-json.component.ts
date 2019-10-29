@@ -14,6 +14,5 @@ export class DemoLayoutJsonComponent implements OnInit {
 
   ngOnInit() {
     this.schema = this.jsonMapperService.map(LAYOUT_SCHEMA);
-    console.log(this.schema);
   }
 }
