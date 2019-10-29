@@ -51,11 +51,11 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/layout',
       label: DemoModules.Layout
     },
-    // {
-    //   id: DemoModules.Form,
-    //   url: '/form',
-    //   label: DemoModules.Form
-    // },
+    {
+      id: DemoModules.Form,
+      url: '/form',
+      label: DemoModules.Form
+    },
     {
       id: DemoModules.Toasts,
       url: '/toasts',

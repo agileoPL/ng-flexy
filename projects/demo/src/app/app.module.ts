@@ -11,6 +11,7 @@ import { TabsModule } from 'ngx-bootstrap';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
+import { FlexyFormsModule } from '@ng-flexy/form';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'layout',
     loadChildren: () => import('./layout/layout.module').then(m => m.DemoLayoutModule)
+  },
+  {
+    path: 'form',
+    loadChildren: () => import('./form/form.module').then(m => m.DemoFormModule)
   }
 ];
 
@@ -51,6 +56,7 @@ const routes: Routes = [
     FlexyLoggerModule.forRoot(),
     FlexyToastsModule.forRoot(),
     FlexyLayoutModule.forRoot(),
+    FlexyFormsModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(routes)
   ],

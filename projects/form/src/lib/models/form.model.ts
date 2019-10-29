@@ -47,6 +47,11 @@ export class FlexyForm {
     return merge(data, removed);
   }
 
+  getAllErrors(): { [key: string]: any } {
+    const errors = this.findErrors(this.schema);
+    return Object.keys(errors).length ? this.findErrors(this.schema) : null;
+  }
+
   containsFieldSchema(fieldName: string): boolean {
     return !!this.findSchema(fieldName, this.schema);
   }
@@ -59,6 +64,23 @@ export class FlexyForm {
       return schema.componentRef.instance;
     }
     return null;
+  }
+
+  private findErrors(schema: FlexyFormLayoutSchema[]): { [key: string]: any } {
+    const errors = {};
+    for (const item of schema) {
+      if (
+        (item as FlexyFormFieldLayoutSchema).formName &&
+        (item as FlexyFormFieldLayoutSchema).formName &&
+        (item as FlexyFormFieldLayoutSchema).formControl.invalid
+      ) {
+        errors[(item as FlexyFormFieldLayoutSchema).formName] = (item as FlexyFormFieldLayoutSchema).formControl.errors;
+      }
+      if (item.children) {
+        Object.assign(errors, this.findErrors(item.children));
+      }
+    }
+    return errors;
   }
 
   private findSchema(fieldName: string, schema: FlexyFormLayoutSchema[]): FlexyFormFieldLayoutSchema {
