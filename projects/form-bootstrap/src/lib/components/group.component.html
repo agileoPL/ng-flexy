@@ -1,0 +1,69 @@
+<fieldset>
+  <h4>
+    <span *ngIf="legend">
+      {{ legend }}
+      <span *ngIf="isRequired" class="isRequired" [tooltip]="'FLEXY_FORM_FIELD_IS_REQUIRED' | translate">(<b>*</b>)</span>
+    </span>
+    <div class="actions" *ngIf="!readonly && addable && layoutSchema?.children?.length > 10">
+      <button type="button" class="btn btn-info btn-outline btn-sm" (click)="isAddFormVisible = true; focusOnNewInput()">
+        <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+      </button>
+    </div>
+  </h4>
+
+  <ng-container *ngIf="layoutSchema && layoutSchema.children">
+    <ng-container *ngFor="let item of layoutSchema.children; let index = index">
+      <flexy-layout [schema]="[item]">
+        <button
+          *ngIf="!readonly && removable"
+          type="button"
+          class="btn btn-outline delete-item e2e-btn-delete-group-item"
+          (click)="removeItem(index)"
+        >
+          <i class="remixicon-close-line"></i>
+        </button>
+      </flexy-layout>
+    </ng-container>
+  </ng-container>
+
+  <div class="actions add-form-control" *ngIf="!readonly && addable">
+    <button
+      type="button"
+      *ngIf="!isAddFormVisible"
+      class="btn btn-info btn-outline btn-sm"
+      (click)="isAddFormVisible = true; focusOnNewInput()"
+    >
+      <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+    </button>
+    <flexy-form-field *ngIf="isAddFormVisible" class="input-group" [control]="addFormControl">
+      <div class="input-group">
+        <flexy-control-text class="key-control-text" [control]="addFormControl" (entered)="addNew($event)"></flexy-control-text>
+        <span class="input-group-btn input-group-append">
+          <button
+            type="button"
+            [disabled]="!addFormControl.valid"
+            class="btn btn-info btn-outline btn-sm add-item"
+            (click)="addNew($event)"
+          >
+            {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+          </button>
+        </span>
+        <span class="input-group-btn input-group-append">
+          <button type="button" class="btn btn-link btn-sm" (click)="isAddFormVisible = false">
+            {{ 'FLEXY_FORM_ARRAY_ADD_CANCEL' | translate }}
+          </button>
+        </span>
+      </div>
+    </flexy-form-field>
+  </div>
+
+  <flexy-form-field-info
+    *ngIf="layoutSchema && layoutSchema.formControl"
+    [control]="layoutSchema.formControl"
+    [forceDirty]="true"
+  ></flexy-form-field-info>
+
+  <p class="no-data" *ngIf="layoutSchema && !layoutSchema.children.length">
+    {{ 'FLEXY_FORM_ARRAY_NO_DATA' | translate }}
+  </p>
+</fieldset>

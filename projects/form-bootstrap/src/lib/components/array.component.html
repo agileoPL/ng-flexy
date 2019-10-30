@@ -1,0 +1,70 @@
+<fieldset>
+  <h4 *ngIf="legend || (!readonly && layoutSchema?.items?.length > 10)">
+    <span *ngIf="legend">
+      {{ legend }}
+      <span *ngIf="isRequired" class="isRequired" [tooltip]="'FLEXY_FORM_FIELD_IS_REQUIRED' | translate">(<b>*</b>)</span>
+    </span>
+
+    <div class="actions" *ngIf="!readonly && layoutSchema?.items?.length > 10">
+      <button type="button" class="btn btn-info btn-outline btn-sm" [disabled]="!showAddButton" (click)="addNew(); focusOnAdded()">
+        <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+      </button>
+    </div>
+  </h4>
+
+  <ng-container *ngIf="layoutSchema && layoutSchema.items">
+    <div cdkDropList class="drag-container schema-items" [cdkDropListDisabled]="!isDraggable()" (cdkDropListDropped)="drop($event)">
+      <div
+        *ngFor="let componentSchema of layoutSchema.items; let index = index"
+        cdkDrag
+        cdkDragLockAxis="y"
+        class="flexy-form-array-draggable-item schema-item"
+        cdkDragBoundary=".drag-container"
+      >
+        <div class="schema-item-body">
+          <flexy-layout [schema]="[componentSchema]" [ngClass]="{ 'removable-array-item': !readonly && removable && removeAny }">
+            <button
+              *ngIf="!readonly && removable && removeAny"
+              type="button"
+              class="btn btn-outline delete-array-item e2e-btn-delete-array-item"
+              tooltip="{{ 'FLEXY_FORM_ARRAY_REMOVE_ITEM' | translate }}"
+              (click)="removeItem(index)"
+            >
+              <i class="remixicon-close-line"></i>
+            </button>
+          </flexy-layout>
+        </div>
+        <div *ngIf="isDraggable()" class="drag-handle" cdkDragHandle>
+          <button type="button" class="btn btn-link" tooltip="{{ 'FLEXY_FORM_ARRAY_REORDER' | translate }}">
+            <i class="remixicon-drag-move-line"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <span class="actions" *ngIf="!readonly && removable">
+      <button
+        type="button"
+        class="btn btn-info btn-outline btn-sm bottom-button t2e-array-add-btn"
+        [disabled]="!showAddButton"
+        (click)="addNew()"
+      >
+        <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+      </button>
+      <button
+        *ngIf="!removeAny"
+        type="button"
+        class="btn btn-danger btn-outline btn-sm remove-item"
+        [disabled]="!showRemoveButton"
+        (click)="removeLast()"
+      >
+        {{ 'FLEXY_FORM_ARRAY_REMOVE_LAST' | translate }}
+      </button>
+    </span>
+
+    <flexy-form-field-info *ngIf="layoutSchema.formControl?.validator" [control]="layoutSchema.formControl"></flexy-form-field-info>
+    <p class="no-data" *ngIf="!layoutSchema.items.length">
+      {{ 'FLEXY_FORM_ARRAY_NO_DATA' | translate }}
+    </p>
+  </ng-container>
+</fieldset>
