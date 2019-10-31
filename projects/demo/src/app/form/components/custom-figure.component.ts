@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FlexyLayoutSchema } from 'layout/lib/model/layout-schema.model';
+import { FlexyLayoutSchema } from '@ng-flexy/layout';
 
 @Component({
   selector: 'demo-custom-figure',
