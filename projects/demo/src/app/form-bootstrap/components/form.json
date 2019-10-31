@@ -27,6 +27,16 @@
               "validators": {
                 "required": true
               }
+            },
+            {
+              "controlName": "surname",
+              "component": "text",
+              "componentInputs": {
+                "label": "Last name"
+              },
+              "validators": {
+                "required": true
+              }
             }
           ]
         }
@@ -44,7 +54,7 @@
         "controlGroupName": "groups",
         "validators": {},
         "componentInputs": {
-          "legend": "Groups"
+          "legend": "Heroes"
         },
         "itemKeyDef": "{g1}",
         "items": {
@@ -54,14 +64,15 @@
               "component": "array",
               "controlArrayName": ".",
               "componentInputs": {
-                "legend": "Tablica prostych inputów {g1}"
+                "legend": "Heroes group {g1}"
               },
               "items": {
                 "type": "component",
                 "component": "text",
                 "componentInputs": {
-                  "placeholder": "abc",
-                  "description": "abc",
+                  "label": "Hero",
+                  "placeholder": "Hero name",
+                  "description": "Add hero name...",
                   "readonly": true
                 },
                 "validators": {

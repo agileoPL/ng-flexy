@@ -11,28 +11,24 @@
 <h3>Configuration - custom components</h3>
 
 <tabset>
-  <tab heading="custom-figure.component.ts">
-    <demo-pretty-code [code]="customFigureContent"></demo-pretty-code>
-  </tab>
-  <tab heading="custom-input.component.ts">
-    <demo-pretty-code [code]="customInputContent"></demo-pretty-code>
-  </tab>
-
-  <tab heading="declare customs">
+  <tab heading="Init form controls">
     <demo-pretty-code
-      code="@NgModule({
+      code="import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
+
+@NgModule({
   imports: [
     FormsModule,
     ReactiveFormsModule,
     FlexyLayoutModule,
+    FlexyFormsBootstrapModule,
     FlexyFormsModule.forChild({
       componentsMap: {
         figure: DemoCustomFigureComponent,
-        text: DemoCustomInputComponent
+        ...FLEXY_FORM_CONTROLS_JSON_MAPPER
       }
     })
   ],
-  entryComponents: [DemoCustomFigureComponent, DemoCustomInputComponent]
+  entryComponents: [DemoCustomFigureComponent]
   }"
     ></demo-pretty-code>
   </tab>

@@ -7,8 +7,17 @@ const SUB_PAGES = [
     label: 'Json based'
   },
   {
-    url: '/form-bootstrap/schema',
-    label: 'Schema based'
+    label: 'Form Components',
+    children: [
+      {
+        url: '/form-bootstrap/array',
+        label: 'Array'
+      },
+      {
+        url: '/form-bootstrap/array',
+        label: 'Group'
+      }
+    ]
   }
 ];
 

@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
 })
 export class DemoFormBootstrapDocJsonComponent {
   jsonContent = require('./form.json');
-  customFigureContent = require('!!raw-loader!./custom-figure.component.ts');
-  customInputContent = require('!!raw-loader!./custom-input.component.ts');
 
   demoComponentContent = require('!!raw-loader!./form-bootstrap-json.component.ts');
   demoHtmlContent = require('!!raw-loader!./form-bootstrap-json.component.html');

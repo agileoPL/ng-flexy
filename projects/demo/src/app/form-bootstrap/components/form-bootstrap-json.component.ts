@@ -25,26 +25,26 @@ export class DemoFormJsonComponent implements OnInit {
 
   ngOnInit() {
     this.flexyForm = this.formJsonMapperService.createForm(FORM_SCHEMA, false, {
-      props: {
-        prop1: {
-          v1526372746847: { name: 'Wzrost', checked: true, max: 100, min: 200 },
-          v1526372864942: { name: 'Grubość', checked: true, max: 200, min: 300 }
-        }
+      groups: {
+        avengers: ['Iron Man', 'Spider Man', 'Captain America', 'Thor'],
+        guardiansOfTheGalaxy: ['Peter Quill', 'Gamora', 'Drax']
       },
       users: [
         {
-          address: { city: 'Kraków', code: '30-001' },
-          look: {
-            v1526372746847: { label: 'Oczy', desc: 'Zielone' },
-            v1526372864942: { label: 'Włosy', desc: 'Czarne' }
-          },
-          name: 'Tomasz',
-          surname: 'Bogdanowicz'
+          name: 'Tony',
+          surname: 'Stark'
         },
         {
-          address: { city: 'Wielika', code: '32-020' },
-          name: 'Jan',
-          surname: 'Kowalski'
+          name: 'Steve',
+          surname: 'Rogers'
+        },
+        {
+          name: 'Bruce',
+          surname: 'Banner'
+        },
+        {
+          name: 'Natasha',
+          surname: 'Romanoff'
         }
       ]
     });

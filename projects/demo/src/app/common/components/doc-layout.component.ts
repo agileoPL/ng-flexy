@@ -19,8 +19,8 @@ export interface LayoutModulesNav {
 
 export interface LayoutMenuNav {
   url: string;
-  regexp?: RegExp;
   label: string;
+  children?: LayoutMenuNav[];
 }
 
 export enum DemoModules {
