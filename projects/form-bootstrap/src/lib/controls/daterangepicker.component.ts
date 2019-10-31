@@ -26,7 +26,7 @@ const DATEPICKER_THEMES = ['theme-default', 'theme-green', 'theme-blue', 'theme-
       />
       <span class="input-group-btn">
         <button class="btn btn-primary" (click)="drp.toggle(); $event.stopPropagation()">
-          <span class="fa fa-calendar"></span>
+          <span class="flexy-icon-calendar"></span>
         </button>
       </span>
     </div>

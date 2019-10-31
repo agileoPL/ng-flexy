@@ -2,7 +2,7 @@
   <div class="row flex-xl-nowrap">
     <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
       <nav class="collapse bd-links" id="bd-docs-nav">
-        <div class="bd-toc-item" *ngFor="let item of menuNav" [ngClass]="{ active: currentUrl && currentUrl.includes(item.url) }">
+        <div class="bd-toc-item" *ngFor="let item of menuNav" [ngClass]="{ active: currentUrl && currentUrl.search(item.regexp) !== -1 }">
           <a class="bd-toc-link" [routerLink]="[item.url]">
             {{ item.label }}
           </a>

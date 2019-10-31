@@ -1,0 +1,82 @@
+[
+  {
+    "component": "fieldset",
+    "componentInputs": {
+      "legend": "Group 1"
+    },
+    "children": [
+      {
+        "component": "array",
+        "controlArrayName": "users",
+        "validators": {},
+        "componentInputs": {
+          "legend": "Users",
+          "removeAny": true
+        },
+        "itemIndexDef": "{%1}",
+        "items": {
+          "component": "fieldset",
+          "componentInputs": { "legend": "User {%1}" },
+          "children": [
+            {
+              "controlName": "name",
+              "component": "text",
+              "componentInputs": {
+                "label": "First name"
+              },
+              "validators": {
+                "required": true
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "component": "fieldset",
+    "componentInputs": {
+      "legend": "Group 2"
+    },
+    "children": [
+      {
+        "component": "group",
+        "controlGroupName": "groups",
+        "validators": {},
+        "componentInputs": {
+          "legend": "Groups"
+        },
+        "itemKeyDef": "{g1}",
+        "items": {
+          "component": "fieldset",
+          "children": [
+            {
+              "component": "array",
+              "controlArrayName": ".",
+              "componentInputs": {
+                "legend": "Tablica prostych inputów {g1}"
+              },
+              "items": {
+                "type": "component",
+                "component": "text",
+                "componentInputs": {
+                  "placeholder": "abc",
+                  "description": "abc",
+                  "readonly": true
+                },
+                "validators": {
+                  "required": true,
+                  "maxLength": 30
+                }
+              },
+              "validators": {
+                "maxItems": 6,
+                "minItems": 1
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -6,7 +6,7 @@
     </span>
     <div class="actions" *ngIf="!readonly && addable && layoutSchema?.children?.length > 10">
       <button type="button" class="btn btn-info btn-outline btn-sm" (click)="isAddFormVisible = true; focusOnNewInput()">
-        <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+        <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
       </button>
     </div>
   </h4>
@@ -20,7 +20,7 @@
           class="btn btn-outline delete-item e2e-btn-delete-group-item"
           (click)="removeItem(index)"
         >
-          <i class="remixicon-close-line"></i>
+          <i class="flexy-icon-remove"></i>
         </button>
       </flexy-layout>
     </ng-container>
@@ -33,7 +33,7 @@
       class="btn btn-info btn-outline btn-sm"
       (click)="isAddFormVisible = true; focusOnNewInput()"
     >
-      <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+      <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
     </button>
     <flexy-form-field *ngIf="isAddFormVisible" class="input-group" [control]="addFormControl">
       <div class="input-group">
