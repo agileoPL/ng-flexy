@@ -74,6 +74,17 @@ e.g.: `ng build freezer`
 }
 ```
 
+#### Change paths in tsconfig.json
+
+```json5
+{
+    "paths": {
+      "@ng-flexy/freezer": ["dist/freezer"],
+      "@ng-flexy/freezer/*": ["dist/freezer/*"],
+    }
+}
+```
+
 #### Add to package json
 
 `"optionalDependencies": { "@flexy/freezer": "file:dist/freezer" }`
