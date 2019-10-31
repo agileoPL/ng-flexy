@@ -47,7 +47,9 @@
     "skins:watch-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\" --watch",
     "skins:copy-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\"",
     "toasts:watch": "ng build toasts --watch",
-    "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\""
+    "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\"",
+    "json-impexp:build": "ng build json-impexp && cpx \"projects/json-impexp/src/lib/json-impexp.scss\" \"dist/json-impexp\"",
+    "json-impexp:watch": "ng build json-impexp --watch"
   },
   "dependencies": {
     "@angular/animations": "~8.1.1",
@@ -71,7 +73,8 @@
     "ngx-bootstrap": "^5.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "jszip": "^3.2.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.3",
@@ -109,7 +112,8 @@
     "@ng-flexy/layout": "file:dist/layout",
     "@ng-flexy/skins": "file:dist/skins",
     "@ng-flexy/toasts": "file:dist/toasts",
-    "@ng-flexy/form-bootstrap": "file:dist/form-bootstrap"
+    "@ng-flexy/form-bootstrap": "file:dist/form-bootstrap",
+    "@ng-flexy/json-impexp": "file:dist/json-impexp"
   },
   "husky": {
     "hooks": {

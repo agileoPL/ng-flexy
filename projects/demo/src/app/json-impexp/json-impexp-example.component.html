@@ -1,0 +1,13 @@
+<flexy-json-import-button class="btn btn-primary" (uploaded)="importedJson($event)" [multiple]="enableMultiple"
+  >Choose JSON</flexy-json-import-button
+>
+
+<ng-container *ngIf="imported">
+  <button class="btn btn-link" (click)="exportToJson()">Download JSON</button>
+  <button *ngIf="imported.length" class="btn btn-link" (click)="exportToZip()">Download zipped JSON-s</button>
+</ng-container>
+
+<div class="toggle-multiple">
+  <input type="checkbox" id="multiple" [(ngModel)]="enableMultiple" />
+  <label for="multiple">Enable importing multiple files</label>
+</div>

@@ -28,6 +28,12 @@ Install: `npm i --save @ng-flexy/toasts`
 
 Docs: <a href="https://ng-flexy.io/toasts">https://ng-flexy.io/toasts</a>
 
+### json-impexp
+
+Install: `npm i --save @ng-flexy/json-impexp`
+
+Docs: <a href="https://ng-flexy.io/json-impexp">https://ng-flexy.io/json-impexp</a>
+
 # Library development
 
 ## Install
@@ -42,6 +48,10 @@ Build projects
 - freezer `npm run freezer:build`
 - skins `npm run skins:build`
 - toasts `npm run toasts:build`
+- layout `npm run layout:build`
+- form `npm run form:build`
+- form-bootstrap `npm run form-bootstrap:build`
+- json-impexp `npm run json-impexp:build`
 
 Install projects `npm install`
 
@@ -78,10 +88,10 @@ e.g.: `ng build freezer`
 
 ```json5
 {
-    "paths": {
-      "@ng-flexy/freezer": ["dist/freezer"],
-      "@ng-flexy/freezer/*": ["dist/freezer/*"],
-    }
+  paths: {
+    '@ng-flexy/freezer': ['dist/freezer'],
+    '@ng-flexy/freezer/*': ['dist/freezer/*']
+  }
 }
 ```
 
