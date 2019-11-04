@@ -30,7 +30,8 @@ export enum DemoModules {
   Freezer = 'Freezer',
   Layout = 'Layout',
   Form = 'Form',
-  FormBootstrap = 'FormBootstrap'
+  FormBootstrap = 'FormBootstrap',
+  JsonImpExp = 'JsonImpExp'
 }
 
 @Component({
@@ -85,6 +86,12 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/skins',
       regexp: /\/skins([?;]?|$)/,
       label: DemoModules.Skins
+    },
+    {
+      id: DemoModules.JsonImpExp,
+      url: '/json-impexp',
+      regexp: /\/json-impexp([?;]?|$)/,
+      label: 'JSON import/export'
     }
   ];
 

@@ -1,0 +1,8 @@
+flexy-json-import-button {
+  position: relative;
+
+  input[type='file'] {
+    position: absolute;
+    left: -10000000px;
+  }
+}

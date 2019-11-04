@@ -346,6 +346,41 @@
           }
         }
       }
+    },
+    "json-impexp": {
+      "projectType": "library",
+      "root": "projects/json-impexp",
+      "sourceRoot": "projects/json-impexp/src",
+      "prefix": "flexy",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/json-impexp/tsconfig.lib.json",
+            "project": "projects/json-impexp/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/json-impexp/src/test.ts",
+            "tsConfig": "projects/json-impexp/tsconfig.spec.json",
+            "karmaConfig": "projects/json-impexp/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/json-impexp/tsconfig.lib.json", "projects/json-impexp/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo"

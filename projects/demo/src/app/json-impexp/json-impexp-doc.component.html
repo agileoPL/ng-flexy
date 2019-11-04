@@ -1,0 +1,38 @@
+<demo-doc-layout [activeModule]="activeModule">
+  <h1>@ng-flexy/json-impexp</h1>
+
+  <h3>Install</h3>
+
+  <figure class="highlight">
+    <code>npm i --save @ng-flexy/json-impexp</code>
+  </figure>
+
+  <h3>Demo</h3>
+  <div class="bd-example">
+    <demo-json-impexp-example></demo-json-impexp-example>
+  </div>
+
+  <h3>Configuration</h3>
+  <demo-pretty-code
+    code="import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
+
+@NgModule({
+  imports: [
+    FlexyJsonImpExpModule
+  ]
+}"
+  ></demo-pretty-code>
+
+  <h3>Usage</h3>
+
+  <div>
+    <tabset>
+      <tab heading="Component">
+        <demo-pretty-code [code]="exampleComponentContent"></demo-pretty-code>
+      </tab>
+      <tab heading="Template">
+        <demo-pretty-code [code]="exampleHtmlContent"></demo-pretty-code>
+      </tab>
+    </tabset>
+  </div>
+</demo-doc-layout>

@@ -15,6 +15,7 @@ import { FlexyFormsModule } from '@ng-flexy/form';
 import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 
 export function translateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'form-bootstrap',
     loadChildren: () => import('./form-bootstrap/form-bootstrap.module').then(m => m.DemoFormBootstrapModule)
+  },
+  {
+    path: 'json-impexp',
+    loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
   }
 ];
 
@@ -69,6 +74,7 @@ const routes: Routes = [
     FlexyLayoutModule.forRoot(),
     FlexyFormsModule.forRoot(),
     FlexyFormsBootstrapModule.forRoot(),
+    FlexyJsonImpExpModule,
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     RouterModule.forRoot(routes),
