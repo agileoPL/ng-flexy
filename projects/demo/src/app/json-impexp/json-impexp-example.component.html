@@ -1,4 +1,8 @@
-<flexy-json-import-button class="btn btn-primary" (uploaded)="importedJson($event)" [multiple]="enableMultiple"
+<flexy-json-import-button
+  class="btn btn-primary"
+  (uploaded)="importedJson($event)"
+  (uploadError)="importFailed($event)"
+  [multiple]="enableMultiple"
   >Choose JSON</flexy-json-import-button
 >
 

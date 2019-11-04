@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { FlexyToastsService } from '@ng-flexy/toasts';
 import * as JSZip from 'jszip';
-import * as momentNs from 'moment';
-const moment = momentNs;
+
+export enum FlexyJsonImportErrorEnum {
+  NoFile = 'NO_FILE',
+  WrongFormat = 'WRONG_FORMAT'
+}
 
 @Injectable()
 export class FlexyJsonImpExpService {
-  constructor(private toastsService: FlexyToastsService) {}
-
   importFromJson(
     input: HTMLInputElement,
     validatorCallback?: (json: object) => boolean,
@@ -23,7 +23,7 @@ export class FlexyJsonImpExpService {
         input.onchange = el => {
           const target = el.target as HTMLInputElement;
           if (!target.files || !target.files[0]) {
-            this.toastsService.warning(`Please select a file`);
+            reject(FlexyJsonImportErrorEnum.NoFile);
           } else {
             files = target.files;
             Array.from(files).forEach((file, index) => {
@@ -37,19 +37,18 @@ export class FlexyJsonImpExpService {
                         try {
                           const json = JSON.parse(item);
                           if (!this.validateImport(json, validatorCallback)) {
-                            this.toastsService.warning(`Imported file has wrong format`);
-                            reject();
+                            this.resetInput(input, fr);
+                            reject(FlexyJsonImportErrorEnum.WrongFormat);
                           }
                           return json;
                         } catch (err) {
-                          this.toastsService.warning(`Imported file has wrong format`);
-                          reject();
+                          this.resetInput(input, fr);
+                          reject(FlexyJsonImportErrorEnum.WrongFormat);
                         }
                       });
                       multipleJson = [...multipleJson, ...list];
                       if (index === target.files.length - 1) {
-                        input.onchange = null;
-                        fr.onload = null;
+                        this.resetInput(input, fr);
                         resolve(multipleJson);
                       }
                     })
@@ -59,25 +58,23 @@ export class FlexyJsonImpExpService {
                   try {
                     const json = JSON.parse(lines as string);
                     if (!this.validateImport(json, validatorCallback)) {
-                      this.toastsService.warning(`Imported file has wrong format`);
-                      reject();
+                      this.resetInput(input, fr);
+                      reject(FlexyJsonImportErrorEnum.WrongFormat);
                     } else {
                       if (!multipleFiles) {
-                        input.onchange = null;
-                        fr.onload = null;
+                        this.resetInput(input, fr);
                         resolve(json);
                       } else {
                         multipleJson.push(json);
                         if (index === target.files.length - 1) {
-                          input.onchange = null;
-                          fr.onload = null;
+                          this.resetInput(input, fr);
                           resolve(multipleJson);
                         }
                       }
                     }
                   } catch (err) {
-                    this.toastsService.warning(`Imported file has wrong format`);
-                    reject();
+                    this.resetInput(input, fr);
+                    reject(FlexyJsonImportErrorEnum.WrongFormat);
                   }
                 }
               };
@@ -105,18 +102,19 @@ export class FlexyJsonImpExpService {
   }
 
   private prepareFileName(name: string, extension: string): string {
-    return (
-      (name
-        ? name
-            .toLowerCase()
-            .split(' ')
-            .join('-')
-        : extension) +
-      '-' +
-      moment().format('MMDD-HHmm') +
-      '.' +
-      extension
-    );
+    name = name
+      ? name
+          .toLowerCase()
+          .split(' ')
+          .join('-')
+      : extension;
+    const now = new Date();
+    const month = `${now.getMonth() + 1}`.padStart(2, '0');
+    const day = `${now.getDate()}`.padStart(2, '0');
+    const hours = `${now.getHours()}`.padStart(2, '0');
+    const minutes = `${now.getMinutes()}`.padStart(2, '0');
+    const date = `${month}${day}-${hours}${minutes}`;
+    return `${name}-${date}.${extension}`;
   }
 
   private downloadFile(name: string, dataType: string, data) {
@@ -137,5 +135,10 @@ export class FlexyJsonImpExpService {
       isValid = json && (Array.isArray(json) || typeof json === 'object');
     }
     return isValid;
+  }
+
+  private resetInput(input: HTMLInputElement, fileReader: FileReader) {
+    input.onchange = null;
+    fileReader.onload = null;
   }
 }

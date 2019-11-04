@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FlexyJsonImpExpService } from '@ng-flexy/json-impexp';
+import { FlexyJsonImpExpService, FlexyJsonImportErrorEnum } from '@ng-flexy/json-impexp';
+import { FlexyToastsService } from '@ng-flexy/toasts';
 
 @Component({
   selector: 'demo-json-impexp-example',
@@ -9,10 +10,15 @@ export class DemoJsonImpExpExampleComponent {
   imported: object | object[];
   enableMultiple: boolean;
 
-  constructor(private jsonImpExpService: FlexyJsonImpExpService) {}
+  constructor(private jsonImpExpService: FlexyJsonImpExpService, private toastsService: FlexyToastsService) {}
 
   importedJson(json: object) {
+    this.toastsService.success(`JSON has been imported`);
     this.imported = json;
+  }
+
+  importFailed(error: FlexyJsonImportErrorEnum) {
+    this.toastsService.warning(`Import error: ${error}`);
   }
 
   exportToJson() {

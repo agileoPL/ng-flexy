@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { FlexyJsonImpExpService } from '../json-impexp.service';
+import { FlexyJsonImpExpService, FlexyJsonImportErrorEnum } from '../json-impexp.service';
 
 @Component({
   selector: 'flexy-json-import-button',
@@ -15,6 +15,7 @@ export class FlexyJsonImportButtonComponent {
   @Input() multiple: boolean;
 
   @Output() uploaded: EventEmitter<object> = new EventEmitter();
+  @Output() uploadError: EventEmitter<FlexyJsonImportErrorEnum> = new EventEmitter();
 
   @ViewChild('file', { static: false }) fileEl: ElementRef;
 
@@ -25,9 +26,14 @@ export class FlexyJsonImportButtonComponent {
     event.stopPropagation();
     const input = this.fileEl.nativeElement;
     if (input) {
-      this.jsonImpExpService.importFromJson(input, this.validatorCallback, this.multiple).then(json => {
-        this.uploaded.emit(json);
-      });
+      this.jsonImpExpService.importFromJson(input, this.validatorCallback, this.multiple).then(
+        json => {
+          this.uploaded.emit(json);
+        },
+        (err: FlexyJsonImportErrorEnum) => {
+          this.uploadError.emit(err);
+        }
+      );
     }
   }
 }
