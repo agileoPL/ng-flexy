@@ -8,6 +8,8 @@
     "@ng-flexy/core": "^0.1.5",
     "@ng-flexy/layout": "^0.0.2",
     "@ng-flexy/form": "^0.0.2",
+    "@ng-flexy/json-impexp": "^0.0.1",
+    "@ng-flexy/toasts": "^0.0.5",
     "@ngx-translate/core": "^11.0.1",
     "@ng-select/ng-select": "^3.1.0",
     "ngx-chips": "^2.0.2",

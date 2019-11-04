@@ -55,11 +55,9 @@ import { FlexyFormDraggableSelectComponent } from './components/draggable-select
 import { FlexyControlTagsComponent } from './controls/tags.component';
 import { FlexyControlChipsComponent } from './controls/chips.component';
 import { FlexyControlDraggableSelectComponent } from './controls/draggable-select.component';
-
-// TODO
-// import { FlexyJsonImpExpModule } from '../../ng-flexy/json-impexp/json-impexp.module';
-// import { FlexyControlJsonFileComponent } from './controls/json-file.component';
-// import { FlexyFormJsonFileComponent } from './components/json-file.component';
+import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
+import { FlexyFormJsonFileComponent } from './components/json-file.component';
+import { FlexyControlJsonFileComponent } from './controls/json-file.component';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,
@@ -83,9 +81,8 @@ export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   percent: FlexyFormPercentComponent,
   password: FlexyFormPasswordComponent,
   chips: FlexyFormChipsComponent,
-  draggableselect: FlexyFormDraggableSelectComponent
-
-  // jsonfile: FlexyFormJsonFileComponent
+  draggableselect: FlexyFormDraggableSelectComponent,
+  jsonfile: FlexyFormJsonFileComponent
 };
 
 const ENTRY_LAYOUT_COMPONENTS = [
@@ -110,9 +107,8 @@ const ENTRY_LAYOUT_COMPONENTS = [
   FlexyFormPercentComponent,
   FlexyFormPasswordComponent,
   FlexyFormChipsComponent,
-  FlexyFormDraggableSelectComponent
-
-  // FlexyFormJsonFileComponent
+  FlexyFormDraggableSelectComponent,
+  FlexyFormJsonFileComponent
 ];
 
 const FORM_CONTROLS = [
@@ -132,9 +128,8 @@ const FORM_CONTROLS = [
   FlexyControlPercentComponent,
   FlexyControlPasswordComponent,
   FlexyControlChipsComponent,
-  FlexyControlDraggableSelectComponent
-
-  // FlexyControlJsonFileComponent
+  FlexyControlDraggableSelectComponent,
+  FlexyControlJsonFileComponent
 ];
 
 const PUBLIC_COMPONENTS = [FlexyFormsTextareaAutosizeDirective, FlexyFieldControlInfoComponent, FlexyFieldComponent, FlexyTreeComponent];
@@ -154,7 +149,7 @@ const COMPONENTS = [FlexyTreeNodeComponent];
     NgSelectModule,
     TagInputModule,
     BsDatepickerModule,
-    // FlexyJsonImpExpModule,
+    FlexyJsonImpExpModule,
     DragDropModule
   ],
   declarations: [...COMPONENTS, ...PUBLIC_COMPONENTS, ...ENTRY_LAYOUT_COMPONENTS, ...FORM_CONTROLS],

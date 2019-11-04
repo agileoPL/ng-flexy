@@ -5,12 +5,16 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "@ngx-translate/core": "@ngx-translate/core",
+      "@ng-flexy/core": "@ng-flexy/core",
       "@ng-flexy/layout": "@ng-flexy/layout",
       "@ng-flexy/form": "@ng-flexy/form",
+      "@ng-flexy/json-impexp": "@ng-flexy/json-impexp",
+      "@ng-flexy/toasts": "@ng-flexy/toasts",
       "ngx-bootstrap": "ngx-bootstrap",
       "ngx-chips": "ngx-chips",
       "@ng-select/ng-select": "@ng-select/ng-select",
-      "moment": "moment"
+      "moment": "moment",
+      "lodash": "lodash"
     }
   }
 }
