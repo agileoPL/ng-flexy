@@ -88,9 +88,9 @@ e.g.: `ng build freezer`
 
 ```json5
 {
-  paths: {
-    '@ng-flexy/freezer': ['dist/freezer'],
-    '@ng-flexy/freezer/*': ['dist/freezer/*']
+  "paths": {
+    "@ng-flexy/freezer": ["dist/freezer"],
+    "@ng-flexy/freezer/*": ["dist/freezer/*"],
   }
 }
 ```
