@@ -6,6 +6,8 @@ export enum FlexyJsonImportErrorEnum {
   WrongFormat = 'WRONG_FORMAT'
 }
 
+const ZIP_MIME_TYPE = ['application/zip', 'application/x-zip-compressed'];
+
 @Injectable()
 export class FlexyJsonImpExpService {
   importFromJson(
@@ -29,7 +31,7 @@ export class FlexyJsonImpExpService {
             Array.from(files).forEach((file, index) => {
               fr = new FileReader();
               fr.onload = e => {
-                if (multipleFiles && file.type === 'application/zip') {
+                if (multipleFiles && ZIP_MIME_TYPE.includes(file.type)) {
                   const jszip = new JSZip();
                   jszip.loadAsync(file, { base64: true }).then(zip =>
                     Promise.all(Object.keys(zip.files).map(filename => zip.files[filename].async('string'))).then(list => {
