@@ -33,91 +33,91 @@ const SUB_PAGES = [
     label: 'Form Components',
     children: [
       {
-        url: '/form-bootstrap/array',
+        url: '/form-bootstrap/json',
         label: 'Array'
       },
       {
-        url: '/form-bootstrap/group',
+        url: '/form-bootstrap/json',
         label: 'Group'
       },
       {
-        url: '/form-bootstrap/label',
+        url: '/form-bootstrap/json',
         label: 'Label'
       },
       {
-        url: '/form-bootstrap/tabs',
+        url: '/form-bootstrap/json',
         label: 'Tabs'
       },
       {
-        url: '/form-bootstrap/fieldset',
+        url: '/form-bootstrap/json',
         label: 'Fieldset'
       },
       {
-        url: '/form-bootstrap/text',
+        url: '/form-bootstrap/json',
         label: 'Text'
       },
       {
-        url: '/form-bootstrap/textarea',
+        url: '/form-bootstrap/json',
         label: 'Textarea'
       },
       {
-        url: '/form-bootstrap/checkbox',
+        url: '/form-bootstrap/json',
         label: 'Checkbox'
       },
       {
-        url: '/form-bootstrap/checkboxlist',
+        url: '/form-bootstrap/json',
         label: 'Checkbox list'
       },
       {
-        url: '/form-bootstrap/radiolist',
+        url: '/form-bootstrap/json',
         label: 'Radio list'
       },
       {
-        url: '/form-bootstrap/colorpicker',
+        url: '/form-bootstrap/json',
         label: 'Color Picker'
       },
       {
-        url: '/form-bootstrap/password',
+        url: '/form-bootstrap/json',
         label: 'Password'
       },
       {
-        url: '/form-bootstrap/percent',
+        url: '/form-bootstrap/json',
         label: 'Percent'
       },
       {
-        url: '/form-bootstrap/select',
+        url: '/form-bootstrap/json',
         label: 'Select'
       },
       {
-        url: '/form-bootstrap/select2',
+        url: '/form-bootstrap/json',
         label: 'Select with filter'
       },
       {
-        url: '/form-bootstrap/draggableselect',
+        url: '/form-bootstrap/json',
         label: 'Draggable Select'
       },
       {
-        url: '/form-bootstrap/treeselect',
+        url: '/form-bootstrap/json',
         label: 'Tree select'
       },
       {
-        url: '/form-bootstrap/datepicker',
+        url: '/form-bootstrap/json',
         label: 'Date picker'
       },
       {
-        url: '/form-bootstrap/daterangepicker',
+        url: '/form-bootstrap/json',
         label: 'Date range picker'
       },
       {
-        url: '/form-bootstrap/chips',
+        url: '/form-bootstrap/json',
         label: 'Chips'
       },
       {
-        url: '/form-bootstrap/tags',
+        url: '/form-bootstrap/json',
         label: 'Tags'
       },
       {
-        url: '/form-bootstrap/jsonfileupload',
+        url: '/form-bootstrap/json',
         label: 'Json file upload'
       }
     ]
