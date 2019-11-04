@@ -28,22 +28,34 @@ Install: `npm i --save @ng-flexy/toasts`
 
 Docs: <a href="https://ng-flexy.io/toasts">https://ng-flexy.io/toasts</a>
 
+### json-impexp
+
+Install: `npm i --save @ng-flexy/json-impexp`
+
+Docs: <a href="https://ng-flexy.io/json-impexp">https://ng-flexy.io/json-impexp</a>
+
 # Library development
 
 ## Install
 
 Init dependencies `npm install --no-optional`
 
-Build core `npm run core:build`
-Install core `npm install`
-
 Build projects
 
-- freezer `npm run freezer:build`
-- skins `npm run skins:build`
-- toasts `npm run toasts:build`
+Run: `npm i --save-optional 
+&& npm run core:build && npm i dist/core --no-optional  
+&& npm run freezer:build && npm i dist/freezer --no-optional  
+&& npm run skins:build && npm i dist/skins --no-optional
+&& npm run toasts:build && npm i dist/toasts --no-optional
+&& npm run json-impexp:build && npm i dist/json-impexp --no-optional
+&& npm run layout:build && npm i dist/layout --no-optional
+&& npm run form:build && npm i dist/form --no-optional 
+&& npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional
+`
 
-Install projects `npm install`
+or 
+
+`npm run build:projects`
 
 Start demo `npm run demo`
 
@@ -78,10 +90,10 @@ e.g.: `ng build freezer`
 
 ```json5
 {
-    "paths": {
-      "@ng-flexy/freezer": ["dist/freezer"],
-      "@ng-flexy/freezer/*": ["dist/freezer/*"],
-    }
+  "paths": {
+    "@ng-flexy/freezer": ["dist/freezer"],
+    "@ng-flexy/freezer/*": ["dist/freezer/*"],
+  }
 }
 ```
 

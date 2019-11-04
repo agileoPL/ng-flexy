@@ -12,6 +12,7 @@ import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
+import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'form',
     loadChildren: () => import('./form/form.module').then(m => m.DemoFormModule)
+  },
+  {
+    path: 'json-impexp',
+    loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
   }
 ];
 
@@ -57,6 +62,7 @@ const routes: Routes = [
     FlexyToastsModule.forRoot(),
     FlexyLayoutModule.forRoot(),
     FlexyFormsModule.forRoot(),
+    FlexyJsonImpExpModule,
     TabsModule.forRoot(),
     RouterModule.forRoot(routes)
   ],

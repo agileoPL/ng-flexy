@@ -30,6 +30,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build:projects": "npm i --save-optional && npm run core:build && npm i dist/core --no-optional && npm run freezer:build && npm i dist/freezer --no-optional && npm run skins:build && npm i dist/skins --no-optional && npm run toasts:build && npm i dist/toasts --no-optional && npm run json-impexp:build && npm i dist/json-impexp --no-optional && npm run layout:build && npm i dist/layout --no-optional && npm run form:build && npm i dist/form --no-optional && npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional && npm i",
     "demo": "ng serve demo --port 4201",
     "demo:build": "ng build demo",
     "core:build": "ng build core",
@@ -47,7 +48,9 @@
     "skins:watch-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\" --watch",
     "skins:copy-scripts": "cpx \"projects/skins/src/scripts/**/*\" \"dist/skins/scripts\"",
     "toasts:watch": "ng build toasts --watch",
-    "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\""
+    "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\"",
+    "json-impexp:build": "ng build json-impexp && cpx \"projects/json-impexp/src/lib/json-impexp.scss\" \"dist/json-impexp\"",
+    "json-impexp:watch": "ng build json-impexp --watch"
   },
   "dependencies": {
     "@angular/animations": "~8.1.1",
@@ -71,7 +74,8 @@
     "ngx-bootstrap": "^5.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "jszip": "^3.2.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.3",
@@ -105,11 +109,12 @@
   "optionalDependencies": {
     "@ng-flexy/core": "file:dist/core",
     "@ng-flexy/form": "file:dist/form",
+    "@ng-flexy/form-bootstrap": "file:dist/form-bootstrap",
     "@ng-flexy/freezer": "file:dist/freezer",
+    "@ng-flexy/json-impexp": "file:dist/json-impexp",
     "@ng-flexy/layout": "file:dist/layout",
     "@ng-flexy/skins": "file:dist/skins",
-    "@ng-flexy/toasts": "file:dist/toasts",
-    "@ng-flexy/form-bootstrap": "file:dist/form-bootstrap"
+    "@ng-flexy/toasts": "file:dist/toasts"
   },
   "husky": {
     "hooks": {

@@ -2,8 +2,10 @@
 
 @import '~@ng-flexy/freezer/freezer';
 @import '~@ng-flexy/toasts/toasts.module';
+@import '~@ng-flexy/json-impexp/json-impexp';
 
 @import '../../app/layout/components/layout-json.component';
+@import '../../app/json-impexp/json-impexp-example.component.scss';
 
 .bd-navbar {
   background-color: #498fe1;
