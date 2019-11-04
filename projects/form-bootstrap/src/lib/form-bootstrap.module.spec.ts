@@ -12,7 +12,7 @@ import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-tran
 import { TooltipModule } from 'ngx-bootstrap';
 import { cloneDeep, set } from 'lodash';
 import { FlexyForm } from '@ng-flexy/form';
-import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyBootstrapFormsModule } from './form-bootstrap.module';
+import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from './form-bootstrap.module';
 import { FLEXY_LAYOUT_COMPONENT_MAP } from '@ng-flexy/layout';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -35,7 +35,7 @@ describe('Flexy Forms', () => {
         TooltipModule.forRoot(),
         FlexyLayoutModule.forRoot(),
         FlexyFormsModule.forRoot(),
-        FlexyBootstrapFormsModule.forRoot(),
+        FlexyFormsBootstrapModule.forRoot(),
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
         })
@@ -76,8 +76,8 @@ describe('Flexy Forms', () => {
       expect((component.schema[0] as FlexyFormFieldLayoutSchema).formName).toBeUndefined();
       expect((component.schema[0] as FlexyFormFieldLayoutSchema).id).toBe('0');
       expect((component.schema[0] as FlexyFormFieldLayoutSchema).formControl instanceof FormGroup).toBeTruthy();
-      expect((<FormGroup>(component.schema[0] as FlexyFormFieldLayoutSchema).formControl).contains('p1')).toBeTruthy();
-      expect((<FormGroup>(component.schema[0] as FlexyFormFieldLayoutSchema).formControl).contains('p2')).toBeTruthy();
+      expect(((component.schema[0] as FlexyFormFieldLayoutSchema).formControl as FormGroup).contains('p1')).toBeTruthy();
+      expect(((component.schema[0] as FlexyFormFieldLayoutSchema).formControl as FormGroup).contains('p2')).toBeTruthy();
 
       expect((component.schema[0].children[0] as FlexyFormFieldLayoutSchema).formName).toBe('p1');
       expect((component.schema[0].children[0] as FlexyFormFieldLayoutSchema).id).toBe('0/0');

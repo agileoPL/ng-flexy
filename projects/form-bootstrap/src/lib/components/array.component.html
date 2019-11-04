@@ -7,7 +7,7 @@
 
     <div class="actions" *ngIf="!readonly && layoutSchema?.items?.length > 10">
       <button type="button" class="btn btn-info btn-outline btn-sm" [disabled]="!showAddButton" (click)="addNew(); focusOnAdded()">
-        <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+        <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
       </button>
     </div>
   </h4>
@@ -30,13 +30,13 @@
               tooltip="{{ 'FLEXY_FORM_ARRAY_REMOVE_ITEM' | translate }}"
               (click)="removeItem(index)"
             >
-              <i class="remixicon-close-line"></i>
+              <i class="flexy-icon-remove"></i>
             </button>
           </flexy-layout>
         </div>
         <div *ngIf="isDraggable()" class="drag-handle" cdkDragHandle>
           <button type="button" class="btn btn-link" tooltip="{{ 'FLEXY_FORM_ARRAY_REORDER' | translate }}">
-            <i class="remixicon-drag-move-line"></i>
+            <i class="flexy-icon-move"></i>
           </button>
         </div>
       </div>
@@ -49,7 +49,7 @@
         [disabled]="!showAddButton"
         (click)="addNew()"
       >
-        <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+        <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
       </button>
       <button
         *ngIf="!removeAny"

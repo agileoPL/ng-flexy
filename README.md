@@ -42,18 +42,9 @@ Init dependencies `npm install --no-optional`
 
 Build projects
 
-Run: `npm i --save-optional 
-&& npm run core:build && npm i dist/core --no-optional  
-&& npm run freezer:build && npm i dist/freezer --no-optional  
-&& npm run skins:build && npm i dist/skins --no-optional
-&& npm run toasts:build && npm i dist/toasts --no-optional
-&& npm run json-impexp:build && npm i dist/json-impexp --no-optional
-&& npm run layout:build && npm i dist/layout --no-optional
-&& npm run form:build && npm i dist/form --no-optional 
-&& npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional
-`
+Run: `npm i --save-optional && npm run core:build && npm i dist/core --no-optional && npm run freezer:build && npm i dist/freezer --no-optional && npm run skins:build && npm i dist/skins --no-optional && npm run toasts:build && npm i dist/toasts --no-optional && npm run json-impexp:build && npm i dist/json-impexp --no-optional && npm run layout:build && npm i dist/layout --no-optional && npm run form:build && npm i dist/form --no-optional && npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional`
 
-or 
+or
 
 `npm run build:projects`
 
@@ -90,9 +81,9 @@ e.g.: `ng build freezer`
 
 ```json5
 {
-  "paths": {
-    "@ng-flexy/freezer": ["dist/freezer"],
-    "@ng-flexy/freezer/*": ["dist/freezer/*"],
+  paths: {
+    '@ng-flexy/freezer': ['dist/freezer'],
+    '@ng-flexy/freezer/*': ['dist/freezer/*']
   }
 }
 ```

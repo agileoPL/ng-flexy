@@ -13,12 +13,14 @@ export interface LayoutModulesNav {
   id: DemoModules;
   url: string;
   label: string;
+  regexp?: RegExp;
   children?: LayoutMenuNav[];
 }
 
 export interface LayoutMenuNav {
   url: string;
   label: string;
+  children?: LayoutMenuNav[];
 }
 
 export enum DemoModules {
@@ -28,6 +30,7 @@ export enum DemoModules {
   Freezer = 'Freezer',
   Layout = 'Layout',
   Form = 'Form',
+  FormBootstrap = 'FormBootstrap',
   JsonImpExp = 'JsonImpExp'
 }
 
@@ -45,36 +48,49 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
     {
       id: DemoModules.Core,
       url: '/core',
+      regexp: /\/core([?;]?|$)/,
       label: DemoModules.Core
     },
     {
       id: DemoModules.Layout,
       url: '/layout',
+      regexp: /\/layout([?;]?|$)/,
       label: DemoModules.Layout
     },
     {
       id: DemoModules.Form,
       url: '/form',
+      regexp: /\/form([?;]?|$)/,
       label: DemoModules.Form
+    },
+    {
+      id: DemoModules.FormBootstrap,
+      url: '/form-bootstrap',
+      regexp: /\/form-bootstrap([?;]?|$)/,
+      label: 'Form bootstrap controls'
     },
     {
       id: DemoModules.Toasts,
       url: '/toasts',
+      regexp: /\/toasts([?;]?|$)/,
       label: DemoModules.Toasts
     },
     {
       id: DemoModules.Freezer,
       url: '/freezer',
+      regexp: /\/freezer([?;]?|$)/,
       label: DemoModules.Freezer
     },
     {
       id: DemoModules.Skins,
       url: '/skins',
+      regexp: /\/skins([?;]?|$)/,
       label: DemoModules.Skins
     },
     {
       id: DemoModules.JsonImpExp,
       url: '/json-impexp',
+      regexp: /\/json-impexp([?;]?|$)/,
       label: 'JSON import/export'
     }
   ];

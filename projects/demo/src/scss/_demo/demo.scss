@@ -2,6 +2,8 @@
 
 @import '~@ng-flexy/freezer/freezer';
 @import '~@ng-flexy/toasts/toasts.module';
+@import '~@ng-flexy/form-bootstrap/form-bootstrap.module';
+@import '~@ng-flexy/form-bootstrap/form-bootstrap.fa-icons';
 @import '~@ng-flexy/json-impexp/json-impexp';
 
 @import '../../app/layout/components/layout-json.component';
@@ -9,6 +11,11 @@
 
 .bd-navbar {
   background-color: #498fe1;
+}
+
+.bd-toc-item.active .bd-sidenav {
+  display: block;
+  padding-left: 5px;
 }
 
 demo-toasts-types {

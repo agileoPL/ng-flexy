@@ -28,7 +28,7 @@ import { FormControl } from '@angular/forms';
               tooltip="{{ 'FLEXY_FORM_ARRAY_REMOVE_ITEM' | translate }}"
               (click)="removeItem(index)"
             >
-              <i class="remixicon-close-line"></i>
+              <i class="flexy-icon-remove"></i>
             </button>
           </td>
         </tr>
@@ -40,7 +40,7 @@ import { FormControl } from '@angular/forms';
       class="btn btn-info btn-outline btn-sm bottom-button"
       (click)="showSelect = !showSelect"
     >
-      <i class="fa fa-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
+      <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
     </button>
     <flexy-control-select2
       *ngIf="showSelect"

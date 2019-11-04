@@ -3,24 +3,24 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   template: `
-    <!--    <input-->
-    <!--        *ngIf="!readonly"-->
-    <!--        class="form-control"-->
-    <!--        type="number"-->
-    <!--        [formControl]="control"-->
-    <!--        [attr.min]="min"-->
-    <!--        [attr.max]="max"-->
-    <!--        [attr.step]="step ? step : 1"-->
-    <!--        [attr.placeholder]="default"-->
-    <!--        (focus)="focused.emit($event)"-->
-    <!--        (click)="clicked.emit($event)"-->
-    <!--        (change)="changed.emit($event)"-->
-    <!--    />-->
-    <!--    <flexy-control-readonly-->
-    <!--        *ngIf="readonly"-->
-    <!--        [value]="decimal ? (control.value | number: decimal) : control.value"-->
-    <!--        [default]="default"-->
-    <!--    ></flexy-control-readonly>-->
+    <input
+      *ngIf="!readonly"
+      class="form-control"
+      type="number"
+      [formControl]="control"
+      [attr.min]="min"
+      [attr.max]="max"
+      [attr.step]="step ? step : 1"
+      [attr.placeholder]="default"
+      (focus)="focused.emit($event)"
+      (click)="clicked.emit($event)"
+      (change)="changed.emit($event)"
+    />
+    <flexy-control-readonly
+      *ngIf="readonly"
+      [value]="decimal ? (control.value | number: decimal) : control.value"
+      [default]="default"
+    ></flexy-control-readonly>
   `,
   selector: 'flexy-control-number',
   styles: [

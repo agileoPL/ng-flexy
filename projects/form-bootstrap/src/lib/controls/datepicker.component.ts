@@ -30,7 +30,7 @@ const BS_DATEPICKER_MODES = {
       />
       <span class="input-group-btn">
         <button *ngIf="!hideButton" class="btn btn-primary" (click)="dp.toggle(); $event.stopPropagation()">
-          <span class="fa fa-calendar"></span>
+          <span class="flexy-icon-calendar"></span>
         </button>
       </span>
     </div>

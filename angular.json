@@ -23,7 +23,7 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
             "aot": false,
-            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets"],
+            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "extractCss": true,
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
@@ -93,7 +93,7 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.spec.json",
             "karmaConfig": "projects/demo/karma.conf.js",
-            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets"],
+            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/demo/src/styles.scss",

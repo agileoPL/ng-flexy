@@ -1,24 +1,34 @@
+<ng-template #treeRef let-children let-sideBar>
+  <ul class="nav bd-sidenav" *ngIf="children">
+    <li
+      *ngFor="let page of children"
+      [ngClass]="{
+        active: currentUrl && currentUrl.includes(page.url),
+        'bd-sidenav-active': currentUrl && currentUrl.includes(page.url)
+      }"
+    >
+      <a *ngIf="page.url" [routerLink]="[page.url]">
+        {{ page.label }}
+      </a>
+      <a *ngIf="!page.url">{{ page.label }}</a>
+
+      <ng-container *ngIf="!!page && !!page.children">
+        <ng-container *ngTemplateOutlet="treeRef; context: { $implicit: page.children, sideBar: true }"></ng-container>
+      </ng-container>
+    </li>
+  </ul>
+</ng-template>
+
 <div class="container-fluid">
   <div class="row flex-xl-nowrap">
     <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
       <nav class="collapse bd-links" id="bd-docs-nav">
-        <div class="bd-toc-item" *ngFor="let item of menuNav" [ngClass]="{ active: currentUrl && currentUrl.includes(item.url) }">
+        <div class="bd-toc-item" *ngFor="let item of menuNav" [ngClass]="{ active: currentUrl && currentUrl.search(item.regexp) !== -1 }">
           <a class="bd-toc-link" [routerLink]="[item.url]">
             {{ item.label }}
           </a>
-          <ul class="nav bd-sidenav" *ngIf="item.children">
-            <li
-              *ngFor="let page of item.children"
-              [ngClass]="{
-                active: currentUrl && currentUrl.includes(page.url),
-                'bd-sidenav-active': currentUrl && currentUrl.includes(page.url)
-              }"
-            >
-              <a [routerLink]="[page.url]">
-                {{ page.label }}
-              </a>
-            </li>
-          </ul>
+
+          <ng-container *ngTemplateOutlet="treeRef; context: { $implicit: item.children }"></ng-container>
         </div>
       </nav>
     </div>

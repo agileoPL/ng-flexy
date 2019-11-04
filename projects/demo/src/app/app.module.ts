@@ -6,13 +6,20 @@ import { SUPPORTED_SKINS } from './app.skins';
 import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyHttpCacheInterceptor, FlexyLoggerModule } from '@ng-flexy/core';
 import { FlexyToastsModule } from '@ng-flexy/toasts';
 import { RouterModule, Routes } from '@angular/router';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TabsModule } from 'ngx-bootstrap';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
+import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
+
+export function translateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());
+}
 
 const routes: Routes = [
   {
@@ -44,6 +51,10 @@ const routes: Routes = [
     loadChildren: () => import('./form/form.module').then(m => m.DemoFormModule)
   },
   {
+    path: 'form-bootstrap',
+    loadChildren: () => import('./form-bootstrap/form-bootstrap.module').then(m => m.DemoFormBootstrapModule)
+  },
+  {
     path: 'json-impexp',
     loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
   }
@@ -62,9 +73,18 @@ const routes: Routes = [
     FlexyToastsModule.forRoot(),
     FlexyLayoutModule.forRoot(),
     FlexyFormsModule.forRoot(),
+    FlexyFormsBootstrapModule.forRoot(),
     FlexyJsonImpExpModule,
     TabsModule.forRoot(),
-    RouterModule.forRoot(routes)
+    TooltipModule.forRoot(),
+    RouterModule.forRoot(routes),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: translateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     {

@@ -1,0 +1,52 @@
+<h1>Form json based</h1>
+<p class="bd-lead">
+  Create advanced forms with custom components based on json schema
+</p>
+
+<h3>Demo</h3>
+<div class="bd-example">
+  <demo-form-json></demo-form-json>
+</div>
+
+<h3>Configuration - custom components</h3>
+
+<tabset>
+  <tab heading="Init form controls">
+    <demo-pretty-code
+      code="import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
+
+@NgModule({
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    FlexyLayoutModule,
+    FlexyFormsBootstrapModule,
+    FlexyFormsModule.forChild({
+      componentsMap: {
+        figure: DemoCustomFigureComponent,
+        ...FLEXY_FORM_CONTROLS_JSON_MAPPER
+      }
+    })
+  ],
+  entryComponents: [DemoCustomFigureComponent]
+  }"
+    ></demo-pretty-code>
+  </tab>
+</tabset>
+
+<h3>Usage</h3>
+
+<tabset>
+  <tab heading="demo component">
+    <demo-pretty-code [code]="demoComponentContent"></demo-pretty-code>
+  </tab>
+  <tab heading="demo html">
+    <demo-pretty-code [code]="demoHtmlContent"></demo-pretty-code>
+  </tab>
+  <tab heading="demo scss">
+    <demo-pretty-code [code]="demoCssContent"></demo-pretty-code>
+  </tab>
+  <tab heading="form.json">
+    <demo-pretty-code [code]="jsonContent | json"></demo-pretty-code>
+  </tab>
+</tabset>
