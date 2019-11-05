@@ -33,7 +33,9 @@
       "@ng-flexy/form-bootstrap": ["dist/form-bootstrap"],
       "@ng-flexy/form-bootstrap/*": ["dist/form-bootstrap/*"],
       "@ng-flexy/json-impexp": ["dist/json-impexp"],
-      "@ng-flexy/json-impexp/*": ["dist/json-impexp/*"]
+      "@ng-flexy/json-impexp/*": ["dist/json-impexp/*"],
+      "@ng-flexy/crud": ["dist/crud"],
+      "@ng-flexy/crud/*": ["dist/crud/*"]
     }
   },
   "angularCompilerOptions": {

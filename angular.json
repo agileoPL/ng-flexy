@@ -381,6 +381,36 @@
           }
         }
       }
+    },
+    "crud": {
+      "projectType": "library",
+      "root": "projects/crud",
+      "sourceRoot": "projects/crud/src",
+      "prefix": "flexy",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/crud/tsconfig.lib.json",
+            "project": "projects/crud/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/crud/src/test.ts",
+            "tsConfig": "projects/crud/tsconfig.spec.json",
+            "karmaConfig": "projects/crud/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/crud/tsconfig.lib.json", "projects/crud/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo"
