@@ -1,0 +1,66 @@
+<span *ngIf="filterOptions && filterOptions.length" role="button">
+  <span class="btn-group filter" dropdown (click)="$event.stopPropagation()" placement="bottom right">
+    <button type="button" class="btn btn-info btn-sm e2e-btn-clear-filter" (click)="fullClearFilter(); $event.stopPropagation()">
+      {{ 'QUICK_FILTER_CLEAR_FILTER' | translate }}
+    </button>
+    <button dropdownToggle type="button" class="btn btn-info btn-sm dropdown-toggle">
+      <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+    </button>
+
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <li *ngFor="let opt of filterOptions" role="menuitem">
+        <a class="dropdown-item" role="button" (click)="clearFilter(opt.key); $event.stopPropagation()">
+          <i class="fa fa-check-square" aria-hidden="true"></i>
+          {{ opt.label }}
+          <i class="fa fa-times"></i>
+        </a>
+      </li>
+    </ul>
+  </span>
+</span>
+
+<span
+  *ngFor="let filter of quickFilters"
+  class="btn btn-primary btn-sm filter"
+  [ngClass]="{ active: selectedFilterId === filter.id, inactive: selectedFilterId !== filter.id }"
+>
+  <span role="button" (click)="selectFilter(filter); $event.stopPropagation()" [tooltip]="'QUICK_FILTER_SELECT_FILTER' | translate">
+    {{ filter.name }}
+  </span>
+  <i class="fa fa-window-close delete" (click)="delete(filter); $event.stopPropagation()" [tooltip]="'QUICK_FILTER_DELETE' | translate"></i>
+</span>
+
+<span class="text-nowrap" *ngIf="filterOptions && filterOptions.length">
+  <form class="form-inline d-inline" *ngIf="addNewFilterInput" (keydown)="saveAfterEnterKey($event)">
+    <input #newFilter class="form-control input-sm" [formControl]="formGroup.get('filterValue')" />
+  </form>
+
+  <div class="btn-group filter-buttons">
+    <button
+      *ngIf="addNewFilterInput"
+      (click)="save(); $event.stopPropagation()"
+      class="btn btn-link btn-sm"
+      [disabled]="!formGroup.valid"
+      [tooltip]="'QUICK_FILTER_ADD' | translate"
+    >
+      <i class="fa fa-check"></i>
+    </button>
+    <button
+      *ngIf="addNewFilterInput"
+      (click)="cancel(); $event.stopPropagation()"
+      class="btn btn-link btn-sm"
+      [tooltip]="'QUICK_FILTER_CANCEL' | translate"
+    >
+      <i class="fa fa-times"></i>
+    </button>
+
+    <button
+      *ngIf="!addNewFilterInput"
+      (click)="insertNewFilter(); $event.stopPropagation()"
+      class="btn btn-link btn-sm"
+      [tooltip]="'QUICK_FILTER_CREATE_NEW_FILTER' | translate"
+    >
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+</span>

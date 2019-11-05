@@ -1,0 +1,18 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/crud",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@ngx-translate/core": "@ngx-translate/core",
+      "@ng-flexy/core": "@ng-flexy/core",
+      "@ng-flexy/layout": "@ng-flexy/layout",
+      "@ng-flexy/form": "@ng-flexy/form",
+      "@ng-flexy/form-bootstrap": "@ng-flexy/form-bootstrap",
+      "@ng-flexy/toasts": "@ng-flexy/toasts",
+      "ngx-bootstrap": "ngx-bootstrap",
+      "moment": "moment",
+      "lodash": "lodash"
+    }
+  }
+}

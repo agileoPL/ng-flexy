@@ -1,0 +1,39 @@
+<!--This feature "actionsOn" is only for fix change detection performance-->
+<i *ngIf="!actionsOn" role="button" class="fa fa-ellipsis-v t2e-turn-on-actions" (click)="turnOnActions($event)"></i>
+
+<div
+  *ngIf="actionsOn && actions && actions.length && (actions | enabledActionsFilter: item).length"
+  class="btn-group"
+  dropdown
+  #dropdown="bs-dropdown"
+  [dropup]="dropUp"
+>
+  <i
+    dropdownToggle
+    #dropdownToggle
+    role="button"
+    class="fa fa-ellipsis-v dropdown-toggle btn-action t2e-open-actions e2e-btn-crud-toggle"
+  ></i>
+  <ul *dropdownMenu class="dropdown-menu dropdown-window dropdown-menu-right t2e-actions" role="menu">
+    <ng-container *ngFor="let action of actions | enabledActionsFilter: item">
+      <li *ngIf="action.separator" class="divider dropdown-divider"></li>
+
+      <li *ngIf="action.isDisabled && action.isDisabled(item)" role="button" class="dropdown-item">
+        <a class="t2e-btn-action-{{ action.key }} e2e-btn-action-{{ action.key }} action-disabled">
+          {{ action.label | translate }}
+        </a>
+      </li>
+
+      <li
+        *ngIf="(!action.isDisabled || (action.isDisabled && !action.isDisabled(item))) && !action.separator"
+        (click)="action.callback(item); $event.stopPropagation()"
+        role="button"
+        class="dropdown-item"
+      >
+        <a class="t2e-btn-action-{{ action.key }}">
+          {{ action.label | translate }}
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>
