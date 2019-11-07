@@ -30,7 +30,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:projects": "npm i --save-optional && npm run core:build && npm i dist/core --no-optional && npm run freezer:build && npm i dist/freezer --no-optional && npm run skins:build && npm i dist/skins --no-optional && npm run toasts:build && npm i dist/toasts --no-optional && npm run json-impexp:build && npm i dist/json-impexp --no-optional && npm run layout:build && npm i dist/layout --no-optional && npm run form:build && npm i dist/form --no-optional && npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional && npm run crud:build && npm i dist/crud --no-optional && npm i",
+    "build:projects": "npm i --save-optional && npm run core:build && npm i dist/core --no-optional && npm run freezer:build && npm i dist/freezer --no-optional && npm run skins:build && npm i dist/skins --no-optional && npm run toasts:build && npm i dist/toasts --no-optional && npm run json-impexp:build && npm i dist/json-impexp --no-optional && npm run layout:build && npm i dist/layout --no-optional && npm run form:build && npm i dist/form --no-optional && npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional && npm run crud:build && npm i dist/crud --no-optional && npm run graphs:build && npm i dist/graphs --no-optional && npm i",
     "demo": "ng serve demo --port 4201",
     "demo:build": "ng build demo",
     "core:build": "ng build core",
@@ -54,7 +54,9 @@
     "toasts:watch": "ng build toasts --watch",
     "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\"",
     "json-impexp:build": "ng build json-impexp && cpx \"projects/json-impexp/src/lib/json-impexp.scss\" \"dist/json-impexp\"",
-    "json-impexp:watch": "ng build json-impexp --watch"
+    "json-impexp:watch": "ng build json-impexp --watch",
+    "graphs:build": "ng build graphs && cpx \"projects/graphs/src/lib/graphs.scss\" \"dist/graphs\"",
+    "graphs:watch": "ng build graphs --watch"
   },
   "dependencies": {
     "@angular/animations": "~8.1.1",
@@ -77,6 +79,7 @@
     "moment": "^2.24.0",
     "ngx-bootstrap": "^5.1.0",
     "ngx-chips": "^2.0.2",
+    "ngx-nvd3": "^1.0.9",
     "rxjs": "~6.4.0",
     "stream": "0.0.2",
     "tslib": "^1.9.0",
@@ -120,7 +123,8 @@
     "@ng-flexy/layout": "file:dist/layout",
     "@ng-flexy/skins": "file:dist/skins",
     "@ng-flexy/toasts": "file:dist/toasts",
-    "@ng-flexy/crud": "file:dist/crud"
+    "@ng-flexy/crud": "file:dist/crud",
+    "@ng-flexy/graphs": "file:dist/graphs"
   },
   "husky": {
     "hooks": {
