@@ -1,0 +1,65 @@
+flexy-chart {
+  display: block;
+  position: relative;
+
+  .no-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+    font-weight: bold;
+  }
+
+  .actions {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    cursor: pointer;
+    line-height: 0;
+    i {
+      padding: 0 5px;
+      color: $secondary;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+
+  highcharts-chart {
+    width: 100%;
+    display: block;
+  }
+}
+
+flexy-stock-chart {
+  display: block;
+  highcharts-chart {
+    width: 100%;
+    height: 400px;
+    display: block;
+  }
+}
+
+flexy-mini-line-chart {
+  flexy-chart {
+    .actions {
+      display: none;
+    }
+  }
+}
+
+flexy-basic-line-chart {
+  position: relative;
+  display: block;
+  .chart-zoom-buttons {
+    z-index: 5;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
