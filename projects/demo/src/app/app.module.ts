@@ -57,6 +57,10 @@ const routes: Routes = [
   {
     path: 'json-impexp',
     loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
+  },
+  {
+    path: 'graphs',
+    loadChildren: () => import('./graphs/graphs.module').then(m => m.DemoGraphsModule)
   }
 ];
 

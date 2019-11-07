@@ -55,7 +55,7 @@
     "toasts:build": "ng build toasts && cpx \"projects/toasts/src/lib/toasts.module.scss\" \"dist/toasts\"",
     "json-impexp:build": "ng build json-impexp && cpx \"projects/json-impexp/src/lib/json-impexp.scss\" \"dist/json-impexp\"",
     "json-impexp:watch": "ng build json-impexp --watch",
-    "graphs:build": "ng build graphs && cpx \"projects/graphs/src/lib/graphs.scss\" \"dist/graphs\"",
+    "graphs:build": "ng build graphs && cpx \"projects/graphs/src/lib/graphs.module.scss\" \"dist/graphs\"",
     "graphs:watch": "ng build graphs --watch"
   },
   "dependencies": {
