@@ -1,8 +1,8 @@
 import * as Highcharts from 'highcharts';
-import * as tinycolor2 from 'tinycolor2';
-import * as Tree from 'highcharts/modules/treemap';
-import * as HC_exports from 'highcharts/modules/exporting';
-import * as HC_Boost from 'highcharts/modules/boost';
+import tinycolor2 from 'tinycolor2';
+import Tree from 'highcharts/modules/treemap';
+import HC_exports from 'highcharts/modules/exporting';
+import HC_Boost from 'highcharts/modules/boost';
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, Inject, LOCALE_ID } from '@angular/core';
 import { cloneDeep, isNumber, merge } from 'lodash';
 import { formatNumber, formatCurrency } from '@angular/common';

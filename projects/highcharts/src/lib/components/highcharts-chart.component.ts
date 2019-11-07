@@ -29,7 +29,7 @@ export class HighchartsChartComponent implements OnInit, OnDestroy {
   chart: any;
   optionsValue: any;
 
-  @HostListener('window:resize', ['$event']) handleResizeEvent() {
+  @HostListener('window:resize', ['$event']) handleResizeEvent(event) {
     debounce(() => {
       this.setChartParameters();
     }, 100)();

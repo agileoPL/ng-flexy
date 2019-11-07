@@ -1,7 +1,7 @@
 import * as Highcharts from 'highcharts';
 import { Component, Input, OnInit, OnChanges, Inject, LOCALE_ID } from '@angular/core';
 import { cloneDeep, merge } from 'lodash';
-import * as More from 'highcharts/highcharts-more';
+import More from 'highcharts/highcharts-more';
 import { formatNumber } from '@angular/common';
 More(Highcharts);
 
