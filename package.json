@@ -120,16 +120,16 @@
   },
   "optionalDependencies": {
     "@ng-flexy/core": "file:dist/core",
+    "@ng-flexy/crud": "file:dist/crud",
     "@ng-flexy/form": "file:dist/form",
     "@ng-flexy/form-bootstrap": "file:dist/form-bootstrap",
     "@ng-flexy/freezer": "file:dist/freezer",
+    "@ng-flexy/graphs": "file:dist/graphs",
+    "@ng-flexy/highcharts": "file:dist/highcharts",
     "@ng-flexy/json-impexp": "file:dist/json-impexp",
     "@ng-flexy/layout": "file:dist/layout",
     "@ng-flexy/skins": "file:dist/skins",
-    "@ng-flexy/toasts": "file:dist/toasts",
-    "@ng-flexy/crud": "file:dist/crud",
-    "@ng-flexy/highcharts": "file:dist/highcharts",
-    "@ng-flexy/graphs": "file:dist/graphs"
+    "@ng-flexy/toasts": "file:dist/toasts"
   },
   "husky": {
     "hooks": {
