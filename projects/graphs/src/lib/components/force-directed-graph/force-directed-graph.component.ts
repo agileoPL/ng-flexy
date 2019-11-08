@@ -1,27 +1,30 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import * as d3 from 'd3';
-import 'fisheye.js';
+import * as nv from 'nvd3';
+import { fisheyePlugin } from './fisheye';
 import { FlexyGraphData } from '../../models/force-directed-graph.data';
 import { cloneDeep } from 'lodash';
+
+fisheyePlugin(d3, nv);
 
 const DEFAULT_OPTIONS = {
   type: 'fisheyeGraph',
   width: 640,
   height: 480,
   margin: { top: 0, right: 0, bottom: 0, left: 0 },
-  color: function(d) {
+  color: d => {
     return d3.scale.category20()(d.group);
   },
   dispatch: {
-    elementClick: function() {}
+    elementClick: () => {}
   },
-  nodeExtras: function(node) {
+  nodeExtras: node => {
     if (node) {
       node
         .append('text')
         .attr('dx', 8)
         .attr('dy', '.35em')
-        .text(function(d) {
+        .text(d => {
           return d.name;
         });
     }
@@ -61,7 +64,7 @@ export class FlexyForceDirectedGraphComponent implements OnChanges {
   }
 
   private prepareChartOptions() {
-    let chartOptions: any = cloneDeep(DEFAULT_OPTIONS);
+    const chartOptions: any = cloneDeep(DEFAULT_OPTIONS);
 
     chartOptions.dispatch.elementClick = node => {
       this.nodeClick.emit(this.getConnectedNodes(node, this.data));
@@ -75,11 +78,11 @@ export class FlexyForceDirectedGraphComponent implements OnChanges {
   }
 
   private getConnectedNodes(node, data) {
-    let nodes = {
+    const nodes = {
       root: null,
       children: []
     };
-    let links = [];
+    const links = [];
     nodes.root = node;
     data.links.forEach(link => {
       if (link.source.id === node.id || link.target.id === node.id) {
