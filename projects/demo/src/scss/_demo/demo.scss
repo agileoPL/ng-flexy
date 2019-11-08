@@ -1,5 +1,3 @@
-$accent-correlation-graph-label-color: black !default;
-
 @import 'bootstrap-site/docs';
 
 @import '~@ng-flexy/freezer/freezer';
@@ -7,6 +5,7 @@ $accent-correlation-graph-label-color: black !default;
 @import '~@ng-flexy/form-bootstrap/form-bootstrap.module';
 @import '~@ng-flexy/form-bootstrap/form-bootstrap.fa-icons';
 @import '~@ng-flexy/json-impexp/json-impexp';
+@import '~@ng-flexy/highcharts/highcharts';
 @import '~@ng-flexy/graphs/graphs.module';
 
 @import '../../app/layout/components/layout-json.component';

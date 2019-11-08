@@ -32,6 +32,7 @@ export enum DemoModules {
   Form = 'Form',
   FormBootstrap = 'FormBootstrap',
   JsonImpExp = 'JsonImpExp',
+  Highcharts = 'Highcharts',
   Graphs = 'Graphs'
 }
 
@@ -93,6 +94,12 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/json-impexp',
       regexp: /\/json-impexp([?;]?|$)/,
       label: 'JSON import/export'
+    },
+    {
+      id: DemoModules.Highcharts,
+      url: '/highcharts',
+      regexp: /\/highcharts([?;]?|$)/,
+      label: DemoModules.Highcharts
     },
     {
       id: DemoModules.Graphs,

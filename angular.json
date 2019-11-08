@@ -412,6 +412,41 @@
         }
       }
     },
+    "highcharts": {
+      "projectType": "library",
+      "root": "projects/highcharts",
+      "sourceRoot": "projects/highcharts/src",
+      "prefix": "flexy",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/highcharts/tsconfig.lib.json",
+            "project": "projects/highcharts/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/highcharts/src/test.ts",
+            "tsConfig": "projects/highcharts/tsconfig.spec.json",
+            "karmaConfig": "projects/highcharts/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/highcharts/tsconfig.lib.json", "projects/highcharts/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
     "graphs": {
       "projectType": "library",
       "root": "projects/graphs",

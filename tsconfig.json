@@ -36,6 +36,8 @@
       "@ng-flexy/json-impexp/*": ["dist/json-impexp/*"],
       "@ng-flexy/crud": ["dist/crud"],
       "@ng-flexy/crud/*": ["dist/crud/*"],
+      "@ng-flexy/highcharts": ["dist/highcharts"],
+      "@ng-flexy/highcharts/*": ["dist/highcharts/*"],
       "@ng-flexy/graphs": ["dist/graphs"],
       "@ng-flexy/graphs/*": ["dist/graphs/*"]
     }

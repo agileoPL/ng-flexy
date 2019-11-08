@@ -59,6 +59,10 @@ const routes: Routes = [
     loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
   },
   {
+    path: 'highcharts',
+    loadChildren: () => import('./highcharts/highcharts.module').then(m => m.DemoHighchartsModule)
+  },
+  {
     path: 'graphs',
     loadChildren: () => import('./graphs/graphs.module').then(m => m.DemoGraphsModule)
   }
