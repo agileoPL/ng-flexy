@@ -32,7 +32,8 @@ export enum DemoModules {
   Form = 'Form',
   FormBootstrap = 'FormBootstrap',
   JsonImpExp = 'JsonImpExp',
-  Highcharts = 'Highcharts'
+  Highcharts = 'Highcharts',
+  Graphs = 'Graphs'
 }
 
 @Component({
@@ -99,6 +100,12 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/highcharts',
       regexp: /\/highcharts([?;]?|$)/,
       label: DemoModules.Highcharts
+    },
+    {
+      id: DemoModules.Graphs,
+      url: '/graphs',
+      regexp: /\/graphs([?;]?|$)/,
+      label: DemoModules.Graphs
     }
   ];
 

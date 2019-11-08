@@ -1,9 +1,9 @@
 {
-  "name": "@ng-flexy/json-impexp",
-  "version": "0.1.2",
+  "name": "@ng-flexy/graphs",
+  "version": "0.1.1",
   "peerDependencies": {
     "@angular/common": "^8.1.3",
     "@angular/core": "^8.1.3",
-    "jszip": "^3.2.2"
+    "ngx-nvd3": "^1.0.9"
   }
 }

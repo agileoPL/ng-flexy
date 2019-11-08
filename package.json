@@ -30,7 +30,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:projects": "npm i --save-optional && npm run core:build && npm i dist/core --no-optional && npm run freezer:build && npm i dist/freezer --no-optional && npm run skins:build && npm i dist/skins --no-optional && npm run toasts:build && npm i dist/toasts --no-optional && npm run json-impexp:build && npm i dist/json-impexp --no-optional && npm run layout:build && npm i dist/layout --no-optional && npm run form:build && npm i dist/form --no-optional && npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional && npm run crud:build && npm i dist/crud --no-optional && npm run highcharts:build && npm i dist/highcharts --no-optional && npm i",
+    "build:projects": "npm i --save-optional && npm run core:build && npm i dist/core --no-optional && npm run freezer:build && npm i dist/freezer --no-optional && npm run skins:build && npm i dist/skins --no-optional && npm run toasts:build && npm i dist/toasts --no-optional && npm run json-impexp:build && npm i dist/json-impexp --no-optional && npm run layout:build && npm i dist/layout --no-optional && npm run form:build && npm i dist/form --no-optional && npm run form-bootstrap:build && npm i dist/form-bootstrap --no-optional && npm run crud:build && npm i dist/crud --no-optional && npm run highcharts:build && npm i dist/highcharts --no-optional && npm run graphs:build && npm i dist/graphs --no-optional && npm i",
     "demo": "ng serve demo --port 4201",
     "demo:build": "ng build demo",
     "core:build": "ng build core",
@@ -56,7 +56,9 @@
     "json-impexp:build": "ng build json-impexp && cpx \"projects/json-impexp/src/lib/json-impexp.scss\" \"dist/json-impexp\"",
     "json-impexp:watch": "ng build json-impexp --watch",
     "highcharts:build": "ng build highcharts && cpx \"projects/highcharts/src/lib/highcharts.scss\" \"dist/highcharts\"",
-    "highcharts:watch": "ng build highcharts --watch"
+    "highcharts:watch": "ng build highcharts --watch",
+    "graphs:build": "ng build graphs && cpx \"projects/graphs/src/lib/graphs.module.scss\" \"dist/graphs\"",
+    "graphs:watch": "ng build graphs --watch"
   },
   "dependencies": {
     "@angular/animations": "~8.1.1",
@@ -80,6 +82,7 @@
     "moment": "^2.24.0",
     "ngx-bootstrap": "^5.1.0",
     "ngx-chips": "^2.0.2",
+    "ngx-nvd3": "^1.0.9",
     "rxjs": "~6.4.0",
     "stream": "0.0.2",
     "tinycolor2": "^1.4.1",
@@ -117,15 +120,16 @@
   },
   "optionalDependencies": {
     "@ng-flexy/core": "file:dist/core",
+    "@ng-flexy/crud": "file:dist/crud",
     "@ng-flexy/form": "file:dist/form",
     "@ng-flexy/form-bootstrap": "file:dist/form-bootstrap",
     "@ng-flexy/freezer": "file:dist/freezer",
+    "@ng-flexy/graphs": "file:dist/graphs",
+    "@ng-flexy/highcharts": "file:dist/highcharts",
     "@ng-flexy/json-impexp": "file:dist/json-impexp",
     "@ng-flexy/layout": "file:dist/layout",
     "@ng-flexy/skins": "file:dist/skins",
-    "@ng-flexy/toasts": "file:dist/toasts",
-    "@ng-flexy/crud": "file:dist/crud",
-    "@ng-flexy/highcharts": "file:dist/highcharts"
+    "@ng-flexy/toasts": "file:dist/toasts"
   },
   "husky": {
     "hooks": {
