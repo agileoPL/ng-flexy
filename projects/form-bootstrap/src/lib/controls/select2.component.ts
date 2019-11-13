@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectOption, SelectOptionData } from '@ng-flexy/form';
 
@@ -17,6 +17,9 @@ import { SelectOption, SelectOptionData } from '@ng-flexy/form';
       [addTag]="addItem"
       [hideSelected]="hideSelected"
       [searchFn]="enableSearchByValue ? customSearchFn : null"
+      [virtualScroll]="virtualScroll"
+      [loading]="loading"
+      [loadingText]="loadingText"
       (change)="onChange($event)"
     >
       <ng-template ng-label-tmp let-item="item" let-clear="clear">
@@ -32,7 +35,7 @@ import { SelectOption, SelectOptionData } from '@ng-flexy/form';
   selector: 'flexy-control-select2',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlexyControlSelect2Component implements OnInit {
+export class FlexyControlSelect2Component implements OnInit, OnChanges {
   @Input() control: FormControl;
   @Input() options: SelectOption[];
   @Input() default: string;
@@ -43,32 +46,40 @@ export class FlexyControlSelect2Component implements OnInit {
   @Input() hideSelected: boolean;
   @Input() enableSearchByValue: boolean;
 
+  @Input() loading = false; // no	You can set the loading state from the outside (e.g. async items loading)
+  @Input() loadingText = 'Loading...'; // Loading...	no	Set custom text when for loading items
+
   @Output() focused = new EventEmitter<Event>();
   @Output() clicked = new EventEmitter<Event>();
   @Output() changed = new EventEmitter<any>();
 
+  virtualScroll = false; // Enable virtual scroll for better performance when rendering a lot of data
   optionsData: SelectOptionData[];
 
-  ngOnInit() {
-    const optionsData = [];
-    if (this.options) {
-      optionsData.push(
-        ...this.options.map(item => {
-          let itemData: SelectOptionData;
-          if (typeof item === 'object' && item.hasOwnProperty('value')) {
-            itemData = item;
-          } else {
-            itemData = {
-              value: item,
-              text: '' + item
-            };
-          }
-          return itemData;
-        })
-      );
-    }
+  ngOnInit() {}
 
-    this.optionsData = optionsData;
+  ngOnChanges(changes) {
+    if (changes.options) {
+      const optionsData = [];
+      if (this.options) {
+        optionsData.push(
+          ...this.options.map(item => {
+            let itemData: SelectOptionData;
+            if (typeof item === 'object' && item.hasOwnProperty('value')) {
+              itemData = item;
+            } else {
+              itemData = {
+                value: item,
+                text: '' + item
+              };
+            }
+            return itemData;
+          })
+        );
+      }
+      this.virtualScroll = optionsData.length > 100;
+      this.optionsData = optionsData;
+    }
   }
 
   onChange(data: SelectOptionData | SelectOptionData[]) {
