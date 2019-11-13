@@ -2,6 +2,7 @@ $flexyGraphNodeColor: blue !default;
 $flexyGraphLinkColor: gray !default;
 $flexyGraphSelected: green !default;
 $flexyGraphHighlight: DeepSkyBlue !default;
+$flexyGraphLabelColor: black !default;
 
 flexy-force-directed-graph {
   nvd3 {
@@ -20,7 +21,7 @@ flexy-force-directed-graph {
           transition-duration: 0.2s;
         }
         text {
-          fill: $accent-correlation-graph-label-color;
+          fill: $flexyGraphLabelColor;
           font-size: 12px;
           transition-duration: 0.2s;
         }
