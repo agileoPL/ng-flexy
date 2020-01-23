@@ -1,93 +1,97 @@
-[
-  {
-    "component": "fieldset",
-    "componentInputs": {
-      "legend": "Group 1"
-    },
-    "children": [
-      {
-        "component": "array",
-        "controlArrayName": "users",
-        "validators": {},
-        "componentInputs": {
-          "legend": "Users",
-          "removeAny": true
-        },
-        "itemIndexDef": "{%1}",
-        "items": {
-          "component": "fieldset",
-          "componentInputs": { "legend": "User {%1}" },
-          "children": [
-            {
-              "controlName": "name",
-              "component": "text",
-              "componentInputs": {
-                "label": "First name"
-              },
-              "validators": {
-                "required": true
-              }
-            },
-            {
-              "controlName": "surname",
-              "component": "text",
-              "componentInputs": {
-                "label": "Last name"
-              },
-              "validators": {
-                "required": true
-              }
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "component": "fieldset",
-    "componentInputs": {
-      "legend": "Group 2"
-    },
-    "children": [
-      {
-        "component": "group",
-        "controlGroupName": "groups",
-        "validators": {},
-        "componentInputs": {
-          "legend": "Heroes"
-        },
-        "itemKeyDef": "{g1}",
-        "items": {
-          "component": "fieldset",
-          "children": [
-            {
-              "component": "array",
-              "controlArrayName": ".",
-              "componentInputs": {
-                "legend": "Heroes group {g1}"
-              },
-              "items": {
-                "type": "component",
-                "component": "text",
-                "componentInputs": {
-                  "label": "Hero",
-                  "placeholder": "Hero name",
-                  "description": "Add hero name...",
-                  "readonly": true
+{
+  "schemaVersion": 2,
+  "schema": [
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Group 2"
+      },
+      "children": [
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Heroes"
+          },
+          "name": "groups",
+          "type": "group",
+          "validators": {},
+          "items": {
+            "component": "fieldset",
+            "properties": {},
+            "children": [
+              {
+                "component": "array",
+                "properties": {
+                  "legend": "Heroes group {g1}"
                 },
+                "name": ".",
+                "type": "array",
                 "validators": {
-                  "required": true,
-                  "maxLength": 30
+                  "maxItems": 6,
+                  "minItems": 1
+                },
+                "items": {
+                  "component": "text",
+                  "properties": {
+                    "label": "Hero",
+                    "placeholder": "Hero name",
+                    "description": "Add hero name...",
+                    "readonly": true
+                  }
+                }
+              }
+            ]
+          },
+          "indexDef": "{g1}"
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Group 1"
+      },
+      "children": [
+        {
+          "component": "array",
+          "properties": {
+            "legend": "Users",
+            "removeAny": true
+          },
+          "name": "users",
+          "type": "array",
+          "validators": {},
+          "items": {
+            "component": "fieldset",
+            "properties": {
+              "legend": "User {%1}"
+            },
+            "children": [
+              {
+                "component": "text",
+                "properties": {
+                  "label": "First name"
+                },
+                "name": "name",
+                "validators": {
+                  "required": true
                 }
               },
-              "validators": {
-                "maxItems": 6,
-                "minItems": 1
+              {
+                "component": "text",
+                "properties": {
+                  "label": "Last name"
+                },
+                "name": "surname",
+                "validators": {
+                  "required": true
+                }
               }
-            }
-          ]
+            ]
+          },
+          "indexDef": "{%1}"
         }
-      }
-    ]
-  }
-]
+      ]
+    }
+  ]
+}

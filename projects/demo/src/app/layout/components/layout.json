@@ -1,111 +1,114 @@
-[
-  {
-    "properties": { "class": "container-fluid" },
-    "children": [
-      {
-        "properties": { "class": "row" },
-        "children": [
-          {
-            "properties": { "class": "col-12" },
-            "children": [
-              {
-                "component": "figure",
-                "properties": { "class": "header" },
-                "componentInputs": {
-                  "title": "Header"
+{
+  "version": 2,
+  "schema": [
+    {
+      "cssClass": "container-fluid",
+      "children": [
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-12",
+              "children": [
+                {
+                  "cssClass": "header",
+                  "component": "figure",
+                  "properties": {
+                    "title": "Header"
+                  }
                 }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "properties": { "class": "row" },
-        "children": [
-          {
-            "properties": { "class": "col-6" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Left column"
+              ]
+            }
+          ]
+        },
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-6",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Left column"
+                  }
                 }
-              }
-            ]
-          },
-          {
-            "properties": { "class": "col-6" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Right column"
+              ]
+            },
+            {
+              "cssClass": "col-6",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Right column"
+                  }
                 }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "properties": { "class": "container-fluid" },
-    "children": [
-      {
-        "properties": { "class": "row" },
-        "children": [
-          {
-            "properties": { "class": "col-4" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Left column"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "cssClass": "container-fluid",
+      "children": [
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-4",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Left column"
+                  }
                 }
-              }
-            ]
-          },
-          {
-            "properties": { "class": "col-4" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Center column"
+              ]
+            },
+            {
+              "cssClass": "col-4",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Center column"
+                  }
                 }
-              }
-            ]
-          },
-          {
-            "properties": { "class": "col-4" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Right column"
+              ]
+            },
+            {
+              "cssClass": "col-4",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Right column"
+                  }
                 }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "properties": { "class": "row" },
-        "children": [
-          {
-            "properties": { "class": "col-12" },
-            "children": [
-              {
-                "component": "figure",
-                "properties": { "class": "footer" },
-                "componentInputs": {
-                  "title": "Footer"
+              ]
+            }
+          ]
+        },
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-12",
+              "children": [
+                {
+                  "cssClass": "footer",
+                  "component": "figure",
+                  "properties": {
+                    "title": "Footer"
+                  }
                 }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

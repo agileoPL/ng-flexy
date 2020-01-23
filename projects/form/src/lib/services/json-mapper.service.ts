@@ -4,11 +4,10 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from '../models/lay
 import {
   ARRAY_EXTERNAL_PARAM_INDEX_MARKER,
   ARRAY_EXTERNAL_PARAM_PREFIX,
-  FlexyFormArrayItemsLayoutJsonSchema,
-  FlexyFormArrayLayoutJsonSchema,
+  FlexyFormComplexFieldLayoutJsonSchema,
   FlexyFormFieldLayoutJsonSchema,
-  FlexyFormGroupItemsLayoutJsonSchema,
-  FlexyFormGroupLayoutJsonSchema,
+  FlexyFormFieldType,
+  FlexyFormLayoutJson,
   FlexyFormLayoutJsonSchema
 } from '../models/layout-json-schema.model';
 import { FlexyLayoutJsonMapperService } from '@ng-flexy/layout';
@@ -18,6 +17,7 @@ import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyFormsValidators } from '../validators/validators.utils';
 import { FlexyValidatorsData } from '../models/validators.data';
 import { FlexyForm } from '../models/form.model';
+import { parseFormJson } from './json-mapper.utils';
 
 export interface FlexyFormValidatorsMap {
   [name: string]: (data?) => ValidatorFn;
@@ -25,10 +25,9 @@ export interface FlexyFormValidatorsMap {
 
 const INPUTS_READONLY_KEY = 'readonly';
 
-const SCHEMA_CONTROL_GROUP_NAME_KEY = 'controlGroupName';
-const SCHEMA_CONTROL_NAME_KEY = 'controlName';
+const SCHEMA_CONTROL_NAME_KEY = 'name';
 const SCHEMA_GROUP_KEY = 'groupKey';
-const SCHEMA_COMPONENT_INPUTS_KEY = 'componentInputs';
+const SCHEMA_COMPONENT_INPUTS_KEY = 'properties';
 const SCHEMA_DEFAULT_KEY = 'default';
 
 const DEFAULT_VALIDATORS_MAP: FlexyFormValidatorsMap = {
@@ -71,23 +70,25 @@ export class FlexyFormJsonMapperService {
     private logger: FlexyLoggerService
   ) {}
 
-  createForm(json: FlexyFormLayoutJsonSchema[], readonlyMode = false, formData: FlexyFormData): FlexyForm {
+  createForm(json: FlexyFormLayoutJson, readonlyMode = false, formData: FlexyFormData): FlexyForm {
     this.logger.debug('createForm');
     FlexyFormJsonMapperService.controlCounter = 0;
 
+    const jsonSchema = parseFormJson(json);
+
     const rootFormGroup = new FormGroup({});
-    const dynamicSchema: FlexyFormLayoutSchema[] = this.map(json, readonlyMode, formData, rootFormGroup);
+    const dynamicSchema: FlexyFormLayoutSchema[] = this.map(jsonSchema, readonlyMode, formData, rootFormGroup);
 
     this.logger.debug('countOfControls', FlexyFormJsonMapperService.controlCounter);
 
     return new FlexyForm(rootFormGroup, dynamicSchema, formData);
   }
 
-  createItemControl(itemsSchema: FlexyFormArrayItemsLayoutJsonSchema, readonlyMode: boolean, value: FlexyFormData): AbstractControl {
+  createItemControl(itemsSchema: FlexyFormFieldLayoutJsonSchema, readonlyMode: boolean, value: FlexyFormData): AbstractControl {
     let control: AbstractControl;
     if (itemsSchema.children) {
       control = new FormGroup({});
-      this.mapItem(itemsSchema.children, readonlyMode, value, control as FormGroup);
+      this.mapItem(itemsSchema, readonlyMode, value, control as FormGroup);
     } else {
       control = this.formBuilder.control(
         value ? value : get(itemsSchema, 'componentInputs.default'),
@@ -99,7 +100,7 @@ export class FlexyFormJsonMapperService {
 
   createArrayItemSchema(
     control: AbstractControl,
-    items: FlexyFormArrayItemsLayoutJsonSchema,
+    items: FlexyFormFieldLayoutJsonSchema,
     itemKeyDef: string,
     parentName: string,
     readonlyMode: boolean,
@@ -137,7 +138,7 @@ export class FlexyFormJsonMapperService {
 
   createGroupItemSchema(
     control: AbstractControl,
-    items: FlexyFormGroupItemsLayoutJsonSchema,
+    items: FlexyFormFieldLayoutJsonSchema,
     itemKeyDef: string,
     parentName: string,
     readonlyMode: boolean,
@@ -165,7 +166,7 @@ export class FlexyFormJsonMapperService {
         (schema as FlexyFormFieldLayoutSchema).componentInputs = {};
       }
       (schema as FlexyFormFieldLayoutSchema).componentInputs[INPUTS_READONLY_KEY] = readonlyMode;
-      (schema as FlexyFormFieldLayoutSchema).formName = citems.controlGroupName;
+      (schema as FlexyFormFieldLayoutSchema).formName = citems.name;
     }
 
     schema.id = (parentSchema && parentSchema.id ? parentSchema.id + ':' : '') + key;
@@ -199,11 +200,12 @@ export class FlexyFormJsonMapperService {
         let itemParentFormGroup = parentFormGroup;
         let itemParentControlGroupName = parentControlGroupName;
         if ((schemaItem as FlexyFormFieldLayoutSchema).formControl instanceof FormGroup) {
-          itemParentFormGroup = (schemaItem as FlexyFormGroupLayoutJsonSchema).formControl as FormGroup;
-          if ((jsonItem as FlexyFormGroupLayoutJsonSchema).controlGroupName) {
-            itemParentControlGroupName = this.controlGroupName(jsonItem as FlexyFormGroupLayoutJsonSchema, itemParentControlGroupName);
-          } else if ((jsonItem as FlexyFormArrayLayoutJsonSchema).controlArrayName) {
-            itemParentControlGroupName = this.controlArrayName(jsonItem as FlexyFormArrayLayoutJsonSchema, itemParentControlGroupName);
+          itemParentFormGroup = (schemaItem as FlexyFormFieldLayoutSchema).formControl as FormGroup;
+          if ([FlexyFormFieldType.Group, FlexyFormFieldType.Array].includes((jsonItem as FlexyFormFieldLayoutJsonSchema).type)) {
+            itemParentControlGroupName = this.controlComplexName(
+              jsonItem as FlexyFormComplexFieldLayoutJsonSchema,
+              itemParentControlGroupName
+            );
           }
         }
 
@@ -249,14 +251,8 @@ export class FlexyFormJsonMapperService {
       : this.formBuilder.control(config);
   }
 
-  private controlArrayName(jsonItem: FlexyFormArrayLayoutJsonSchema, itemParentControlGroupName: string) {
-    const controlArrayName = jsonItem.controlArrayName;
-    return (itemParentControlGroupName && controlArrayName[0] === '.' ? itemParentControlGroupName : '') + controlArrayName;
-  }
-
-  private controlGroupName(jsonItem: FlexyFormGroupLayoutJsonSchema, itemParentControlGroupName: string) {
-    const controlGroupName = jsonItem.controlGroupName;
-    return (itemParentControlGroupName && controlGroupName[0] === '.' ? itemParentControlGroupName : '') + controlGroupName;
+  private controlComplexName(jsonItem: FlexyFormComplexFieldLayoutJsonSchema, parentName: string) {
+    return (parentName && jsonItem.name[0] === '.' ? parentName : '') + jsonItem.name;
   }
 
   private mapItem(
@@ -278,64 +274,70 @@ export class FlexyFormJsonMapperService {
     }
 
     let controlName = '';
-    if ((jsonItem as FlexyFormFieldLayoutJsonSchema).controlName) {
-      controlName = (jsonItem as FlexyFormFieldLayoutJsonSchema).controlName;
+    if (
+      (jsonItem as FlexyFormFieldLayoutJsonSchema).name &&
+      (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type !== FlexyFormFieldType.Group &&
+      (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type !== FlexyFormFieldType.Array
+    ) {
+      controlName = (jsonItem as FlexyFormFieldLayoutJsonSchema).name;
       this.mapItemSetFieldControl(
         formSchemaItem as FlexyFormFieldLayoutSchema,
         jsonItem as FlexyFormFieldLayoutJsonSchema,
         parentControlGroupName,
         formData
       );
-    } else if ((jsonItem as FlexyFormGroupLayoutJsonSchema).items && (jsonItem as FlexyFormGroupLayoutJsonSchema).controlGroupName) {
-      controlName = (jsonItem as FlexyFormGroupLayoutJsonSchema).controlGroupName;
+    } else if (
+      (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).items &&
+      (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type === FlexyFormFieldType.Group
+    ) {
+      const groupJsonItem: FlexyFormComplexFieldLayoutJsonSchema = jsonItem as FlexyFormComplexFieldLayoutJsonSchema;
+      controlName = groupJsonItem.name;
       this.mapItemSetGroupControl(
         formSchemaItem as FlexyFormFieldLayoutSchema,
-        jsonItem as FlexyFormGroupLayoutJsonSchema,
+        jsonItem as FlexyFormComplexFieldLayoutJsonSchema,
         parentControlGroupName,
         readonlyMode
       );
 
-      const formGroupName =
-        (parentControlGroupName && jsonItem.controlGroupName[0] === '.' ? parentControlGroupName : '') + jsonItem.controlGroupName;
+      const formGroupName = (parentControlGroupName && groupJsonItem.name[0] === '.' ? parentControlGroupName : '') + groupJsonItem.name;
       const formGroupData: FlexyFormData[] = has(formData, formGroupName) ? get(formData, formGroupName) : void 0;
 
       if (formGroupData) {
         jsonItem.children = [];
-        const isComplex = !!(jsonItem as FlexyFormGroupLayoutJsonSchema).items.children;
+        const isComplex = !!groupJsonItem.items.children;
         Object.keys(formGroupData).forEach(key => {
-          const schemaJson: FlexyFormLayoutJsonSchema = cloneDeep((jsonItem as FlexyFormGroupLayoutJsonSchema).items);
+          const schemaJson: FlexyFormFieldLayoutJsonSchema = cloneDeep(groupJsonItem.items);
+          schemaJson.name = '.' + key;
           if (isComplex) {
-            schemaJson[SCHEMA_CONTROL_GROUP_NAME_KEY] = '.' + key;
-          } else {
-            schemaJson[SCHEMA_CONTROL_NAME_KEY] = '.' + key;
+            schemaJson.type = FlexyFormFieldType.Group;
           }
           schemaJson[SCHEMA_GROUP_KEY] = key;
-          this.populateExternalControlNameIndex(
-            [schemaJson],
-            key,
-            formGroupData[key],
-            (jsonItem as FlexyFormGroupLayoutJsonSchema).itemKeyDef
-          );
-          (jsonItem as FlexyFormGroupLayoutJsonSchema).children.push(schemaJson as FlexyFormLayoutJsonSchema);
+          this.populateExternalControlNameIndex([schemaJson], key, formGroupData[key], groupJsonItem.indexDef);
+          groupJsonItem.children.push(schemaJson as FlexyFormLayoutJsonSchema);
         });
       }
-    } else if ((jsonItem as FlexyFormArrayLayoutJsonSchema).controlArrayName) {
-      controlName = (jsonItem as FlexyFormArrayLayoutJsonSchema).controlArrayName;
+    } else if (
+      (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).items &&
+      (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type === FlexyFormFieldType.Array
+    ) {
+      const arrayJsonItem = jsonItem as FlexyFormComplexFieldLayoutJsonSchema;
+      controlName = arrayJsonItem.name;
       this.mapItemSetArrayControl(
         formSchemaItem as FlexyFormFieldLayoutSchema,
-        jsonItem as FlexyFormArrayLayoutJsonSchema,
+        arrayJsonItem,
         parentControlGroupName,
         formData,
         readonlyMode
       );
     } else {
-      controlName = (jsonItem as FlexyFormGroupLayoutJsonSchema).controlGroupName
-        ? (jsonItem as FlexyFormGroupLayoutJsonSchema).controlGroupName
-        : formSchemaItem.id
-        ? 'g-' + formSchemaItem.id
-        : 'd-' + Date.now();
+      controlName =
+        (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type === FlexyFormFieldType.Group
+          ? (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).name
+          : formSchemaItem.id
+          ? 'g-' + formSchemaItem.id
+          : 'd-' + Date.now();
 
-      (formSchemaItem as FlexyFormGroupLayoutJsonSchema).groupKey = (jsonItem as FlexyFormGroupLayoutJsonSchema).groupKey;
+      (formSchemaItem as FlexyFormComplexFieldLayoutJsonSchema).groupKey = (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).groupKey;
 
       // TODO to think: form control is required also for non FlexyFormFieldLayoutSchema
       (formSchemaItem as FlexyFormFieldLayoutSchema).formControl = new FormGroup(
@@ -357,13 +359,12 @@ export class FlexyFormJsonMapperService {
 
   private mapItemSetArrayControl(
     formSchemaItem: FlexyFormFieldLayoutSchema,
-    jsonItem: FlexyFormArrayLayoutJsonSchema,
+    jsonItem: FlexyFormComplexFieldLayoutJsonSchema,
     parentControlGroupName: string,
     formData: FlexyFormData,
     readonlyMode: boolean
   ) {
-    let formName =
-      (parentControlGroupName && jsonItem.controlArrayName[0] === '.' ? parentControlGroupName : '') + jsonItem.controlArrayName;
+    let formName = (parentControlGroupName && jsonItem.name[0] === '.' ? parentControlGroupName : '') + jsonItem.name;
 
     // its possible in array in group
     if (formName.endsWith('.')) {
@@ -379,7 +380,7 @@ export class FlexyFormJsonMapperService {
     if (jsonItem.items) {
       (formSchemaItem as FlexyFormFieldLayoutSchema).items = this.createArrayItems(
         jsonItem.items,
-        jsonItem.itemIndexDef,
+        jsonItem.indexDef,
         formControl as FormArray,
         formName,
         readonlyMode,
@@ -400,12 +401,11 @@ export class FlexyFormJsonMapperService {
 
   private mapItemSetGroupControl(
     formSchemaItem: FlexyFormFieldLayoutSchema,
-    jsonItem: FlexyFormGroupLayoutJsonSchema,
+    jsonItem: FlexyFormComplexFieldLayoutJsonSchema,
     parentControlGroupName: string,
     readonlyMode: boolean
   ) {
-    const formGroupName =
-      (parentControlGroupName && jsonItem.controlGroupName[0] === '.' ? parentControlGroupName : '') + jsonItem.controlGroupName;
+    const formGroupName = (parentControlGroupName && jsonItem.name[0] === '.' ? parentControlGroupName : '') + jsonItem.name;
 
     (formSchemaItem as FlexyFormFieldLayoutSchema).formControl = new FormGroup({});
 
@@ -429,7 +429,7 @@ export class FlexyFormJsonMapperService {
   ) {
     FlexyFormJsonMapperService.controlCounter++;
 
-    const formName = (parentControlGroupName && jsonItem.controlName[0] === '.' ? parentControlGroupName : '') + jsonItem.controlName;
+    const formName = (parentControlGroupName && jsonItem.name[0] === '.' ? parentControlGroupName : '') + jsonItem.name;
     const val = has(formData, formName) ? get(formData, formName) : void 0;
     const formControl = this.createControl(this.createControlConfig(jsonItem, val));
 
@@ -438,7 +438,7 @@ export class FlexyFormJsonMapperService {
   }
 
   private createArrayItems(
-    items: FlexyFormArrayItemsLayoutJsonSchema,
+    items: FlexyFormFieldLayoutJsonSchema,
     itemKeyDef: string,
     arrayControl: FormArray,
     parentName: string,
@@ -480,19 +480,15 @@ export class FlexyFormJsonMapperService {
   }
 
   private populateExternalControlNameIndex(
-    items: FlexyFormLayoutJsonSchema[],
+    items: FlexyFormFieldLayoutJsonSchema[],
     key: number | string,
     value,
     marker = ARRAY_EXTERNAL_PARAM_INDEX_MARKER
   ) {
     items.forEach(item => {
-      const props = ['controlName', 'controlGroupName', 'controlArrayName'];
-      props.forEach(propName => {
-        if (item[propName]) {
-          item[propName] = item[propName].split(marker).join(key);
-        }
-      });
-
+      if (item.name) {
+        item.name = item.name.split(marker).join('' + key);
+      }
       if (item[SCHEMA_COMPONENT_INPUTS_KEY]) {
         const componentInputs = ['title', 'label', 'legend'];
         componentInputs.forEach(propName => {
@@ -503,26 +499,23 @@ export class FlexyFormJsonMapperService {
       }
 
       if (item.children) {
-        this.populateExternalControlNameIndex(item.children, key, value, marker);
+        this.populateExternalControlNameIndex(item.children as FlexyFormFieldLayoutJsonSchema[], key, value, marker);
       }
-      if (item.items) {
-        this.populateExternalControlNameIndex([item.items], key, value, marker);
+      if ((item as FlexyFormComplexFieldLayoutJsonSchema).items) {
+        this.populateExternalControlNameIndex([(item as FlexyFormComplexFieldLayoutJsonSchema).items], key, value, marker);
       }
     });
   }
 
-  private createControlConfig(item: FlexyFormLayoutJsonSchema, defaultValue: any) {
-    if (item.controlName) {
-      return [
-        defaultValue !== void 0 ? defaultValue : item[SCHEMA_DEFAULT_KEY],
-        this.mapValidators((item as FlexyFormFieldLayoutJsonSchema).validators)
-      ];
+  private createControlConfig(item: FlexyFormFieldLayoutJsonSchema, defaultValue: any) {
+    if (item.name) {
+      return [defaultValue !== void 0 ? defaultValue : item[SCHEMA_DEFAULT_KEY], this.mapValidators(item.validators)];
     }
     return [];
   }
 
-  private createArrayControl(item: FlexyFormLayoutJsonSchema, readonlyMode = false, values: FlexyFormData[] = []): FormArray {
-    const arraySchema: FlexyFormArrayLayoutJsonSchema = item as FlexyFormArrayLayoutJsonSchema;
+  private createArrayControl(item: FlexyFormFieldLayoutJsonSchema, readonlyMode = false, values: FlexyFormData[] = []): FormArray {
+    const arraySchema: FlexyFormComplexFieldLayoutJsonSchema = item as FlexyFormComplexFieldLayoutJsonSchema;
 
     const validators = [];
     // TODO to thkink
@@ -535,7 +528,7 @@ export class FlexyFormJsonMapperService {
 
     const formArray = new FormArray([], this.mapValidators(item.validators));
 
-    if (item.controlArrayName) {
+    if (item.type === FlexyFormFieldType.Array && item.name) {
       if (values && Array.isArray(values)) {
         values.forEach(value => {
           formArray.push(this.createItemControl(arraySchema.items, readonlyMode, value));

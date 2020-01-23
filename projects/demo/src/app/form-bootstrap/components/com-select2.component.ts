@@ -17,9 +17,10 @@ export class DemoComSelect2Component implements OnInit {
   ngOnInit(): void {
     const jsonSchema: FlexyFormLayoutJsonSchema[] = [
       {
-        controlName: 'value1',
+        name: 'value1',
+        type: 'string',
         component: 'select2',
-        componentInputs: {
+        properties: {
           label: 'Select 1',
           description: 'Select with static data',
           options: [
@@ -45,9 +46,10 @@ export class DemoComSelect2Component implements OnInit {
         }
       },
       {
-        controlName: 'value2',
+        name: 'value2',
+        type: 'string',
         component: 'select2',
-        componentInputs: {
+        properties: {
           label: 'Select 2',
           description: 'Select with lazy loading data',
           optionsUrl: 'https://jsonplaceholder.typicode.com/albums',
@@ -58,9 +60,9 @@ export class DemoComSelect2Component implements OnInit {
         }
       },
       {
-        controlName: 'value3',
+        name: 'value3',
         component: 'select2',
-        componentInputs: {
+        properties: {
           label: 'Select 3',
           description: 'Select with lazy loading big data (over 5k rews) and with template (lodash template format)',
           optionsUrl: 'https://jsonplaceholder.typicode.com/photos',
@@ -72,7 +74,7 @@ export class DemoComSelect2Component implements OnInit {
         }
       }
     ];
-    this.flexyForm = this.formJsonMapperService.createForm(jsonSchema, false, {
+    this.flexyForm = this.formJsonMapperService.createForm({ schemaVersion: 1, schema: jsonSchema }, false, {
       value1: 1,
       value2: 2,
       value3: 3

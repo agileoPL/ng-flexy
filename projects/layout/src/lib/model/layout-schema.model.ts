@@ -1,4 +1,5 @@
 import { ComponentRef, Type } from '@angular/core';
+import { FlexyLayoutJsonSchema } from './layout-json-schema.model';
 
 export type FlexyLayoutSchema = FlexyLayoutGridSchema | FlexyLayoutComponentSchema;
 
@@ -14,10 +15,9 @@ export interface FlexyLayoutComponentSchema extends FlexyLayoutGridSchema {
 
 export interface FlexyLayoutGridSchema {
   id?: string;
-  type?: string; // container (default), row, col, component
-  properties?: {
-    [key: string]: any;
-  };
+  // type?: string; // container (default), row, col, component
+  cssClass?: string;
   children?: FlexyLayoutSchema[];
   parent?: FlexyLayoutSchema;
+  jsonSchema?: FlexyLayoutJsonSchema;
 }

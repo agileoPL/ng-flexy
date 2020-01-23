@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
-import { FlexyFormArrayLayoutJsonSchema } from '@ng-flexy/form';
+import { FlexyFormComplexFieldLayoutJsonSchema, FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 import { FlexyFormJsonMapperService } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { FlexyLoggerService } from '@ng-flexy/core';
@@ -17,7 +16,7 @@ export class FlexyFormArrayComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
   @Input() legend: string;
 
-  @Input() jsonSchema: FlexyFormArrayLayoutJsonSchema;
+  @Input() jsonSchema: FlexyFormComplexFieldLayoutJsonSchema;
 
   @Input() readonly: boolean;
 
@@ -72,13 +71,13 @@ export class FlexyFormArrayComponent implements OnInit {
 
       const control = this.jsonMapperService.createItemControl(this.jsonSchema.items, this.readonly, newValue);
 
-      (<FormArray>this.layoutSchema.formControl).push(control);
+      (this.layoutSchema.formControl as FormArray).push(control);
 
       this.layoutSchema.items.push(
         this.jsonMapperService.createArrayItemSchema(
           control,
           this.jsonSchema.items,
-          this.jsonSchema.itemIndexDef,
+          this.jsonSchema.indexDef,
           null,
           this.readonly,
           {},
@@ -95,7 +94,7 @@ export class FlexyFormArrayComponent implements OnInit {
   removeItem(index: number) {
     this.toasts.confirm(this.translate.instant('FLEXY_FORM_DELETE_ITEM_CONFIRM'), '', () => {
       this.layoutSchema.items.splice(index, 1);
-      (<FormArray>this.layoutSchema.formControl).removeAt(index);
+      (this.layoutSchema.formControl as FormArray).removeAt(index);
       this.layoutSchema.formControl.markAsDirty();
     });
   }

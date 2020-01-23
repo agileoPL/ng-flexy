@@ -13,6 +13,7 @@ export class DemoLayoutJsonComponent implements OnInit {
   constructor(private jsonMapperService: FlexyLayoutJsonMapperService) {}
 
   ngOnInit() {
-    this.schema = this.jsonMapperService.map(LAYOUT_SCHEMA);
+    this.schema = this.jsonMapperService.parse(LAYOUT_SCHEMA);
+    console.log('schema', this.schema);
   }
 }

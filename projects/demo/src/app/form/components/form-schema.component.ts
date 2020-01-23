@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { FlexyLayoutJsonMapperService } from '@ng-flexy/layout';
-import { DemoCustomFigureComponent } from './custom-figure.component';
 import { DemoCustomInputComponent } from './custom-input.component';
 import { FlexyFormLayoutSchema } from '@ng-flexy/form';
 
@@ -29,27 +28,14 @@ export class DemoFormSchemaComponent implements OnInit {
 
     this.schema = [
       {
-        properties: {
-          class: 'container-fluid'
-        },
+        cssClass: 'container-fluid',
         children: [
           {
-            properties: {
-              class: 'row'
-            },
+            cssClass: 'row',
             children: [
               {
-                properties: {
-                  class: 'col-6'
-                },
+                cssClass: 'col-6',
                 children: [
-                  {
-                    componentType: DemoCustomFigureComponent,
-                    componentName: 'figure1',
-                    componentInputs: {
-                      title: 'Test 1'
-                    }
-                  },
                   {
                     formControl: this.formGroup.get('param1'),
                     formName: 'param1',
@@ -62,24 +48,16 @@ export class DemoFormSchemaComponent implements OnInit {
                 ]
               },
               {
-                properties: {
-                  class: 'col-6'
-                },
+                cssClass: 'col-6',
                 children: [
                   {
-                    componentType: DemoCustomFigureComponent,
+                    formControl: this.formGroup.get('param2'),
+                    formName: 'param2',
+                    componentType: DemoCustomInputComponent,
                     componentName: 'figure2',
                     componentInputs: {
                       title: 'Test 2'
                     }
-                  },
-                  {
-                    componentType: DemoCustomInputComponent,
-                    componentName: 'params2',
-                    componentInputs: {
-                      placeholder: 'Lorem ipsum...'
-                    },
-                    formControl: this.formGroup.get('param2')
                   }
                 ]
               }

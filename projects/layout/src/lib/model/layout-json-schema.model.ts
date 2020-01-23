@@ -2,18 +2,19 @@ export type FlexyLayoutJsonSchema = FlexyLayoutGridJsonSchema | FlexyLayoutCompo
 
 export interface FlexyLayoutComponentJsonSchema extends FlexyLayoutGridJsonSchema {
   component: string;
-  componentId?: string;
-  componentInputs?: {
+  properties?: {
+    // OLD componentInputs?: string;
     [key: string]: any;
   };
 }
 
 export interface FlexyLayoutGridJsonSchema {
-  type?: string; // container (default), row, col, component
-  properties?: {
-    [key: string]: any;
-  };
+  id?: string; // OLD componentId?: string;
+  cssClass?: string;
   children?: FlexyLayoutJsonSchema[];
+}
 
-  [parameter: string]: any;
+export interface FlexyLayoutJson {
+  schemaVersion?: number;
+  schema: FlexyLayoutJsonSchema[];
 }
