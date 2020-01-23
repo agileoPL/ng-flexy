@@ -12,5 +12,6 @@ export * from './lib/model/layout.model';
 
 export * from './lib/services/component-map.service';
 export * from './lib/services/layout-json-mapper.service';
+export * from './lib/services/layout-json-mapper.utils';
 
 export * from './lib/layout.module';

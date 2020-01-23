@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { cloneDeep } from 'lodash';
 import { FlexyFormFieldLayoutSchema } from '../models/layout-schema.model';
 import { FlexyFormJsonMapperService } from './json-mapper.service';
-import { FlexyFormGroupLayoutJsonSchema } from '../models/layout-json-schema.model';
+import { FlexyFormComplexFieldLayoutJsonSchema, FlexyFormFieldType } from '../models/layout-json-schema.model';
 
 @Injectable()
 export class FlexyFormSchemaService {
@@ -12,16 +12,17 @@ export class FlexyFormSchemaService {
   addGroupItemToSchema(
     parentSchemaRef: FlexyFormFieldLayoutSchema,
     itemKey: string,
-    groupSchema: FlexyFormGroupLayoutJsonSchema,
+    groupSchema: FlexyFormComplexFieldLayoutJsonSchema,
     controlGroupName: string,
     readonly: boolean
   ): FlexyFormFieldLayoutSchema {
     let schema: FlexyFormFieldLayoutSchema = null;
 
     if (!this.validateGroupKey(itemKey, groupSchema)) {
-      const jsonSchema = cloneDeep(groupSchema.items) as FlexyFormGroupLayoutJsonSchema;
+      const jsonSchema = cloneDeep(groupSchema.items) as FlexyFormComplexFieldLayoutJsonSchema;
 
-      jsonSchema.controlGroupName = controlGroupName;
+      jsonSchema.name = controlGroupName;
+      jsonSchema.type = FlexyFormFieldType.Group;
       const newValue = jsonSchema && jsonSchema.children ? {} : null;
 
       const control = this.jsonMapperService.createItemControl(jsonSchema, readonly, newValue);
@@ -32,7 +33,7 @@ export class FlexyFormSchemaService {
       schema = this.jsonMapperService.createGroupItemSchema(
         control,
         jsonSchema,
-        groupSchema.itemKeyDef,
+        groupSchema.indexDef,
         null,
         readonly,
         {},
@@ -47,8 +48,8 @@ export class FlexyFormSchemaService {
     return schema;
   }
 
-  validateGroupKey(key, groupSchema: FlexyFormGroupLayoutJsonSchema): string {
-    const patternReg = groupSchema.itemKeyPattern ? new RegExp(groupSchema.itemKeyPattern, 'g') : null;
+  validateGroupKey(key, groupSchema: FlexyFormComplexFieldLayoutJsonSchema): string {
+    const patternReg = groupSchema.indexPattern ? new RegExp(groupSchema.indexPattern, 'g') : null;
     if (!key) {
       return 'empty';
     } else if (patternReg && !patternReg.exec(key)) {

@@ -1,8 +1,9 @@
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { FlexyLayoutSchema } from '@ng-flexy/layout';
 import { FlexyForm, FlexyFormJsonMapperService } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { debounceTime } from 'rxjs/operators';
+import { parseFormJson } from '@ng-flexy/form';
 
 const FORM_SCHEMA = require('./form.json');
 
@@ -24,6 +25,8 @@ export class DemoFormJsonComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // console.log(JSON.stringify(parseFormJson(FORM_SCHEMA)));
+
     this.flexyForm = this.formJsonMapperService.createForm(FORM_SCHEMA, false, {
       groups: {
         avengers: ['Iron Man', 'Spider Man', 'Captain America', 'Thor'],

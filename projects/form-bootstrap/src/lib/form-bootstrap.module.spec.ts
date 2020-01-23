@@ -107,14 +107,12 @@ describe('Flexy Forms', () => {
 
       expect(group2.children[0].children.length).toBe(1);
       const component2_1 = group2.children[0].children[0] as FlexyFormFieldLayoutSchema;
-      expect(component2_1.type).toBe('component');
       expect(component2_1.formName).toBe('p3.x1');
       expect(component2_1.id).toBe('1/0/0');
       expect(component2_1.formControl instanceof FormControl).toBeTruthy();
       expect(component2_1.formControl.value).toBe(FORM_DATA.p3.x1);
 
       const component2_2 = group2.children[1].children[0] as FlexyFormFieldLayoutSchema;
-      expect(component2_2.type).toBe('component');
       expect(component2_2.formName).toBe('p3.x2');
       expect(component2_2.id).toBe('1/1/0');
       expect(component2_2.formControl instanceof FormControl).toBeTruthy();
@@ -147,7 +145,6 @@ describe('Flexy Forms', () => {
 
       for (let i = 0; i < 4; i++) {
         const item = array3.items[i] as FlexyFormFieldLayoutSchema;
-        expect(item.type).toBe('component');
         expect(item.id).toBe('2/0:' + i);
         expect(item.formName).toBe('' + i);
         expect(item.formControl instanceof FormControl).toBeTruthy();
@@ -179,38 +176,32 @@ describe('Flexy Forms', () => {
         const item = array4.items[i] as FlexyFormFieldLayoutSchema;
         expect(item.id).toBe('3/0/' + i);
         expect(item.formName).toBe('' + i);
-        expect(item.type).toBeUndefined();
         expect(item.children.length).toBe(1);
 
         const itemFieldset = item.children[0] as FlexyFormFieldLayoutSchema;
         expect(itemFieldset.id).toBe('3/0/' + i + '/0');
         expect(itemFieldset.formName).toBeUndefined();
-        expect(itemFieldset.type).toBe('component');
         expect(itemFieldset.formControl instanceof FormGroup).toBeTruthy();
 
         const arrayParam1 = itemFieldset.children[0] as FlexyFormFieldLayoutSchema;
-        expect(arrayParam1.type).toBe('component');
         expect(arrayParam1.id).toBe('3/0/' + i + '/0/0');
         expect(arrayParam1.formName).toBe('arrayParam1');
         expect(arrayParam1.formControl instanceof FormControl).toBeTruthy();
         expect(arrayParam1.formControl.value).toBe(FORM_DATA.paramMultiComplex[i].arrayParam1);
 
         const arraySubFieldset = itemFieldset.children[4] as FlexyFormFieldLayoutSchema;
-        expect(arraySubFieldset.type).toBe('component');
         expect(arraySubFieldset.id).toBe('3/0/' + i + '/0/4');
         expect(arraySubFieldset.formControl instanceof FormGroup).toBeTruthy();
 
         expect(arraySubFieldset.children.length).toBe(2);
 
         const subItemP1 = arraySubFieldset.children[0] as FlexyFormFieldLayoutSchema;
-        expect(subItemP1.type).toBe('component');
         expect(subItemP1.id).toBe('3/0/' + i + '/0/4/0');
         expect(subItemP1.formName).toBe('arrayFieldset.P1');
         expect(subItemP1.formControl instanceof FormControl).toBeTruthy();
         expect(subItemP1.formControl.value).toBe(FORM_DATA.paramMultiComplex[i].arrayFieldset.P1);
 
         const subItemP2 = arraySubFieldset.children[1] as FlexyFormFieldLayoutSchema;
-        expect(subItemP2.type).toBe('component');
         expect(subItemP2.id).toBe('3/0/' + i + '/0/4/1');
         expect(subItemP2.formName).toBe('arrayFieldset.P2');
         expect(subItemP2.formControl instanceof FormControl).toBeTruthy();
@@ -235,7 +226,6 @@ describe('Flexy Forms', () => {
         const itemFieldset = item.children[0] as FlexyFormFieldLayoutSchema;
         const arrayExternalParam = itemFieldset.children[5] as FlexyFormFieldLayoutSchema;
         const extIndex = i + 1;
-        expect(arrayExternalParam.type).toBe('component');
         expect(arrayExternalParam.id).toBe('3/0/' + i + '/0/5');
         expect(arrayExternalParam.formName).toBe('::ParamExt' + extIndex);
         expect(arrayExternalParam.formControl instanceof FormControl).toBeTruthy();

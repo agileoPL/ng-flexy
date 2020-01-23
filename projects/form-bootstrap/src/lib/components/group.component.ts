@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
 import {
+  FlexyFormComplexFieldLayoutJsonSchema,
   FlexyFormFieldLayoutSchema,
-  FlexyFormGroupLayoutJsonSchema,
   FlexyFormJsonMapperService,
   FlexyFormSchemaService,
   isRequired
@@ -21,7 +21,7 @@ export class FlexyFormGroupComponent implements OnInit {
   @Input() addable = true;
   @Input() removable = true;
 
-  @Input() jsonSchema: FlexyFormGroupLayoutJsonSchema;
+  @Input() jsonSchema: FlexyFormComplexFieldLayoutJsonSchema;
   @Input() parentGroupName: string;
 
   isRequired = false;
@@ -82,8 +82,8 @@ export class FlexyFormGroupComponent implements OnInit {
   }
 
   private prepareNewKey() {
-    if (this.jsonSchema.itemKeyGen) {
-      return this._randomKey(this.jsonSchema.itemKeyGen);
+    if (this.jsonSchema.indexGenPattern) {
+      return this._randomKey(this.jsonSchema.indexGenPattern);
     } else {
       return void 0;
     }
@@ -157,7 +157,7 @@ export class FlexyFormGroupComponent implements OnInit {
 
   private keyValidator(jsonSchema, layoutSchema): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      const patternReg = jsonSchema.itemKeyPattern ? new RegExp(jsonSchema.itemKeyPattern, 'g') : null;
+      const patternReg = jsonSchema.indexPattern ? new RegExp(jsonSchema.indexPattern, 'g') : null;
       if (patternReg && !patternReg.exec(control.value)) {
         return { key_wrong_format: { key: control.value, pattern: patternReg } };
       } else if (Object.keys((layoutSchema.formControl as FormGroup).controls).indexOf(control.value) !== -1) {
