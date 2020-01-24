@@ -9,8 +9,8 @@ import { DemoModules } from '../common/components/doc-layout.component';
 export class DemoHighchartsDocComponent {
   activeModule = DemoModules.Highcharts;
 
-  exampleComponentContent = require('!!raw-loader!./highcharts-example.component.ts');
-  exampleHtmlContent = require('!!raw-loader!./highcharts-example.component.html');
+  exampleComponentContent = require('!!raw-loader!./highcharts-example.component.ts').default;
+  exampleHtmlContent = require('!!raw-loader!./highcharts-example.component.html').default;
 
   constructor() {}
 }

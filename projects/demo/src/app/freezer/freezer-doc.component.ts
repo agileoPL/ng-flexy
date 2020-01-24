@@ -9,7 +9,7 @@ import { DemoModules } from '../common/components/doc-layout.component';
 export class DemoFreezerDocComponent {
   activeModule = DemoModules.Freezer;
 
-  demoComponentContent = require('!!raw-loader!./demo.component.ts');
+  demoComponentContent = require('!!raw-loader!./demo.component.ts').default;
 
   constructor() {}
 }

@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './layout-doc-schema.component.html'
 })
 export class DemoLayoutDocSchemaComponent {
-  customFigureContent = require('!!raw-loader!./custom-figure.component.ts');
+  customFigureContent = require('!!raw-loader!./custom-figure.component.ts').default;
 
-  demoComponentContent = require('!!raw-loader!./layout-schema.component.ts');
-  demoHtmlContent = require('!!raw-loader!./layout-json.component.html');
-  demoCssContent = require('!!raw-loader!./layout-json.component.scss');
+  demoComponentContent = require('!!raw-loader!./layout-schema.component.ts').default;
+  demoHtmlContent = require('!!raw-loader!./layout-json.component.html').default;
+  demoCssContent = require('!!raw-loader!./layout-json.component.scss').default;
 }

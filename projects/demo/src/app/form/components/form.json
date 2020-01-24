@@ -1,55 +1,70 @@
-[
-  {
-    "properties": { "class": "container-fluid" },
-    "children": [
-      {
-        "properties": { "class": "row" },
-        "children": [
-          {
-            "properties": { "class": "col-6" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Param 1"
-                }
-              },
-              {
-                "component": "text",
-                "controlName": "param1",
-                "componentInputs": {
-                  "placeholder": "Lorem ipsum..."
+{
+  "schema": [
+    {
+      "cssClass": "container-fluid",
+      "children": [
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-6",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Param 1"
+                  }
                 },
-                "validators": {
-                  "required": true,
-                  "maxLength": 10
-                }
-              }
-            ]
-          },
-          {
-            "properties": { "class": "col-6" },
-            "children": [
-              {
-                "component": "figure",
-                "componentInputs": {
-                  "title": "Param 2"
-                }
-              },
-              {
-                "component": "text",
-                "controlName": "param2",
-                "componentInputs": {
-                  "placeholder": "Lorem ipsum..."
+                {
+                  "component": "text",
+                  "name": "param1",
+                  "properties": {
+                    "placeholder": "Lorem ipsum..."
+                  },
+                  "validators": {
+                    "required": true,
+                    "maxLength": 10
+                  }
                 },
-                "validators": {
-                  "maxLength": 10
+                {
+                  "component": "text",
+                  "name": "param3",
+                  "exp-if": "param1 = 1",
+                  "properties": {
+                    "placeholder": "Lorem ipsum...",
+                    "exp-calc": "param1 + param2"
+                  },
+                  "validators": {
+                    "required": true,
+                    "maxLength": 10
+                  }
                 }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-]
+              ]
+            },
+            {
+              "cssClass": "col-6",
+              "children": [
+                {
+                  "component": "figure",
+                  "properties": {
+                    "title": "Param 2"
+                  }
+                },
+                {
+                  "component": "text",
+                  "name": "param2",
+                  "properties": {
+                    "placeholder": "Lorem ipsum..."
+                  },
+                  "validators": {
+                    "maxLength": 10
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
