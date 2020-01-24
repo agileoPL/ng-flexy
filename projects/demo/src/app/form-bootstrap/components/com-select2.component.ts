@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlexyForm, FlexyFormJsonMapperService, FlexyFormLayoutJsonSchema } from '@ng-flexy/form';
+import { FlexyForm, FlexyFormFieldType, FlexyFormJsonMapperService, FlexyFormLayoutJsonSchema } from '@ng-flexy/form';
 
 @Component({
   selector: 'demo-com-select2',
@@ -18,7 +18,7 @@ export class DemoComSelect2Component implements OnInit {
     const jsonSchema: FlexyFormLayoutJsonSchema[] = [
       {
         name: 'value1',
-        type: 'string',
+        type: FlexyFormFieldType.String,
         component: 'select2',
         properties: {
           label: 'Select 1',
@@ -47,7 +47,7 @@ export class DemoComSelect2Component implements OnInit {
       },
       {
         name: 'value2',
-        type: 'string',
+        type: FlexyFormFieldType.String,
         component: 'select2',
         properties: {
           label: 'Select 2',
