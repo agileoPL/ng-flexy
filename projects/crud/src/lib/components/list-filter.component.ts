@@ -51,7 +51,7 @@ export class CrudListFilterComponent implements OnInit, AfterViewInit, OnChanges
   }
 
   ngOnInit() {
-    this.flexyForm = this.formJsonMapperService.createForm(this.filterSchema, false, this.filter);
+    this.flexyForm = this.formJsonMapperService.createForm({ schema: this.filterSchema }, false, this.filter);
 
     this.subscribeFormChanges();
     this.checkNotEmpty();
