@@ -1,9 +1,9 @@
 {
   "name": "@ng-flexy/core",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "peerDependencies": {
-    "@angular/common": "^8.1.3",
-    "@angular/core": "^8.1.3",
+    "@angular/common": "~8.2.14",
+    "@angular/core": "~8.2.14",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
     "rxjs": "^6.4.0"

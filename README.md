@@ -110,6 +110,23 @@ Run `npm run demo`
 
 `./publish {project_name}`
 
+No dependencies projects:
+
+- core
+- freezer
+- highcharts
+
+In dependencies order:
+
+- skins
+- graphs
+- toasts
+- json-impexp
+- layout
+- form
+- form-bootstrap
+- crud
+
 ### Demo publish
 
 npm install -g firebase-tools
