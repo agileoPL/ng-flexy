@@ -2,6 +2,56 @@
   "schemaVersion": 2,
   "schema": [
     {
+      "component": "number",
+      "name": "X.a",
+      "properties": {
+        "label": "A"
+      }
+    },
+    {
+      "component": "number",
+      "name": "X.b",
+      "properties": {
+        "label": "B"
+      }
+    },
+    {
+      "component": "number",
+      "name": "X.c",
+      "calc": "$sum([X.a,X.b])",
+      "properties": {
+        "label": "C"
+      }
+    },
+    {
+      "component": "fieldset",
+      "name": "_sumIf",
+      "calc": "$sum([X.a,X.b]) > 0",
+      "properties": {
+        "legend": "Group 2"
+      },
+      "children": [
+        {
+          "component": "text",
+          "name": "_sum",
+          "calc": "$sum([X.a,X.b]) * X.c",
+          "properties": {
+            "label": "Sum(a + b)",
+            "readonly": true
+          }
+        }
+      ]
+    },
+    {
+      "component": "text",
+      "name": "calcHeroes",
+      "calculated": "users[0].surname & ' ' & users[1].surname",
+      "properties": {
+        "label": "Calculated Heroes",
+        "readonly": true
+      }
+    },
+    {
       "component": "fieldset",
       "properties": {
         "legend": "Group 2"

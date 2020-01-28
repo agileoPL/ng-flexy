@@ -20,6 +20,8 @@ export type FlexyFormLayoutJsonSchema = FlexyFormFieldLayoutJsonSchema | FlexyFo
 export interface FlexyFormFieldLayoutJsonSchema extends FlexyLayoutComponentJsonSchema {
   type?: FlexyFormFieldType;
   name?: string;
+  calc?: string;
+  if?: string;
   validators?: FlexyFormFieldLayoutValidators;
   children?: FlexyFormLayoutJsonSchema[];
 }
