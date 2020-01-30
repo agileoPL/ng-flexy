@@ -49,7 +49,6 @@ export class FlexyForm {
     this.layout = new FlexyLayout(schema);
 
     this._initCalculated(schema);
-    console.log(this.calculatedRefs);
 
     this.changesSubscription = this.formGroup.valueChanges.pipe(debounceTime(50)).subscribe(() => {
       this.currentData = this.getAllData();
@@ -62,9 +61,9 @@ export class FlexyForm {
   private _initCalculated(schema: FlexyFormLayoutSchema[]) {
     if (schema) {
       schema.forEach((schemaItem: FlexyFormFieldLayoutSchema) => {
-        if (schemaItem.formName && schemaItem.formControl && (schemaItem.jsonSchema as FlexyFormFieldLayoutJsonSchema).calc) {
+        if (schemaItem.formName && schemaItem.formControl && (schemaItem.calc || schemaItem.if)) {
           this.calculatedRefs[schemaItem.formName] = {
-            calc: (schemaItem.jsonSchema as FlexyFormFieldLayoutJsonSchema).calc,
+            calc: schemaItem.calc ? schemaItem.calc : schemaItem.if,
             control: schemaItem.formControl as FormControl
           };
         }
@@ -81,9 +80,7 @@ export class FlexyForm {
         let value;
         try {
           value = jsonata(calc.calc).evaluate(this.currentData);
-          console.log('calc', calc.calc, this.currentData, jsonata(calc.calc).evaluate(this.currentData));
         } catch (e) {
-          console.warn('Wrong expresion', e);
           value = null;
         }
         if (value !== calc.control.value) {

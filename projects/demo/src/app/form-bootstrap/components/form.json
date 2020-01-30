@@ -2,43 +2,255 @@
   "schemaVersion": 2,
   "schema": [
     {
-      "component": "number",
-      "name": "X.a",
-      "properties": {
-        "label": "A"
-      }
-    },
-    {
-      "component": "number",
-      "name": "X.b",
-      "properties": {
-        "label": "B"
-      }
-    },
-    {
-      "component": "number",
-      "name": "X.c",
-      "calc": "$sum([X.a,X.b])",
-      "properties": {
-        "label": "C"
-      }
-    },
-    {
       "component": "fieldset",
-      "name": "_sumIf",
-      "calc": "$sum([X.a,X.b]) > 0",
       "properties": {
-        "legend": "Group 2"
+        "legend": "Calculations & conditions"
       },
       "children": [
         {
-          "component": "text",
-          "name": "_sum",
-          "calc": "$sum([X.a,X.b]) * X.c",
-          "properties": {
-            "label": "Sum(a + b)",
-            "readonly": true
-          }
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r1.a",
+              "properties": {
+                "label": "A"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r1.b",
+              "properties": {
+                "label": "B"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r1.c",
+              "properties": {
+                "label": "C"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r1.d",
+              "properties": {
+                "label": "D"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r1.e",
+              "properties": {
+                "label": "E"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r1.sum",
+              "calc": "$sum([r1.a,r1.b,r1.c,r1.d,r1.e])",
+              "properties": {
+                "label": "Sum row 1",
+                "readonly": true
+              }
+            }
+          ]
+        },
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r2.a",
+              "properties": {
+                "label": "A"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r2.b",
+              "properties": {
+                "label": "B"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r2.c",
+              "properties": {
+                "label": "C"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r2.d",
+              "properties": {
+                "label": "D"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r2.e",
+              "properties": {
+                "label": "E"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r2.sum",
+              "calc": "$sum([r2.a,r2.b,r2.c,r2.d,r2.e])",
+              "properties": {
+                "label": "Sum row 2",
+                "readonly": true
+              }
+            }
+          ]
+        },
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r3.a",
+              "properties": {
+                "label": "A"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r3.b",
+              "properties": {
+                "label": "B"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r3.c",
+              "properties": {
+                "label": "C"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r3.d",
+              "properties": {
+                "label": "D"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r3.e",
+              "properties": {
+                "label": "E"
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "r3.sum",
+              "calc": "$sum([r3.a,r3.b,r3.c,r3.d,r3.e])",
+              "properties": {
+                "label": "Sum row 3",
+                "readonly": true
+              }
+            }
+          ]
+        },
+        {
+          "cssClass": "row",
+          "children": [
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "sum.a",
+              "calc": "$sum([r1.a,r2.a,r3.a])",
+              "properties": {
+                "label": "Sum col A",
+                "readonly": true
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "sum.b",
+              "calc": "$sum([r1.b,r2.b,r3.b])",
+              "properties": {
+                "label": "Sum col B",
+                "readonly": true
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "sum.c",
+              "calc": "$sum([r1.c,r2.c,r3.c])",
+              "properties": {
+                "label": "Sum col C",
+                "readonly": true
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "sum.d",
+              "calc": "$sum([r1.d,r2.d,r3.d])",
+              "properties": {
+                "label": "Sum col D",
+                "readonly": true
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "sum.e",
+              "calc": "$sum([r1.e,r2.e,r3.e])",
+              "properties": {
+                "label": "Sum col E",
+                "readonly": true
+              }
+            },
+            {
+              "cssClass": "col-2",
+              "component": "number",
+              "name": "sum.sum",
+              "calc": "$sum([sum.a,sum.b,sum.c,sum.d,sum.e])",
+              "properties": {
+                "label": "Sum of Sum",
+                "readonly": true
+              }
+            }
+          ]
+        },
+        {
+          "if": "sum.sum > 0",
+          "name": "_ifsum",
+          "children": [
+            {
+              "component": "text",
+              "name": "_sum",
+              "calc": "sum.sum",
+              "properties": {
+                "label": "SUM OF SUM",
+                "readonly": true
+              }
+            }
+          ]
         }
       ]
     },

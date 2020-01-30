@@ -12,6 +12,9 @@ export interface FlexyFormFieldLayoutSchema extends FlexyLayoutComponentSchema {
   formControl: AbstractControl;
   formName: string;
 
+  calc?: string;
+  if?: string;
+
   // TODO totkink
   items?: FlexyFormFieldLayoutSchema[];
   // TODO totkink

@@ -58,7 +58,6 @@ import { FlexyControlDraggableSelectComponent } from './controls/draggable-selec
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 import { FlexyFormJsonFileComponent } from './components/json-file.component';
 import { FlexyControlJsonFileComponent } from './controls/json-file.component';
-import { FlexyFormCalculatedComponent } from './components/calculated.component';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,
@@ -83,8 +82,7 @@ export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   password: FlexyFormPasswordComponent,
   chips: FlexyFormChipsComponent,
   draggableselect: FlexyFormDraggableSelectComponent,
-  jsonfile: FlexyFormJsonFileComponent,
-  calculated: FlexyFormCalculatedComponent
+  jsonfile: FlexyFormJsonFileComponent
 };
 
 const ENTRY_LAYOUT_COMPONENTS = [
