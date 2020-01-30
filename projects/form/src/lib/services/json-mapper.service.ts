@@ -10,7 +10,7 @@ import {
   FlexyFormLayoutJson,
   FlexyFormLayoutJsonSchema
 } from '../models/layout-json-schema.model';
-import { FlexyLayoutJsonMapperService } from '@ng-flexy/layout';
+import { FlexyLayoutJsonMapperService, FlexyLayoutJsonSchema, FlexyLayoutSchema } from '@ng-flexy/layout';
 import { cloneDeep, get, has } from 'lodash';
 import { FlexyFormData } from '../models/form.data';
 import { FlexyLoggerService } from '@ng-flexy/core';
@@ -65,7 +65,7 @@ export class FlexyFormJsonMapperService {
   private _validatorsMap = DEFAULT_VALIDATORS_MAP;
 
   constructor(
-    private jsonMapperService: FlexyLayoutJsonMapperService,
+    private jsonLayoutMapper: FlexyLayoutJsonMapperService,
     private formBuilder: FormBuilder,
     private logger: FlexyLoggerService
   ) {}
@@ -118,12 +118,12 @@ export class FlexyFormJsonMapperService {
 
     if (isComplex) {
       const withRootValues = { ...value, ...this.prepareArrayRootData(citems.children, formData) };
-      const groupSchema = this.jsonMapperService.mapItem({}, '' + index, parentSchema);
+      const groupSchema = this._jsonLayoutItemMap({}, '' + index, parentSchema);
       groupSchema.children = this.map([citems], readonlyMode, withRootValues, control as FormGroup, groupSchema);
 
       schema = groupSchema;
     } else {
-      schema = this.jsonMapperService.map([citems])[0];
+      schema = this.jsonLayoutMapper.map([citems])[0];
       (schema as FlexyFormFieldLayoutSchema).formControl = control;
       control.setValue(value);
       schema.id = parentSchema.id + ':' + index;
@@ -159,7 +159,7 @@ export class FlexyFormJsonMapperService {
       const groupSchema = this.map([citems], readonlyMode, withRootValues, control as FormGroup, null)[0] as FlexyFormFieldLayoutSchema;
       schema = groupSchema;
     } else {
-      schema = this.jsonMapperService.map([citems])[0] as FlexyFormFieldLayoutSchema;
+      schema = this.jsonLayoutMapper.map([citems])[0] as FlexyFormFieldLayoutSchema;
       (schema as FlexyFormFieldLayoutSchema).formControl = control;
       control.setValue(value);
       if (!(schema as FlexyFormFieldLayoutSchema).componentInputs) {
@@ -264,7 +264,7 @@ export class FlexyFormJsonMapperService {
     parentSchema: FlexyFormLayoutSchema = null,
     schemaId: string = ''
   ): FlexyFormLayoutSchema {
-    const formSchemaItem: FlexyFormLayoutSchema = this.jsonMapperService.mapItem(jsonItem, schemaId, parentSchema) as FlexyFormLayoutSchema;
+    const formSchemaItem: FlexyFormLayoutSchema = this._jsonLayoutItemMap(jsonItem, schemaId, parentSchema);
 
     if (readonlyMode) {
       if (!(formSchemaItem as FlexyFormFieldLayoutSchema).componentInputs) {
@@ -275,11 +275,13 @@ export class FlexyFormJsonMapperService {
 
     let controlName = '';
     if (
-      (jsonItem as FlexyFormFieldLayoutJsonSchema).name &&
+      ((jsonItem as FlexyFormFieldLayoutJsonSchema).name || (jsonItem as FlexyFormFieldLayoutJsonSchema).if) &&
       (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type !== FlexyFormFieldType.Group &&
       (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type !== FlexyFormFieldType.Array
     ) {
-      controlName = (jsonItem as FlexyFormFieldLayoutJsonSchema).name;
+      controlName = (jsonItem as FlexyFormFieldLayoutJsonSchema).name
+        ? (jsonItem as FlexyFormFieldLayoutJsonSchema).name
+        : '__if_' + (formSchemaItem.id ? formSchemaItem.id : Date.now());
       this.mapItemSetFieldControl(
         formSchemaItem as FlexyFormFieldLayoutSchema,
         jsonItem as FlexyFormFieldLayoutJsonSchema,
@@ -355,6 +357,23 @@ export class FlexyFormJsonMapperService {
     }
 
     return formSchemaItem;
+  }
+
+  private _jsonLayoutItemMap(jsonItem: FlexyLayoutJsonSchema, schemaId: string, parentSchema: FlexyLayoutSchema) {
+    const schema = this.jsonLayoutMapper.mapItem(jsonItem, schemaId, parentSchema) as FlexyFormLayoutSchema;
+
+    // const SCHEMA_GROUP_KEY = 'groupKey';
+    const SCHEMA_IF = 'if';
+    const SCHEMA_CALC = 'calc';
+
+    // TODO tothink is problem with populate form group controls from external domain
+    [SCHEMA_GROUP_KEY, SCHEMA_IF, SCHEMA_CALC].forEach(key => {
+      if (jsonItem[key]) {
+        schema[key] = jsonItem[key];
+      }
+    });
+
+    return schema;
   }
 
   private mapItemSetArrayControl(

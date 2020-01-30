@@ -5,8 +5,6 @@ import { FlexyLayoutComponentJsonSchema, FlexyLayoutJson, FlexyLayoutJsonSchema 
 import { FLEXY_LAYOUT_COMPONENT_MAP } from './component-map.service';
 import { parseFormJson } from './layout-json-mapper.utils';
 
-const SCHEMA_GROUP_KEY = 'groupKey';
-
 @Injectable()
 export class FlexyLayoutJsonMapperService {
   private componentsMap: FlexyLayoutComponentMap = {};
@@ -49,8 +47,7 @@ export class FlexyLayoutJsonMapperService {
   mapItem(jsonItem: FlexyLayoutJsonSchema, id = '', parent: FlexyLayoutSchema = null): FlexyLayoutSchema {
     const schemaItem: FlexyLayoutSchema = {
       // type: jsonItem.type,
-      cssClass: jsonItem.cssClass,
-      jsonSchema: jsonItem
+      cssClass: jsonItem.cssClass
     };
     if ((jsonItem as FlexyLayoutComponentJsonSchema).component) {
       const componentJsonItem = jsonItem as FlexyLayoutComponentJsonSchema;
@@ -59,11 +56,6 @@ export class FlexyLayoutJsonMapperService {
         (schemaItem as FlexyLayoutComponentSchema).componentName = componentJsonItem.component;
         (schemaItem as FlexyLayoutComponentSchema).componentId = componentJsonItem.id;
         (schemaItem as FlexyLayoutComponentSchema).componentInputs = componentJsonItem.properties ? componentJsonItem.properties : {};
-
-        // TODO tothink is problem with populate form group controls from external domain
-        if (componentJsonItem[SCHEMA_GROUP_KEY]) {
-          schemaItem[SCHEMA_GROUP_KEY] = componentJsonItem[SCHEMA_GROUP_KEY];
-        }
       } else {
         console.error(`Component ${componentJsonItem.component} can't be mapped`);
       }

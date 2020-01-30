@@ -2,8 +2,13 @@ import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/for
 import { FlexyLayout } from '@ng-flexy/layout';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-schema.model';
 import { FlexyFormData } from './form.data';
-import { cloneDeep, get, has, isEmpty, merge, set, defaultsDeep } from 'lodash';
+import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
 import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
+import { Subscription } from 'rxjs';
+import * as jsonata_ from 'jsonata';
+import { debounceTime } from 'rxjs/operators';
+
+const jsonata = jsonata_;
 
 enum FlexyFormDataMode {
   All = 'all',
@@ -16,7 +21,17 @@ export class FlexyForm {
   layout: FlexyLayout;
   schema: FlexyFormLayoutSchema[];
 
-  private readonly originalData: any;
+  private currentData: FlexyFormData;
+  private readonly originalData: FlexyFormData;
+
+  private calculatedRefs: {
+    [name: string]: {
+      calc: string;
+      control: FormControl;
+    };
+  } = {};
+
+  private changesSubscription: Subscription;
 
   static getSchemaData(schema: FlexyFormLayoutSchema) {
     const fg = new FormGroup({});
@@ -33,7 +48,48 @@ export class FlexyForm {
     this.formGroup = formGroup;
     this.schema = schema;
     this.layout = new FlexyLayout(schema);
+
+    this._initCalculated(schema);
+
+    this.changesSubscription = this.formGroup.valueChanges.pipe(debounceTime(50)).subscribe(() => {
+      this.currentData = this.getAllData();
+      this._calculate();
+    });
+
     this.originalData = cloneDeep(data);
+  }
+
+  private _initCalculated(schema: FlexyFormLayoutSchema[]) {
+    if (schema) {
+      schema.forEach((schemaItem: FlexyFormFieldLayoutSchema) => {
+        if (schemaItem.formName && schemaItem.formControl && (schemaItem.calc || schemaItem.if)) {
+          this.calculatedRefs[schemaItem.formName] = {
+            calc: schemaItem.calc ? schemaItem.calc : schemaItem.if,
+            control: schemaItem.formControl as FormControl
+          };
+        }
+        if (schemaItem.children) {
+          this._initCalculated(schemaItem.children);
+        }
+      });
+    }
+  }
+
+  private _calculate() {
+    if (this.calculatedRefs) {
+      Object.values(this.calculatedRefs).forEach(calc => {
+        let value;
+        try {
+          value = jsonata(calc.calc).evaluate(this.currentData);
+        } catch (e) {
+          value = null;
+        }
+        if (value !== calc.control.value) {
+          calc.control.setValue(value);
+          calc.control.markAsDirty();
+        }
+      });
+    }
   }
 
   getAllData(): FlexyFormData {
