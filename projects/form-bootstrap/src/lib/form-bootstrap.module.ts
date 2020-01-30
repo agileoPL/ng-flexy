@@ -108,8 +108,7 @@ const ENTRY_LAYOUT_COMPONENTS = [
   FlexyFormPasswordComponent,
   FlexyFormChipsComponent,
   FlexyFormDraggableSelectComponent,
-  FlexyFormJsonFileComponent,
-  FlexyFormCalculatedComponent
+  FlexyFormJsonFileComponent
 ];
 
 const FORM_CONTROLS = [

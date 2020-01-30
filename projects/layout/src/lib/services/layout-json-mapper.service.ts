@@ -5,11 +5,6 @@ import { FlexyLayoutComponentJsonSchema, FlexyLayoutJson, FlexyLayoutJsonSchema 
 import { FLEXY_LAYOUT_COMPONENT_MAP } from './component-map.service';
 import { parseFormJson } from './layout-json-mapper.utils';
 
-// TODO its from flexy form
-const SCHEMA_GROUP_KEY = 'groupKey';
-const SCHEMA_IF = 'if';
-const SCHEMA_CALC = 'calc';
-
 @Injectable()
 export class FlexyLayoutJsonMapperService {
   private componentsMap: FlexyLayoutComponentMap = {};
@@ -65,13 +60,6 @@ export class FlexyLayoutJsonMapperService {
         console.error(`Component ${componentJsonItem.component} can't be mapped`);
       }
     }
-
-    // TODO tothink is problem with populate form group controls from external domain
-    [SCHEMA_GROUP_KEY, SCHEMA_IF, SCHEMA_CALC].forEach(key => {
-      if (jsonItem[key]) {
-        schemaItem[key] = jsonItem[key];
-      }
-    });
 
     schemaItem.id = (parent && parent.id ? parent.id + '/' : '') + '' + (id ? id : Date.now());
     schemaItem.parent = parent;

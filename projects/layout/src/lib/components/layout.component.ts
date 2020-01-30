@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FlexyLayoutSchema } from '../model/layout-schema.model';
 
-// TODO TOHINK - if & from control is from FormLayout
+// TODO TOHINK - if & from control is from ng-flexy/form
 
 @Component({
   selector: 'flexy-layout',

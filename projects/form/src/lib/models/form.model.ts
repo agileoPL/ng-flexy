@@ -2,11 +2,12 @@ import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/for
 import { FlexyLayout } from '@ng-flexy/layout';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-schema.model';
 import { FlexyFormData } from './form.data';
-import { cloneDeep, get, has, isEmpty, merge, set, defaultsDeep } from 'lodash';
-import { ARRAY_EXTERNAL_PARAM_PREFIX, FlexyFormFieldLayoutJsonSchema } from './layout-json-schema.model';
+import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
+import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { debounceTime } from 'rxjs/operators';
+
 const jsonata = jsonata_;
 
 enum FlexyFormDataMode {

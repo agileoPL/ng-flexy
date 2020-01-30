@@ -239,7 +239,6 @@
         },
         {
           "if": "sum.sum > 0",
-          "name": "_ifsum",
           "children": [
             {
               "component": "text",

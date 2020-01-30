@@ -8,7 +8,6 @@ import { DemoFormBootstrapDocInfoComponent } from './components/form-bootstrap-d
 import { DemoFormBootstrapDocComponent } from './components/form-bootstrap-doc.component';
 import { DemoFormBootstrapDocJsonComponent } from './components/form-bootstrap-doc-json.component';
 import { DemoFormJsonComponent } from './components/form-bootstrap-json.component';
-import { DemoCustomFigureComponent } from './components/custom-figure.component';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -52,18 +51,15 @@ const routes: Routes = [
     FlexyFormsBootstrapModule,
     FlexyFormsModule.forChild({
       componentsMap: {
-        figure: DemoCustomFigureComponent,
         ...FLEXY_FORM_CONTROLS_JSON_MAPPER
       }
     })
   ],
-  entryComponents: [DemoCustomFigureComponent],
   declarations: [
     DemoFormBootstrapDocComponent,
     DemoFormBootstrapDocInfoComponent,
     DemoFormBootstrapDocJsonComponent,
     DemoFormJsonComponent,
-    DemoCustomFigureComponent,
     DemoComSelect2Component,
     DemoFormBootstrapDocSelect2Component
   ]
