@@ -275,13 +275,11 @@ export class FlexyFormJsonMapperService {
 
     let controlName = '';
     if (
-      ((jsonItem as FlexyFormFieldLayoutJsonSchema).name || (jsonItem as FlexyFormFieldLayoutJsonSchema).if) &&
+      (jsonItem as FlexyFormFieldLayoutJsonSchema).name &&
       (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type !== FlexyFormFieldType.Group &&
       (jsonItem as FlexyFormComplexFieldLayoutJsonSchema).type !== FlexyFormFieldType.Array
     ) {
-      controlName = (jsonItem as FlexyFormFieldLayoutJsonSchema).name
-        ? (jsonItem as FlexyFormFieldLayoutJsonSchema).name
-        : '__if_' + (formSchemaItem.id ? formSchemaItem.id : Date.now());
+      controlName = (jsonItem as FlexyFormFieldLayoutJsonSchema).name;
       this.mapItemSetFieldControl(
         formSchemaItem as FlexyFormFieldLayoutSchema,
         jsonItem as FlexyFormFieldLayoutJsonSchema,

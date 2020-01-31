@@ -1,4 +1,12 @@
-import { FlexyFormFieldType, FlexyFormLayoutJson, FlexyFormLayoutJsonSchema } from '../models/layout-json-schema.model';
+import {
+  FlexyFormFieldLayoutJsonSchema,
+  FlexyFormFieldType,
+  FlexyFormLayoutJson,
+  FlexyFormLayoutJsonSchema
+} from '../models/layout-json-schema.model';
+
+export const HIDDEN_IF_GROUP_NAME = '__if__';
+export const HIDDEN_CALC_GROUP_NAME = '__calc__';
 
 export function parseFormJson(json: FlexyFormLayoutJson): FlexyFormLayoutJsonSchema[] {
   if (Array.isArray(json)) {
@@ -6,7 +14,41 @@ export function parseFormJson(json: FlexyFormLayoutJson): FlexyFormLayoutJsonSch
   } else if (json.schemaVersion === 1) {
     return parseFormVersion1(json.schema);
   } else {
+    const schema = json.schema;
+    assignHiddenNames(schema);
     return json.schema;
+  }
+}
+
+export function assignHiddenNames(schema: FlexyFormLayoutJsonSchema[]) {
+  if (schema && Array.isArray(schema)) {
+    schema.forEach((jsonItem, index) => {
+      if ((jsonItem as FlexyFormFieldLayoutJsonSchema).if && !(jsonItem as FlexyFormFieldLayoutJsonSchema).name) {
+        (jsonItem as FlexyFormFieldLayoutJsonSchema).name =
+          HIDDEN_IF_GROUP_NAME +
+          '.' +
+          (jsonItem.id
+            ? jsonItem.id
+            : 'ui-' +
+              Math.random()
+                .toString(36)
+                .substr(2, 9));
+      }
+      if ((jsonItem as FlexyFormFieldLayoutJsonSchema).calc && !(jsonItem as FlexyFormFieldLayoutJsonSchema).name) {
+        (jsonItem as FlexyFormFieldLayoutJsonSchema).name =
+          HIDDEN_CALC_GROUP_NAME +
+          '.' +
+          (jsonItem.id
+            ? jsonItem.id
+            : 'ui-' +
+              Math.random()
+                .toString(36)
+                .substr(2, 9));
+      }
+      if (jsonItem.children) {
+        assignHiddenNames(jsonItem.children);
+      }
+    });
   }
 }
 
