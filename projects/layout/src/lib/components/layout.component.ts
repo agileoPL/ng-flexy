@@ -8,15 +8,16 @@ import { FlexyLayoutSchema } from '../model/layout-schema.model';
   template: `
     <ng-template #tmplRef let-schema>
       <ng-container *ngFor="let schemaItem of schema">
-        <div
-          *ngIf="!schemaItem['if'] || (schemaItem['formControl'] && schemaItem['formControl'].value)"
-          class="flx-container {{ schemaItem.cssClass ? schemaItem.cssClass : '' }}"
-        >
-          <flexy-container *ngIf="schemaItem.componentType" [componentSchema]="schemaItem"></flexy-container>
-          <ng-container *ngIf="!schemaItem.componentType && schemaItem.children">
-            <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schemaItem.children }"></ng-container>
+        <ng-container *ngIf="!schemaItem['if'] || (schemaItem['formControl'] && schemaItem['formControl'].value)">
+          <ng-container *ngIf="schemaItem.componentType" flexyContainer [componentSchema]="schemaItem"></ng-container>
+          <ng-container *ngIf="!schemaItem.componentType">
+            <div class="{{ schemaItem.cssClass ? schemaItem.cssClass : '' }}">
+              <ng-container *ngIf="schemaItem.children">
+                <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schemaItem.children }"></ng-container>
+              </ng-container>
+            </div>
           </ng-container>
-        </div>
+        </ng-container>
       </ng-container>
     </ng-template>
 

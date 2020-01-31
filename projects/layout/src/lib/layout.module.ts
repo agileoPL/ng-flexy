@@ -4,11 +4,12 @@ import { InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexyLayoutComponent } from './components/layout.component';
 import { FlexyLayoutJsonMapperService } from './services/layout-json-mapper.service';
 import { FlexyLayoutComponentMap } from './model/component-map.model';
+import { FlexyContainerDirective } from './components/container.deirective';
 
 export const FLEXY_COMPONENT_EXTRA_MAP = new InjectionToken<FlexyLayoutComponentMap>('FLEXY_COMPONENT_EXTRA_MAP');
 export const FLEXY_COMPONENT_EXTRA_VAL = new InjectionToken<FlexyLayoutComponentMap>('FLEXY_COMPONENT_EXTRA_VAL');
 
-const PUBLIC_COMPONENTS = [FlexyLayoutComponent, FlexyContainerComponent];
+const PUBLIC_COMPONENTS = [FlexyLayoutComponent, FlexyContainerComponent, FlexyContainerDirective];
 
 export function provideComponentsFactory(map: FlexyLayoutComponentMap, mapperService: FlexyLayoutJsonMapperService) {
   mapperService.assignMap(map);

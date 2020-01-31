@@ -6,7 +6,7 @@ const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 @Component({
   selector: 'flexy-container',
   template: `
-    <div #viewContainerRef></div>
+    <ng-template #viewContainerRef class="containerRef"></ng-template>
   `
   // changeDetection: ChangeDetectionStrategy.OnPush
 })

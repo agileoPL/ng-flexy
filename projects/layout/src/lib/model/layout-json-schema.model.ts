@@ -10,11 +10,21 @@ export interface FlexyLayoutComponentJsonSchema extends FlexyLayoutGridJsonSchem
 
 export interface FlexyLayoutGridJsonSchema {
   id?: string; // OLD componentId?: string;
-  cssClass?: string;
+  cssClass?: string; // deprecated
+  attributes?: FlexyLayoutGridJsonAttributes;
   children?: FlexyLayoutJsonSchema[];
 }
 
 export interface FlexyLayoutJson {
   schemaVersion?: number;
   schema: FlexyLayoutJsonSchema[];
+}
+
+export interface FlexyLayoutGridJsonAttributes {
+  id?: string;
+  class?: string;
+  style?: string;
+  title?: string;
+  disabled?: string;
+  [attrName: string]: string;
 }
