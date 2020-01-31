@@ -8,7 +8,7 @@
 
 <ng-container *ngIf="imported">
   <button class="btn btn-link" (click)="exportToJson()">Download JSON</button>
-  <button *ngIf="imported.length" class="btn btn-link" (click)="exportToZip()">Download zipped JSON-s</button>
+  <button *ngIf="imported && imported['length']" class="btn btn-link" (click)="exportToZip()">Download zipped JSON-s</button>
 </ng-container>
 
 <div class="toggle-multiple">

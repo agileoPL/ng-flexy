@@ -19,14 +19,12 @@
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    FlexyLayoutModule,
+    FlexyLayoutModule.forChild({
+      figure: DemoCustomFigureComponent,
+      ...FLEXY_FORM_CONTROLS_JSON_MAPPER
+    }),
     FlexyFormsBootstrapModule,
-    FlexyFormsModule.forChild({
-      componentsMap: {
-        figure: DemoCustomFigureComponent,
-        ...FLEXY_FORM_CONTROLS_JSON_MAPPER
-      }
-    })
+    FlexyFormsModule
   ],
   entryComponents: [DemoCustomFigureComponent]
   }"

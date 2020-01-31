@@ -9,7 +9,7 @@
             "properties": { "class": "col-6" },
             "children": [
               {
-                "component": "figure",
+                "component": "fm-figure",
                 "componentInputs": {
                   "title": "Param 1"
                 }
@@ -31,7 +31,7 @@
             "properties": { "class": "col-6" },
             "children": [
               {
-                "component": "figure",
+                "component": "fm-figure",
                 "componentInputs": {
                   "title": "Param 2"
                 }

@@ -24,13 +24,11 @@
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    FlexyLayoutModule,
-    FlexyFormsModule.forChild({
-      componentsMap: {
-        figure: DemoCustomFigureComponent,
-        text: DemoCustomInputComponent
-      }
-    })
+    FlexyLayoutModule.forChild({
+      figure: DemoCustomFigureComponent,
+      text: DemoCustomInputComponent
+    }),
+    FlexyFormsModule
   ],
   entryComponents: [DemoCustomFigureComponent, DemoCustomInputComponent]
   }"
