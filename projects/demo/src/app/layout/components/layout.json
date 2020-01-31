@@ -12,7 +12,7 @@
               "children": [
                 {
                   "cssClass": "header",
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Header"
                   }
@@ -28,7 +28,7 @@
               "cssClass": "col-6",
               "children": [
                 {
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Left column"
                   }
@@ -39,7 +39,7 @@
               "cssClass": "col-6",
               "children": [
                 {
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Right column"
                   }
@@ -60,7 +60,7 @@
               "cssClass": "col-4",
               "children": [
                 {
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Left column"
                   }
@@ -71,7 +71,7 @@
               "cssClass": "col-4",
               "children": [
                 {
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Center column"
                   }
@@ -82,7 +82,7 @@
               "cssClass": "col-4",
               "children": [
                 {
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Right column"
                   }
@@ -99,7 +99,7 @@
               "children": [
                 {
                   "cssClass": "footer",
-                  "component": "figure",
+                  "component": "lm-figure",
                   "properties": {
                     "title": "Footer"
                   }

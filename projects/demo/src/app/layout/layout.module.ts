@@ -41,7 +41,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     TabsModule,
     FlexyLoggerModule,
-    FlexyLayoutModule.forChild({ figure: DemoCustomFigureComponent })
+    FlexyLayoutModule.forChild({ 'lm-figure': DemoCustomFigureComponent })
   ],
   entryComponents: [DemoCustomFigureComponent],
   declarations: [

@@ -7,6 +7,7 @@ import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { debounceTime } from 'rxjs/operators';
+import { HIDDEN_CALC_GROUP_NAME, HIDDEN_IF_GROUP_NAME } from '../services/json-mapper.utils';
 
 const jsonata = jsonata_;
 
@@ -52,7 +53,7 @@ export class FlexyForm {
     this._initCalculated(schema);
 
     this.changesSubscription = this.formGroup.valueChanges.pipe(debounceTime(50)).subscribe(() => {
-      this.currentData = this.getAllData();
+      this.currentData = this.getSchemaData(this.schema);
       this._calculate();
     });
 
@@ -93,11 +94,14 @@ export class FlexyForm {
   }
 
   getAllData(): FlexyFormData {
-    return this.getSchemaData(this.schema);
+    const data = cloneDeep(this.getSchemaData(this.schema));
+    this._clearHiddenData(data);
+    return data;
   }
 
   getDirtyData(): FlexyFormData {
-    const data = this.getSchemaData(this.schema, FlexyFormDataMode.Dirty);
+    const data = cloneDeep(this.getSchemaData(this.schema, FlexyFormDataMode.Dirty));
+    this._clearHiddenData(data);
     const allData = this.getAllData();
     const removed = this.findRemoved(allData, this.originalData);
     return merge(data, removed);
@@ -148,6 +152,15 @@ export class FlexyForm {
       }
     }
     return null;
+  }
+
+  private _clearHiddenData(data) {
+    if (data[HIDDEN_IF_GROUP_NAME]) {
+      delete data[HIDDEN_IF_GROUP_NAME];
+    }
+    if (data[HIDDEN_CALC_GROUP_NAME]) {
+      delete data[HIDDEN_CALC_GROUP_NAME];
+    }
   }
 
   private getSchemaData(schemas: FlexyFormLayoutSchema[], mode = FlexyFormDataMode.All): FlexyFormData {

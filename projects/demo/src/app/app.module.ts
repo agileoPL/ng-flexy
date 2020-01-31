@@ -12,7 +12,7 @@ import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
-import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
+import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
@@ -108,7 +108,7 @@ const routes: Routes = [
     {
       provide: FLEXY_LAYOUT_COMPONENT_MAP,
       multi: true,
-      useValue: {}
+      useValue: FLEXY_FORM_CONTROLS_JSON_MAPPER
     }
   ],
   bootstrap: [AppComponent]

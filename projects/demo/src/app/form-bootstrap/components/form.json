@@ -238,29 +238,33 @@
           ]
         },
         {
-          "if": "sum.sum > 0",
+          "if": "sum.sum > 0 and sum.sum < 20",
           "children": [
             {
               "component": "text",
-              "name": "_sum",
               "calc": "sum.sum",
               "properties": {
-                "label": "SUM OF SUM",
+                "label": "Success: sum is under 20",
+                "readonly": true
+              }
+            }
+          ]
+        },
+        {
+          "if": "sum.sum >= 20",
+          "children": [
+            {
+              "id": "sum_warning",
+              "component": "text",
+              "calc": "sum.sum",
+              "properties": {
+                "label": "Warning: sum is over 20",
                 "readonly": true
               }
             }
           ]
         }
       ]
-    },
-    {
-      "component": "text",
-      "name": "calcHeroes",
-      "calculated": "users[0].surname & ' ' & users[1].surname",
-      "properties": {
-        "label": "Calculated Heroes",
-        "readonly": true
-      }
     },
     {
       "component": "fieldset",

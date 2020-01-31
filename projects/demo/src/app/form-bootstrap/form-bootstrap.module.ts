@@ -11,7 +11,7 @@ import { DemoFormJsonComponent } from './components/form-bootstrap-json.componen
 import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
+import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { DemoComSelect2Component } from './components/com-select2.component';
 import { DemoFormBootstrapDocSelect2Component } from './components/form-bootstrap-doc-select2.component';
 
@@ -48,12 +48,7 @@ const routes: Routes = [
     FlexyLoggerModule,
     FlexyLayoutModule,
     FlexyFormsModule,
-    FlexyFormsBootstrapModule,
-    FlexyFormsModule.forChild({
-      componentsMap: {
-        ...FLEXY_FORM_CONTROLS_JSON_MAPPER
-      }
-    })
+    FlexyFormsBootstrapModule
   ],
   declarations: [
     DemoFormBootstrapDocComponent,
