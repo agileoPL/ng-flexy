@@ -181,10 +181,10 @@ export class FlexyForm {
           } else if (!isEmpty(arrayData)) {
             set(data, fieldSchema.formName, arrayData);
           }
-        } else if (fieldSchema.children) {
-          if (!isFormControl || this.checkSchemaData(fieldSchema.formControl, mode)) {
-            data = merge(data, this.getSchemaData(fieldSchema.children, mode));
-          }
+        }
+
+        if (fieldSchema.children && (!fieldSchema.if || fieldSchema.formControl.value)) {
+          data = merge(data, this.getSchemaData(fieldSchema.children, mode));
         }
       });
     }
