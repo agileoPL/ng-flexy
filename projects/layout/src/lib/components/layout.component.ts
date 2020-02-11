@@ -11,7 +11,7 @@ import { FlexyLayoutSchema } from '../model/layout-schema.model';
         <ng-container *ngIf="!schemaItem['if'] || (schemaItem['formControl'] && schemaItem['formControl'].value)">
           <ng-container *ngIf="schemaItem.componentType" flexyContainer [componentSchema]="schemaItem"></ng-container>
           <ng-container *ngIf="!schemaItem.componentType">
-            <div class="{{ schemaItem.cssClass ? schemaItem.cssClass : '' }}">
+            <div flexyAttributes [componentSchema]="schemaItem">
               <ng-container *ngIf="schemaItem.children">
                 <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schemaItem.children }"></ng-container>
               </ng-container>

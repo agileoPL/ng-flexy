@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Directive, ElementRef, Input, OnInit, Renderer2, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Directive, ElementRef, Input, Renderer2, ViewContainerRef } from '@angular/core';
 import { FlexyLayoutComponentSchema } from '../model/layout-schema.model';
 
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
@@ -6,7 +6,7 @@ const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 @Directive({
   selector: '[flexyContainer]'
 })
-export class FlexyContainerDirective implements OnInit {
+export class FlexyContainerDirective {
   @Input() set componentSchema(schema: FlexyLayoutComponentSchema) {
     if (!schema) {
       return;
@@ -49,8 +49,4 @@ export class FlexyContainerDirective implements OnInit {
     private resolver: ComponentFactoryResolver,
     private _renderer: Renderer2
   ) {}
-
-  ngOnInit() {
-    // this._renderer.setAttribute(this.el.nativeElement, 'data-test', 'HERE I AM !!');
-  }
 }

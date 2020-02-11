@@ -11,7 +11,10 @@
           "cssClass": "row",
           "children": [
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2",
+                "data-xxx": "xxx"
+              },
               "component": "number",
               "name": "r1.a",
               "properties": {
