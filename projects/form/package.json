@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/form",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "peerDependencies": {
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
