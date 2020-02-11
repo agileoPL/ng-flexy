@@ -1,4 +1,4 @@
-import { FlexyLayoutComponentJsonSchema, FlexyLayoutJsonSchema, FlexyLayoutJson, FlexyLayoutGridJsonSchema } from '@ng-flexy/layout';
+import { FlexyLayoutComponentJsonSchema, FlexyLayoutJson, FlexyLayoutGridJsonSchema } from '@ng-flexy/layout';
 
 export const ARRAY_EXTERNAL_PARAM_INDEX_MARKER = '%';
 export const ARRAY_EXTERNAL_PARAM_PREFIX = '::';
@@ -20,29 +20,35 @@ export type FlexyFormLayoutJsonSchema =
   | FlexyFormComplexFieldLayoutJsonSchema
   | FlexyFormIfJsonSchema
   | FlexyFormCalcJsonSchema
-  | FlexyLayoutJsonSchema;
+  | FlexyFormGridJsonSchema
+  | FlexyFormComponentJsonSchema;
 
-export interface FlexyFormIfJsonSchema extends FlexyLayoutGridJsonSchema {
+export interface FlexyFormGridJsonSchema extends FlexyLayoutGridJsonSchema {
+  children?: FlexyFormLayoutJsonSchema[];
+}
+
+export interface FlexyFormComponentJsonSchema extends FlexyLayoutComponentJsonSchema {
+  children?: FlexyFormLayoutJsonSchema[];
+}
+
+export interface FlexyFormIfJsonSchema extends FlexyFormGridJsonSchema {
   if: string;
   name?: string;
-  children?: FlexyFormLayoutJsonSchema[];
 }
 
-export interface FlexyFormCalcJsonSchema extends FlexyLayoutGridJsonSchema {
+export interface FlexyFormCalcJsonSchema extends FlexyFormComponentJsonSchema {
   calc: string;
   name?: string;
-  children?: FlexyFormLayoutJsonSchema[];
 }
 
-export interface FlexyFormFieldLayoutJsonSchema extends FlexyLayoutComponentJsonSchema {
+export interface FlexyFormFieldLayoutJsonSchema extends FlexyFormComponentJsonSchema {
+  name: string;
   type?: FlexyFormFieldType;
-  name?: string;
   validators?: FlexyFormFieldLayoutValidators;
-  children?: FlexyFormLayoutJsonSchema[];
 }
 
 export interface FlexyFormComplexFieldLayoutJsonSchema extends FlexyFormFieldLayoutJsonSchema {
-  items: FlexyFormFieldLayoutJsonSchema;
+  items: FlexyFormLayoutJsonSchema;
   indexDef?: string;
   indexPattern?: string;
   indexGenPattern?: string;
