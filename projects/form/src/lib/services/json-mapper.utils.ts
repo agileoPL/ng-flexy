@@ -1,6 +1,8 @@
 import {
+  FlexyFormCalcJsonSchema,
   FlexyFormFieldLayoutJsonSchema,
   FlexyFormFieldType,
+  FlexyFormIfJsonSchema,
   FlexyFormLayoutJson,
   FlexyFormLayoutJsonSchema
 } from '../models/layout-json-schema.model';
@@ -23,7 +25,7 @@ export function parseFormJson(json: FlexyFormLayoutJson): FlexyFormLayoutJsonSch
 export function assignHiddenNames(schema: FlexyFormLayoutJsonSchema[]) {
   if (schema && Array.isArray(schema)) {
     schema.forEach((jsonItem, index) => {
-      if ((jsonItem as FlexyFormFieldLayoutJsonSchema).if && !(jsonItem as FlexyFormFieldLayoutJsonSchema).name) {
+      if ((jsonItem as FlexyFormIfJsonSchema).if && !(jsonItem as FlexyFormFieldLayoutJsonSchema).name) {
         (jsonItem as FlexyFormFieldLayoutJsonSchema).name =
           HIDDEN_IF_GROUP_NAME +
           '.' +
@@ -34,7 +36,7 @@ export function assignHiddenNames(schema: FlexyFormLayoutJsonSchema[]) {
                 .toString(36)
                 .substr(2, 9));
       }
-      if ((jsonItem as FlexyFormFieldLayoutJsonSchema).calc && !(jsonItem as FlexyFormFieldLayoutJsonSchema).name) {
+      if ((jsonItem as FlexyFormCalcJsonSchema).calc && !(jsonItem as FlexyFormFieldLayoutJsonSchema).name) {
         (jsonItem as FlexyFormFieldLayoutJsonSchema).name =
           HIDDEN_CALC_GROUP_NAME +
           '.' +
@@ -61,7 +63,7 @@ export function parseFormVersion1(json: any[]): FlexyFormLayoutJsonSchema[] {
 }
 
 export function parseFormVersion1Item(item: any): FlexyFormLayoutJsonSchema {
-  const schema: FlexyFormLayoutJsonSchema = {};
+  const schema = {} as FlexyFormLayoutJsonSchema;
   if (item.properties && item.properties.class) {
     schema.cssClass = item.properties.class;
   }
