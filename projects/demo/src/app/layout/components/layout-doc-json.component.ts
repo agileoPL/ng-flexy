@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
 })
 export class DemoLayoutDocJsonComponent {
   jsonContent = require('./layout.json');
-  customFigureContent = require('!!raw-loader!./custom-figure.component.ts');
+  customFigureContent = require('!!raw-loader!./custom-figure.component.ts').default;
 
-  demoComponentContent = require('!!raw-loader!./layout-json.component.ts');
-  demoHtmlContent = require('!!raw-loader!./layout-json.component.html');
-  demoCssContent = require('!!raw-loader!./layout-json.component.scss');
+  demoComponentContent = require('!!raw-loader!./layout-json.component.ts').default;
+  demoHtmlContent = require('!!raw-loader!./layout-json.component.html').default;
+  demoCssContent = require('!!raw-loader!./layout-json.component.scss').default;
 }

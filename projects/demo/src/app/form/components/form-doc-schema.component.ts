@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './form-doc-schema.component.html'
 })
 export class DemoFormDocSchemaComponent {
-  customFigureContent = require('!!raw-loader!./custom-figure.component.ts');
-  customInputContent = require('!!raw-loader!./custom-input.component.ts');
+  customFigureContent = require('!!raw-loader!./custom-figure.component.ts').default;
+  customInputContent = require('!!raw-loader!./custom-input.component.ts').default;
 
-  demoComponentContent = require('!!raw-loader!./form-schema.component.ts');
-  demoHtmlContent = require('!!raw-loader!./form-schema.component.html');
-  demoCssContent = require('!!raw-loader!./form-json.component.scss');
+  demoComponentContent = require('!!raw-loader!./form-schema.component.ts').default;
+  demoHtmlContent = require('!!raw-loader!./form-schema.component.html').default;
+  demoCssContent = require('!!raw-loader!./form-json.component.scss').default;
 }

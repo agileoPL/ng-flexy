@@ -7,10 +7,10 @@
         'bd-sidenav-active': currentUrl && currentUrl.includes(page.url)
       }"
     >
-      <a *ngIf="page.url" [routerLink]="[page.url]">
+      <a *ngIf="page.url && !page.disabled" [routerLink]="[page.url]">
         {{ page.label }}
       </a>
-      <a *ngIf="!page.url">{{ page.label }}</a>
+      <a *ngIf="!page.url || page.disabled" [attr.aria-disabled]="!!page.disabled">{{ page.label }}</a>
 
       <ng-container *ngIf="!!page && !!page.children">
         <ng-container *ngTemplateOutlet="treeRef; context: { $implicit: page.children, sideBar: true }"></ng-container>

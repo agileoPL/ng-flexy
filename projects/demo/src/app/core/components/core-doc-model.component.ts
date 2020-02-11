@@ -5,10 +5,10 @@ import { Component } from '@angular/core';
   templateUrl: './core-doc-model.component.html'
 })
 export class DemoCoreDocModelComponent {
-  userModelContent = require('!!raw-loader!../models/user.model.ts');
-  userDataContent = require('!!raw-loader!../models/user.data.ts');
-  usersServiceContent = require('!!raw-loader!../services/users.service.ts');
-  usersComponentContent = require('!!raw-loader!./users.component.ts');
-  usersComponentHtmlContent = require('!!raw-loader!./users.component.html');
+  userModelContent = require('!!raw-loader!../models/user.model.ts').default;
+  userDataContent = require('!!raw-loader!../models/user.data.ts').default;
+  usersServiceContent = require('!!raw-loader!../services/users.service.ts').default;
+  usersComponentContent = require('!!raw-loader!./users.component.ts').default;
+  usersComponentHtmlContent = require('!!raw-loader!./users.component.html').default;
   mockContent = require('../../../assets/mock-data/users.json');
 }

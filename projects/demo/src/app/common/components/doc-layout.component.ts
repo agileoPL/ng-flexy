@@ -20,6 +20,7 @@ export interface LayoutModulesNav {
 export interface LayoutMenuNav {
   url: string;
   label: string;
+  disabled?: boolean;
   children?: LayoutMenuNav[];
 }
 

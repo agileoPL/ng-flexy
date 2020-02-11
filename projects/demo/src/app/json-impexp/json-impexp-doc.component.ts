@@ -9,8 +9,8 @@ import { DemoModules } from '../common/components/doc-layout.component';
 export class DemoJsonImpExpDocComponent {
   activeModule = DemoModules.JsonImpExp;
 
-  exampleComponentContent = require('!!raw-loader!./json-impexp-example.component.ts');
-  exampleHtmlContent = require('!!raw-loader!./json-impexp-example.component.html');
+  exampleComponentContent = require('!!raw-loader!./json-impexp-example.component.ts').default;
+  exampleHtmlContent = require('!!raw-loader!./json-impexp-example.component.html').default;
 
   constructor() {}
 }

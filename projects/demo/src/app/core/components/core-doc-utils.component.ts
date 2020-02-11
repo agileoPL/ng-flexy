@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './core-doc-utils.component.html'
 })
 export class DemoCoreDocUtilsComponent {
-  demoComponentContent = require('!!raw-loader!./http-cache-demo.component.ts');
+  demoComponentContent = require('!!raw-loader!./http-cache-demo.component.ts').default;
 }

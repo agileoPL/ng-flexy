@@ -9,9 +9,9 @@ export class DemoSkinsDocComponent {
   activeModule = DemoModules.Skins;
 
   angularJsonContent = require('./angular-partial.skins.json');
-  indexContent = require('!!raw-loader!./index-partial.html');
-  exampleContent = require('!!raw-loader!./skin-toggle.component.ts');
-  appSkinsConfigContent = require('!!raw-loader!./../../app/app.skins.ts');
+  indexContent = require('!!raw-loader!./index-partial.html').default;
+  exampleContent = require('!!raw-loader!./skin-toggle.component.ts').default;
+  appSkinsConfigContent = require('!!raw-loader!./../../app/app.skins.ts').default;
 
   constructor() {}
 }

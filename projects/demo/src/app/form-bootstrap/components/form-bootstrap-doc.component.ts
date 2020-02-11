@@ -18,84 +18,104 @@ const SUB_PAGES = [
         label: 'Group'
       },
       {
-        url: '/form-bootstrap/json',
-        label: 'Label'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Tabs'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Fieldset'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Text'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Textarea'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Checkbox'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Checkbox list'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Radio list'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Color Picker'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Password'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Percent'
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Select'
-      },
-      {
         url: '/form-bootstrap/select2',
         label: 'Select with filter'
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Draggable Select'
+        label: 'Label',
+        disabled: true
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Tree select'
+        label: 'Tabs',
+        disabled: true
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Date picker'
+        label: 'Fieldset',
+        disabled: true
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Date range picker'
+        label: 'Text',
+        disabled: true
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Chips'
+        label: 'Textarea',
+        disabled: true
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Tags'
+        label: 'Checkbox',
+        disabled: true
       },
       {
         url: '/form-bootstrap/json',
-        label: 'Json file upload'
+        label: 'Checkbox list',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Radio list',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Color Picker',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Password',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Percent',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Select',
+        disabled: true
+      },
+
+      {
+        url: '/form-bootstrap/json',
+        label: 'Draggable Select',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Tree select',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Date picker',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Date range picker',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Chips',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Tags',
+        disabled: true
+      },
+      {
+        url: '/form-bootstrap/json',
+        label: 'Json file upload',
+        disabled: true
       }
     ]
   }

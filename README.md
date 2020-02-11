@@ -133,5 +133,5 @@ npm install -g firebase-tools
 firebase login
 firebase init
 
-ng build demo
+npm run demo:build
 firebase deploy
