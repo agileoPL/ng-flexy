@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { FlexyFormComplexFieldLayoutJsonSchema, FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
+import { FlexyForm, FlexyFormComplexFieldLayoutJsonSchema, FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 import { FlexyFormJsonMapperService } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { FlexyLoggerService } from '@ng-flexy/core';
@@ -14,6 +14,7 @@ import { isRequired as checkIfRequired } from '@ng-flexy/form';
 })
 export class FlexyFormArrayComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
+  @Input() form: FlexyForm;
   @Input() legend: string;
 
   @Input() jsonSchema: FlexyFormComplexFieldLayoutJsonSchema;

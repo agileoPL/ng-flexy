@@ -8,7 +8,9 @@
       },
       "children": [
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
               "attributes": {
@@ -22,15 +24,19 @@
               }
             },
             {
-              "cssClass": "col-2",
               "component": "number",
               "name": "r1.b",
               "properties": {
                 "label": "B"
+              },
+              "attributes": {
+                "class": "col-2"
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r1.c",
               "properties": {
@@ -38,7 +44,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r1.d",
               "properties": {
@@ -46,7 +54,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r1.e",
               "properties": {
@@ -54,7 +64,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r1.sum",
               "calc": "$sum([r1.a,r1.b,r1.c,r1.d,r1.e])",
@@ -66,10 +78,14 @@
           ]
         },
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r2.a",
               "properties": {
@@ -77,7 +93,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r2.b",
               "properties": {
@@ -85,7 +103,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r2.c",
               "properties": {
@@ -93,7 +113,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r2.d",
               "properties": {
@@ -101,7 +123,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r2.e",
               "properties": {
@@ -109,7 +133,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r2.sum",
               "calc": "$sum([r2.a,r2.b,r2.c,r2.d,r2.e])",
@@ -121,10 +147,14 @@
           ]
         },
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r3.a",
               "properties": {
@@ -132,7 +162,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r3.b",
               "properties": {
@@ -140,7 +172,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r3.c",
               "properties": {
@@ -148,7 +182,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r3.d",
               "properties": {
@@ -156,7 +192,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r3.e",
               "properties": {
@@ -164,7 +202,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "r3.sum",
               "calc": "$sum([r3.a,r3.b,r3.c,r3.d,r3.e])",
@@ -176,10 +216,14 @@
           ]
         },
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "sum.a",
               "calc": "$sum([r1.a,r2.a,r3.a])",
@@ -189,7 +233,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "sum.b",
               "calc": "$sum([r1.b,r2.b,r3.b])",
@@ -199,7 +245,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "sum.c",
               "calc": "$sum([r1.c,r2.c,r3.c])",
@@ -209,7 +257,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "sum.d",
               "calc": "$sum([r1.d,r2.d,r3.d])",
@@ -219,7 +269,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "sum.e",
               "calc": "$sum([r1.e,r2.e,r3.e])",
@@ -229,7 +281,9 @@
               }
             },
             {
-              "cssClass": "col-2",
+              "attributes": {
+                "class": "col-2"
+              },
               "component": "number",
               "name": "sum.sum",
               "calc": "$sum([sum.a,sum.b,sum.c,sum.d,sum.e])",
@@ -242,10 +296,18 @@
         },
         {
           "if": "sum.sum > 0 and sum.sum < 20",
+          "name": "isSuccess",
           "children": [
             {
               "component": "text",
               "calc": "sum.sum",
+              "attributes": {
+                "class": {
+                  "alert": "isSuccess",
+                  "alert-success": "isSuccess",
+                  "d-block": "isSuccess"
+                }
+              },
               "properties": {
                 "label": "Success: sum is under 20",
                 "readonly": true
@@ -255,11 +317,19 @@
         },
         {
           "if": "sum.sum >= 20",
+          "name": "isWarning",
           "children": [
             {
               "id": "sum_warning",
               "component": "text",
               "calc": "sum.sum",
+              "attributes": {
+                "class": {
+                  "alert": "isWarning",
+                  "alert-warning": "isWarning",
+                  "d-block": "isWarning"
+                }
+              },
               "properties": {
                 "label": "Warning: sum is over 20",
                 "readonly": true

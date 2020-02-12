@@ -2,7 +2,9 @@
   "version": 2,
   "schema": [
     {
-      "cssClass": "container-fluid",
+      "attributes": {
+        "class": "container-fluid"
+      },
       "children": [
         {
           "attributes": {
@@ -15,7 +17,9 @@
               },
               "children": [
                 {
-                  "cssClass": "header",
+                  "attributes": {
+                    "class": "header"
+                  },
                   "component": "lm-figure",
                   "properties": {
                     "title": "Header"
@@ -61,7 +65,9 @@
       ]
     },
     {
-      "cssClass": "container-fluid",
+      "attributes": {
+        "class": "container-fluid"
+      },
       "children": [
         {
           "attributes": {
@@ -120,7 +126,9 @@
               },
               "children": [
                 {
-                  "cssClass": "footer",
+                  "attributes": {
+                    "class": "footer"
+                  },
                   "component": "lm-figure",
                   "properties": {
                     "title": "Footer"

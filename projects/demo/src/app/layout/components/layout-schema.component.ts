@@ -14,13 +14,19 @@ export class DemoLayoutSchemaComponent implements OnInit {
   ngOnInit() {
     this.schema = [
       {
-        cssClass: 'container-fluid',
+        attributes: {
+          class: 'container-fluid'
+        },
         children: [
           {
-            cssClass: 'row',
+            attributes: {
+              class: 'row'
+            },
             children: [
               {
-                cssClass: 'col-12',
+                attributes: {
+                  class: 'col-12'
+                },
                 children: [
                   {
                     componentType: DemoCustomFigureComponent,
@@ -28,17 +34,23 @@ export class DemoLayoutSchemaComponent implements OnInit {
                     componentInputs: {
                       title: 'Header'
                     },
-                    cssClass: 'header'
+                    attributes: {
+                      class: 'header'
+                    }
                   }
                 ]
               }
             ]
           },
           {
-            cssClass: 'row',
+            attributes: {
+              class: 'row'
+            },
             children: [
               {
-                cssClass: 'col-12',
+                attributes: {
+                  class: 'col-12'
+                },
                 children: [
                   {
                     componentType: DemoCustomFigureComponent,
@@ -46,7 +58,9 @@ export class DemoLayoutSchemaComponent implements OnInit {
                     componentInputs: {
                       title: 'Footer'
                     },
-                    cssClass: 'footer'
+                    attributes: {
+                      class: 'footer'
+                    }
                   }
                 ]
               }

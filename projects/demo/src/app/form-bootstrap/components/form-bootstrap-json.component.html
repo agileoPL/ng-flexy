@@ -1,5 +1,5 @@
 <form *ngIf="flexyForm && flexyForm.schema">
-  <flexy-layout [schema]="flexyForm.schema"></flexy-layout>
+  <flexy-form [form]="flexyForm" [schema]="flexyForm.schema"></flexy-form>
   <hr />
   <button type="button" class="btn btn-primary" [disabled]="!flexyForm.formGroup || !flexyForm.formGroup.valid" (click)="save()">
     Save

@@ -29,12 +29,19 @@ export class DemoFormSchemaComponent implements OnInit {
     this.schema = [
       {
         cssClass: 'container-fluid',
+        attributes: {
+          class: 'container-fluid'
+        },
         children: [
           {
-            cssClass: 'row',
+            attributes: {
+              class: 'row'
+            },
             children: [
               {
-                cssClass: 'col-6',
+                attributes: {
+                  class: 'col-6'
+                },
                 children: [
                   {
                     formControl: this.formGroup.get('param1'),
@@ -48,7 +55,9 @@ export class DemoFormSchemaComponent implements OnInit {
                 ]
               },
               {
-                cssClass: 'col-6',
+                attributes: {
+                  class: 'col-6'
+                },
                 children: [
                   {
                     formControl: this.formGroup.get('param2'),

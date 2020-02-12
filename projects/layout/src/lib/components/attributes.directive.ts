@@ -10,15 +10,11 @@ export class FlexyAttributesDirective {
       return;
     }
 
-    if (schema.attributes) {
-      Object.keys(schema.attributes).forEach(attrKey => {
-        this.renderer.setAttribute(this.el.nativeElement, attrKey, schema.attributes[attrKey]);
-      });
-    }
-    // deprecated
-    if (schema.cssClass) {
-      this.renderer.setAttribute(this.el.nativeElement, 'class', schema.cssClass);
-    }
+    // if (schema.attributes) {
+    //   Object.keys(schema.attributes).forEach(attrKey => {
+    //     this.renderer.setAttribute(this.el.nativeElement, attrKey, schema.attributes[attrKey]);
+    //   });
+    // }
   }
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}

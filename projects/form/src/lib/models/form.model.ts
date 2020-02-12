@@ -4,7 +4,7 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-sche
 import { FlexyFormData } from './form.data';
 import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
 import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { debounceTime } from 'rxjs/operators';
 import { HIDDEN_CALC_GROUP_NAME, HIDDEN_IF_GROUP_NAME } from '../services/json-mapper.utils';
@@ -22,7 +22,10 @@ export class FlexyForm {
   layout: FlexyLayout;
   schema: FlexyFormLayoutSchema[];
 
-  private currentData: FlexyFormData;
+  currentData: FlexyFormData;
+  private currentDataSubject = new BehaviorSubject({});
+  currentData$ = this.currentDataSubject.asObservable();
+
   private readonly originalData: FlexyFormData;
 
   private calculatedRefs: {
@@ -54,6 +57,7 @@ export class FlexyForm {
 
     this.changesSubscription = this.formGroup.valueChanges.pipe(debounceTime(50)).subscribe(() => {
       this.currentData = this.getSchemaData(this.schema);
+      this.currentDataSubject.next(this.currentData);
       this._calculate();
     });
 

@@ -31,16 +31,6 @@ export class FlexyContainerDirective {
         componentRef.instance[key] = schema.componentInputs[key];
       });
     }
-
-    if (schema.attributes) {
-      Object.keys(schema.attributes).forEach(attrKey => {
-        this._renderer.setAttribute(componentRef.location.nativeElement, attrKey, schema.attributes[attrKey]);
-      });
-    }
-    // deprecated
-    if (schema.cssClass) {
-      this._renderer.setAttribute(componentRef.location.nativeElement, 'class', schema.cssClass);
-    }
   }
 
   constructor(

@@ -65,7 +65,10 @@ export function parseFormVersion1(json: any[]): FlexyFormLayoutJsonSchema[] {
 export function parseFormVersion1Item(item: any): FlexyFormLayoutJsonSchema {
   const schema = {} as FlexyFormLayoutJsonSchema;
   if (item.properties && item.properties.class) {
-    schema.cssClass = item.properties.class;
+    if (!schema.attributes) {
+      schema.attributes = {};
+    }
+    schema.attributes.class = item.properties.class;
   }
   if (item.component) {
     Object.assign(schema, {
