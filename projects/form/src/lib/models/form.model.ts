@@ -26,6 +26,10 @@ export class FlexyForm {
   private currentDataSubject = new BehaviorSubject({});
   currentData$ = this.currentDataSubject.asObservable();
 
+  get valid() {
+    return this.formGroup.valid;
+  }
+
   private readonly originalData: FlexyFormData;
 
   private calculatedRefs: {
@@ -55,7 +59,8 @@ export class FlexyForm {
 
     this._initCalculated(schema);
 
-    this.changesSubscription = this.formGroup.valueChanges.pipe(debounceTime(50)).subscribe(() => {
+    // .pipe(debounceTime(10))
+    this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
       this.currentData = this.getSchemaData(this.schema);
       this.currentDataSubject.next(this.currentData);
       this._calculate();

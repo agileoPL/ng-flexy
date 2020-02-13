@@ -1,12 +1,14 @@
-<form *ngIf="flexyForm && flexyForm.schema">
-  <flexy-form [form]="flexyForm" [schema]="flexyForm.schema"></flexy-form>
-  <hr />
-  <button type="button" class="btn btn-primary" [disabled]="!flexyForm.formGroup || !flexyForm.formGroup.valid" (click)="save()">
-    Save
-  </button>
+<form *ngIf="jsonSchema">
+  <flexy-form [json]="jsonSchema" [data]="data" (created)="onCreated($event)"></flexy-form>
+  <ng-container *ngIf="flexyForm">
+    <hr />
+    <button type="button" class="btn btn-primary" [disabled]="!flexyForm.formGroup || !flexyForm.formGroup.valid" (click)="save()">
+      Save
+    </button>
 
-  <div *ngIf="errors">
-    <strong class="text-danger">Validation errors</strong>
-    <demo-pretty-code [code]="errors | json"></demo-pretty-code>
-  </div>
+    <div *ngIf="errors">
+      <strong class="text-danger">Validation errors</strong>
+      <demo-pretty-code [code]="errors | json"></demo-pretty-code>
+    </div>
+  </ng-container>
 </form>

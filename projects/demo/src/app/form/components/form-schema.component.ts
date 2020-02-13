@@ -28,7 +28,6 @@ export class DemoFormSchemaComponent implements OnInit {
 
     this.schema = [
       {
-        cssClass: 'container-fluid',
         attributes: {
           class: 'container-fluid'
         },

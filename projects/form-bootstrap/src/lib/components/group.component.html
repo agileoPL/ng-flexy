@@ -13,7 +13,7 @@
 
   <ng-container *ngIf="layoutSchema && layoutSchema.children">
     <ng-container *ngFor="let item of layoutSchema.children; let index = index">
-      <flexy-form [form]="form" [schema]="[item]">
+      <flexy-form-container [form]="form" [schema]="[item]">
         <button
           *ngIf="!readonly && removable"
           type="button"
@@ -22,7 +22,7 @@
         >
           <i class="flexy-icon-remove"></i>
         </button>
-      </flexy-form>
+      </flexy-form-container>
     </ng-container>
   </ng-container>
 

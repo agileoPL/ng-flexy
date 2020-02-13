@@ -9,14 +9,16 @@ import { FlexyFormSchemaService } from './services/schema.service';
 import { FlexyOptionsMapperPipe } from './pipes/options-mapper.pipe';
 import { FlexyFormAttributesDirective } from './components/attributes.directive';
 import { FlexyFormContainerDirective } from './components/container.directive';
+import { FlexyFormContainerComponent } from './components/form-container.component';
 import { FlexyFormComponent } from './components/form.component';
 
 const PUBLIC_COMPONENTS = [
   FlexyFormFirstErrorPipe,
   FlexyOptionsMapperPipe,
-  FlexyFormComponent,
+  FlexyFormContainerComponent,
   FlexyFormAttributesDirective,
-  FlexyFormContainerDirective
+  FlexyFormContainerDirective,
+  FlexyFormComponent
 ];
 
 export interface FlexyFormsOptions {
