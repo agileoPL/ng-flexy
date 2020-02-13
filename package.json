@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/demo",
-  "version": "8.4.0.beta",
+  "version": "8.4.0",
   "description": "Flexy components and tools to build Angular 8+ applications",
   "keywords": [
     "Angular",
