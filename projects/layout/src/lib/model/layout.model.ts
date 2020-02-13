@@ -1,7 +1,7 @@
 import { FlexyLayoutComponentSchema, FlexyLayoutSchema } from './layout-schema.model';
 
 export class FlexyLayout {
-  private readonly schema: FlexyLayoutSchema[];
+  readonly schema: FlexyLayoutSchema[];
 
   constructor(schema) {
     this.schema = schema;

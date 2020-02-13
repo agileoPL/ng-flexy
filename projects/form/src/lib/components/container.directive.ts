@@ -1,10 +1,8 @@
-import { ComponentFactoryResolver, Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, OnDestroy, OnInit, Renderer2, ViewContainerRef } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '../models/layout-schema.model';
 import { FlexyForm } from '../models/form.model';
 import { Subscription } from 'rxjs';
-import * as jsonata_ from 'jsonata';
-
-const jsonata = jsonata_;
+import { bindAttributes } from './attr.binder.utils';
 
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 
@@ -44,7 +42,7 @@ export class FlexyFormContainerDirective implements OnInit, OnDestroy {
     componentRef.instance[flexyFormKey] = this.flexyForm;
     this._componentRef = componentRef;
     if (schema.attributes) {
-      this._bindAttributes(schema, this._componentRef.location.nativeElement, this.flexyForm.currentData);
+      bindAttributes(schema, this._componentRef.location.nativeElement, this.renderer, this.flexyForm.currentData);
     }
   }
 
@@ -56,44 +54,14 @@ export class FlexyFormContainerDirective implements OnInit, OnDestroy {
   private _changesSubscription: Subscription;
   private _componentRef;
 
-  constructor(
-    private el: ElementRef,
-    private vc: ViewContainerRef,
-    private resolver: ComponentFactoryResolver,
-    private renderer: Renderer2
-  ) {}
+  constructor(private vc: ViewContainerRef, private resolver: ComponentFactoryResolver, private renderer: Renderer2) {}
 
   ngOnInit() {
     this._changesSubscription = this.flexyForm.currentData$.subscribe(data => {
       if (this._componentRef) {
-        this._bindAttributes(this.componentSchema, this._componentRef.location.nativeElement, data);
+        bindAttributes(this.componentSchema, this._componentRef.location.nativeElement, this.renderer, data);
       }
     });
-  }
-
-  private _bindAttributes(schema, nativeEl, data: {}) {
-    if (schema.attributes) {
-      Object.keys(schema.attributes).forEach(attrKey => {
-        if (typeof schema.attributes[attrKey] === 'object') {
-          const attrValues: string[] = [];
-          Object.keys(schema.attributes[attrKey]).forEach(oKey => {
-            if (schema.attributes[attrKey][oKey]) {
-              try {
-                const is = jsonata(schema.attributes[attrKey][oKey]).evaluate(data);
-                if (is) {
-                  attrValues.push(oKey);
-                }
-              } catch (e) {
-                // do nothink
-              }
-            }
-          });
-          this.renderer.setAttribute(nativeEl, attrKey, attrValues.join(' '));
-        } else if (typeof schema.attributes[attrKey] === 'string') {
-          this.renderer.setAttribute(nativeEl, attrKey, schema.attributes[attrKey]);
-        }
-      });
-    }
   }
 
   ngOnDestroy(): void {

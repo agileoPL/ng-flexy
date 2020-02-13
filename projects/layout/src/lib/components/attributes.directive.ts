@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 import { FlexyLayoutComponentSchema } from '../model/layout-schema.model';
+import { bindAttributes } from './attr.binder.utils';
 
 @Directive({
   selector: '[flexyAttributes]'
@@ -9,13 +10,8 @@ export class FlexyAttributesDirective {
     if (!schema) {
       return;
     }
-
-    // if (schema.attributes) {
-    //   Object.keys(schema.attributes).forEach(attrKey => {
-    //     this.renderer.setAttribute(this.el.nativeElement, attrKey, schema.attributes[attrKey]);
-    //   });
-    // }
+    bindAttributes(schema, this.el.nativeElement, this.renderer);
   }
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
 }

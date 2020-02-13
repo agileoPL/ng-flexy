@@ -4,9 +4,8 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-sche
 import { FlexyFormData } from './form.data';
 import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
 import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
-import { debounceTime } from 'rxjs/operators';
 import { HIDDEN_CALC_GROUP_NAME, HIDDEN_IF_GROUP_NAME } from '../services/json-mapper.utils';
 
 const jsonata = jsonata_;
@@ -17,20 +16,20 @@ enum FlexyFormDataMode {
   Touched = 'toched'
 }
 
-export class FlexyForm {
-  formGroup: FormGroup;
-  layout: FlexyLayout;
-  schema: FlexyFormLayoutSchema[];
-
+export class FlexyForm extends FlexyLayout {
   currentData: FlexyFormData;
-  private currentDataSubject = new BehaviorSubject({});
-  currentData$ = this.currentDataSubject.asObservable();
+  readonly currentData$: Observable<FlexyFormData>;
 
   get valid() {
     return this.formGroup.valid;
   }
 
+  // TODO to think change to private
+  readonly schema: FlexyFormLayoutSchema[];
+  readonly formGroup: FormGroup;
+
   private readonly originalData: FlexyFormData;
+  private readonly _currentDataSubject: BehaviorSubject<FlexyFormData>;
 
   private calculatedRefs: {
     [name: string]: {
@@ -41,28 +40,21 @@ export class FlexyForm {
 
   private changesSubscription: Subscription;
 
-  static getSchemaData(schema: FlexyFormLayoutSchema) {
-    const fg = new FormGroup({});
-    const ff = new FlexyForm(fg, [schema], {});
-    const allData = ff.getAllData();
-    if ((schema as FlexyFormFieldLayoutSchema).formName) {
-      return get(allData, (schema as FlexyFormFieldLayoutSchema).formName);
-    } else {
-      return allData;
-    }
-  }
-
   constructor(formGroup: FormGroup, schema: FlexyFormLayoutSchema[], data: FlexyFormData) {
+    super(schema);
+
+    this._currentDataSubject = new BehaviorSubject(data);
+    this.currentData$ = this._currentDataSubject.asObservable();
+
     this.formGroup = formGroup;
     this.schema = schema;
-    this.layout = new FlexyLayout(schema);
 
     this._initCalculated(schema);
 
     // .pipe(debounceTime(10))
     this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
       this.currentData = this.getSchemaData(this.schema);
-      this.currentDataSubject.next(this.currentData);
+      this._currentDataSubject.next(this.currentData);
       this._calculate();
     });
 
@@ -173,7 +165,7 @@ export class FlexyForm {
   }
 
   private getSchemaData(schemas: FlexyFormLayoutSchema[], mode = FlexyFormDataMode.All): FlexyFormData {
-    let data = {};
+    let data: FlexyFormData = {};
     if (schemas) {
       schemas.forEach(schema => {
         const fieldSchema: FlexyFormFieldLayoutSchema = schema as FlexyFormFieldLayoutSchema;

@@ -1,5 +1,6 @@
-import { ComponentFactoryResolver, Directive, ElementRef, Input, Renderer2, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, Directive, Input, Renderer2, ViewContainerRef } from '@angular/core';
 import { FlexyLayoutComponentSchema } from '../model/layout-schema.model';
+import { bindAttributes } from './attr.binder.utils';
 
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 
@@ -31,12 +32,9 @@ export class FlexyContainerDirective {
         componentRef.instance[key] = schema.componentInputs[key];
       });
     }
+
+    bindAttributes(schema, componentRef.location.nativeElement, this.renderer);
   }
 
-  constructor(
-    private el: ElementRef,
-    private vc: ViewContainerRef,
-    private resolver: ComponentFactoryResolver,
-    private _renderer: Renderer2
-  ) {}
+  constructor(private vc: ViewContainerRef, private resolver: ComponentFactoryResolver, private renderer: Renderer2) {}
 }
