@@ -11,16 +11,16 @@ export class User extends FlexyModel<UserData> {
   }
 
   get name(): string {
-    return this.data && this.data.first_name;
+    return this.data && this.data.firstName;
   }
   set name(name: string) {
-    this.data.first_name = name;
+    this.data.firstName = name;
   }
   get surname(): string {
-    return this.data && this.data.last_name;
+    return this.data && this.data.lastName;
   }
   set surname(name: string) {
-    this.data.last_name = name;
+    this.data.lastName = name;
   }
 
   get role(): string {

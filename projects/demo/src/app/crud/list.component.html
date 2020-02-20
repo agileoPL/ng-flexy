@@ -1,0 +1,22 @@
+<flexy-crud-list
+  *ngIf="pagination"
+  [fields]="[
+    { key: 'id', label: 'ID' },
+    { key: 'name', label: 'Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'phone', label: 'Phone', hidden: true }
+  ]"
+  [pagination]="pagination"
+  [title]="'Users'"
+  [areActionsVisible]="false"
+  [isBottomPaginationVisible]="true"
+  (changeFilter)="onFilterChange($event)"
+>
+  <ng-template flexyCrud="field" flexyKey="name" let-user>
+    <b>{{ user?.name }} {{ user?.surname }}</b>
+  </ng-template>
+
+  <ng-template flexyCrud flexyKey="title" let-title>
+    <h1>{{ title }}</h1>
+  </ng-template>
+</flexy-crud-list>
