@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/crud",
-  "version": "2.1.2",
+  "version": "3.0.1",
   "peerDependencies": {
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
