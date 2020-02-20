@@ -27,8 +27,8 @@ export function checkSchema(schema: FlexyFormLayoutJsonSchema[]) {
   if (schema && Array.isArray(schema)) {
     schema.forEach((jsonItem, index) => {
       if (
-        ((jsonItem as FlexyFormIfJsonSchema).if && (jsonItem as FlexyFormFieldLayoutJsonSchema).name) ||
-        (jsonItem as FlexyFormFieldLayoutJsonSchema).type
+        (jsonItem as FlexyFormIfJsonSchema).if &&
+        ((jsonItem as FlexyFormFieldLayoutJsonSchema).name || (jsonItem as FlexyFormFieldLayoutJsonSchema).type)
       ) {
         console.warn('Wrong if schema', jsonItem);
       }
