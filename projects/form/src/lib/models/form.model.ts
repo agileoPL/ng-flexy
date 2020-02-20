@@ -6,7 +6,7 @@ import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
 import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
-import { HIDDEN_CALC_GROUP_NAME, HIDDEN_IF_GROUP_NAME } from '../services/json-mapper.utils';
+import { HIDDEN_CALC_GROUP_NAME } from '../services/json-mapper.utils';
 
 const jsonata = jsonata_;
 
@@ -156,9 +156,6 @@ export class FlexyForm extends FlexyLayout {
   }
 
   private _clearHiddenData(data) {
-    if (data[HIDDEN_IF_GROUP_NAME]) {
-      delete data[HIDDEN_IF_GROUP_NAME];
-    }
     if (data[HIDDEN_CALC_GROUP_NAME]) {
       delete data[HIDDEN_CALC_GROUP_NAME];
     }

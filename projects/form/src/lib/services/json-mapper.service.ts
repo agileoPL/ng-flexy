@@ -18,7 +18,6 @@ import { FlexyFormsValidators } from '../validators/validators.utils';
 import { FlexyValidatorsData } from '../models/validators.data';
 import { FlexyForm } from '../models/form.model';
 import { parseFormJson } from './json-mapper.utils';
-import { BehaviorSubject } from 'rxjs';
 
 export interface FlexyFormValidatorsMap {
   [name: string]: (data?) => ValidatorFn;

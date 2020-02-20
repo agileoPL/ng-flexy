@@ -7,7 +7,7 @@ import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
   template: `
     <ng-template #tmplRef let-schema let-form="form">
       <ng-container *ngFor="let schemaItem of schema">
-        <ng-container *ngIf="!schemaItem['if'] || (schemaItem['formControl'] && schemaItem['formControl'].value)">
+        <ng-container *flexyFormIf="{ schema: schemaItem, form: form }">
           <ng-container
             *ngIf="schemaItem.componentType"
             flexyFormContainer

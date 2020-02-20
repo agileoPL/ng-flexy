@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlexyForm } from '../models/form.model';
 import { FlexyFormLayoutJson } from '../models/layout-json-schema.model';
 import { FlexyFormData } from '../models/form.data';
-import { Subscription } from 'rxjs';
 import { FlexyFormJsonMapperService } from '../services/json-mapper.service';
 import { cloneDeep } from 'lodash';
 
@@ -20,8 +19,6 @@ export class FlexyFormComponent implements OnInit {
   @Output() created = new EventEmitter<FlexyForm>();
 
   form: FlexyForm;
-
-  private changesSubscription: Subscription;
 
   constructor(private jsonMapper: FlexyFormJsonMapperService) {}
 

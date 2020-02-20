@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset [ngClass]="{ 'fieldset-invalid': layoutSchema.formControl && !layoutSchema.formControl.valid }">
   <h4 *ngIf="legend || (!readonly && layoutSchema?.items?.length > 10)">
     <span *ngIf="legend">
       {{ legend }}

@@ -33,7 +33,6 @@ export interface FlexyFormComponentJsonSchema extends FlexyLayoutComponentJsonSc
 
 export interface FlexyFormIfJsonSchema extends FlexyFormGridJsonSchema {
   if: string;
-  name?: string;
 }
 
 export interface FlexyFormCalcJsonSchema extends FlexyFormComponentJsonSchema {

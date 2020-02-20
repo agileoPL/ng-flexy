@@ -11,6 +11,7 @@ import { FlexyFormAttributesDirective } from './components/attributes.directive'
 import { FlexyFormContainerDirective } from './components/container.directive';
 import { FlexyFormContainerComponent } from './components/form-container.component';
 import { FlexyFormComponent } from './components/form.component';
+import { FlexyFlexyFormIfDirective } from './components/if.directive';
 
 const PUBLIC_COMPONENTS = [
   FlexyFormFirstErrorPipe,
@@ -18,6 +19,7 @@ const PUBLIC_COMPONENTS = [
   FlexyFormContainerComponent,
   FlexyFormAttributesDirective,
   FlexyFormContainerDirective,
+  FlexyFlexyFormIfDirective,
   FlexyFormComponent
 ];
 

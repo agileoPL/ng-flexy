@@ -347,8 +347,12 @@
               ]
             },
             {
-              "if": "sum.sum > 0 and sum.sum < 20",
               "name": "isSuccess",
+              "calc": "sum.sum > 0 and sum.sum < 20",
+              "component": "hidden"
+            },
+            {
+              "if": "isSuccess",
               "children": [
                 {
                   "component": "text",
@@ -368,8 +372,12 @@
               ]
             },
             {
-              "if": "sum.sum >= 20",
               "name": "isWarning",
+              "calc": "sum.sum >= 20",
+              "component": "hidden"
+            },
+            {
+              "if": "isWarning",
               "children": [
                 {
                   "id": "sum_warning",

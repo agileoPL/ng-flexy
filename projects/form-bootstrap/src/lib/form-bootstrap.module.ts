@@ -58,6 +58,8 @@ import { FlexyControlDraggableSelectComponent } from './controls/draggable-selec
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 import { FlexyFormJsonFileComponent } from './components/json-file.component';
 import { FlexyControlJsonFileComponent } from './controls/json-file.component';
+import { FlexyControlHiddenComponent } from './controls/hidden.component';
+import { FlexyFormHiddenComponent } from './components/hidden.component';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,
@@ -82,7 +84,8 @@ export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   password: FlexyFormPasswordComponent,
   chips: FlexyFormChipsComponent,
   draggableselect: FlexyFormDraggableSelectComponent,
-  jsonfile: FlexyFormJsonFileComponent
+  jsonfile: FlexyFormJsonFileComponent,
+  hidden: FlexyFormHiddenComponent
 };
 
 const ENTRY_LAYOUT_COMPONENTS = [
@@ -108,7 +111,8 @@ const ENTRY_LAYOUT_COMPONENTS = [
   FlexyFormPasswordComponent,
   FlexyFormChipsComponent,
   FlexyFormDraggableSelectComponent,
-  FlexyFormJsonFileComponent
+  FlexyFormJsonFileComponent,
+  FlexyFormHiddenComponent
 ];
 
 const FORM_CONTROLS = [
@@ -129,7 +133,8 @@ const FORM_CONTROLS = [
   FlexyControlPasswordComponent,
   FlexyControlChipsComponent,
   FlexyControlDraggableSelectComponent,
-  FlexyControlJsonFileComponent
+  FlexyControlJsonFileComponent,
+  FlexyControlHiddenComponent
 ];
 
 const PUBLIC_COMPONENTS = [FlexyFormsTextareaAutosizeDirective, FlexyFieldControlInfoComponent, FlexyFieldComponent, FlexyTreeComponent];
