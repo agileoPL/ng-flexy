@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './core-doc-feature-toggle.component.html'
 })
 export class DemoCoreDocFeatureToggleComponent {
-  toggleFeatureComponentContent = require('!!raw-loader!./toggle-feature.component.ts');
+  toggleFeatureComponentContent = require('!!raw-loader!./toggle-feature.component.ts').default;
 }

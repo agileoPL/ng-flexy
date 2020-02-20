@@ -9,9 +9,11 @@
 @import '~@ng-flexy/json-impexp/json-impexp';
 @import '~@ng-flexy/highcharts/highcharts';
 @import '~@ng-flexy/graphs/graphs.module';
+@import '~@ng-flexy/crud/crud.module';
 
 @import '../../app/layout/components/layout-json.component';
 @import '../../app/json-impexp/json-impexp-example.component.scss';
+@import '../../app/form-bootstrap/components/form-bootstrap-json.component';
 
 .bd-navbar {
   background-color: #498fe1;

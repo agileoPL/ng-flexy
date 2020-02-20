@@ -84,7 +84,7 @@ export class FlexyFormJsonMapperService {
     return new FlexyForm(rootFormGroup, dynamicSchema, formData);
   }
 
-  createItemControl(itemsSchema: FlexyFormFieldLayoutJsonSchema, readonlyMode: boolean, value: FlexyFormData): AbstractControl {
+  createItemControl(itemsSchema: FlexyFormLayoutJsonSchema, readonlyMode: boolean, value: FlexyFormData): AbstractControl {
     let control: AbstractControl;
     if (itemsSchema.children) {
       control = new FormGroup({});
@@ -92,7 +92,9 @@ export class FlexyFormJsonMapperService {
     } else {
       control = this.formBuilder.control(
         value ? value : get(itemsSchema, 'componentInputs.default'),
-        itemsSchema.validators ? this.mapValidators(itemsSchema.validators) : []
+        (itemsSchema as FlexyFormFieldLayoutJsonSchema).validators
+          ? this.mapValidators((itemsSchema as FlexyFormFieldLayoutJsonSchema).validators)
+          : []
       );
     }
     return control;
@@ -100,7 +102,7 @@ export class FlexyFormJsonMapperService {
 
   createArrayItemSchema(
     control: AbstractControl,
-    items: FlexyFormFieldLayoutJsonSchema,
+    items: FlexyFormLayoutJsonSchema,
     itemKeyDef: string,
     parentName: string,
     readonlyMode: boolean,
@@ -455,7 +457,7 @@ export class FlexyFormJsonMapperService {
   }
 
   private createArrayItems(
-    items: FlexyFormFieldLayoutJsonSchema,
+    items: FlexyFormLayoutJsonSchema,
     itemKeyDef: string,
     arrayControl: FormArray,
     parentName: string,
@@ -497,12 +499,12 @@ export class FlexyFormJsonMapperService {
   }
 
   private populateExternalControlNameIndex(
-    items: FlexyFormFieldLayoutJsonSchema[],
+    items: FlexyFormLayoutJsonSchema[],
     key: number | string,
     value,
     marker = ARRAY_EXTERNAL_PARAM_INDEX_MARKER
   ) {
-    items.forEach(item => {
+    items.forEach((item: FlexyFormFieldLayoutJsonSchema) => {
       if (item.name) {
         item.name = item.name.split(marker).join('' + key);
       }

@@ -46,8 +46,7 @@ export class FlexyLayoutJsonMapperService {
 
   mapItem(jsonItem: FlexyLayoutJsonSchema, id = '', parent: FlexyLayoutSchema = null): FlexyLayoutSchema {
     const schemaItem: FlexyLayoutSchema = {
-      // type: jsonItem.type,
-      cssClass: jsonItem.cssClass
+      attributes: jsonItem.attributes
     };
     if ((jsonItem as FlexyLayoutComponentJsonSchema).component) {
       const componentJsonItem = jsonItem as FlexyLayoutComponentJsonSchema;

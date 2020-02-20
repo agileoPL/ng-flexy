@@ -9,8 +9,8 @@ import { DemoModules } from '../common/components/doc-layout.component';
 export class DemoToastsDocComponent {
   activeModule = DemoModules.Toasts;
 
-  typesComponentContent = require('!!raw-loader!./toasts-types.component.ts');
-  typesHtmlContent = require('!!raw-loader!./toasts-types.component.html');
+  typesComponentContent = require('!!raw-loader!./toasts-types.component.ts').default;
+  typesHtmlContent = require('!!raw-loader!./toasts-types.component.html').default;
 
   constructor() {}
 }

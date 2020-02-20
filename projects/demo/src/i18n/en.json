@@ -61,5 +61,17 @@
 
   "FLEXY_FORM_VALIDATION_PATTERN_([A-Za-z0-9_]+)$": "alfa-numerical or \"_\" e.g. \"a1_b2_C3_d4\"",
 
+  "FLEXY_CRUD_LIST_FILTER_ALL": "All",
+  "LIST_FILTER_ITEMS_PLACEHOLDER": "Search...",
+  "NEXT_PAGE": "Next",
+  "PREVIOUS_PAGE": "Previous",
+  "LAST": "Last",
+  "CHANGE_CRUD_LIST_ORDER_BY": "Change order",
+  "LIST_CHECK_ALL": "Check all",
+  "FLEXY_FORM_ARRAY_REORDER": "Reorder",
+  "REMOVE_FROM_FAVOURITES": "Remove form favourites",
+  "ADD_TO_FAVOURITES": "Add to favourites",
+  "LIST_NO_RESULTS": "No results",
+
   "EOF": ""
 }

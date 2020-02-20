@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset [ngClass]="{ 'fieldset-invalid': layoutSchema.formControl && !layoutSchema.formControl.valid }">
   <h4 *ngIf="legend || (!readonly && layoutSchema?.items?.length > 10)">
     <span *ngIf="legend">
       {{ legend }}
@@ -22,7 +22,11 @@
         cdkDragBoundary=".drag-container"
       >
         <div class="schema-item-body">
-          <flexy-layout [schema]="[componentSchema]" [ngClass]="{ 'removable-array-item': !readonly && removable && removeAny }">
+          <flexy-form-container
+            [form]="form"
+            [schema]="[componentSchema]"
+            [ngClass]="{ 'removable-array-item': !readonly && removable && removeAny }"
+          >
             <button
               *ngIf="!readonly && removable && removeAny"
               type="button"
@@ -32,7 +36,7 @@
             >
               <i class="flexy-icon-remove"></i>
             </button>
-          </flexy-layout>
+          </flexy-form-container>
         </div>
         <div *ngIf="isDraggable()" class="drag-handle" cdkDragHandle>
           <button type="button" class="btn btn-link" tooltip="{{ 'FLEXY_FORM_ARRAY_REORDER' | translate }}">

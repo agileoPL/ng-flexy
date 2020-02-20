@@ -3,6 +3,13 @@ demo-custom-figure {
     background-color: $info;
   }
 }
+
+flexy-control-number {
+  input.form-control {
+    width: 5em !important;
+  }
+}
+
 .header {
   demo-custom-figure {
     figure {

@@ -20,6 +20,7 @@ export interface LayoutModulesNav {
 export interface LayoutMenuNav {
   url: string;
   label: string;
+  disabled?: boolean;
   children?: LayoutMenuNav[];
 }
 
@@ -33,7 +34,8 @@ export enum DemoModules {
   FormBootstrap = 'FormBootstrap',
   JsonImpExp = 'JsonImpExp',
   Highcharts = 'Highcharts',
-  Graphs = 'Graphs'
+  Graphs = 'Graphs',
+  Crud = 'Crud'
 }
 
 @Component({
@@ -106,6 +108,12 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/graphs',
       regexp: /\/graphs([?;]?|$)/,
       label: DemoModules.Graphs
+    },
+    {
+      id: DemoModules.Crud,
+      url: '/crud',
+      regexp: /\/crud([?;]?|$)/,
+      label: DemoModules.Crud
     }
   ];
 

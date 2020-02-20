@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit } from '@angular/core';
 import {
+  FlexyForm,
   FlexyFormComplexFieldLayoutJsonSchema,
   FlexyFormFieldLayoutSchema,
   FlexyFormJsonMapperService,
@@ -16,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class FlexyFormGroupComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
+  @Input() form: FlexyForm;
   @Input() legend: string;
   @Input() readonly: boolean;
   @Input() addable = true;

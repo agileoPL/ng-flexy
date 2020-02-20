@@ -22,7 +22,10 @@ export function parseFormVersion1(json: any[]): FlexyLayoutSchema[] {
 export function parseFormVersion1Item(item: any): FlexyLayoutSchema {
   const schema: FlexyLayoutSchema = {};
   if (item.properties && item.properties.class) {
-    schema.cssClass = item.properties.class;
+    if (!item.attributes) {
+      item.attributes = {};
+    }
+    item.attributes.class = item.properties.class;
   }
   if (item.component) {
     Object.assign(schema, {

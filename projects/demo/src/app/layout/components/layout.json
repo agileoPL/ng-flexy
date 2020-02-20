@@ -2,16 +2,24 @@
   "version": 2,
   "schema": [
     {
-      "cssClass": "container-fluid",
+      "attributes": {
+        "class": "container-fluid"
+      },
       "children": [
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-12",
+              "attributes": {
+                "class": "col-12"
+              },
               "children": [
                 {
-                  "cssClass": "header",
+                  "attributes": {
+                    "class": "header"
+                  },
                   "component": "lm-figure",
                   "properties": {
                     "title": "Header"
@@ -22,10 +30,14 @@
           ]
         },
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-6",
+              "attributes": {
+                "class": "col-6"
+              },
               "children": [
                 {
                   "component": "lm-figure",
@@ -36,7 +48,9 @@
               ]
             },
             {
-              "cssClass": "col-6",
+              "attributes": {
+                "class": "col-6"
+              },
               "children": [
                 {
                   "component": "lm-figure",
@@ -51,13 +65,19 @@
       ]
     },
     {
-      "cssClass": "container-fluid",
+      "attributes": {
+        "class": "container-fluid"
+      },
       "children": [
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-4",
+              "attributes": {
+                "class": "col-4"
+              },
               "children": [
                 {
                   "component": "lm-figure",
@@ -68,7 +88,9 @@
               ]
             },
             {
-              "cssClass": "col-4",
+              "attributes": {
+                "class": "col-4"
+              },
               "children": [
                 {
                   "component": "lm-figure",
@@ -79,7 +101,9 @@
               ]
             },
             {
-              "cssClass": "col-4",
+              "attributes": {
+                "class": "col-4"
+              },
               "children": [
                 {
                   "component": "lm-figure",
@@ -92,13 +116,19 @@
           ]
         },
         {
-          "cssClass": "row",
+          "attributes": {
+            "class": "row"
+          },
           "children": [
             {
-              "cssClass": "col-12",
+              "attributes": {
+                "class": "col-12"
+              },
               "children": [
                 {
-                  "cssClass": "footer",
+                  "attributes": {
+                    "class": "footer"
+                  },
                   "component": "lm-figure",
                   "properties": {
                     "title": "Footer"

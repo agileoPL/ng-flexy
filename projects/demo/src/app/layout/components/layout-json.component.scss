@@ -3,21 +3,18 @@ demo-custom-figure {
     background-color: $info;
   }
 }
-.header {
-  demo-custom-figure {
-    figure {
-      background-color: $primary;
-      padding: 10px;
-      text-align: center;
-    }
+demo-custom-figure.header {
+  figure {
+    background-color: $primary;
+    padding: 10px;
+    text-align: center;
   }
 }
-.footer {
-  demo-custom-figure {
-    figure {
-      background-color: $secondary;
-      text-align: right;
-      font-size: 10px;
-    }
+
+demo-custom-figure.footer {
+  figure {
+    background-color: $secondary;
+    text-align: right;
+    font-size: 10px;
   }
 }

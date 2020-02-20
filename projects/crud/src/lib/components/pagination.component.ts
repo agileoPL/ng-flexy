@@ -7,7 +7,7 @@ const MAX_NUMBER_OF_VISIBLE_PAGES = 10;
 @Component({
   selector: 'flexy-pagination',
   template: `
-    <nav *ngIf="pagination && pagination.lastPage > 1">
+    <nav *ngIf="pagination && pagesCount > 1">
       <ul class="pagination">
         <li class="page-item" [ngClass]="{ disabled: !isPrev }">
           <a
@@ -69,7 +69,7 @@ export class FlexyPaginationComponent implements OnChanges {
   isNext = false;
   isPrev = false;
 
-  private pagesCount = 0;
+  pagesCount = 0;
 
   constructor() {}
 
@@ -101,14 +101,14 @@ export class FlexyPaginationComponent implements OnChanges {
   }
 
   private _setPages() {
-    let pages = [];
+    const pages = [];
 
-    let maxPages = this.numberOfVisiblePages;
-    let maxOneSidePages = Math.floor((this.numberOfVisiblePages - 2) / 2);
+    const maxPages = this.numberOfVisiblePages;
+    const maxOneSidePages = Math.floor((this.numberOfVisiblePages - 2) / 2);
 
     if (this.pagesCount > maxPages) {
-      let min = Math.max(1, this.currentPage - maxOneSidePages - Math.max(0, this.currentPage + maxOneSidePages - this.pagesCount));
-      let max = Math.min(this.currentPage + maxOneSidePages + Math.max(0, maxOneSidePages - this.currentPage), this.pagesCount);
+      const min = Math.max(1, this.currentPage - maxOneSidePages - Math.max(0, this.currentPage + maxOneSidePages - this.pagesCount));
+      const max = Math.min(this.currentPage + maxOneSidePages + Math.max(0, maxOneSidePages - this.currentPage), this.pagesCount);
 
       this.firstPage = min !== 1 ? 1 : 0;
       this.firstPageDots = !!this.firstPage && min > 2;

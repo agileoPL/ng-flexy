@@ -7,8 +7,21 @@ import { FlexyFormJsonMapperService, FlexyFormValidatorsMap } from './services/j
 import { FlexyLayoutComponentMap, FlexyLayoutJsonMapperService, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormSchemaService } from './services/schema.service';
 import { FlexyOptionsMapperPipe } from './pipes/options-mapper.pipe';
+import { FlexyFormAttributesDirective } from './components/attributes.directive';
+import { FlexyFormContainerDirective } from './components/container.directive';
+import { FlexyFormContainerComponent } from './components/form-container.component';
+import { FlexyFormComponent } from './components/form.component';
+import { FlexyFlexyFormIfDirective } from './components/if.directive';
 
-const PUBLIC_COMPONENTS = [FlexyFormFirstErrorPipe, FlexyOptionsMapperPipe];
+const PUBLIC_COMPONENTS = [
+  FlexyFormFirstErrorPipe,
+  FlexyOptionsMapperPipe,
+  FlexyFormContainerComponent,
+  FlexyFormAttributesDirective,
+  FlexyFormContainerDirective,
+  FlexyFlexyFormIfDirective,
+  FlexyFormComponent
+];
 
 export interface FlexyFormsOptions {
   validatorsMap?: FlexyFormValidatorsMap;

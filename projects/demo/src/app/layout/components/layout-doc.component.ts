@@ -5,10 +5,6 @@ const SUB_PAGES = [
   {
     url: '/layout/json',
     label: 'Json based'
-  },
-  {
-    url: '/layout/schema',
-    label: 'Schema based'
   }
 ];
 

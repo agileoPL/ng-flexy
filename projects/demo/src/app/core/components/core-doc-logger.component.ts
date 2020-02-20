@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './core-doc-logger.component.html'
 })
 export class DemoCoreDocLoggerComponent {
-  logsComponentContent = require('!!raw-loader!./logs.component.ts');
+  logsComponentContent = require('!!raw-loader!./logs.component.ts').default;
 }

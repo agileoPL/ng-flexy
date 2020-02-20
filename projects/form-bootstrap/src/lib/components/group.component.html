@@ -1,4 +1,4 @@
-<fieldset>
+<fieldset [ngClass]="{ 'fieldset-invalid': layoutSchema.formControl && !layoutSchema.formControl.valid }">
   <h4>
     <span *ngIf="legend">
       {{ legend }}
@@ -13,7 +13,7 @@
 
   <ng-container *ngIf="layoutSchema && layoutSchema.children">
     <ng-container *ngFor="let item of layoutSchema.children; let index = index">
-      <flexy-layout [schema]="[item]">
+      <flexy-form-container [form]="form" [schema]="[item]">
         <button
           *ngIf="!readonly && removable"
           type="button"
@@ -22,7 +22,7 @@
         >
           <i class="flexy-icon-remove"></i>
         </button>
-      </flexy-layout>
+      </flexy-form-container>
     </ng-container>
   </ng-container>
 

@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
 })
 export class DemoFormDocJsonComponent {
   jsonContent = require('./form.json');
-  customFigureContent = require('!!raw-loader!./custom-figure.component.ts');
-  customInputContent = require('!!raw-loader!./custom-input.component.ts');
+  customFigureContent = require('!!raw-loader!./custom-figure.component.ts').default;
+  customInputContent = require('!!raw-loader!./custom-input.component.ts').default;
 
-  demoComponentContent = require('!!raw-loader!./form-json.component.ts');
-  demoHtmlContent = require('!!raw-loader!./form-json.component.html');
-  demoCssContent = require('!!raw-loader!./form-json.component.scss');
+  demoComponentContent = require('!!raw-loader!./form-json.component.ts').default;
+  demoHtmlContent = require('!!raw-loader!./form-json.component.html').default;
+  demoCssContent = require('!!raw-loader!./form-json.component.scss').default;
 }

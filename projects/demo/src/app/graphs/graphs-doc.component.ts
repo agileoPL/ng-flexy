@@ -9,8 +9,8 @@ import { DemoModules } from '../common/components/doc-layout.component';
 export class DemoGraphsDocComponent {
   activeModule = DemoModules.Graphs;
 
-  exampleComponentContent = require('!!raw-loader!./graphs-example.component.ts');
-  exampleHtmlContent = require('!!raw-loader!./graphs-example.component.html');
+  exampleComponentContent = require('!!raw-loader!./graphs-example.component.ts').default;
+  exampleHtmlContent = require('!!raw-loader!./graphs-example.component.html').default;
 
   constructor() {}
 }

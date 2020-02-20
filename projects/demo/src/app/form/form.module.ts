@@ -9,8 +9,6 @@ import { DemoFormDocComponent } from './components/form-doc.component';
 import { DemoFormDocJsonComponent } from './components/form-doc-json.component';
 import { DemoFormJsonComponent } from './components/form-json.component';
 import { DemoCustomFigureComponent } from './components/custom-figure.component';
-import { DemoFormSchemaComponent } from './components/form-schema.component';
-import { DemoFormDocSchemaComponent } from './components/form-doc-schema.component';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { DemoCustomInputComponent } from './components/custom-input.component';
 import { FlexyFormsModule } from '@ng-flexy/form';
@@ -30,10 +28,6 @@ const routes: Routes = [
       {
         path: 'json',
         component: DemoFormDocJsonComponent
-      },
-      {
-        path: 'schema',
-        component: DemoFormDocSchemaComponent
       }
     ]
   }
@@ -59,9 +53,7 @@ const routes: Routes = [
     DemoFormDocComponent,
     DemoFormDocInfoComponent,
     DemoFormDocJsonComponent,
-    DemoFormDocSchemaComponent,
     DemoFormJsonComponent,
-    DemoFormSchemaComponent,
     DemoCustomFigureComponent,
     DemoCustomInputComponent
   ],
