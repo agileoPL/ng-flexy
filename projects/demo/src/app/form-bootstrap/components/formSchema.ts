@@ -141,6 +141,9 @@ const RUNSIZE = [
               text: '4'
             }
           ]
+        },
+        validators: {
+          // required: true
         }
       }
     ]
@@ -163,6 +166,9 @@ const RUNSIZE = [
               text: '2'
             }
           ]
+        },
+        validators: {
+          // required: true
         }
       }
     ]
@@ -181,6 +187,9 @@ const RUNSIZE = [
               text: '1'
             }
           ]
+        },
+        validators: {
+          // required: true
         }
       }
     ]
@@ -298,9 +307,6 @@ const TEST_FAIL_PRODUCT_QUESTIONS = {
           name: 'test_fail.product_frozen_notes',
           properties: {
             label: `Note`
-          },
-          validators: {
-            required: true
           }
         }
       ]
@@ -310,9 +316,6 @@ const TEST_FAIL_PRODUCT_QUESTIONS = {
       name: 'test_fail.product_separate',
       properties: {
         label: `Frozen Beef patties separate easily and are free od excessive ice crystals`
-      },
-      validators: {
-        required: true
       }
     },
     {
@@ -323,9 +326,6 @@ const TEST_FAIL_PRODUCT_QUESTIONS = {
           name: 'test_fail.product_separate_notes',
           properties: {
             label: `Note`
-          },
-          validators: {
-            required: true
           }
         }
       ]

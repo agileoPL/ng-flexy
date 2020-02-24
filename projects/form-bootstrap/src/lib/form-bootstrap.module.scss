@@ -112,6 +112,9 @@ fieldset {
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
+  &.fieldset-invalid {
+    border-color: red;
+  }
 }
 
 ng-select {

@@ -5,26 +5,20 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
   selector: 'flexy-form-disclaimer',
   template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
-      <!--<ion-text>-->
-      <!--<p [innerHTML]="text"></p>-->
-      <!--</ion-text>-->
-      <!--<flexy-control-checkbox-->
-      <!--*ngIf="singleChoice"-->
-      <!--[label]="choiceLabel"-->
-      <!--[control]="layoutSchema.formControl"-->
-      <!--(ionChange)="onChange($event)"-->
-      <!--&gt;</flexy-control-checkbox>-->
-      <!--<ion-radio-group-->
-      <!--*ngIf="!singleChoice"-->
-      <!--class="ionic-form-control"-->
-      <!--[name]="layoutSchema.formName"-->
-      <!--[formControl]="layoutSchema.formControl"-->
-      <!--&gt;-->
-      <!--<ion-item *ngFor="let option of options">-->
-      <!--<ion-label>{{ option.text }}</ion-label>-->
-      <!--<ion-radio [slot]="'start'" [value]="option.value"></ion-radio>-->
-      <!--</ion-item>-->
-      <!--</ion-radio-group>-->
+      <p [innerHTML]="text"></p>
+      <flexy-control-checkbox
+        *ngIf="singleChoice"
+        [control]="layoutSchema.formControl"
+        (change)="onChange($event)"
+      ></flexy-control-checkbox>
+      <flexy-control-radio-list
+        *ngIf="!singleChoice"
+        [name]="layoutSchema.formName"
+        [options]="options"
+        [readonly]="readonly"
+        [control]="layoutSchema.formControl"
+      >
+      </flexy-control-radio-list>
     </flexy-form-field>
   `
 })
