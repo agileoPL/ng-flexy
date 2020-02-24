@@ -1,0 +1,537 @@
+{
+  "schemaVersion": 2,
+  "schema": [
+    {
+      "component": "wizard",
+      "children": [
+        {
+          "component": "fieldset",
+          "children": [
+            {
+              "name": "checklist_success",
+              "component": "hidden",
+              "calc": "checklist_success1 or checklist_success2 or checklist_success3 or checklist_success4"
+            },
+            {
+              "name": "grill",
+              "component": "radiolist",
+              "properties": {
+                "label": "Select Grill",
+                "options": [
+                  {
+                    "value": 1,
+                    "text": "Grill 1"
+                  },
+                  {
+                    "value": 2,
+                    "text": "Grill 2"
+                  },
+                  {
+                    "value": 3,
+                    "text": "Grill 3"
+                  },
+                  {
+                    "value": 4,
+                    "text": "Breakfast"
+                  }
+                ]
+              },
+              "validators": {
+                "required": true
+              }
+            },
+            {
+              "name": "platt",
+              "component": "radiolist",
+              "properties": {
+                "label": "Select Platt",
+                "options": [
+                  {
+                    "value": 1,
+                    "text": "Left"
+                  },
+                  {
+                    "value": 2,
+                    "text": "Middle"
+                  },
+                  {
+                    "value": 3,
+                    "text": "Right"
+                  }
+                ]
+              },
+              "validators": {
+                "required": true
+              }
+            },
+            {
+              "name": "product",
+              "component": "radiolist",
+              "properties": {
+                "label": "Select Product",
+                "options": [
+                  {
+                    "value": 1,
+                    "text": "10:1"
+                  },
+                  {
+                    "value": 2,
+                    "text": "4:1"
+                  },
+                  {
+                    "value": 3,
+                    "text": "3:1"
+                  }
+                ]
+              },
+              "validators": {
+                "required": true
+              }
+            },
+            {
+              "name": "cookingtime",
+              "component": "number",
+              "properties": {
+                "label": "Cooking time (seconds)",
+                "description": "Example: 14"
+              },
+              "validators": {
+                "required": true
+              }
+            },
+            {
+              "if": "product = 1",
+              "children": [
+                {
+                  "name": "runsize.r1",
+                  "component": "radiolist",
+                  "properties": {
+                    "label": "Select run size",
+                    "options": [
+                      {
+                        "value": 1,
+                        "text": "1"
+                      },
+                      {
+                        "value": 2,
+                        "text": "2"
+                      },
+                      {
+                        "value": 3,
+                        "text": "3"
+                      },
+                      {
+                        "value": 4,
+                        "text": "4"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "if": "product = 2",
+              "children": [
+                {
+                  "name": "runsize.r2",
+                  "component": "radiolist",
+                  "properties": {
+                    "label": "Select run size",
+                    "options": [
+                      {
+                        "value": 1,
+                        "text": "1"
+                      },
+                      {
+                        "value": 2,
+                        "text": "2"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "if": "product = 3",
+              "children": [
+                {
+                  "name": "runsize.r3",
+                  "component": "radiolist",
+                  "properties": {
+                    "label": "Select run size",
+                    "options": [
+                      {
+                        "value": 1,
+                        "text": "1"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "if": "runsize.r1 = 1 or runsize.r2 = 1 or runsize.r3 = 1",
+          "children": [
+            {
+              "component": "fieldset",
+              "name": "temperature1",
+              "type": "group",
+              "children": [
+                {
+                  "component": "number",
+                  "name": ".temp1",
+                  "properties": {
+                    "label": "Temperature: Patty 1",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "checklist_success1",
+              "component": "hidden",
+              "calc": "$count($filter($map($keys(temperature1), function($item) { $lookup(temperature1, $item) }), function($item) { $item >= 70 and $item <= 77 } )) = 1"
+            }
+          ]
+        },
+        {
+          "if": "runsize.r1 = 2 or runsize.r2 = 2",
+          "children": [
+            {
+              "component": "fieldset",
+              "name": "temperature2",
+              "type": "group",
+              "children": [
+                {
+                  "component": "number",
+                  "name": ".temp1",
+                  "properties": {
+                    "label": "Temperature: Patty 1",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": ".temp2",
+                  "properties": {
+                    "label": "Temperature: Patty 2",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "checklist_success2",
+              "component": "hidden",
+              "calc": "$count($filter($map($keys(temperature2), function($item) { $lookup(temperature2, $item) }), function($item) { $item >= 70 and $item <= 77 } )) >= 1"
+            }
+          ]
+        },
+        {
+          "if": "runsize.r1 = 3",
+          "children": [
+            {
+              "component": "fieldset",
+              "name": "temperature3",
+              "type": "group",
+              "children": [
+                {
+                  "component": "number",
+                  "name": ".temp1",
+                  "properties": {
+                    "label": "Temperature: Patty 1",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": ".temp2",
+                  "properties": {
+                    "label": "Temperature: Patty 2",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": ".temp3",
+                  "properties": {
+                    "label": "Temperature: Patty 3",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "checklist_success3",
+              "component": "hidden",
+              "calc": "$count($filter($map($keys(temperature3), function($item) { $lookup(temperature3, $item) }), function($item) { $item >= 70 and $item <= 77 } )) >= 2"
+            }
+          ]
+        },
+        {
+          "if": "runsize.r1 = 4",
+          "children": [
+            {
+              "component": "fieldset",
+              "name": "temperature4",
+              "type": "group",
+              "children": [
+                {
+                  "component": "number",
+                  "name": ".temp1",
+                  "properties": {
+                    "label": "Temperature: Patty 1",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": ".temp2",
+                  "properties": {
+                    "label": "Temperature: Patty 2",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": ".temp3",
+                  "properties": {
+                    "label": "Temperature: Patty 3",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": ".temp4",
+                  "properties": {
+                    "label": "Temperature: Patty 4",
+                    "placeholder": "--.-",
+                    "description": "Limits t &#8805 70.0 &#176 C and t &#8804 77.0 &#176 C"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "checklist_success4",
+              "component": "hidden",
+              "calc": "$count($filter($map($keys(temperature4), function($item) { $lookup(temperature4, $item) }), function($item) { $item >= 70 and $item <= 77 } )) >= 3"
+            }
+          ]
+        },
+        {
+          "if": "checklist_success = true",
+          "children": [
+            {
+              "component": "fieldset",
+              "children": [
+                {
+                  "component": "disclaimer",
+                  "name": "test_replay",
+                  "properties": {
+                    "label": "Quality Test Success!",
+                    "text": "You can go back and test another product",
+                    "singleChoice": true,
+                    "choiceLabel": "OK"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "if": "checklist_success = false",
+          "children": [
+            {
+              "component": "fieldset",
+              "children": [
+                {
+                  "component": "disclaimer",
+                  "name": "test_fail.acknowledge",
+                  "properties": {
+                    "label": "Quality Test Fail!",
+                    "text": "Please go through the Procedure, Product and Equipment check",
+                    "singleChoice": true
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "if": "checklist_success = false",
+          "children": [
+            {
+              "component": "fieldset",
+              "children": [
+                {
+                  "component": "disclaimer",
+                  "name": "test_fail.procedures_confirm",
+                  "properties": {
+                    "label": "Procedure All",
+                    "text": "- Product is being laid and removed in the proper sequence <br>\n                 - Lower platens are being scraped properly after each run <br>\n                 - Release sheets are being squeegeed between every run and wiped off with grill cloth a least four time every hour"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "if": "checklist_success = false",
+          "children": [
+            {
+              "component": "fieldset",
+              "children": [
+                {
+                  "component": "disclaimer",
+                  "name": "test_fail.product_all",
+                  "properties": {
+                    "label": "Procedure All",
+                    "text": "- Product is used within code <br>\n                 - Product is frozen solidly and shows no signs of thrawing. Beef patties should break cleanly in half <br>\n                 - Frozen Beef patties separate easily and are free od excessive ice crystals"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "if": "checklist_success = false",
+          "children": [
+            {
+              "component": "fieldset",
+              "children": [
+                {
+                  "component": "disclaimer",
+                  "name": "test_fail.product_code",
+                  "properties": {
+                    "label": "Product is used withing code"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "if": "test_fail.product_code = false",
+                  "children": [
+                    {
+                      "component": "textarea",
+                      "name": "test_fail.product_code_notes",
+                      "properties": {
+                        "label": "Note"
+                      },
+                      "validators": {
+                        "required": true
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "disclaimer",
+                  "name": "test_fail.product_frozen",
+                  "properties": {
+                    "label": "Product is frozen solidly and shows no signs of thrawing. Beef patties should break cleanly in half"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "if": "test_fail.product_frozen = false",
+                  "children": [
+                    {
+                      "component": "textarea",
+                      "name": "test_fail.product_frozen_notes",
+                      "properties": {
+                        "label": "Note"
+                      },
+                      "validators": {
+                        "required": true
+                      }
+                    }
+                  ]
+                },
+                {
+                  "component": "disclaimer",
+                  "name": "test_fail.product_separate",
+                  "properties": {
+                    "label": "Frozen Beef patties separate easily and are free od excessive ice crystals"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "if": "test_fail.product_separate = false",
+                  "children": [
+                    {
+                      "component": "textarea",
+                      "name": "test_fail.product_separate_notes",
+                      "properties": {
+                        "label": "Note"
+                      },
+                      "validators": {
+                        "required": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

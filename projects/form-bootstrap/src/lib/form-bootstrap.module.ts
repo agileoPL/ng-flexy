@@ -60,6 +60,9 @@ import { FlexyFormJsonFileComponent } from './components/json-file.component';
 import { FlexyControlJsonFileComponent } from './controls/json-file.component';
 import { FlexyControlHiddenComponent } from './controls/hidden.component';
 import { FlexyFormHiddenComponent } from './components/hidden.component';
+import { FlexyFormWizardComponent } from './components/wizard.component';
+import { FlexyWizardService } from './services/wizard.service';
+import { FlexyFormDisclaimerComponent } from './components/disclaimer.component';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,
@@ -85,7 +88,9 @@ export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   chips: FlexyFormChipsComponent,
   draggableselect: FlexyFormDraggableSelectComponent,
   jsonfile: FlexyFormJsonFileComponent,
-  hidden: FlexyFormHiddenComponent
+  hidden: FlexyFormHiddenComponent,
+  wizard: FlexyFormWizardComponent,
+  disclaimer: FlexyFormDisclaimerComponent
 };
 
 const ENTRY_LAYOUT_COMPONENTS = [
@@ -112,7 +117,9 @@ const ENTRY_LAYOUT_COMPONENTS = [
   FlexyFormChipsComponent,
   FlexyFormDraggableSelectComponent,
   FlexyFormJsonFileComponent,
-  FlexyFormHiddenComponent
+  FlexyFormHiddenComponent,
+  FlexyFormWizardComponent,
+  FlexyFormDisclaimerComponent
 ];
 
 const FORM_CONTROLS = [
@@ -165,7 +172,7 @@ export class FlexyFormsBootstrapModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: FlexyFormsBootstrapModule,
-      providers: [FlexyTreeService]
+      providers: [FlexyTreeService, FlexyWizardService]
     };
   }
 }

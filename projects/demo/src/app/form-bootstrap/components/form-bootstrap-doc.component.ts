@@ -18,6 +18,10 @@ const SUB_PAGES = [
         label: 'Group'
       },
       {
+        url: '/form-bootstrap/wizard',
+        label: 'Wizard'
+      },
+      {
         url: '/form-bootstrap/select2',
         label: 'Select with filter'
       },

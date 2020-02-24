@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { DemoComSelect2Component } from './components/com-select2.component';
 import { DemoFormBootstrapDocSelect2Component } from './components/form-bootstrap-doc-select2.component';
+import { DemoFormBootstrapDocWizardComponent } from './components/form-bootstrap-doc-wizard.component';
+import { DemoFormWizardComponent } from './components/form-bootstrap-wizard.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,10 @@ const routes: Routes = [
       {
         path: 'select2',
         component: DemoFormBootstrapDocSelect2Component
+      },
+      {
+        path: 'wizard',
+        component: DemoFormBootstrapDocWizardComponent
       }
     ]
   }
@@ -56,7 +62,9 @@ const routes: Routes = [
     DemoFormBootstrapDocJsonComponent,
     DemoFormJsonComponent,
     DemoComSelect2Component,
-    DemoFormBootstrapDocSelect2Component
+    DemoFormBootstrapDocSelect2Component,
+    DemoFormBootstrapDocWizardComponent,
+    DemoFormWizardComponent
   ]
 })
 export class DemoFormBootstrapModule {}

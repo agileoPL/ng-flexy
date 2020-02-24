@@ -1,0 +1,31 @@
+<div class="wizard-content">
+  <!--<tabset *ngIf="render">-->
+  <!--&lt;!&ndash;<ng-container&ndash;&gt;-->
+  <!--&lt;!&ndash;*flexyFormIf="{ schema: componentSchema, form: form }"&ndash;&gt;-->
+  <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+  <!--<tab-->
+  <!--*ngFor="let componentSchema of layoutSchema.children; let index = index"-->
+  <!--[heading]="'fdafdsfsd'"-->
+  <!--[id]="componentSchema.id"-->
+  <!--[active]="activeTab === componentSchema.id"-->
+  <!--[disabled]="isEnabled(componentSchema)"-->
+  <!--(selectTab)="setActiveTab($event)"-->
+  <!--&gt;-->
+  <!--</tab>-->
+  <!--&lt;!&ndash;</ng-container>&ndash;&gt;-->
+  <!--</tabset>-->
+
+  <ng-container *ngFor="let schema of layoutSchema.children">
+    <ng-container *flexyFormIf="{ schema: schema, form: form }">
+      <flexy-form-container [schema]="schema.children" [form]="form"></flexy-form-container>
+    </ng-container>
+  </ng-container>
+</div>
+<div class="wizard-buttons">
+  <button class="btn btn-info" (click)="prev()">
+    {{ !currentStep ? 'Cancel' : 'Prev' }}
+  </button>
+  <button class="btn btn-primary" (click)="next()" [disabled]="!currentSlideValid">
+    {{ currentStep === slidesLength ? 'Finish' : 'Next' }}
+  </button>
+</div>
