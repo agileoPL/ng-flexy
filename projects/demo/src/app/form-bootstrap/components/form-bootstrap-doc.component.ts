@@ -3,8 +3,20 @@ import { DemoModules } from '../../common/components/doc-layout.component';
 
 const SUB_PAGES = [
   {
-    url: '/form-bootstrap/json',
-    label: 'Json based'
+    url: '/form-bootstrap/json-expressions',
+    label: 'Expressions, Calc & If'
+  },
+  {
+    url: '/form-bootstrap/json-array',
+    label: 'Arrays'
+  },
+  {
+    url: '/form-bootstrap/json-group',
+    label: 'Groups (Hash maps)'
+  },
+  {
+    url: '/form-bootstrap/json-mixed',
+    label: 'Mixed arrays with groups'
   },
   {
     label: 'Form Components',

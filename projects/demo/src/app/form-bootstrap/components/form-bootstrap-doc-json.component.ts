@@ -1,13 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FlexyFormData, FlexyFormLayoutJson } from '@ng-flexy/form';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'demo-form-doc-json',
   templateUrl: './form-bootstrap-doc-json.component.html'
 })
-export class DemoFormBootstrapDocJsonComponent {
-  jsonContent = require('./form.json');
-
+export class DemoFormBootstrapDocJsonComponent implements OnInit {
   demoComponentContent = require('!!raw-loader!./form-bootstrap-json.component.ts').default;
   demoHtmlContent = require('!!raw-loader!./form-bootstrap-json.component.html').default;
   demoCssContent = require('!!raw-loader!./form-bootstrap-json.component.scss').default;
+
+  title: string;
+  description: string;
+  json: FlexyFormLayoutJson;
+  data: FlexyFormData;
+
+  constructor(private httpClient: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  ngOnInit(): void {
+    this.title = this.route.snapshot.data.title as string;
+    this.description = this.route.snapshot.data.description as string;
+    if (this.route.snapshot.data.json) {
+      this.httpClient
+        .get(this.route.snapshot.data.json)
+        .toPromise()
+        .then(json => {
+          this.json = json as FlexyFormLayoutJson;
+        });
+    }
+    if (this.route.snapshot.data.data) {
+      this.httpClient
+        .get(this.route.snapshot.data.data)
+        .toPromise()
+        .then(data => {
+          this.data = data as FlexyFormData;
+        });
+    } else {
+      this.data = {};
+    }
+  }
 }
