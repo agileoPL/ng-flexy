@@ -65,6 +65,15 @@ const routes: Routes = [
         }
       },
       {
+        path: 'json-ifs',
+        component: DemoFormBootstrapDocJsonComponent,
+        data: {
+          title: 'Ifs',
+          description: 'Create advanced forms with custom components based on json schema',
+          json: '/assets/mock-data/form-ifs.json'
+        }
+      },
+      {
         path: 'select2',
         component: DemoFormBootstrapDocSelect2Component
       }

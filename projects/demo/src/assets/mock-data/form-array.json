@@ -55,7 +55,6 @@
       "items": {
         "component": "text",
         "properties": {
-          "label": "Label",
           "description": "Add label...",
           "readonly": true
         }
