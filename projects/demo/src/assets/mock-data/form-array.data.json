@@ -1,0 +1,21 @@
+{
+  "labels": ["Iron Man", "Spider Man", "Captain America", "Thor"],
+  "users": [
+    {
+      "name": "Tony",
+      "surname": "Stark"
+    },
+    {
+      "name": "Steve",
+      "surname": "Rogers"
+    },
+    {
+      "name": "Bruce",
+      "surname": "Banner"
+    },
+    {
+      "name": "Natasha",
+      "surname": "Romanoff"
+    }
+  ]
+}

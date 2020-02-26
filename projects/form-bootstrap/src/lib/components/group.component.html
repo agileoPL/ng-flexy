@@ -13,7 +13,7 @@
 
   <ng-container *ngIf="layoutSchema && layoutSchema.children">
     <ng-container *ngFor="let item of layoutSchema.children; let index = index">
-      <flexy-form-container [form]="form" [schema]="[item]">
+      <flexy-form-container [form]="form" [schema]="[item]" [ngClass]="{ 'flexy-removable-list': !readonly && removable }">
         <button
           *ngIf="!readonly && removable"
           type="button"

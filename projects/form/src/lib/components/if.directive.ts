@@ -20,16 +20,29 @@ export class FlexyFlexyFormIfDirective implements OnInit {
 
   ngOnInit() {
     if (this.flexyFormIf && (this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if && this.flexyFormIf.form) {
-      this._visibility = this._isEnabled((this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if, this.flexyFormIf.form.currentData);
+      const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
+      this._visibility = this._isEnabled(schema.if, this.flexyFormIf.form.currentData);
+      this._enableFormControl(schema, this._visibility);
       this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
         const lastVisibility = this._visibility;
         this._visibility = this._isEnabled((this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if, data);
+        this._enableFormControl(schema, this._visibility);
         if (lastVisibility !== this._visibility) {
           this._render();
         }
       });
     }
     this._render();
+  }
+
+  private _enableFormControl(schema: FlexyFormFieldLayoutSchema, visibility: boolean) {
+    if (!visibility) {
+      if (schema.formControl.enabled) {
+        schema.formControl.disable();
+      }
+    } else if (schema.formControl.disabled) {
+      schema.formControl.enable();
+    }
   }
 
   private _render() {

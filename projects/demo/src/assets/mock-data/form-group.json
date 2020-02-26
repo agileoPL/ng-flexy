@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 2,
+  "schema": [
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Groups of users"
+      },
+      "children": [
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Users"
+          },
+          "name": "users",
+          "type": "group",
+          "validators": {},
+          "items": {
+            "component": "fieldset",
+            "properties": {
+              "legend": "User {g1}"
+            },
+            "children": [
+              {
+                "component": "text",
+                "properties": {
+                  "label": "First name"
+                },
+                "name": ".name",
+                "validators": {
+                  "required": true
+                }
+              },
+              {
+                "component": "text",
+                "properties": {
+                  "label": "Last name"
+                },
+                "name": ".surname",
+                "validators": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          "indexDef": "{g1}"
+        }
+      ]
+    }
+  ]
+}

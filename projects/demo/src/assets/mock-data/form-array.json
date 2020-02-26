@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 2,
+  "schema": [
+    {
+      "component": "array",
+      "properties": {
+        "legend": "Array of users",
+        "removeAny": true
+      },
+      "name": "users",
+      "type": "array",
+      "validators": {},
+      "items": {
+        "component": "fieldset",
+        "properties": {
+          "legend": "User {%1}"
+        },
+        "children": [
+          {
+            "component": "text",
+            "properties": {
+              "label": "First name"
+            },
+            "name": "name",
+            "validators": {
+              "required": true
+            }
+          },
+          {
+            "component": "text",
+            "properties": {
+              "label": "Last name"
+            },
+            "name": "surname",
+            "validators": {
+              "required": true
+            }
+          }
+        ]
+      },
+      "indexDef": "{%1}"
+    },
+    {
+      "component": "array",
+      "name": "labels",
+      "type": "array",
+      "properties": {
+        "legend": "Array of labels",
+        "removeAny": true
+      },
+      "validators": {
+        "maxItems": 6,
+        "minItems": 1
+      },
+      "items": {
+        "component": "text",
+        "properties": {
+          "description": "Add label...",
+          "readonly": true
+        }
+      },
+      "indexDef": "{%2}"
+    }
+  ]
+}

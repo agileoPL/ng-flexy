@@ -1,0 +1,24 @@
+{
+  "groups": {
+    "avengers": ["Iron Man", "Spider Man", "Captain America", "Thor"],
+    "guardiansOfTheGalaxy": ["Peter Quill", "Gamora", "Drax"]
+  },
+  "users": [
+    {
+      "name": "Tony",
+      "surname": "Stark"
+    },
+    {
+      "name": "Steve",
+      "surname": "Rogers"
+    },
+    {
+      "name": "Bruce",
+      "surname": "Banner"
+    },
+    {
+      "name": "Natasha",
+      "surname": "Romanoff"
+    }
+  ]
+}

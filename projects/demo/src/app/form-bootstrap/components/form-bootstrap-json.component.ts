@@ -1,45 +1,20 @@
-import { ApplicationRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FlexyForm, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJsonSchema } from '@ng-flexy/form';
+import { ApplicationRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FlexyForm, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJson } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-
-const FORM_SCHEMA: FlexyFormLayoutJsonSchema = require('./form.json');
-const FORM_INIT_DATA: FlexyFormData = {
-  groups: {
-    avengers: ['Iron Man', 'Spider Man', 'Captain America', 'Thor'],
-    guardiansOfTheGalaxy: ['Peter Quill', 'Gamora', 'Drax']
-  },
-  users: [
-    {
-      name: 'Tony',
-      surname: 'Stark'
-    },
-    {
-      name: 'Steve',
-      surname: 'Rogers'
-    },
-    {
-      name: 'Bruce',
-      surname: 'Banner'
-    },
-    {
-      name: 'Natasha',
-      surname: 'Romanoff'
-    }
-  ]
-};
 
 @Component({
   selector: 'demo-form-json',
   templateUrl: './form-bootstrap-json.component.html'
 })
 export class DemoFormJsonComponent implements OnInit, OnDestroy {
+  @Input() title: string;
+  @Input() jsonSchema: FlexyFormLayoutJson;
+  @Input() data: FlexyFormData;
+
   flexyForm: FlexyForm;
   errors: any;
-
-  jsonSchema = FORM_SCHEMA;
-  data = FORM_INIT_DATA;
 
   private _changesSubscription: Subscription;
 

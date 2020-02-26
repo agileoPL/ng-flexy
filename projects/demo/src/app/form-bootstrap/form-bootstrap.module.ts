@@ -9,7 +9,7 @@ import { DemoFormBootstrapDocComponent } from './components/form-bootstrap-doc.c
 import { DemoFormBootstrapDocJsonComponent } from './components/form-bootstrap-doc-json.component';
 import { DemoFormJsonComponent } from './components/form-bootstrap-json.component';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
-import { FlexyFormsModule } from '@ng-flexy/form';
+import { FlexyFormLayoutJsonSchema, FlexyFormsModule } from '@ng-flexy/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { DemoComSelect2Component } from './components/com-select2.component';
@@ -25,8 +25,53 @@ const routes: Routes = [
         component: DemoFormBootstrapDocInfoComponent
       },
       {
-        path: 'json',
-        component: DemoFormBootstrapDocJsonComponent
+        path: 'json-expressions',
+        component: DemoFormBootstrapDocJsonComponent,
+        data: {
+          title: 'Expressions, Calc & If',
+          description: 'Create advanced forms with custom components based on json schema',
+          json: '/assets/mock-data/form-expressions.json',
+          data: '/assets/mock-data/form-expressions.data.json'
+        }
+      },
+      {
+        path: 'json-array',
+        component: DemoFormBootstrapDocJsonComponent,
+        data: {
+          title: 'Array',
+          description: 'Create advanced forms with custom components based on json schema',
+          json: '/assets/mock-data/form-array.json',
+          data: '/assets/mock-data/form-array.data.json'
+        }
+      },
+      {
+        path: 'json-group',
+        component: DemoFormBootstrapDocJsonComponent,
+        data: {
+          title: 'Group',
+          description: 'Create advanced forms with custom components based on json schema',
+          json: '/assets/mock-data/form-group.json',
+          data: '/assets/mock-data/form-group.data.json'
+        }
+      },
+      {
+        path: 'json-mixed',
+        component: DemoFormBootstrapDocJsonComponent,
+        data: {
+          title: 'Group',
+          description: 'Create advanced forms with custom components based on json schema',
+          json: '/assets/mock-data/form-mixed.json',
+          data: '/assets/mock-data/form-mixed.data.json'
+        }
+      },
+      {
+        path: 'json-ifs',
+        component: DemoFormBootstrapDocJsonComponent,
+        data: {
+          title: 'Ifs',
+          description: 'Create advanced forms with custom components based on json schema',
+          json: '/assets/mock-data/form-ifs.json'
+        }
       },
       {
         path: 'select2',

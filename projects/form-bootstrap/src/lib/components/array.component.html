@@ -25,12 +25,12 @@
           <flexy-form-container
             [form]="form"
             [schema]="[componentSchema]"
-            [ngClass]="{ 'removable-array-item': !readonly && removable && removeAny }"
+            [ngClass]="{ 'flexy-removable-list': !readonly && removable && removeAny }"
           >
             <button
               *ngIf="!readonly && removable && removeAny"
               type="button"
-              class="btn btn-outline delete-array-item e2e-btn-delete-array-item"
+              class="btn btn-outline delete-item e2e-btn-delete-array-item"
               tooltip="{{ 'FLEXY_FORM_ARRAY_REMOVE_ITEM' | translate }}"
               (click)="removeItem(index)"
             >

@@ -223,9 +223,11 @@ export class FlexyForm extends FlexyLayout {
 
   private checkSchemaData(control: AbstractControl, mode: FlexyFormDataMode) {
     return (
-      mode === FlexyFormDataMode.All ||
-      (mode === FlexyFormDataMode.Dirty && control.dirty) ||
-      (mode === FlexyFormDataMode.Touched && control.touched)
+      control &&
+      control.enabled &&
+      (mode === FlexyFormDataMode.All ||
+        (mode === FlexyFormDataMode.Dirty && control.dirty) ||
+        (mode === FlexyFormDataMode.Touched && control.touched))
     );
   }
 
