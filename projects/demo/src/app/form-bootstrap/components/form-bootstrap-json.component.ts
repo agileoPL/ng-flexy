@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ApplicationRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FlexyForm, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJson } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { debounceTime } from 'rxjs/operators';
@@ -12,6 +12,8 @@ export class DemoFormJsonComponent implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() jsonSchema: FlexyFormLayoutJson;
   @Input() data: FlexyFormData;
+
+  @Output() saved = new EventEmitter<FlexyFormData>();
 
   flexyForm: FlexyForm;
   errors: any;
@@ -46,9 +48,10 @@ export class DemoFormJsonComponent implements OnInit, OnDestroy {
 
   save() {
     if (this.flexyForm && this.flexyForm.valid) {
-      console.log('getSchemaData:', this.flexyForm.getAllData());
-      console.log('getSchemaData:', this.flexyForm.getDirtyData());
-
+      const data = this.flexyForm.getAllData();
+      console.log('All data:', data);
+      console.log('Changed data:', this.flexyForm.getDirtyData());
+      this.saved.emit(data);
       this.toastsService.success('Data saved');
     } else {
       this.toastsService.warning('Data is not valid');
