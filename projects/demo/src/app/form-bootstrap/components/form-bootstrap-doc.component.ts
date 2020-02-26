@@ -19,6 +19,10 @@ const SUB_PAGES = [
     label: 'Mixed arrays with groups'
   },
   {
+    url: '/form-bootstrap/json-viewer',
+    label: 'Viewer'
+  },
+  {
     label: 'Form Components',
     children: [
       {
