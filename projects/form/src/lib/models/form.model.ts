@@ -51,12 +51,15 @@ export class FlexyForm extends FlexyLayout {
 
     this._initCalculated(schema);
 
-    // .pipe(debounceTime(10))
-    this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
-      this.currentData = this.getSchemaData(this.schema);
-      this._currentDataSubject.next(this.currentData);
-      this._calculate();
-    });
+    // jump to next tick
+    setTimeout(() => {
+      // .pipe(debounceTime(10))
+      this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
+        this.currentData = this.getSchemaData(this.schema);
+        this._currentDataSubject.next(this.currentData);
+        this._calculate();
+      });
+    }, 0);
 
     this.originalData = cloneDeep(data);
   }
