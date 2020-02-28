@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FlexyForm } from '../models/form.model';
 import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
 
@@ -27,10 +27,18 @@ import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
 
     <ng-content></ng-content>
     <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schema, form: form }"></ng-container>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  `
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlexyFormContainerComponent {
+export class FlexyFormContainerComponent implements AfterContentInit, AfterViewInit {
   @Input() form: FlexyForm;
   @Input() schema: FlexyFormLayoutSchema[];
+
+  ngAfterContentInit(): void {
+    console.log('Container ngAfterContentInit');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('Container ngAfterViewInit');
+  }
 }

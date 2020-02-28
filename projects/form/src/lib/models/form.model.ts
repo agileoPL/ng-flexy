@@ -7,6 +7,7 @@ import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { HIDDEN_CALC_GROUP_NAME } from '../services/json-mapper.utils';
+import { takeLast } from 'rxjs/operators';
 
 const jsonata = jsonata_;
 
@@ -38,6 +39,10 @@ export class FlexyForm extends FlexyLayout {
     };
   } = {};
 
+  private _calculatedExpresionCache: {
+    [calc: string]: any;
+  } = {};
+
   private changesSubscription: Subscription;
 
   constructor(formGroup: FormGroup, schema: FlexyFormLayoutSchema[], data: FlexyFormData) {
@@ -50,15 +55,30 @@ export class FlexyForm extends FlexyLayout {
     this.schema = schema;
 
     this._initCalculated(schema);
+    this.currentData = this.getSchemaData(this.schema);
 
+    console.log('FORM MODEL');
     // .pipe(debounceTime(10))
-    this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
-      this.currentData = this.getSchemaData(this.schema);
-      this._currentDataSubject.next(this.currentData);
-      this._calculate();
-    });
+    setTimeout(() => {
+      this._checkValueChanges();
+    }, 0);
 
     this.originalData = cloneDeep(data);
+  }
+
+  private _checkValueChanges() {
+    console.log('Init value subsc2');
+    this.changesSubscription = this.formGroup.valueChanges.subscribe(changes => {
+      console.log('changes', changes);
+      this._calculate();
+
+      this.currentData = this.getSchemaData(this.schema);
+      this._currentDataSubject.next(this.currentData);
+      console.log('after calculated', this.currentData);
+      // this.formGroup.enable({onlySelf: true, emitEvent: false});
+      // this.formGroup.enable({onlySelf: true,  emitEvent: false});
+      // this._checkValueChanges();
+    });
   }
 
   private _initCalculated(schema: FlexyFormLayoutSchema[]) {
@@ -78,19 +98,30 @@ export class FlexyForm extends FlexyLayout {
   }
 
   private _calculate() {
+    // let lastUpdated: FormControl = null;
     if (this.calculatedRefs) {
       Object.values(this.calculatedRefs).forEach(calc => {
         let value;
-        try {
-          value = jsonata(calc.calc).evaluate(this.currentData);
-        } catch (e) {
-          value = null;
+        if (calc.calc) {
+          try {
+            if (!this._calculatedExpresionCache[calc.calc]) {
+              this._calculatedExpresionCache[calc.calc] = jsonata(calc.calc);
+            }
+            value = this._calculatedExpresionCache[calc.calc].evaluate(this.currentData);
+          } catch (e) {
+            value = null;
+          }
         }
         if (value !== calc.control.value) {
           calc.control.setValue(value);
           calc.control.markAsDirty();
+          // lastUpdated = calc.control;
+          console.log('set value', calc.calc, value, calc.control.value);
         }
       });
+      // if (lastUpdated) {
+      //   lastUpdated.updateValueAndValidity();
+      // }
     }
   }
 

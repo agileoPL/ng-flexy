@@ -1,0 +1,74 @@
+{
+  "schema": [
+    {
+      "component": "text",
+      "name": "name",
+      "properties": {
+        "label": "Name"
+      },
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "component": "number",
+      "name": "value",
+      "properties": {
+        "label": "Value"
+      },
+      "validators": {
+        "required": true
+      }
+    },
+    {
+      "component": "checkbox",
+      "name": "available",
+      "properties": {
+        "label": "Available"
+      },
+      "validators": {}
+    },
+    {
+      "name": "success",
+      "calc": "available or value",
+      "component": "hidden"
+    },
+    {
+      "if": "success",
+      "children": [
+        {
+          "component": "textarea",
+          "name": "comment",
+          "properties": {
+            "label": "Comment"
+          },
+          "validators": {}
+        }
+      ]
+    },
+    {
+      "name": "position",
+      "component": "radiolist",
+      "properties": {
+        "label": "Position",
+        "options": [
+          {
+            "value": 1,
+            "text": "Left"
+          },
+          {
+            "value": 2,
+            "text": "Middle"
+          },
+          {
+            "value": 3,
+            "text": "Right"
+          }
+        ]
+      },
+      "validators": {
+        "required": true
+      }
+    }
+  ]
+}

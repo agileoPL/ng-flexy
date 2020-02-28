@@ -7,7 +7,7 @@ import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyHttpCacheInterceptor, Fl
 import { FlexyToastsModule } from '@ng-flexy/toasts';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { TabsModule, TooltipModule } from 'ngx-bootstrap';
+import { ModalModule, TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
@@ -88,6 +88,7 @@ const routes: Routes = [
     FlexyFormsBootstrapModule.forRoot(),
     FlexyJsonImpExpModule,
     TabsModule.forRoot(),
+    ModalModule.forRoot(),
     TooltipModule.forRoot(),
     RouterModule.forRoot(routes),
     TranslateModule.forRoot({

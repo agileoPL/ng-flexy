@@ -3,10 +3,12 @@
   {{ description }}
 </p>
 
-<h3>Demo</h3>
-<div class="bd-example">
-  <demo-form-json *ngIf="json && data" [title]="title" [jsonSchema]="json" [data]="data" (saved)="onSaved($event)"></demo-form-json>
-</div>
+<ng-container *ngIf="!showModal">
+  <h3>Demo</h3>
+  <div class="bd-example">
+    <demo-form-json *ngIf="json && data" [title]="title" [jsonSchema]="json" [data]="data" (saved)="onSaved($event)"></demo-form-json>
+  </div>
+</ng-container>
 
 <h3>Json schema</h3>
 <textarea style="width: 100%;height: 300px" [formControl]="jsonControl"></textarea>
@@ -15,3 +17,21 @@
 <textarea style="width: 100%;height: 300px" [formControl]="dataControl"></textarea>
 
 <button class="btn btn-success" type="button" (click)="reload()">Reload</button>
+
+<button class="btn btn-success" type="button" (click)="initModal()">Show in modal</button>
+
+<ng-template #formWebPreviewModalTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Modal Preview
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="flexy-form-vertical">
+      <flexy-form *ngIf="showModal && json" [json]="json" [data]="data"></flexy-form>
+    </form>
+  </div>
+</ng-template>
