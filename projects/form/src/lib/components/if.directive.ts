@@ -26,12 +26,9 @@ export class FlexyFlexyFormIfDirective implements OnInit {
       this._visibility = this._isEnabled(this.flexyFormIf.form.currentData);
       this._enableFormControl(schema, this._visibility);
       this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
-        // const lastVisibility = this._visibility;
         this._visibility = this._isEnabled(data);
         this._enableFormControl(schema, this._visibility);
-        // if (lastVisibility !== this._visibility) {
         this._render();
-        // }
       });
     }
     this._render();
