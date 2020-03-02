@@ -26,29 +26,27 @@ export class FlexyFlexyFormIfDirective implements OnInit {
       this._visibility = this._isEnabled(this.flexyFormIf.form.currentData);
       this._enableFormControl(schema, this._visibility);
       this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
-        const lastVisibility = this._visibility;
+        // const lastVisibility = this._visibility;
         this._visibility = this._isEnabled(data);
         this._enableFormControl(schema, this._visibility);
-        if (lastVisibility !== this._visibility) {
-          this._render();
-        }
+        // if (lastVisibility !== this._visibility) {
+        this._render();
+        // }
       });
     }
     this._render();
   }
 
   private _enableFormControl(schema: FlexyFormFieldLayoutSchema, visibility: boolean) {
-    // if (this.flexyFormIf && this.flexyFormIf.form && this.flexyFormIf.form.isStarted) {
-    //   if (!visibility) {
-    //     if (schema.formControl.enabled) {
-    //       schema.formControl.disable();
-    //       console.log('disable');
-    //     }
-    //   } else if (schema.formControl.disabled) {
-    //     schema.formControl.enable();
-    //     console.log('enable');
-    //   }
-    // }
+    if (this.flexyFormIf && this.flexyFormIf.form && this.flexyFormIf.form.isStarted) {
+      if (!visibility) {
+        if (schema.formControl.enabled) {
+          schema.formControl.disable();
+        }
+      } else if (schema.formControl.disabled) {
+        schema.formControl.enable();
+      }
+    }
   }
 
   private _render() {
@@ -67,17 +65,17 @@ export class FlexyFlexyFormIfDirective implements OnInit {
 
   private _isEnabled(data: FlexyFormData) {
     const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
+    let is = false;
     if (schema.if) {
       if (!this._ifCompiled) {
         this._ifCompiled = jsonata(schema.if);
       }
-      let is = false;
       try {
         is = !!this._ifCompiled.evaluate(data);
       } catch (e) {
         // do nothing
       }
-      return is;
     }
+    return is;
   }
 }
