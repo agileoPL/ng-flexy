@@ -9,8 +9,8 @@ const VIEWER_STORAGE_NAME = 'FBJ-Viewer-data';
 
 @Component({
   selector: 'demo-form-json-viewer',
-  templateUrl: './form-bootstrap-json-viewer.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './form-bootstrap-json-viewer.component.html'
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoFormBootstrapJsonViewerComponent implements OnInit, OnDestroy {
   title: string;

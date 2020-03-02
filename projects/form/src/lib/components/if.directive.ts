@@ -4,7 +4,6 @@ import { Subscription } from 'rxjs';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from '../models/layout-schema.model';
 import { FlexyFormData } from '../models/form.data';
 import * as jsonata_ from 'jsonata';
-import { debounceTime } from 'rxjs/operators';
 
 const jsonata = jsonata_;
 
@@ -22,32 +21,34 @@ export class FlexyFlexyFormIfDirective implements OnInit {
   private _viewRef: any;
 
   ngOnInit() {
-    setTimeout(() => {
-      if (this.flexyFormIf && (this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if && this.flexyFormIf.form) {
-        const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
-        this._visibility = this._isEnabled(this.flexyFormIf.form.currentData);
+    if (this.flexyFormIf && (this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if && this.flexyFormIf.form) {
+      const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
+      this._visibility = this._isEnabled(this.flexyFormIf.form.currentData);
+      this._enableFormControl(schema, this._visibility);
+      this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
+        const lastVisibility = this._visibility;
+        this._visibility = this._isEnabled(data);
         this._enableFormControl(schema, this._visibility);
-        this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
-          const lastVisibility = this._visibility;
-          this._visibility = this._isEnabled(data);
-          this._enableFormControl(schema, this._visibility);
-          if (lastVisibility !== this._visibility) {
-            this._render();
-          }
-        });
-      }
-    });
+        if (lastVisibility !== this._visibility) {
+          this._render();
+        }
+      });
+    }
     this._render();
   }
 
   private _enableFormControl(schema: FlexyFormFieldLayoutSchema, visibility: boolean) {
-    if (!visibility) {
-      if (schema.formControl.enabled) {
-        schema.formControl.disable();
-      }
-    } else if (schema.formControl.disabled) {
-      schema.formControl.enable();
-    }
+    // if (this.flexyFormIf && this.flexyFormIf.form && this.flexyFormIf.form.isStarted) {
+    //   if (!visibility) {
+    //     if (schema.formControl.enabled) {
+    //       schema.formControl.disable();
+    //       console.log('disable');
+    //     }
+    //   } else if (schema.formControl.disabled) {
+    //     schema.formControl.enable();
+    //     console.log('enable');
+    //   }
+    // }
   }
 
   private _render() {
