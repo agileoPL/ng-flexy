@@ -65,6 +65,7 @@ export class FlexyForm extends FlexyLayout {
       this.currentData = this.getSchemaData(this.schema);
       this.isStarted = true;
       this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
+        this.currentData = this.getSchemaData(this.schema);
         this._calculate();
         this.currentData = this.getSchemaData(this.schema);
         this._currentDataSubject.next(this.currentData);
