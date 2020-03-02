@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TabsModule, TooltipModule } from 'ngx-bootstrap';
+import { ModalModule, TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyLoggerModule } from '@ng-flexy/core';
 import { DemoFormBootstrapDocInfoComponent } from './components/form-bootstrap-doc-info.component';
@@ -95,6 +95,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     TabsModule,
     TooltipModule,
+    ModalModule,
     FlexyLoggerModule,
     FlexyLayoutModule,
     FlexyFormsModule,

@@ -24,6 +24,8 @@ export class FlexyForm extends FlexyLayout {
     return this.formGroup.valid;
   }
 
+  isStarted = false;
+
   // TODO to think change to private
   readonly schema: FlexyFormLayoutSchema[];
   readonly formGroup: FormGroup;
@@ -38,6 +40,10 @@ export class FlexyForm extends FlexyLayout {
     };
   } = {};
 
+  private _calculatedExpresionCache: {
+    [calc: string]: any;
+  } = {};
+
   private changesSubscription: Subscription;
 
   constructor(formGroup: FormGroup, schema: FlexyFormLayoutSchema[], data: FlexyFormData) {
@@ -50,15 +56,22 @@ export class FlexyForm extends FlexyLayout {
     this.schema = schema;
 
     this._initCalculated(schema);
-
-    // .pipe(debounceTime(10))
-    this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
-      this.currentData = this.getSchemaData(this.schema);
-      this._currentDataSubject.next(this.currentData);
-      this._calculate();
-    });
-
     this.originalData = cloneDeep(data);
+
+    // jump to next tick
+    setTimeout(() => {
+      this.currentData = this.getSchemaData(this.schema);
+      this._calculate();
+      this.currentData = this.getSchemaData(this.schema);
+      this.isStarted = true;
+      this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
+        this.currentData = this.getSchemaData(this.schema);
+        this._calculate();
+        this.currentData = this.getSchemaData(this.schema);
+        this._currentDataSubject.next(this.currentData);
+      });
+      this._currentDataSubject.next(this.currentData);
+    });
   }
 
   private _initCalculated(schema: FlexyFormLayoutSchema[]) {
@@ -82,7 +95,10 @@ export class FlexyForm extends FlexyLayout {
       Object.values(this.calculatedRefs).forEach(calc => {
         let value;
         try {
-          value = jsonata(calc.calc).evaluate(this.currentData);
+          if (!this._calculatedExpresionCache[calc.calc]) {
+            this._calculatedExpresionCache[calc.calc] = jsonata(calc.calc);
+          }
+          value = this._calculatedExpresionCache[calc.calc].evaluate(this.currentData);
         } catch (e) {
           value = null;
         }

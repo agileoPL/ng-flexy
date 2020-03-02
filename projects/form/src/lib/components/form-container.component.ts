@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FlexyForm } from '../models/form.model';
 import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
 
@@ -28,6 +28,7 @@ import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
     <ng-content></ng-content>
     <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schema, form: form }"></ng-container>
   `
+  // ,
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlexyFormContainerComponent {

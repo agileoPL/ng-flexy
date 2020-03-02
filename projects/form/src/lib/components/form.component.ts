@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlexyForm } from '../models/form.model';
 import { FlexyFormLayoutJson } from '../models/layout-json-schema.model';
 import { FlexyFormData } from '../models/form.data';
@@ -10,6 +10,8 @@ import { cloneDeep } from 'lodash';
   template: `
     <flexy-form-container *ngIf="form" [form]="form" [schema]="form.schema"></flexy-form-container>
   `
+  // ,
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlexyFormComponent implements OnInit {
   @Input() json: FlexyFormLayoutJson;
@@ -20,7 +22,7 @@ export class FlexyFormComponent implements OnInit {
 
   form: FlexyForm;
 
-  constructor(private jsonMapper: FlexyFormJsonMapperService) {}
+  constructor(private jsonMapper: FlexyFormJsonMapperService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.form = this.jsonMapper.createForm(cloneDeep(this.json), this.readonly, this.data);
