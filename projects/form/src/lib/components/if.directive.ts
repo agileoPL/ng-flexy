@@ -17,15 +17,17 @@ export class FlexyFlexyFormIfDirective implements OnInit {
 
   private _visibility = true;
   private _changesSubscription: Subscription;
+  private _ifCompiled: any;
+  private _viewRef: any;
 
   ngOnInit() {
     if (this.flexyFormIf && (this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if && this.flexyFormIf.form) {
       const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
-      this._visibility = this._isEnabled(schema.if, this.flexyFormIf.form.currentData);
+      this._visibility = this._isEnabled(this.flexyFormIf.form.currentData);
       this._enableFormControl(schema, this._visibility);
       this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
         const lastVisibility = this._visibility;
-        this._visibility = this._isEnabled((this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if, data);
+        this._visibility = this._isEnabled(data);
         this._enableFormControl(schema, this._visibility);
         if (lastVisibility !== this._visibility) {
           this._render();
@@ -47,19 +49,31 @@ export class FlexyFlexyFormIfDirective implements OnInit {
 
   private _render() {
     if (this._visibility) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
+      if (!this._viewRef) {
+        this.viewContainer.clear();
+        if (this.templateRef) {
+          this._viewRef = this.viewContainer.createEmbeddedView(this.templateRef);
+        }
+      }
     } else {
       this.viewContainer.clear();
+      this._viewRef = null;
     }
   }
 
-  private _isEnabled(ifExpresion: string, data: FlexyFormData) {
-    let is = false;
-    try {
-      is = !!jsonata(ifExpresion).evaluate(data);
-    } catch (e) {
-      // do nothing
+  private _isEnabled(data: FlexyFormData) {
+    const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
+    if (schema.if) {
+      if (!this._ifCompiled) {
+        this._ifCompiled = jsonata(schema.if);
+      }
+      let is = false;
+      try {
+        is = !!this._ifCompiled.evaluate(data);
+      } catch (e) {
+        // do nothing
+      }
+      return is;
     }
-    return is;
   }
 }

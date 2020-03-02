@@ -7,7 +7,6 @@ import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { HIDDEN_CALC_GROUP_NAME } from '../services/json-mapper.utils';
-import { takeLast } from 'rxjs/operators';
 
 const jsonata = jsonata_;
 
@@ -57,27 +56,19 @@ export class FlexyForm extends FlexyLayout {
     this._initCalculated(schema);
     this.currentData = this.getSchemaData(this.schema);
 
-    console.log('FORM MODEL');
-    // .pipe(debounceTime(10))
+    // jump to next tick
     setTimeout(() => {
       this._checkValueChanges();
-    }, 0);
+    });
 
     this.originalData = cloneDeep(data);
   }
 
   private _checkValueChanges() {
-    console.log('Init value subsc2');
     this.changesSubscription = this.formGroup.valueChanges.subscribe(changes => {
-      console.log('changes', changes);
       this._calculate();
-
       this.currentData = this.getSchemaData(this.schema);
       this._currentDataSubject.next(this.currentData);
-      console.log('after calculated', this.currentData);
-      // this.formGroup.enable({onlySelf: true, emitEvent: false});
-      // this.formGroup.enable({onlySelf: true,  emitEvent: false});
-      // this._checkValueChanges();
     });
   }
 
@@ -98,7 +89,6 @@ export class FlexyForm extends FlexyLayout {
   }
 
   private _calculate() {
-    // let lastUpdated: FormControl = null;
     if (this.calculatedRefs) {
       Object.values(this.calculatedRefs).forEach(calc => {
         let value;
@@ -115,13 +105,8 @@ export class FlexyForm extends FlexyLayout {
         if (value !== calc.control.value) {
           calc.control.setValue(value);
           calc.control.markAsDirty();
-          // lastUpdated = calc.control;
-          console.log('set value', calc.calc, value, calc.control.value);
         }
       });
-      // if (lastUpdated) {
-      //   lastUpdated.updateValueAndValidity();
-      // }
     }
   }
 

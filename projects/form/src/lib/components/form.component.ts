@@ -1,14 +1,4 @@
-import {
-  AfterContentInit,
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlexyForm } from '../models/form.model';
 import { FlexyFormLayoutJson } from '../models/layout-json-schema.model';
 import { FlexyFormData } from '../models/form.data';
@@ -22,7 +12,7 @@ import { cloneDeep } from 'lodash';
   `
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlexyFormComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class FlexyFormComponent implements OnInit {
   @Input() json: FlexyFormLayoutJson;
   @Input() data: FlexyFormData;
   @Input() readonly = false;
@@ -31,18 +21,10 @@ export class FlexyFormComponent implements OnInit, AfterContentInit, AfterViewIn
 
   form: FlexyForm;
 
-  constructor(private jsonMapper: FlexyFormJsonMapperService, private cdr: ChangeDetectorRef) {}
+  constructor(private jsonMapper: FlexyFormJsonMapperService) {}
 
   ngOnInit() {
     this.form = this.jsonMapper.createForm(cloneDeep(this.json), this.readonly, this.data);
     this.created.emit(this.form);
-  }
-
-  ngAfterContentInit(): void {
-    console.log('ngAfterContentInit');
-  }
-
-  ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
   }
 }
