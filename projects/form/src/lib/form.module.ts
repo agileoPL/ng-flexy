@@ -36,10 +36,10 @@ export function provideComponentsFactory(
   layoutMapperService: FlexyLayoutJsonMapperService,
   mapperService: FlexyFormJsonMapperService
 ) {
-  if (options.componentsMap) {
+  if (options && options.componentsMap) {
     layoutMapperService.assignMap(options.componentsMap);
   }
-  if (options.validatorsMap) {
+  if (options && options.validatorsMap) {
     mapperService.assignValidators(options.validatorsMap);
   }
   return true;
