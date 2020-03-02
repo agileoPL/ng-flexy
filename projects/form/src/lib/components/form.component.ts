@@ -9,8 +9,9 @@ import { cloneDeep } from 'lodash';
   selector: 'flexy-form',
   template: `
     <flexy-form-container *ngIf="form" [form]="form" [schema]="form.schema"></flexy-form-container>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  `
+  // ,
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlexyFormComponent implements OnInit {
   @Input() json: FlexyFormLayoutJson;

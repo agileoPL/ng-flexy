@@ -7,6 +7,7 @@ import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { HIDDEN_CALC_GROUP_NAME } from '../services/json-mapper.utils';
+import { debounceTime } from 'rxjs/operators';
 
 const jsonata = jsonata_;
 
@@ -38,6 +39,10 @@ export class FlexyForm extends FlexyLayout {
     };
   } = {};
 
+  private _calculatedExpresionCache: {
+    [calc: string]: any;
+  } = {};
+
   private changesSubscription: Subscription;
 
   constructor(formGroup: FormGroup, schema: FlexyFormLayoutSchema[], data: FlexyFormData) {
@@ -50,18 +55,20 @@ export class FlexyForm extends FlexyLayout {
     this.schema = schema;
 
     this._initCalculated(schema);
+    this.originalData = cloneDeep(data);
 
     // jump to next tick
     setTimeout(() => {
-      // .pipe(debounceTime(10))
+      this.currentData = this.getSchemaData(this.schema);
       this.changesSubscription = this.formGroup.valueChanges.subscribe(() => {
+        this._calculate();
         this.currentData = this.getSchemaData(this.schema);
         this._currentDataSubject.next(this.currentData);
-        this._calculate();
       });
+      this._calculate();
+      this.currentData = this.getSchemaData(this.schema);
+      this._currentDataSubject.next(this.currentData);
     }, 0);
-
-    this.originalData = cloneDeep(data);
   }
 
   private _initCalculated(schema: FlexyFormLayoutSchema[]) {
@@ -82,18 +89,26 @@ export class FlexyForm extends FlexyLayout {
 
   private _calculate() {
     if (this.calculatedRefs) {
+      let isSomeChanges = false;
       Object.values(this.calculatedRefs).forEach(calc => {
         let value;
         try {
-          value = jsonata(calc.calc).evaluate(this.currentData);
+          if (!this._calculatedExpresionCache[calc.calc]) {
+            this._calculatedExpresionCache[calc.calc] = jsonata(calc.calc);
+          }
+          value = this._calculatedExpresionCache[calc.calc].evaluate(this.currentData);
         } catch (e) {
           value = null;
         }
         if (value !== calc.control.value) {
-          calc.control.setValue(value);
+          calc.control.setValue(value); // , {emitEvent: false}
           calc.control.markAsDirty();
+          isSomeChanges = true;
         }
       });
+      // if (isSomeChanges) {
+      //   this.formGroup.updateValueAndValidity({ onlySelf: false, emitEvent: true });
+      // }
     }
   }
 

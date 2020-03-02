@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FlexyFormData, FlexyFormLayoutJson } from '@ng-flexy/form';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FlexySessionStorageService } from '@ng-flexy/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 const VIEWER_STORAGE_NAME = 'FBJ-Viewer-data';
 
@@ -20,10 +21,14 @@ export class DemoFormBootstrapJsonViewerComponent implements OnInit, OnDestroy {
   jsonControl = new FormControl('{}');
   dataControl = new FormControl('{}');
 
+  @ViewChild('formWebPreviewModalTemplate', { static: false }) formWebPreviewModal: TemplateRef<any>;
+  modalRef: BsModalRef;
+  showModal = false;
+
   private _jsonSubscription: Subscription;
   private _dataSubscription: Subscription;
 
-  constructor(private cdr: ChangeDetectorRef, private storage: FlexySessionStorageService) {}
+  constructor(private cdr: ChangeDetectorRef, private storage: FlexySessionStorageService, private modalService: BsModalService) {}
 
   ngOnInit(): void {
     this._initData();
@@ -55,6 +60,11 @@ export class DemoFormBootstrapJsonViewerComponent implements OnInit, OnDestroy {
   onSaved(data: FlexyFormData) {
     this.dataControl.setValue(JSON.stringify(data));
     this.cdr.detectChanges();
+  }
+
+  initModal() {
+    this.showModal = true;
+    this.modalRef = this.modalService.show(this.formWebPreviewModal);
   }
 
   _saveData() {
