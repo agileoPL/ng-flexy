@@ -13,7 +13,9 @@ export const FLEXY_COMPONENT_EXTRA_VAL = new InjectionToken<FlexyLayoutComponent
 const PUBLIC_COMPONENTS = [FlexyLayoutComponent, FlexyContainerComponent, FlexyContainerDirective, FlexyAttributesDirective];
 
 export function provideComponentsFactory(map: FlexyLayoutComponentMap, mapperService: FlexyLayoutJsonMapperService) {
-  mapperService.assignMap(map);
+  if (map && mapperService) {
+    mapperService.assignMap(map);
+  }
   return true;
 }
 
