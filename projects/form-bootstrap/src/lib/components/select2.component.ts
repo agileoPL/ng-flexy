@@ -1,14 +1,16 @@
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
-import { SelectOption } from '@ng-flexy/form';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { FlexyFormFieldLayoutSchema, SelectOption, SelectOptionMapper } from '@ng-flexy/form';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { get, template } from 'lodash';
+import { template } from 'lodash';
 import { FlexyLoggerService } from '@ng-flexy/core';
+import * as jsonata_ from 'jsonata';
+
+const jsonata = jsonata_;
 
 @Component({
   selector: 'flexy-form-select2',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
@@ -21,6 +23,7 @@ import { FlexyLoggerService } from '@ng-flexy/core';
       <div class="input-group">
         <div class="input-group-addon" *ngIf="prefix">{{ prefix }}</div>
         <flexy-control-select2
+          *ngIf="options"
           [control]="layoutSchema.formControl"
           [default]="default"
           [readonly]="readonly"
@@ -50,7 +53,7 @@ export class FlexyFormSelect2Component implements OnInit {
 
   @Input() options: SelectOption[];
   @Input() optionsUrl: string;
-  @Input() optionsMapper: { value: string; text: string; prefixHtml?: string };
+  @Input() optionsMapper: SelectOptionMapper | string;
 
   @Input() prefix: string;
   @Input() suffix: string;
@@ -61,12 +64,7 @@ export class FlexyFormSelect2Component implements OnInit {
 
   loading: boolean;
 
-  constructor(
-    private httpClient: HttpClient,
-    private logger: FlexyLoggerService,
-    private cdr: ChangeDetectorRef,
-    private appRef: ApplicationRef
-  ) {}
+  constructor(private httpClient: HttpClient, private logger: FlexyLoggerService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (!this.readonly) {
@@ -81,40 +79,82 @@ export class FlexyFormSelect2Component implements OnInit {
         .pipe(
           map(data => {
             const options: SelectOption[] = [];
-
-            if (data && Array.isArray(data)) {
-              data.forEach(item => {
-                options.push({
-                  text: '' + this.mapper(item, 'text'),
-                  value: this.mapper(item, 'value'),
-                  prefixHtml: this.optionsMapper.prefixHtml ? '' + this.mapper(item, 'prefixHtml') : void 0
-                });
-              });
+            if (data && Array.isArray(data) && this.optionsMapper) {
+              if (typeof this.optionsMapper === 'string') {
+                try {
+                  const compiled = jsonata(this.optionsMapper);
+                  const jsonOptions = compiled.evaluate({ optionsData: data }) as SelectOption[];
+                  console.log('jsonOptions', jsonOptions);
+                  if (
+                    jsonOptions &&
+                    Array.isArray(jsonOptions) &&
+                    jsonOptions.length &&
+                    jsonOptions[0].hasOwnProperty('text') &&
+                    jsonOptions[0].hasOwnProperty('value')
+                  ) {
+                    options.push(...jsonOptions);
+                  } else {
+                    console.warn('Wrong jsonata expresion', this.optionsMapper);
+                  }
+                } catch (e) {
+                  console.error('Wrong jsonata expresion', this.optionsMapper, e);
+                }
+              } else {
+                options.push(...this._optionsMapper(this.optionsMapper as SelectOptionMapper, data));
+              }
+            } else if (!this.optionsMapper) {
+              console.warn('Wrong optionsMapper', this.optionsMapper);
             }
             return options;
           })
         )
         .subscribe(options => {
           this.loading = false;
+          console.log(options);
           this.options = options;
+
           this.cdr.detectChanges();
           // this.appRef.tick();
         });
     }
   }
 
-  private mapper(item: object, key: string): any {
-    const mapper: string = this.optionsMapper[key];
+  private _optionsJsonataMapper(compiled, data) {
+    const options: SelectOption[] = [];
+    if (data && data.length) {
+      data.forEach(item => {
+        options.push(compiled(item));
+      });
+    }
+    return options;
+  }
+
+  // compiled.evaluate(this.currentData);
+
+  private _optionsMapper(optionsMapper: SelectOptionMapper, data: any[]) {
+    const textTemplate = this._mapperTemplate(optionsMapper.text);
+    const valueTemplate = this._mapperTemplate(optionsMapper.value);
+    const prefixTemplate = this._mapperTemplate(optionsMapper.prefixHtml);
+    const options: SelectOption[] = [];
+    if (data && data.length) {
+      data.forEach(item => {
+        options.push({
+          text: item && textTemplate ? textTemplate(item) : '' + item[optionsMapper.text],
+          value: item && valueTemplate ? valueTemplate(item) : item[optionsMapper.value],
+          prefixHtml: item && prefixTemplate ? prefixTemplate(item) : item[optionsMapper.prefixHtml]
+        });
+      });
+    }
+    return options;
+  }
+
+  private _mapperTemplate(mapper: string): (val: string) => string {
     if (!mapper) {
-      this.logger.warn('Wrong mapper configuration for key', key, this.optionsMapper);
       return;
     }
     // check if template?
     if (mapper.includes('<%')) {
-      const compiled = template(mapper);
-      return compiled(item);
-    } else {
-      return get(item, mapper);
+      return template(mapper);
     }
   }
 }

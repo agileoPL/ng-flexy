@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FlexyForm, FlexyFormFieldType, FlexyFormJsonMapperService, FlexyFormLayoutJsonSchema } from '@ng-flexy/form';
+import { FlexyForm, FlexyFormFieldType } from '@ng-flexy/form';
 
 @Component({
   selector: 'demo-com-select2',
   template: `
     <form class="flexy-form-vertical">
-      <flexy-layout [schema]="flexyForm.schema"></flexy-layout>
+      <flexy-form [json]="jsonSchema" [data]="data" (created)="onCreated($event)"></flexy-form>
     </form>
   `
 })
 export class DemoComSelect2Component implements OnInit {
   flexyForm: FlexyForm;
 
-  constructor(private formJsonMapperService: FlexyFormJsonMapperService) {}
+  data = {
+    value1: 1,
+    value2: 2,
+    value3: 3
+  };
 
-  ngOnInit(): void {
-    const jsonSchema: FlexyFormLayoutJsonSchema[] = [
+  jsonSchema = {
+    schema: [
       {
         name: 'value1',
-        type: FlexyFormFieldType.String,
         component: 'select2',
         properties: {
           label: 'Select 1',
@@ -47,7 +50,6 @@ export class DemoComSelect2Component implements OnInit {
       },
       {
         name: 'value2',
-        type: FlexyFormFieldType.String,
         component: 'select2',
         properties: {
           label: 'Select 2',
@@ -72,12 +74,29 @@ export class DemoComSelect2Component implements OnInit {
             prefixHtml: '<img src="<%= thumbnailUrl %>" width="30"/> Title: '
           }
         }
+      },
+      {
+        name: 'value4',
+        component: 'select2',
+        properties: {
+          label: 'Select 4',
+          description: 'Select with jasonata mapping & filtering',
+          optionsUrl: 'https://jsonplaceholder.typicode.com/albums',
+          optionsMapper: `$map(optionsData, function($v, $i, $a) {({"text": $v.title, "value": $v.id})})`
+        }
       }
-    ];
-    this.flexyForm = this.formJsonMapperService.createForm({ schemaVersion: 1, schema: jsonSchema }, false, {
-      value1: 1,
-      value2: 2,
-      value3: 3
-    });
+    ]
+  };
+
+  // {"t": 'Item ' & ($i+1) & ' of ' & $count($a) & ': ' & $v}
+
+  constructor() {}
+
+  ngOnInit(): void {
+    console.log('EEEE', this.jsonSchema);
+  }
+
+  onCreated(form) {
+    this.flexyForm = form;
   }
 }
