@@ -81,7 +81,7 @@
     "jszip": "^3.2.2",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
-    "ngx-bootstrap": "^5.1.0",
+    "ngx-bootstrap": "^5.6.0",
     "ngx-chips": "^2.0.2",
     "ngx-nvd3": "^1.0.9",
     "rxjs": "~6.5.4",

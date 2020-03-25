@@ -9,7 +9,7 @@ import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } f
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TooltipModule } from 'ngx-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { cloneDeep, set } from 'lodash';
 import { FlexyForm } from '@ng-flexy/form';
 import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from './form-bootstrap.module';

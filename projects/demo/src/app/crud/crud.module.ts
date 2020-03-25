@@ -5,7 +5,7 @@ import { DemoCrudDocComponent } from './crud-doc.component';
 import { AppCommonModule } from '../common/common.module';
 import { DemoListComponent } from './list.component';
 import { FlexyCrudModule } from '@ng-flexy/crud';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { UsersService } from '../core/services/users.service';
 
 const routes: Routes = [

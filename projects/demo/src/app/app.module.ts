@@ -7,7 +7,6 @@ import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyHttpCacheInterceptor, Fl
 import { FlexyToastsModule } from '@ng-flexy/toasts';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { ModalModule, TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
@@ -16,6 +15,9 @@ import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from '@ng-
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 export function translateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());

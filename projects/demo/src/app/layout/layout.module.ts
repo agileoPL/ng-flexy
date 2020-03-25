@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyLoggerModule } from '@ng-flexy/core';
 import { DemoLayoutDocInfoComponent } from './components/layout-doc-info.component';

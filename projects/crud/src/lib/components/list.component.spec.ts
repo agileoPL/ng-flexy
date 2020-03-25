@@ -9,7 +9,7 @@ import { HoverActionsFilterPipe } from '../pipes/hover-actions-filter.pipe';
 import { FlexyData, FlexyLoggerService, FlexyModel, FlexySessionStorageService } from '@ng-flexy/core';
 import { FieldValuePipe } from '../pipes/list-field-value.pipe';
 import { OrderByFieldLabelPipe } from '../pipes/list-order-by-field-label.pipe';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FlexyListField } from '../models/list-field.data';
 import { FlexyListFavourites } from '../models/list-favourites.data';
 import { FlexyListToggleable } from '../models/list-toggleable.data';

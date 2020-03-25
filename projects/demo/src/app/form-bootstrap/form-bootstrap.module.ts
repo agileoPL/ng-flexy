@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ModalModule, TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyLoggerModule } from '@ng-flexy/core';
 import { DemoFormBootstrapDocInfoComponent } from './components/form-bootstrap-doc-info.component';
@@ -15,6 +14,9 @@ import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { DemoComSelect2Component } from './components/com-select2.component';
 import { DemoFormBootstrapDocSelect2Component } from './components/form-bootstrap-doc-select2.component';
 import { DemoFormBootstrapJsonViewerComponent } from './components/form-bootstrap-json-viewer.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 const routes: Routes = [
   {

@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FlexyFormData, FlexyFormLayoutJson } from '@ng-flexy/form';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FlexySessionStorageService } from '@ng-flexy/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 const VIEWER_STORAGE_NAME = 'FBJ-Viewer-data';
 

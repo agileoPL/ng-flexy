@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FlexyGraphsModule } from '@ng-flexy/graphs';
 import { AppCommonModule } from '../common/common.module';
 import { DemoGraphsDocComponent } from './graphs-doc.component';

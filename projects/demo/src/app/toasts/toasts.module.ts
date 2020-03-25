@@ -5,7 +5,7 @@ import { DemoToastsDocComponent } from './toasts-doc.component';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyToastsModule } from '../../../../toasts/src/lib/toasts.module';
 import { DemoToastsTypesComponent } from './toasts-types.component';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 const routes: Routes = [
   {
