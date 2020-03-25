@@ -10,4 +10,5 @@ export interface SelectOptionData {
   value: any;
   text: string;
   prefixHtml?: string;
+  _raw?: any;
 }

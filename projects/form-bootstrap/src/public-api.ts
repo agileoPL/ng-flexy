@@ -55,5 +55,6 @@ export { FlexyTreeModelNode } from './lib/models/tree-model-node.model';
 export { TreeNode } from './lib/models/tree-node.model';
 
 export { FlexyTreeService } from './lib/services/tree.service';
+export { FlexyFormControlOptionsService } from './lib/services/form-control-options.service';
 
 export * from './lib/form-bootstrap.module';
