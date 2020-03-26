@@ -18,6 +18,7 @@ import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export function translateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());
@@ -93,6 +94,7 @@ const routes: Routes = [
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     RouterModule.forRoot(routes),
+    BsDatepickerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
