@@ -3,10 +3,10 @@ import { FlexyFormFieldLayoutSchema, SelectOption, SelectOptionMapper } from '@n
 import { HttpClient } from '@angular/common/http';
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyFormControlOptionsService } from '../services/form-control-options.service';
+import { FlexyFormAbstractOptionsComponent } from './abstract-options.component';
 
 @Component({
   selector: 'flexy-form-select2',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
@@ -30,7 +30,7 @@ import { FlexyFormControlOptionsService } from '../services/form-control-options
           [addItem]="addItem"
           [hideSelected]="hideSelected"
           [enableSearchByValue]="enableSearchByValue"
-          [rawIdKey]="rawIdKey"
+          [optionsRawId]="optionsRawId"
           [loading]="loading"
         ></flexy-control-select2>
         <div class="input-group-addon" *ngIf="suffix">{{ suffix }}</div>
@@ -38,7 +38,7 @@ import { FlexyFormControlOptionsService } from '../services/form-control-options
     </flexy-form-field>
   `
 })
-export class FlexyFormSelect2Component implements OnInit {
+export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
 
   @Input() default: string;
@@ -49,11 +49,10 @@ export class FlexyFormSelect2Component implements OnInit {
   @Input() labelIcon: string;
   @Input() enableSearchByValue: boolean;
 
-  @Input() rawIdKey: string;
-
   @Input() options: SelectOption[];
   @Input() optionsUrl: string;
   @Input() optionsMapper: SelectOptionMapper | string;
+  @Input() optionsRawId: string;
 
   @Input() prefix: string;
   @Input() suffix: string;
@@ -62,14 +61,14 @@ export class FlexyFormSelect2Component implements OnInit {
   @Input() addItem: boolean;
   @Input() hideSelected: boolean;
 
-  loading: boolean;
-
   constructor(
     private httpClient: HttpClient,
     private logger: FlexyLoggerService,
     private cdr: ChangeDetectorRef,
-    private optionsService: FlexyFormControlOptionsService
-  ) {}
+    protected optionsService: FlexyFormControlOptionsService
+  ) {
+    super(optionsService);
+  }
 
   ngOnInit() {
     if (!this.readonly) {
@@ -77,15 +76,8 @@ export class FlexyFormSelect2Component implements OnInit {
         this.description = '(default: ' + this.default + ')';
       }
     }
-    if (this.optionsUrl) {
-      this.loading = true;
-      this.optionsService.loadOptions(this.optionsUrl, this.optionsMapper).subscribe(options => {
-        this.loading = false;
-        this.options = options;
-        this.cdr.detectChanges();
-      });
-    } else {
-      this.loading = false;
-    }
+    this.initOptions().then(() => {
+      this.cdr.detectChanges();
+    });
   }
 }

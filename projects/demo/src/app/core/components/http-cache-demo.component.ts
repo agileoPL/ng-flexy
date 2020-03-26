@@ -16,7 +16,7 @@ export class DemoHttpCacheComponent {
   loadData(withCache = true) {
     this.toastsService.warning('Start loading');
     this.httpClient
-      .get('https://jsonplaceholder.typicode.com/posts', {
+      .get('/assets/mock-data/posts.json', {
         headers: withCache ? { 'cache-control': 'cache' } : {}
       })
       .subscribe(data => {
@@ -27,7 +27,7 @@ export class DemoHttpCacheComponent {
   addPost() {
     this.httpClient
       .post(
-        'https://jsonplaceholder.typicode.com/posts',
+        '/assets/mock-data/posts.json',
         {
           name: 'alias odio sit',
           email: 'Lew@alysha.tv',

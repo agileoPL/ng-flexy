@@ -283,3 +283,13 @@ flexy-form-draggable-select {
     }
   }
 }
+
+flexy-control-radio-list,
+flexy-control-checkbox-list {
+  & > .input-group.form-control {
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+    display: block;
+  }
+}

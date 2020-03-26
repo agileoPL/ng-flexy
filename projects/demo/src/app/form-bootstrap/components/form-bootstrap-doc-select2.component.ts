@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './form-bootstrap-doc-select2.component.html'
 })
 export class DemoFormBootstrapDocSelect2Component {
-  demoComponentContent = require('!!raw-loader!./com-select2.component.ts').default;
+  demoComponentContent = require('!!raw-loader!./com-options-able.component.ts').default;
 }

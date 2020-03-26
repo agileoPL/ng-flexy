@@ -2,16 +2,18 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SelectOption } from '@ng-flexy/form';
+import { findRawValue, prepareControlValue } from '../services/form-control-raw-options.utils';
 
 @Component({
   template: `
     <div *ngIf="!readonly" class="input-group form-control">
       <div *ngFor="let option of options; let i = index" class="checkboxItem">
+        <span *ngIf="option.prefixHtml" [innerHTML]="option.prefixHtml"></span>
         <input
           type="checkbox"
           [id]="name + '-' + option.value"
           [value]="option.value"
-          [formControl]="localGroupControl.get(option.value)"
+          [formControl]="localGroupControl.get('opt' + option.value)"
         /><label for="{{ name + '-' + option.value }}">{{ option.text }}</label>
       </div>
     </div>
@@ -25,6 +27,7 @@ export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
   @Input() name: string;
   @Input() default: string[];
   @Input() options: SelectOption[];
+  @Input() optionsRawId: string;
   @Input() readonly: boolean;
 
   @Output() changed = new EventEmitter<string[]>();
@@ -57,25 +60,12 @@ export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
   private initCheckboxesGroup() {
     const formConfig = {};
     if (this.options) {
-      const values = this.control.value || [];
+      const values = findRawValue(this.optionsRawId, this.control.value || [], this.options);
       this.options.forEach(option => {
-        formConfig[option.value] = [values.includes(option.value), []];
+        formConfig['opt' + option.value] = [values.includes(option.value), []];
       });
     }
     this.localGroupControl = this.formBuilder.group(formConfig);
-
-    this.controlChangesSubscription = this.control.valueChanges.subscribe(values => {
-      if (this.localValuesChangesSubscription) {
-        this.localValuesChangesSubscription.unsubscribe();
-      }
-
-      this.options.forEach(option => {
-        this.localGroupControl.get(option.value).setValue(values && values.includes(option.value) ? true : null);
-      });
-
-      this.subscribeLocalChanges();
-    });
-
     this.subscribeLocalChanges();
   }
 
@@ -104,8 +94,13 @@ export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
   }
 
   private updateControl() {
-    const val = this.options.filter(option => !!this.localGroupControl.get(option.value).value).map(option => option.value);
-    this.control.setValue(val.length ? val : null);
+    const val = this.options.filter(option => !!this.localGroupControl.get('opt' + option.value).value).map(option => option.value);
+    const value = prepareControlValue(
+      this.optionsRawId,
+      this.options.filter(item => val.includes(item.value))
+    );
+
+    this.control.setValue(value && value.length ? value : null);
     this.control.markAsDirty();
     this.setValueLabels();
     this.changed.emit(this.control.value);

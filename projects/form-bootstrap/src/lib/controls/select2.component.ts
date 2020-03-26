@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectOption, SelectOptionData } from '@ng-flexy/form';
-import { cloneDeep } from 'lodash';
+
+import { findRawValue, prepareControlValue } from '../services/form-control-raw-options.utils';
 
 @Component({
   template: `
@@ -39,6 +40,7 @@ import { cloneDeep } from 'lodash';
 export class FlexyControlSelect2Component implements OnInit, OnChanges {
   @Input() control: FormControl;
   @Input() options: SelectOption[];
+  @Input() optionsRawId: string;
   @Input() default: string;
   @Input() readonly: boolean;
   @Input() multiple: boolean;
@@ -46,8 +48,6 @@ export class FlexyControlSelect2Component implements OnInit, OnChanges {
   @Input() placeholder: string;
   @Input() hideSelected: boolean;
   @Input() enableSearchByValue: boolean;
-
-  @Input() rawIdKey: string;
 
   @Input() loading = false; // no	You can set the loading state from the outside (e.g. async items loading)
   @Input() loadingText = 'Loading...'; // Loading...	no	Set custom text when for loading items
@@ -62,19 +62,7 @@ export class FlexyControlSelect2Component implements OnInit, OnChanges {
   optionsData: SelectOptionData[];
 
   ngOnInit() {
-    this.selectControl = new FormControl(this._findValue());
-  }
-
-  private _findValue() {
-    if (this.rawIdKey) {
-      if (this.control.value && typeof this.control.value === 'object' && this.control.value[this.rawIdKey]) {
-        const el = this.options.find(item => item._raw[this.rawIdKey] === this.control.value[this.rawIdKey]);
-        return el.value;
-      }
-    } else {
-      return this.control.value;
-    }
-    return;
+    this.selectControl = new FormControl(findRawValue(this.optionsRawId, this.control.value, this.options));
   }
 
   ngOnChanges(changes) {
@@ -102,17 +90,7 @@ export class FlexyControlSelect2Component implements OnInit, OnChanges {
   }
 
   onChange(data: SelectOptionData | SelectOptionData[]) {
-    const cloned = cloneDeep(data);
-    if (this.rawIdKey) {
-      if (Array.isArray(cloned)) {
-        cloned.forEach(item => {
-          item.value = item._raw;
-        });
-      } else {
-        (cloned as SelectOptionData).value = (cloned as SelectOptionData)._raw;
-      }
-    }
-    const value = cloned ? (Array.isArray(cloned) ? cloned.map(el => el.value) : cloned.value) : null;
+    const value = prepareControlValue(this.optionsRawId, data);
     this.control.setValue(value);
     this.changed.emit(value);
   }
