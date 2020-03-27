@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FlexyFormFieldLayoutSchema, SelectOption, SelectOptionMapper } from '@ng-flexy/form';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FlexyForm, FlexyFormFieldLayoutSchema, SelectOption, SelectOptionMapper } from '@ng-flexy/form';
 import { HttpClient } from '@angular/common/http';
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyFormControlOptionsService } from '../services/form-control-options.service';
-import { FlexyFormAbstractOptionsComponent } from './abstract-options.component';
+import { FlexyFormAbstractOptionsComponent, FlexyFormOptionsFilter } from './abstract-options.component';
 
 @Component({
   selector: 'flexy-form-select2',
@@ -38,8 +38,9 @@ import { FlexyFormAbstractOptionsComponent } from './abstract-options.component'
     </flexy-form-field>
   `
 })
-export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent implements OnInit {
+export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent implements OnInit, OnDestroy {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
+  @Input() form: FlexyForm;
 
   @Input() default: string;
   @Input() label: string;
@@ -53,6 +54,7 @@ export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent
   @Input() optionsUrl: string;
   @Input() optionsMapper: SelectOptionMapper | string;
   @Input() optionsRawId: string;
+  @Input() optionsFilter: FlexyFormOptionsFilter;
 
   @Input() prefix: string;
   @Input() suffix: string;
@@ -79,5 +81,11 @@ export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent
     this.initOptions().then(() => {
       this.cdr.detectChanges();
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.changesSubscription) {
+      this.changesSubscription.unsubscribe();
+    }
   }
 }

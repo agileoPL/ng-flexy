@@ -55,7 +55,7 @@ function prepareForm(componentName = 'select2') {
           optionsMapper: {
             value: 'id',
             text: '<%= title %>',
-            prefixHtml: '<img src="<%= thumbnailUrl %>" width="30"/> Title: '
+            prefixHtml: '<img src="<%= thumbnailUrl %>" width="30"/> '
           }
         }
       },
@@ -122,6 +122,49 @@ function prepareForm(componentName = 'select2') {
               $mapped := $map(optionsData, function($v, $i, $a) {({"text": $v.title, "value": $v.id, "_raw": $v})});
               $filter($mapped, function($v, $i, $a) { $i < 10})
             )`
+        }
+      },
+      {
+        name: 'albumId',
+        component: componentName,
+        properties: {
+          label: 'Album',
+          description: 'Select album',
+          optionsUrl: '/assets/mock-data/albums.json',
+          optionsMapper: {
+            value: 'id',
+            text: '<%= title %>'
+          }
+        }
+      },
+      {
+        name: 'albumPhotoId',
+        component: componentName,
+        properties: {
+          label: 'Photos selected album',
+          optionsRawId: 'id',
+          description: 'Select photo',
+          optionsUrl: '/assets/mock-data/photos-100.json',
+          optionsMapper: {
+            value: 'id',
+            text: '<%= title %>'
+          },
+          optionsFilter: {
+            observableFields: ['albumId', 'albumPhotoSearchTerm'],
+            filter: `$filter(optionsList, function($v, $i, $a) {
+              ($v._raw.albumId = observableFields.albumId)
+              and ($not(observableFields.albumPhotoSearchTerm)
+                or $contains($v._raw.title, $string(observableFields.albumPhotoSearchTerm))
+              )
+            })`
+          }
+        }
+      },
+      {
+        name: 'albumPhotoSearchTerm',
+        component: 'text',
+        properties: {
+          label: 'Search photos'
         }
       }
     ]
