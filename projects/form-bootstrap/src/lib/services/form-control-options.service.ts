@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { SelectOption, SelectOptionMapper } from '@ng-flexy/form';
 import { map } from 'rxjs/operators';
-import { template } from 'lodash';
+import { template, get } from 'lodash';
 
 import * as jsonata_ from 'jsonata';
 
@@ -67,9 +67,9 @@ export class FlexyFormControlOptionsService {
     if (data && data.length) {
       data.forEach(item => {
         options.push({
-          text: item && textTemplate ? textTemplate(item) : '' + item[optionsMapper.text],
-          value: item && valueTemplate ? valueTemplate(item) : item[optionsMapper.value],
-          prefixHtml: item && prefixTemplate ? prefixTemplate(item) : item[optionsMapper.prefixHtml],
+          text: item && textTemplate ? textTemplate(item) : '' + get(item, optionsMapper.text),
+          value: item && valueTemplate ? valueTemplate(item) : get(item, optionsMapper.value),
+          prefixHtml: item && prefixTemplate ? prefixTemplate(item) : get(item, optionsMapper.prefixHtml),
           _raw: item
         });
       });
