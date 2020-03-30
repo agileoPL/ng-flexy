@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FlexyFormFieldLayoutSchema, SelectOptionMapper } from '@ng-flexy/form';
 import { SelectOption, FlexyFormControlOptionsService, FlexyFormAbstractOptionsComponent } from '@ng-flexy/form';
 import { FlexyLoggerService } from '@ng-flexy/core';
+import { FlexyFormOptionsFilter } from '../../../../form/src/lib/components/abstract-options.component';
 
 @Component({
   selector: 'flexy-form-radio-list',
@@ -35,6 +36,7 @@ export class FlexyFormRadioListComponent extends FlexyFormAbstractOptionsCompone
   @Input() options: SelectOption[];
   @Input() optionsUrl: string;
   @Input() optionsMapper: SelectOptionMapper | string;
+  @Input() optionsFilter: FlexyFormOptionsFilter;
   @Input() optionsRawId: string;
 
   @Input() label: string;

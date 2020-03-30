@@ -59,8 +59,8 @@ export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent
   @Input() options: SelectOption[];
   @Input() optionsUrl: string;
   @Input() optionsMapper: SelectOptionMapper | string;
-  @Input() optionsRawId: string;
   @Input() optionsFilter: FlexyFormOptionsFilter;
+  @Input() optionsRawId: string;
 
   @Input() prefix: string;
   @Input() suffix: string;
