@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SelectOption, SelectOptionData } from '@ng-flexy/form';
-
-import { findRawValue, prepareControlValue } from '../services/form-control-raw-options.utils';
+import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } from '@ng-flexy/form';
 
 @Component({
   template: `

@@ -1,5 +1,5 @@
-import { SelectOption, SelectOptionData } from '@ng-flexy/form';
 import { cloneDeep } from 'lodash';
+import { SelectOption, SelectOptionData } from '../models/select-option.data';
 
 export function findRawValue(rawIdKey: string, controlValue: any | any[], options: SelectOption[]): any | any[] {
   if (rawIdKey) {

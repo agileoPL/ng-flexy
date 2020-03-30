@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FlexyLoggerService } from '@ng-flexy/core';
-import { SelectOption, SelectOptionMapper } from '@ng-flexy/form';
 import { map } from 'rxjs/operators';
 import { template, get } from 'lodash';
-
+import { SelectOption, SelectOptionMapper } from '../models/select-option.data';
 import * as jsonata_ from 'jsonata';
 
 const jsonata = jsonata_;

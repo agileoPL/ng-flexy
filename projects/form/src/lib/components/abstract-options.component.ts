@@ -1,9 +1,10 @@
-import { FlexyForm, SelectOption, SelectOptionMapper } from '@ng-flexy/form';
 import { FlexyFormControlOptionsService } from '../services/form-control-options.service';
 import { Subscription } from 'rxjs';
 import { get, set } from 'lodash';
 import * as jsonata_ from 'jsonata';
 import { FlexyLoggerService } from '@ng-flexy/core';
+import { FlexyForm } from '../models/form.model';
+import { SelectOption, SelectOptionMapper } from '../models/select-option.data';
 
 const jsonata = jsonata_;
 
@@ -50,6 +51,7 @@ export abstract class FlexyFormAbstractOptionsComponent {
   private _setOptionsFiltering() {
     try {
       const jsonataExp = jsonata(this.optionsFilter.filter);
+      this.logger.debug('jsonata', this.optionsFilter.filter);
       this.changesSubscription = this.form.currentData$.subscribe(data => {
         let isChanged = false;
         this.optionsFilter.observableFields.forEach(path => {
@@ -60,11 +62,16 @@ export abstract class FlexyFormAbstractOptionsComponent {
           }
         });
         if (isChanged) {
+          this.logger.debug('evaluate', {
+            optionsList: this._optionsCache,
+            observableFields: this.filterData
+          });
           const jsonOptions = jsonataExp.evaluate({
             optionsList: this._optionsCache,
             observableFields: this.filterData
           }) as SelectOption[];
-          this.options = jsonOptions ? (Array.isArray(jsonOptions) ? jsonOptions : [jsonOptions]) : [];
+          const options = jsonOptions ? (Array.isArray(jsonOptions) ? jsonOptions : [jsonOptions]) : [];
+          this.options = options.filter(item => !!item);
         }
       });
     } catch (e) {

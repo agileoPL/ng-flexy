@@ -1,8 +1,6 @@
 /*
  * Public API Surface of form-bootstrap
  */
-
-export { FlexyFormAbstractOptionsComponent } from './lib/components/abstract-options.component';
 export { FlexyFormArrayComponent } from './lib/components/array.component';
 export { FlexyFormCheckboxComponent } from './lib/components/checkbox.component';
 export { FlexyFormCheckboxListComponent } from './lib/components/checkbox-list.component';
@@ -57,8 +55,6 @@ export { FlexyFormsTextareaAutosizeDirective } from './lib/directives/textarea-a
 export { FlexyTreeModelNode } from './lib/models/tree-model-node.model';
 export { TreeNode } from './lib/models/tree-node.model';
 
-export { FlexyFormControlOptionsService } from './lib/services/form-control-options.service';
-export * from './lib/services/form-control-raw-options.utils';
 export { FlexyTreeService } from './lib/services/tree.service';
 
 export * from './lib/form-bootstrap.module';

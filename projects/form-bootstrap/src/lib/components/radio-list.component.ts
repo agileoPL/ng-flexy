@@ -1,8 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FlexyFormFieldLayoutSchema, SelectOptionMapper } from '@ng-flexy/form';
-import { SelectOption } from '@ng-flexy/form';
-import { FlexyFormAbstractOptionsComponent } from './abstract-options.component';
-import { FlexyFormControlOptionsService } from '../services/form-control-options.service';
+import { SelectOption, FlexyFormControlOptionsService, FlexyFormAbstractOptionsComponent } from '@ng-flexy/form';
 import { FlexyLoggerService } from '@ng-flexy/core';
 
 @Component({
