@@ -6,15 +6,18 @@ export function findRawValue(rawIdKey: string, controlValue: any | any[], option
     if (controlValue && Array.isArray(controlValue)) {
       const ret = [];
       controlValue.forEach(valueItem => {
-        const el = options.find(item => item._raw[rawIdKey] === valueItem[rawIdKey]);
-        if (el && el.value) {
-          ret.push(el.value);
+        const v = valueItem && valueItem[rawIdKey];
+        if (v) {
+          const el = options && options.find(item => item && item._raw && item._raw[rawIdKey] === v);
+          if (el && el.value) {
+            ret.push(el.value);
+          }
         }
       });
       return ret;
     } else {
       if (controlValue && typeof controlValue === 'object' && controlValue[rawIdKey]) {
-        const el = options.find(item => item._raw[rawIdKey] === controlValue[rawIdKey]);
+        const el = options.find(item => item && item._raw && item._raw[rawIdKey] === controlValue[rawIdKey]);
         return el ? el.value : null;
       }
     }
@@ -25,16 +28,19 @@ export function findRawValue(rawIdKey: string, controlValue: any | any[], option
 }
 
 export function prepareControlValue(optionsRawId: string, data: SelectOptionData | SelectOptionData[]) {
-  const cloned = cloneDeep(data);
-  if (optionsRawId) {
-    if (Array.isArray(cloned)) {
-      cloned.forEach(item => {
-        item.value = item._raw;
-      });
-    } else {
-      (cloned as SelectOptionData).value = (cloned as SelectOptionData)._raw;
+  if (data) {
+    const cloned = cloneDeep(data);
+    if (optionsRawId) {
+      if (Array.isArray(cloned)) {
+        cloned.forEach(item => {
+          item.value = item && item._raw;
+        });
+      } else {
+        (cloned as SelectOptionData).value = cloned && (cloned as SelectOptionData)._raw;
+      }
     }
+    return Array.isArray(cloned) ? cloned.map(el => el && el.value) : cloned.value;
+  } else {
+    return null;
   }
-  const value = cloned ? (Array.isArray(cloned) ? cloned.map(el => el.value) : cloned.value) : null;
-  return value;
 }
