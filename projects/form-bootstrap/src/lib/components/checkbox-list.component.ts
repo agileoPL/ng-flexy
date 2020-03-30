@@ -1,8 +1,13 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FlexyFormFieldLayoutSchema, SelectOptionMapper } from '@ng-flexy/form';
-import { SelectOption, FlexyFormControlOptionsService, FlexyFormAbstractOptionsComponent } from '@ng-flexy/form';
+import {
+  FlexyFormAbstractOptionsComponent,
+  FlexyFormControlOptionsService,
+  FlexyFormFieldLayoutSchema,
+  FlexyFormOptionsFilter,
+  SelectOption,
+  SelectOptionMapper
+} from '@ng-flexy/form';
 import { FlexyLoggerService } from '@ng-flexy/core';
-import { FlexyFormOptionsFilter } from '../../../../form/src/lib/components/abstract-options.component';
 
 @Component({
   selector: 'flexy-form-checkbox-list',
