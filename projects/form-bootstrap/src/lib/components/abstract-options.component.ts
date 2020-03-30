@@ -3,6 +3,7 @@ import { FlexyFormControlOptionsService } from '../services/form-control-options
 import { Subscription } from 'rxjs';
 import { get, set } from 'lodash';
 import * as jsonata_ from 'jsonata';
+import { FlexyLoggerService } from '@ng-flexy/core';
 
 const jsonata = jsonata_;
 
@@ -28,7 +29,7 @@ export abstract class FlexyFormAbstractOptionsComponent {
 
   private _optionsCache: SelectOption[];
 
-  protected constructor(protected optionsService: FlexyFormControlOptionsService) {}
+  protected constructor(protected optionsService: FlexyFormControlOptionsService, protected logger: FlexyLoggerService) {}
 
   async initOptions() {
     if (this.optionsUrl) {
@@ -67,7 +68,7 @@ export abstract class FlexyFormAbstractOptionsComponent {
         }
       });
     } catch (e) {
-      console.error('Wrong jsonata expresion', this.optionsFilter.filter, e);
+      this.logger.error('Wrong jsonata expresion', this.optionsFilter.filter, e);
     }
   }
 }

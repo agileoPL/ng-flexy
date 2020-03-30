@@ -64,12 +64,12 @@ export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent
   @Input() hideSelected: boolean;
 
   constructor(
+    protected logger: FlexyLoggerService,
+    protected optionsService: FlexyFormControlOptionsService,
     private httpClient: HttpClient,
-    private logger: FlexyLoggerService,
-    private cdr: ChangeDetectorRef,
-    protected optionsService: FlexyFormControlOptionsService
+    private cdr: ChangeDetectorRef
   ) {
-    super(optionsService);
+    super(optionsService, logger);
   }
 
   ngOnInit() {
