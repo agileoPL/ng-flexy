@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewRef } from '@angular/core';
 import {
   FlexyForm,
   FlexyFormAbstractOptionsComponent,
@@ -85,7 +85,9 @@ export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent
       }
     }
     this.initOptions().then(() => {
-      this.cdr.detectChanges();
+      if (!(this.cdr as ViewRef).destroyed) {
+        this.cdr.detectChanges();
+      }
     });
   }
 

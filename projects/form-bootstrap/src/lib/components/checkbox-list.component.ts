@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewRef } from '@angular/core';
 import {
   FlexyFormAbstractOptionsComponent,
   FlexyFormControlOptionsService,
@@ -58,7 +58,9 @@ export class FlexyFormCheckboxListComponent extends FlexyFormAbstractOptionsComp
 
   ngOnInit(): void {
     this.initOptions().then(() => {
-      this.cdr.detectChanges();
+      if (!(this.cdr as ViewRef).destroyed) {
+        this.cdr.detectChanges();
+      }
     });
   }
 }
