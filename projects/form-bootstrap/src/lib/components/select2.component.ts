@@ -1,14 +1,18 @@
-import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
-import { SelectOption } from '@ng-flexy/form';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  FlexyForm,
+  FlexyFormAbstractOptionsComponent,
+  FlexyFormControlOptionsService,
+  FlexyFormFieldLayoutSchema,
+  FlexyFormOptionsFilter,
+  SelectOption,
+  SelectOptionMapper
+} from '@ng-flexy/form';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { get, template } from 'lodash';
 import { FlexyLoggerService } from '@ng-flexy/core';
 
 @Component({
   selector: 'flexy-form-select2',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
@@ -20,7 +24,9 @@ import { FlexyLoggerService } from '@ng-flexy/core';
     >
       <div class="input-group">
         <div class="input-group-addon" *ngIf="prefix">{{ prefix }}</div>
+        <div class="form-control" *ngIf="loading"><i class="fa fa-refresh fa-spin fa-fw"></i></div>
         <flexy-control-select2
+          *ngIf="!loading && options"
           [control]="layoutSchema.formControl"
           [default]="default"
           [readonly]="readonly"
@@ -30,6 +36,7 @@ import { FlexyLoggerService } from '@ng-flexy/core';
           [addItem]="addItem"
           [hideSelected]="hideSelected"
           [enableSearchByValue]="enableSearchByValue"
+          [optionsRawId]="optionsRawId"
           [loading]="loading"
         ></flexy-control-select2>
         <div class="input-group-addon" *ngIf="suffix">{{ suffix }}</div>
@@ -37,8 +44,9 @@ import { FlexyLoggerService } from '@ng-flexy/core';
     </flexy-form-field>
   `
 })
-export class FlexyFormSelect2Component implements OnInit {
+export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent implements OnInit, OnDestroy {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
+  @Input() form: FlexyForm;
 
   @Input() default: string;
   @Input() label: string;
@@ -50,7 +58,9 @@ export class FlexyFormSelect2Component implements OnInit {
 
   @Input() options: SelectOption[];
   @Input() optionsUrl: string;
-  @Input() optionsMapper: { value: string; text: string; prefixHtml?: string };
+  @Input() optionsMapper: SelectOptionMapper | string;
+  @Input() optionsFilter: FlexyFormOptionsFilter;
+  @Input() optionsRawId: string;
 
   @Input() prefix: string;
   @Input() suffix: string;
@@ -59,14 +69,14 @@ export class FlexyFormSelect2Component implements OnInit {
   @Input() addItem: boolean;
   @Input() hideSelected: boolean;
 
-  loading: boolean;
-
   constructor(
+    protected logger: FlexyLoggerService,
+    protected optionsService: FlexyFormControlOptionsService,
     private httpClient: HttpClient,
-    private logger: FlexyLoggerService,
-    private cdr: ChangeDetectorRef,
-    private appRef: ApplicationRef
-  ) {}
+    private cdr: ChangeDetectorRef
+  ) {
+    super(optionsService, logger);
+  }
 
   ngOnInit() {
     if (!this.readonly) {
@@ -74,47 +84,14 @@ export class FlexyFormSelect2Component implements OnInit {
         this.description = '(default: ' + this.default + ')';
       }
     }
-    if (this.optionsUrl) {
-      this.loading = true;
-      this.httpClient
-        .get(this.optionsUrl)
-        .pipe(
-          map(data => {
-            const options: SelectOption[] = [];
-
-            if (data && Array.isArray(data)) {
-              data.forEach(item => {
-                options.push({
-                  text: '' + this.mapper(item, 'text'),
-                  value: this.mapper(item, 'value'),
-                  prefixHtml: this.optionsMapper.prefixHtml ? '' + this.mapper(item, 'prefixHtml') : void 0
-                });
-              });
-            }
-            return options;
-          })
-        )
-        .subscribe(options => {
-          this.loading = false;
-          this.options = options;
-          this.cdr.detectChanges();
-          // this.appRef.tick();
-        });
-    }
+    this.initOptions().then(() => {
+      this.cdr.detectChanges();
+    });
   }
 
-  private mapper(item: object, key: string): any {
-    const mapper: string = this.optionsMapper[key];
-    if (!mapper) {
-      this.logger.warn('Wrong mapper configuration for key', key, this.optionsMapper);
-      return;
-    }
-    // check if template?
-    if (mapper.includes('<%')) {
-      const compiled = template(mapper);
-      return compiled(item);
-    } else {
-      return get(item, mapper);
+  ngOnDestroy(): void {
+    if (this.changesSubscription) {
+      this.changesSubscription.unsubscribe();
     }
   }
 }

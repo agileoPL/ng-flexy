@@ -1,7 +1,6 @@
 /*
  * Public API Surface of form-bootstrap
  */
-
 export { FlexyFormArrayComponent } from './lib/components/array.component';
 export { FlexyFormCheckboxComponent } from './lib/components/checkbox.component';
 export { FlexyFormCheckboxListComponent } from './lib/components/checkbox-list.component';
@@ -14,7 +13,8 @@ export { FlexyFieldComponent } from './lib/components/field.component';
 export { FlexyFieldControlInfoComponent } from './lib/components/field-info.component';
 export { FlexyFormFieldsetComponent } from './lib/components/fieldset.component';
 export { FlexyFormGroupComponent } from './lib/components/group.component';
-// export { FlexyFormJsonFileComponent } from './lib/components/json-file.component';
+export { FlexyFormHiddenComponent } from './lib/components/hidden.component';
+export { FlexyFormJsonFileComponent } from './lib/components/json-file.component';
 export { FlexyFormLabelComponent } from './lib/components/label.component';
 export { FlexyFormNumberComponent } from './lib/components/number.component';
 export { FlexyFormPasswordComponent } from './lib/components/password.component';
@@ -37,7 +37,8 @@ export { FlexyControlColorpickerComponent } from './lib/controls/colorpicker.com
 export { FlexyControlDatepickerComponent } from './lib/controls/datepicker.component';
 export { FlexyControlDaterangepickerComponent } from './lib/controls/daterangepicker.component';
 export { FlexyControlDraggableSelectComponent } from './lib/controls/draggable-select.component';
-// export { FlexyControlJsonFileComponent } from './lib/controls/json-file.component';
+export { FlexyControlHiddenComponent } from './lib/controls/hidden.component';
+export { FlexyControlJsonFileComponent } from './lib/controls/json-file.component';
 export { FlexyControlNumberComponent } from './lib/controls/number.component';
 export { FlexyControlPasswordComponent } from './lib/controls/password.component';
 export { FlexyControlPercentComponent } from './lib/controls/percent.component';

@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexyLayoutComponentMap, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
-import { BsDatepickerModule, TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TagInputModule } from 'ngx-chips';
 import { TranslateModule } from '@ngx-translate/core';
@@ -60,6 +59,9 @@ import { FlexyFormJsonFileComponent } from './components/json-file.component';
 import { FlexyControlJsonFileComponent } from './controls/json-file.component';
 import { FlexyControlHiddenComponent } from './controls/hidden.component';
 import { FlexyFormHiddenComponent } from './components/hidden.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,

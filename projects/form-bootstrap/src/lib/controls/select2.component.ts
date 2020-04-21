@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SelectOption, SelectOptionData } from '@ng-flexy/form';
+import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } from '@ng-flexy/form';
 
 @Component({
   template: `
@@ -8,7 +8,7 @@ import { SelectOption, SelectOptionData } from '@ng-flexy/form';
       *ngIf="!readonly && optionsData"
       #select
       [ngClass]="{ 'ng-select-multiple': multiple }"
-      [formControl]="control"
+      [formControl]="selectControl"
       [items]="optionsData"
       [placeholder]="placeholder"
       bindLabel="text"
@@ -38,6 +38,7 @@ import { SelectOption, SelectOptionData } from '@ng-flexy/form';
 export class FlexyControlSelect2Component implements OnInit, OnChanges {
   @Input() control: FormControl;
   @Input() options: SelectOption[];
+  @Input() optionsRawId: string;
   @Input() default: string;
   @Input() readonly: boolean;
   @Input() multiple: boolean;
@@ -53,10 +54,14 @@ export class FlexyControlSelect2Component implements OnInit, OnChanges {
   @Output() clicked = new EventEmitter<Event>();
   @Output() changed = new EventEmitter<any>();
 
+  selectControl: FormControl;
+
   virtualScroll = false; // Enable virtual scroll for better performance when rendering a lot of data
   optionsData: SelectOptionData[];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectControl = new FormControl(findRawValue(this.optionsRawId, this.control.value, this.options));
+  }
 
   ngOnChanges(changes) {
     if (changes.options) {
@@ -83,7 +88,7 @@ export class FlexyControlSelect2Component implements OnInit, OnChanges {
   }
 
   onChange(data: SelectOptionData | SelectOptionData[]) {
-    const value = data ? (Array.isArray(data) ? data.map(el => el.value) : data.value) : null;
+    const value = prepareControlValue(this.optionsRawId, data);
     this.control.setValue(value);
     this.changed.emit(value);
   }

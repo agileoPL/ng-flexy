@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DemoModelsUsersComponent } from './components/users.component';
 import { DemoCoreDocComponent } from './components/core-doc.component';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyFeatureToggleModule, FlexyLoggerModule } from '@ng-flexy/core';
 import { DemoLogsComponent } from './components/logs.component';

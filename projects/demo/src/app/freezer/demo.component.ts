@@ -24,7 +24,7 @@ export class DemoFreezerComponent implements OnInit {
   sendPost() {
     this.toastsService.warning('Start freezing');
     this.httpClient
-      .post('https://jsonplaceholder.typicode.com/posts', {
+      .post('/assets/mock-data/posts.json', {
         name: 'alias odio sit',
         email: 'Lew@alysha.tv',
         body: 'deserunt quas accusantium unde odit nobis qui'

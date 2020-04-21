@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DemoModules } from '../../common/components/doc-layout.component';
+import { DemoFormBootstrapDocRadioListComponent } from './form-bootstrap-doc-radio-list.component';
 
 const SUB_PAGES = [
   {
@@ -38,6 +39,14 @@ const SUB_PAGES = [
         label: 'Select with filter'
       },
       {
+        url: '/form-bootstrap/checkbox-list',
+        label: 'Checkbox list'
+      },
+      {
+        url: '/form-bootstrap/radio-list',
+        label: 'Radio list'
+      },
+      {
         url: '/form-bootstrap/json',
         label: 'Label',
         disabled: true
@@ -67,16 +76,7 @@ const SUB_PAGES = [
         label: 'Checkbox',
         disabled: true
       },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Checkbox list',
-        disabled: true
-      },
-      {
-        url: '/form-bootstrap/json',
-        label: 'Radio list',
-        disabled: true
-      },
+
       {
         url: '/form-bootstrap/json',
         label: 'Color Picker',

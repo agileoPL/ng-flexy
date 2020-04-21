@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyToastsModule } from '../../../../toasts/src/lib/toasts.module';
-import { TabsModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { DemoFreezerDocComponent } from './freezer-doc.component';
 import { DemoFreezerComponent } from './demo.component';
 

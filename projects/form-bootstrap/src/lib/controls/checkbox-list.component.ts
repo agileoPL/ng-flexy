@@ -1,30 +1,35 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { SelectOption } from '@ng-flexy/form';
+import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form';
 
 @Component({
   template: `
-    <div *ngIf="!readonly" class="input-group form-control">
-      <div *ngFor="let option of options; let i = index" class="checkboxItem">
-        <input
-          type="checkbox"
-          [id]="name + '-' + option.value"
-          [value]="option.value"
-          [formControl]="localGroupControl.get(option.value)"
-        /><label for="{{ name + '-' + option.value }}">{{ option.text }}</label>
+    <ng-container *ngIf="!loading && options">
+      <div *ngIf="!readonly" class="input-group form-control">
+        <div *ngFor="let option of options; let i = index" class="checkboxItem">
+          <span *ngIf="option && option.prefixHtml" [innerHTML]="option.prefixHtml"></span>
+          <input
+            *ngIf="option"
+            type="checkbox"
+            [id]="name + '-' + option.value"
+            [value]="option.value"
+            [formControl]="localGroupControl.get('opt' + option.value)"
+          /><label for="{{ name + '-' + option.value }}">{{ option.text }}</label>
+        </div>
       </div>
-    </div>
-    <flexy-control-readonly *ngIf="readonly" [value]="valuesLabels" [default]="defaultsLabels"></flexy-control-readonly>
+      <flexy-control-readonly *ngIf="readonly" [value]="valuesLabels" [default]="defaultsLabels"></flexy-control-readonly>
+    </ng-container>
   `,
   selector: 'flexy-control-checkbox-list'
 })
-export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
+export class FlexyControlCheckboxListComponent implements OnChanges, OnInit, OnDestroy {
   @Input() control: FormControl;
 
   @Input() name: string;
   @Input() default: string[];
   @Input() options: SelectOption[];
+  @Input() optionsRawId: string;
   @Input() readonly: boolean;
 
   @Output() changed = new EventEmitter<string[]>();
@@ -34,16 +39,18 @@ export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
   valuesLabels: string;
   defaultsLabels: string;
 
+  loading = true;
+
   private controlChangesSubscription: Subscription;
   private localValuesChangesSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
     this.initCheckboxesGroup();
-    this.setDefaultsLabels();
-    this.setValueLabels();
   }
+
+  ngOnInit() {}
 
   ngOnDestroy() {
     if (this.controlChangesSubscription) {
@@ -55,28 +62,21 @@ export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
   }
 
   private initCheckboxesGroup() {
+    this.loading = true;
+    this.cdr.detectChanges();
     const formConfig = {};
     if (this.options) {
-      const values = this.control.value || [];
+      const values = findRawValue(this.optionsRawId, this.control.value || [], this.options);
       this.options.forEach(option => {
-        formConfig[option.value] = [values.includes(option.value), []];
+        formConfig['opt' + option.value] = [values.includes(option.value), []];
       });
     }
     this.localGroupControl = this.formBuilder.group(formConfig);
-
-    this.controlChangesSubscription = this.control.valueChanges.subscribe(values => {
-      if (this.localValuesChangesSubscription) {
-        this.localValuesChangesSubscription.unsubscribe();
-      }
-
-      this.options.forEach(option => {
-        this.localGroupControl.get(option.value).setValue(values && values.includes(option.value) ? true : null);
-      });
-
-      this.subscribeLocalChanges();
-    });
-
     this.subscribeLocalChanges();
+    this.setDefaultsLabels();
+    this.setValueLabels();
+    this.loading = false;
+    this.cdr.detectChanges();
   }
 
   private subscribeLocalChanges() {
@@ -104,8 +104,13 @@ export class FlexyControlCheckboxListComponent implements OnInit, OnDestroy {
   }
 
   private updateControl() {
-    const val = this.options.filter(option => !!this.localGroupControl.get(option.value).value).map(option => option.value);
-    this.control.setValue(val.length ? val : null);
+    const val = this.options.filter(option => !!this.localGroupControl.get('opt' + option.value).value).map(option => option.value);
+    const value = prepareControlValue(
+      this.optionsRawId,
+      this.options.filter(item => val.includes(item.value))
+    );
+
+    this.control.setValue(value && value.length ? value : null);
     this.control.markAsDirty();
     this.setValueLabels();
     this.changed.emit(this.control.value);

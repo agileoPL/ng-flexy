@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/crud",
-  "version": "3.0.1",
+  "version": "3.1.2",
   "peerDependencies": {
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -10,6 +10,7 @@
     "@ng-flexy/form": "^3.0.1",
     "@ng-flexy/toasts": "^0.1.5",
     "@ngx-translate/core": "^11.0.1",
+    "ngx-bootstrap": "5.5.0",
     "lodash": "^4.17.14",
     "moment": "^2.24.0"
   }

@@ -1,7 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ModalModule, TabsModule, TooltipModule } from 'ngx-bootstrap';
 import { AppCommonModule } from '../common/common.module';
 import { FlexyLoggerModule } from '@ng-flexy/core';
 import { DemoFormBootstrapDocInfoComponent } from './components/form-bootstrap-doc-info.component';
@@ -9,12 +8,17 @@ import { DemoFormBootstrapDocComponent } from './components/form-bootstrap-doc.c
 import { DemoFormBootstrapDocJsonComponent } from './components/form-bootstrap-doc-json.component';
 import { DemoFormJsonComponent } from './components/form-bootstrap-json.component';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
-import { FlexyFormLayoutJsonSchema, FlexyFormsModule } from '@ng-flexy/form';
+import { FlexyFormsModule } from '@ng-flexy/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
-import { DemoComSelect2Component } from './components/com-select2.component';
 import { DemoFormBootstrapDocSelect2Component } from './components/form-bootstrap-doc-select2.component';
 import { DemoFormBootstrapJsonViewerComponent } from './components/form-bootstrap-json-viewer.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { DemoFormBootstrapDocRadioListComponent } from './components/form-bootstrap-doc-radio-list.component';
+import { DemoComOptionsAbleComponent } from './components/com-options-able.component';
+import { DemoFormBootstrapDocCheckboxListComponent } from './components/form-bootstrap-doc-checkbox-list.component';
 
 const routes: Routes = [
   {
@@ -81,6 +85,14 @@ const routes: Routes = [
       {
         path: 'select2',
         component: DemoFormBootstrapDocSelect2Component
+      },
+      {
+        path: 'radio-list',
+        component: DemoFormBootstrapDocRadioListComponent
+      },
+      {
+        path: 'checkbox-list',
+        component: DemoFormBootstrapDocCheckboxListComponent
       }
     ]
   }
@@ -106,9 +118,11 @@ const routes: Routes = [
     DemoFormBootstrapDocInfoComponent,
     DemoFormBootstrapDocJsonComponent,
     DemoFormJsonComponent,
-    DemoComSelect2Component,
+    DemoComOptionsAbleComponent,
     DemoFormBootstrapDocSelect2Component,
-    DemoFormBootstrapJsonViewerComponent
+    DemoFormBootstrapJsonViewerComponent,
+    DemoFormBootstrapDocRadioListComponent,
+    DemoFormBootstrapDocCheckboxListComponent
   ]
 })
 export class DemoFormBootstrapModule {}

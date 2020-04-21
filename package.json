@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/demo",
-  "version": "8.4.0",
+  "version": "8.5.0",
   "description": "Flexy components and tools to build Angular 8+ applications",
   "keywords": [
     "Angular",
@@ -81,7 +81,7 @@
     "jszip": "^3.2.2",
     "lodash": "^4.17.14",
     "moment": "^2.24.0",
-    "ngx-bootstrap": "^5.1.0",
+    "ngx-bootstrap": "5.5.0",
     "ngx-chips": "^2.0.2",
     "ngx-nvd3": "^1.0.9",
     "rxjs": "~6.5.4",
