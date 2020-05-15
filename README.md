@@ -108,6 +108,8 @@ Run `npm run demo`
 
 ### Npm publish
 
+`npm login`
+
 `./publish {project_name}`
 
 No dependencies projects:

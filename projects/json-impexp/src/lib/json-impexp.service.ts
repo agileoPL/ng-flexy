@@ -32,7 +32,7 @@ export class FlexyJsonImpExpService {
                 if (multipleFiles && this.isZip(file.type)) {
                   const jszip = new JSZip();
                   jszip.loadAsync(file, { base64: true }).then(zip =>
-                    Promise.all(Object.keys(zip.files).map(filename => zip.files[filename].async('string'))).then(list => {
+                    Promise.all(Object.keys(zip.files).map(filename => zip.files[filename].async('text'))).then(list => {
                       list = list.map(item => {
                         try {
                           const json = JSON.parse(item);
