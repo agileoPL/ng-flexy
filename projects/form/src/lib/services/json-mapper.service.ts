@@ -187,7 +187,7 @@ export class FlexyFormJsonMapperService {
   ): FlexyFormLayoutSchema[] {
     const schema: FlexyFormLayoutSchema[] = [];
 
-    if (json) {
+    if (json && Array.isArray(json)) {
       json.forEach((jsonItem, index) => {
         const schemaItem: FlexyFormLayoutSchema = this.mapItem(
           jsonItem,
