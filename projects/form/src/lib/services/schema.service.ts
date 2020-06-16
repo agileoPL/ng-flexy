@@ -41,8 +41,9 @@ export class FlexyFormSchemaService {
         itemKey,
         parentSchemaRef.formControl
       );
-
       parentSchemaRef.children.push(schema);
+      // fix form control - should be the same but is not
+      (parentSchemaRef.formControl as FormGroup).setControl(itemKey, schema.formControl);
     }
 
     return schema;

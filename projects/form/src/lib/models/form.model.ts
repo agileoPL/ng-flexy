@@ -51,6 +51,7 @@ export class FlexyForm extends FlexyLayout {
 
     this._currentDataSubject = new BehaviorSubject(data);
     this.currentData$ = this._currentDataSubject.asObservable();
+    // console.log('init current data');
 
     this.formGroup = formGroup;
     this.schema = schema;
@@ -58,8 +59,13 @@ export class FlexyForm extends FlexyLayout {
     this._initCalculatedRefs(schema);
     this._originalData = cloneDeep(data);
 
+    this._setCurrentData();
+    this._currentDataSubject.next(this.currentData);
+    // console.log('recalculate data');
+
     // jump to next tick
     setTimeout(() => {
+      this.isStarted = true;
       this._subscribeChangesAndCalculate();
     });
   }
@@ -98,17 +104,17 @@ export class FlexyForm extends FlexyLayout {
   }
 
   private _subscribeChangesAndCalculate() {
+    this._changesSubscription = this.formGroup.valueChanges.subscribe(() => {
+      this._setCurrentData();
+      // console.log('send changes');
+      this._currentDataSubject.next(this.currentData);
+    });
+  }
+
+  private _setCurrentData() {
     this.currentData = getSchemaData(this.schema);
     this._calculate();
     this.currentData = getSchemaData(this.schema);
-    this.isStarted = true;
-    this._changesSubscription = this.formGroup.valueChanges.subscribe(() => {
-      this.currentData = getSchemaData(this.schema);
-      this._calculate();
-      this.currentData = getSchemaData(this.schema);
-      this._currentDataSubject.next(this.currentData);
-    });
-    this._currentDataSubject.next(this.currentData);
   }
 
   private _initCalculatedRefs(schema: FlexyFormLayoutSchema[]) {
