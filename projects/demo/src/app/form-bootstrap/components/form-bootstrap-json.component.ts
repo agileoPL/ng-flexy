@@ -1,7 +1,6 @@
 import { ApplicationRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FlexyForm, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJson } from '@ng-flexy/form';
+import { FlexyForm, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJson, FlexyFormChanges } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
-import { debounceTime } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -37,11 +36,15 @@ export class DemoFormJsonComponent implements OnInit, OnDestroy {
   onCreated(form) {
     if (form) {
       this.flexyForm = form;
-      this._changesSubscription = form.formGroup.valueChanges.pipe(debounceTime(200)).subscribe(data => {
-        this.errors = null;
-        this.appRef.tick();
-        this.errors = this.flexyForm.getAllErrors();
-      });
+      this.errors = this.flexyForm.getAllErrors();
+    }
+  }
+
+  onChanged(changes: FlexyFormChanges) {
+    console.log('Form changes', changes);
+    if (changes.valid) {
+      this.errors = null;
+    } else {
       this.errors = this.flexyForm.getAllErrors();
     }
   }
