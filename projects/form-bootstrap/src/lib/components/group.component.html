@@ -30,7 +30,7 @@
     <button
       type="button"
       *ngIf="!isAddFormVisible"
-      class="btn btn-info btn-outline btn-sm"
+      class="btn btn-info btn-outline btn-sm add-item"
       (click)="isAddFormVisible = true; focusOnNewInput()"
     >
       <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
@@ -49,7 +49,7 @@
           </button>
         </span>
         <span class="input-group-btn input-group-append">
-          <button type="button" class="btn btn-link btn-sm" (click)="isAddFormVisible = false">
+          <button type="button" class="btn btn-link btn-sm cancel" (click)="isAddFormVisible = false">
             {{ 'FLEXY_FORM_ARRAY_ADD_CANCEL' | translate }}
           </button>
         </span>
