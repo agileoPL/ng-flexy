@@ -4,9 +4,11 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from '../models/lay
 import {
   ARRAY_EXTERNAL_PARAM_INDEX_MARKER,
   ARRAY_EXTERNAL_PARAM_PREFIX,
+  FlexyFormCalcJsonSchema,
   FlexyFormComplexFieldLayoutJsonSchema,
   FlexyFormFieldLayoutJsonSchema,
   FlexyFormFieldType,
+  FlexyFormIfJsonSchema,
   FlexyFormLayoutJson,
   FlexyFormLayoutJsonSchema
 } from '../models/layout-json-schema.model';
@@ -18,7 +20,6 @@ import { FlexyFormsValidators } from '../validators/validators.utils';
 import { FlexyValidatorsData } from '../models/validators.data';
 import { FlexyForm } from '../models/form.model';
 import { parseFormJson } from './json-mapper.utils';
-import { FlexyFormCalcJsonSchema, FlexyFormIfJsonSchema } from '@ng-flexy/form';
 
 export interface FlexyFormValidatorsMap {
   [name: string]: (data?) => ValidatorFn;
