@@ -18,6 +18,7 @@ import { FlexyFormsValidators } from '../validators/validators.utils';
 import { FlexyValidatorsData } from '../models/validators.data';
 import { FlexyForm } from '../models/form.model';
 import { parseFormJson } from './json-mapper.utils';
+import { FlexyFormCalcJsonSchema, FlexyFormIfJsonSchema } from '@ng-flexy/form';
 
 export interface FlexyFormValidatorsMap {
   [name: string]: (data?) => ValidatorFn;
@@ -504,9 +505,15 @@ export class FlexyFormJsonMapperService {
     value,
     marker = ARRAY_EXTERNAL_PARAM_INDEX_MARKER
   ) {
-    items.forEach((item: FlexyFormFieldLayoutJsonSchema) => {
-      if (item.name) {
-        item.name = item.name.split(marker).join('' + key);
+    items.forEach(item => {
+      if ((item as FlexyFormFieldLayoutJsonSchema).name) {
+        (item as FlexyFormFieldLayoutJsonSchema).name = (item as FlexyFormFieldLayoutJsonSchema).name.split(marker).join('' + key);
+      }
+      if ((item as FlexyFormIfJsonSchema).if) {
+        (item as FlexyFormIfJsonSchema).if = (item as FlexyFormIfJsonSchema).if.split(marker).join('' + key);
+      }
+      if ((item as FlexyFormCalcJsonSchema).calc) {
+        (item as FlexyFormCalcJsonSchema).calc = (item as FlexyFormCalcJsonSchema).calc.split(marker).join('' + key);
       }
       if (item[SCHEMA_COMPONENT_INPUTS_KEY]) {
         const componentInputs = ['title', 'label', 'legend'];
