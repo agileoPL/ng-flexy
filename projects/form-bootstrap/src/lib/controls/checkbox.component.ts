@@ -61,7 +61,7 @@ export class FlexyControlCheckboxComponent implements OnInit {
     this.isValueDefined = this.control && this.control.value !== null && this.control.value !== void 0;
     this.isDefaultDefined = this.default !== void 0;
     if (!this.readonly && !this.isValueDefined) {
-      this.control.setValue(this.default || false);
+      this.control.setValue(this.default || false, { onlySelf: true, emitEvent: false });
     }
   }
 
