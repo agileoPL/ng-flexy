@@ -59,10 +59,6 @@ export class FlexyForm extends FlexyLayout {
     this._initCalculatedRefs(schema);
     this._originalData = cloneDeep(data);
 
-    this._setCurrentData();
-    this._currentDataSubject.next(this.currentData);
-    // console.log('recalculate data');
-
     // jump to next tick
     setTimeout(() => {
       this.isStarted = true;
@@ -104,11 +100,13 @@ export class FlexyForm extends FlexyLayout {
   }
 
   private _subscribeChangesAndCalculate() {
+    this._setCurrentData();
+    this.isStarted = true;
     this._changesSubscription = this.formGroup.valueChanges.subscribe(() => {
       this._setCurrentData();
-      // console.log('send changes');
       this._currentDataSubject.next(this.currentData);
     });
+    this._currentDataSubject.next(this.currentData);
   }
 
   private _setCurrentData() {
