@@ -2,7 +2,7 @@ import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/for
 import { FlexyLayout } from '@ng-flexy/layout';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-schema.model';
 import { FlexyFormData } from './form.data';
-import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set, difference } from 'lodash';
+import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
 import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
@@ -18,6 +18,12 @@ interface CalcRefs {
   };
 }
 
+interface IfRefs {
+  if: string;
+  state: boolean;
+  ifControl?: FormGroup;
+}
+
 enum FlexyFormDataMode {
   All = 'all',
   Dirty = 'dirty',
@@ -29,7 +35,7 @@ export class FlexyForm extends FlexyLayout {
   readonly currentData$: Observable<FlexyFormData>;
 
   get valid() {
-    return this.formGroup.valid;
+    return !this.getAllErrors();
   }
 
   isStarted = false;
@@ -41,7 +47,7 @@ export class FlexyForm extends FlexyLayout {
   private readonly _originalData: FlexyFormData;
   private readonly _currentDataSubject: BehaviorSubject<FlexyFormData>;
 
-  private _calculatedRefs: CalcRefs = {};
+  _calculatedRefs: CalcRefs = {};
 
   private _calculatedExpresionCache: {
     [calc: string]: any;
@@ -60,6 +66,7 @@ export class FlexyForm extends FlexyLayout {
 
     this._initCalculatedRefs(schema);
     this._originalData = cloneDeep(data);
+    this._setCurrentData();
 
     // jump to next tick
     setTimeout(() => {
@@ -82,8 +89,8 @@ export class FlexyForm extends FlexyLayout {
   }
 
   getAllErrors(): { [key: string]: any } {
-    const errors = findErrors(this.schema);
-    return Object.keys(errors).length ? findErrors(this.schema) : null;
+    const errors = findErrors(this.schema, this._calculatedRefs);
+    return Object.keys(errors).length ? findErrors(this.schema, this._calculatedRefs) : null;
   }
 
   containsFieldSchema(fieldName: string): boolean {
@@ -100,6 +107,10 @@ export class FlexyForm extends FlexyLayout {
     return null;
   }
 
+  checkIfExpresion(ifExp: string): boolean {
+    return this._calculatedRefs && this._calculatedRefs['IF_' + ifExp] && this._calculatedRefs['IF_' + ifExp].control.value;
+  }
+
   private _subscribeChangesAndCalculate() {
     this._setCurrentData();
     this.isStarted = true;
@@ -112,7 +123,6 @@ export class FlexyForm extends FlexyLayout {
       }
     });
     this._currentDataSubject.next(this.currentData);
-    // this._currentDataSubject.next(this.currentData);
   }
 
   private _setCurrentData() {
@@ -156,17 +166,7 @@ export class FlexyForm extends FlexyLayout {
           console.error(e);
           value = null;
         }
-        // if (calc.ifControl) {
-        //   if (calc.control.value) {
-        //     if (calc.ifControl.disabled) {
-        //       console.log(calc.calc, calc.control.value, 'set if enable');
-        //       calc.ifControl.enable();
-        //     }
-        //   } else if (calc.ifControl.enabled) {
-        //     console.log(calc.calc, calc.control.value, 'set if disable');
-        //     calc.ifControl.disable();
-        //   }
-        // }
+
         if (value !== calc.control.value) {
           calc.control.setValue(value);
           calc.control.markAsDirty();
@@ -193,7 +193,7 @@ function findSchema(fieldName: string, schema: FlexyFormLayoutSchema[]): FlexyFo
   return null;
 }
 
-function findErrors(schema: FlexyFormLayoutSchema[]): { [key: string]: any } {
+function findErrors(schema: FlexyFormLayoutSchema[], calculatedRefs: CalcRefs): { [key: string]: any } {
   const errors = {};
   for (const item of schema) {
     if (
@@ -203,8 +203,8 @@ function findErrors(schema: FlexyFormLayoutSchema[]): { [key: string]: any } {
     ) {
       errors[(item as FlexyFormFieldLayoutSchema).formName] = (item as FlexyFormFieldLayoutSchema).formControl.errors;
     }
-    if (item.children) {
-      Object.assign(errors, findErrors(item.children));
+    if (checkIf(item as FlexyFormFieldLayoutSchema, calculatedRefs) && item.children) {
+      Object.assign(errors, findErrors(item.children, calculatedRefs));
     }
   }
   return errors;

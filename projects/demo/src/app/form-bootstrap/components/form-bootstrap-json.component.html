@@ -2,7 +2,7 @@
   <flexy-form [json]="jsonSchema" [data]="data" (created)="onCreated($event)" (changed)="onChanged($event)"></flexy-form>
   <ng-container *ngIf="flexyForm">
     <hr />
-    <button type="button" class="btn btn-primary" [disabled]="!flexyForm.formGroup || !flexyForm.formGroup.valid" (click)="save()">
+    <button type="button" class="btn btn-primary" [disabled]="!flexyForm.valid" (click)="save()">
       Save
     </button>
 
