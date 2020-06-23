@@ -69,9 +69,9 @@ export class FlexyForm extends FlexyLayout {
     this._setCurrentData();
 
     // jump to next tick
-    setTimeout(() => {
-      this._subscribeChangesAndCalculate();
-    });
+    // setTimeout(() => {
+    this._subscribeChangesAndCalculate();
+    // });
   }
 
   getAllData(): FlexyFormData {
