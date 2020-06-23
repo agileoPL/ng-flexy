@@ -2,13 +2,20 @@ import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/for
 import { FlexyLayout } from '@ng-flexy/layout';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-schema.model';
 import { FlexyFormData } from './form.data';
-import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
+import { cloneDeep, defaultsDeep, get, has, isEmpty, merge, set, difference } from 'lodash';
 import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import * as jsonata_ from 'jsonata';
 import { HIDDEN_CALC_GROUP_NAME } from '../services/json-mapper.utils';
 
 const jsonata = jsonata_;
+
+interface CalcRefs {
+  [name: string]: {
+    calc: string;
+    control: FormControl;
+  };
+}
 
 enum FlexyFormDataMode {
   All = 'all',
@@ -33,12 +40,7 @@ export class FlexyForm extends FlexyLayout {
   private readonly _originalData: FlexyFormData;
   private readonly _currentDataSubject: BehaviorSubject<FlexyFormData>;
 
-  private _calculatedRefs: {
-    [name: string]: {
-      calc: string;
-      control: FormControl;
-    };
-  } = {};
+  private _calculatedRefs: CalcRefs = {};
 
   private _calculatedExpresionCache: {
     [calc: string]: any;
@@ -51,7 +53,6 @@ export class FlexyForm extends FlexyLayout {
 
     this._currentDataSubject = new BehaviorSubject(data);
     this.currentData$ = this._currentDataSubject.asObservable();
-    // console.log('init current data');
 
     this.formGroup = formGroup;
     this.schema = schema;
@@ -67,13 +68,13 @@ export class FlexyForm extends FlexyLayout {
   }
 
   getAllData(): FlexyFormData {
-    const data = cloneDeep(getSchemaData(this.schema));
+    const data = cloneDeep(getSchemaData(this.schema, this._calculatedRefs));
     this._clearHiddenData(data);
     return data;
   }
 
   getDirtyData(): FlexyFormData {
-    const data = cloneDeep(getSchemaData(this.schema, FlexyFormDataMode.Dirty));
+    const data = cloneDeep(getSchemaData(this.schema, this._calculatedRefs, FlexyFormDataMode.Dirty));
     this._clearHiddenData(data);
     const allData = this.getAllData();
     const removed = findRemoved(allData, this._originalData);
@@ -103,25 +104,33 @@ export class FlexyForm extends FlexyLayout {
     this._setCurrentData();
     this.isStarted = true;
     this._changesSubscription = this.formGroup.valueChanges.subscribe(() => {
+      const short = JSON.stringify(this.currentData);
       this._setCurrentData();
-      this._currentDataSubject.next(this.currentData);
+      if (short !== JSON.stringify(this.currentData)) {
+        this._currentDataSubject.next(this.currentData);
+      }
     });
     this._currentDataSubject.next(this.currentData);
   }
 
   private _setCurrentData() {
-    this.currentData = getSchemaData(this.schema);
+    this.currentData = getSchemaData(this.schema, this._calculatedRefs);
     this._calculate();
-    this.currentData = getSchemaData(this.schema);
+    this.currentData = getSchemaData(this.schema, this._calculatedRefs);
   }
 
   private _initCalculatedRefs(schema: FlexyFormLayoutSchema[]) {
     if (schema) {
       schema.forEach((schemaItem: FlexyFormFieldLayoutSchema) => {
-        if (schemaItem.formName && schemaItem.formControl && (schemaItem.calc || schemaItem.if)) {
+        if (schemaItem.formName && schemaItem.formControl && schemaItem.calc) {
           this._calculatedRefs[schemaItem.formName] = {
-            calc: schemaItem.calc ? schemaItem.calc : schemaItem.if,
+            calc: schemaItem.calc,
             control: schemaItem.formControl as FormControl
+          };
+        } else if (schemaItem.if) {
+          this._calculatedRefs['IF_' + schemaItem.if] = {
+            calc: schemaItem.if,
+            control: new FormControl()
           };
         }
         if (schemaItem.children) {
@@ -141,6 +150,7 @@ export class FlexyForm extends FlexyLayout {
           }
           value = this._calculatedExpresionCache[calc.calc].evaluate(this.currentData);
         } catch (e) {
+          console.error(e);
           value = null;
         }
         if (value !== calc.control.value) {
@@ -186,41 +196,49 @@ function findErrors(schema: FlexyFormLayoutSchema[]): { [key: string]: any } {
   return errors;
 }
 
-function getSchemaData(schemas: FlexyFormLayoutSchema[], mode = FlexyFormDataMode.All): FlexyFormData {
+function checkIf(fieldSchema: FlexyFormFieldLayoutSchema, calculatedRefs: CalcRefs): boolean {
+  return (
+    !fieldSchema.if || (calculatedRefs && calculatedRefs['IF_' + fieldSchema.if] && calculatedRefs['IF_' + fieldSchema.if].control.value)
+  );
+}
+
+function getSchemaData(schemas: FlexyFormLayoutSchema[], calculatedRefs: CalcRefs, mode = FlexyFormDataMode.All): FlexyFormData {
   let data: FlexyFormData = {};
   if (schemas) {
     schemas.forEach(schema => {
       const fieldSchema: FlexyFormFieldLayoutSchema = schema as FlexyFormFieldLayoutSchema;
-      const isFormControl = fieldSchema.formControl && fieldSchema.formName;
-      if (isFormControl && fieldSchema.formControl instanceof FormControl) {
-        if (checkSchemaData(fieldSchema.formControl, mode)) {
-          set(data, fieldSchema.formName, fieldSchema.formControl.value);
-        }
-      } else if (isFormControl && fieldSchema.formControl instanceof FormArray) {
-        const arrayData = getArrayData(fieldSchema, mode, data);
+      if (checkIf(fieldSchema, calculatedRefs)) {
+        const isFormControl = fieldSchema.formControl && fieldSchema.formName;
+        if (isFormControl && fieldSchema.formControl instanceof FormControl) {
+          if (checkSchemaData(fieldSchema.formControl, mode)) {
+            set(data, fieldSchema.formName, fieldSchema.formControl.value);
+          }
+        } else if (isFormControl && fieldSchema.formControl instanceof FormArray) {
+          const arrayData = getArrayData(fieldSchema, calculatedRefs, mode, data);
 
-        if (mode === FlexyFormDataMode.All) {
-          set(data, fieldSchema.formName, Object.values(arrayData));
-        } else if (!isEmpty(arrayData)) {
-          set(data, fieldSchema.formName, arrayData);
+          if (mode === FlexyFormDataMode.All) {
+            set(data, fieldSchema.formName, Object.values(arrayData));
+          } else if (!isEmpty(arrayData)) {
+            set(data, fieldSchema.formName, arrayData);
+          }
         }
-      }
 
-      if (fieldSchema.children && (!fieldSchema.if || fieldSchema.formControl.value)) {
-        data = merge(data, getSchemaData(fieldSchema.children, mode));
+        if (checkIf(fieldSchema, calculatedRefs)) {
+          data = merge(data, getSchemaData(fieldSchema.children, calculatedRefs, mode));
+        }
       }
     });
   }
   return data;
 }
 
-function getArrayData(fieldSchema: FlexyFormFieldLayoutSchema, mode: FlexyFormDataMode, data: {}) {
+function getArrayData(fieldSchema: FlexyFormFieldLayoutSchema, calculatedRefs: CalcRefs, mode: FlexyFormDataMode, data: {}) {
   const arrayData = {};
   fieldSchema.items.forEach((item: FlexyFormLayoutSchema, index) => {
     const itemFormControl = (item as FlexyFormFieldLayoutSchema).formControl;
     if (!itemFormControl || checkSchemaData(itemFormControl, mode)) {
       if (item.children) {
-        const itemData = getSchemaData(item.children, mode);
+        const itemData = getSchemaData(item.children, calculatedRefs, mode);
         if (!isEmpty(itemData)) {
           Object.keys(itemData).forEach(key => {
             if (key.substr(0, 2) === ARRAY_EXTERNAL_PARAM_PREFIX) {

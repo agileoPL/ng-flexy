@@ -35,13 +35,13 @@ export class FlexyFlexyFormIfDirective implements OnInit {
   }
 
   private _enableFormControl(schema: FlexyFormFieldLayoutSchema, visibility: boolean) {
-    if (this.flexyFormIf && this.flexyFormIf.form && this.flexyFormIf.form.isStarted) {
+    if (this.flexyFormIf && schema.if && this.flexyFormIf.form && this.flexyFormIf.form.isStarted) {
       if (!visibility) {
         if (schema.formControl.enabled) {
-          schema.formControl.disable();
+          schema.formControl.disable({ onlySelf: true });
         }
       } else if (schema.formControl.disabled) {
-        schema.formControl.enable();
+        schema.formControl.enable({ onlySelf: true });
       }
     }
   }
