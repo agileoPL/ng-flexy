@@ -107,10 +107,6 @@ export class FlexyForm extends FlexyLayout {
     return null;
   }
 
-  checkIfExpresion(ifExp: string): boolean {
-    return this._calculatedRefs && this._calculatedRefs['IF_' + ifExp] && this._calculatedRefs['IF_' + ifExp].control.value;
-  }
-
   private _subscribeChangesAndCalculate() {
     this._setCurrentData();
     this.isStarted = true;

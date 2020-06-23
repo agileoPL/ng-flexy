@@ -39,7 +39,7 @@ export class FlexyFormComponent implements OnInit, OnDestroy {
     this.form = this.jsonMapper.createForm(cloneDeep(this.json), this.readonly, this.data);
     this.created.emit(this.form);
     this._changesSubscription = this.form.currentData$
-      .pipe(skip(2), debounceTime(this.changesDebounceTime || CHNAGES_DEBOUNCE_TIME))
+      .pipe(skip(1), debounceTime(this.changesDebounceTime || CHNAGES_DEBOUNCE_TIME))
       .subscribe(data => {
         this.changed.emit({ valid: this.form.valid, data });
       });
