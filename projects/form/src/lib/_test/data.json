@@ -1,0 +1,28 @@
+{
+  "headerName": "Name",
+  "field": "data.name",
+  "type": "text",
+  "hidden": true,
+  "filter": "agTextColumnFilter",
+  "minWidth": 250,
+  "cellRenderer": null,
+  "formatter": {
+    "options": []
+  },
+  "_typesMap": {
+    "id": "text",
+    "version": "int",
+    "createdAt": "date",
+    "createdBy": "text",
+    "modifiedAt": "date",
+    "modifiedBy": "text",
+    "formId": "text",
+    "formVersion": "int",
+    "data.name": "text",
+    "data.value": "float",
+    "data.available": "boolean",
+    "data.comment": "text",
+    "data.position": "text"
+  },
+  "_optionsFormatter": false
+}

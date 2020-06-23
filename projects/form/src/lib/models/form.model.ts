@@ -14,6 +14,7 @@ interface CalcRefs {
   [name: string]: {
     calc: string;
     control: FormControl;
+    ifControl?: FormGroup;
   };
 }
 
@@ -62,7 +63,6 @@ export class FlexyForm extends FlexyLayout {
 
     // jump to next tick
     setTimeout(() => {
-      this.isStarted = true;
       this._subscribeChangesAndCalculate();
     });
   }
@@ -103,6 +103,7 @@ export class FlexyForm extends FlexyLayout {
   private _subscribeChangesAndCalculate() {
     this._setCurrentData();
     this.isStarted = true;
+    // this._setCurrentData();
     this._changesSubscription = this.formGroup.valueChanges.subscribe(() => {
       const short = JSON.stringify(this.currentData);
       this._setCurrentData();
@@ -111,6 +112,7 @@ export class FlexyForm extends FlexyLayout {
       }
     });
     this._currentDataSubject.next(this.currentData);
+    // this._currentDataSubject.next(this.currentData);
   }
 
   private _setCurrentData() {
@@ -130,7 +132,8 @@ export class FlexyForm extends FlexyLayout {
         } else if (schemaItem.if) {
           this._calculatedRefs['IF_' + schemaItem.if] = {
             calc: schemaItem.if,
-            control: new FormControl()
+            control: new FormControl(),
+            ifControl: schemaItem.formControl as FormGroup
           };
         }
         if (schemaItem.children) {
@@ -153,6 +156,17 @@ export class FlexyForm extends FlexyLayout {
           console.error(e);
           value = null;
         }
+        // if (calc.ifControl) {
+        //   if (calc.control.value) {
+        //     if (calc.ifControl.disabled) {
+        //       console.log(calc.calc, calc.control.value, 'set if enable');
+        //       calc.ifControl.enable();
+        //     }
+        //   } else if (calc.ifControl.enabled) {
+        //     console.log(calc.calc, calc.control.value, 'set if disable');
+        //     calc.ifControl.disable();
+        //   }
+        // }
         if (value !== calc.control.value) {
           calc.control.setValue(value);
           calc.control.markAsDirty();
