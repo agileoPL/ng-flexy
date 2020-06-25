@@ -203,7 +203,7 @@ function findErrors(schema: FlexyFormLayoutSchema[], currentData: FlexyFormData)
     } else if (
       checkIf(item as FlexyFormFieldLayoutSchema, currentData) &&
       (item as FlexyFormFieldLayoutSchema).formName &&
-      (item as FlexyFormFieldLayoutSchema).formName &&
+      (item as FlexyFormFieldLayoutSchema).formControl &&
       (item as FlexyFormFieldLayoutSchema).formControl.invalid
     ) {
       errors[(item as FlexyFormFieldLayoutSchema).formName] = (item as FlexyFormFieldLayoutSchema).formControl.errors;
