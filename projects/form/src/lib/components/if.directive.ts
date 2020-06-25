@@ -22,7 +22,6 @@ export class FlexyFlexyFormIfDirective implements OnInit {
 
   ngOnInit() {
     if (this.flexyFormIf && (this.flexyFormIf.schema as FlexyFormFieldLayoutSchema).if && this.flexyFormIf.form) {
-      const schema = this.flexyFormIf.schema as FlexyFormFieldLayoutSchema;
       this._visibility = this._isEnabled(this.flexyFormIf.form.currentData);
       this._changesSubscription = this.flexyFormIf.form.currentData$.subscribe(data => {
         this._visibility = this._isEnabled(data);
