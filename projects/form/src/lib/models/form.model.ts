@@ -116,7 +116,7 @@ export class FlexyForm extends FlexyLayout {
     this._setCurrentData();
     this.isStarted = true;
     // this._setCurrentData();
-    this._changesSubscription = this.formGroup.valueChanges.pipe(debounceTime(10)).subscribe(data => {
+    this._changesSubscription = this.formGroup.valueChanges.subscribe(data => {
       const hash = this.currentDataHash;
       this._setCurrentData();
       if (hash !== this.currentDataHash) {
@@ -128,10 +128,12 @@ export class FlexyForm extends FlexyLayout {
 
   private _setCurrentData() {
     this.currentData = getSchemaData(this.schema, this.currentData);
+    this.currentDataHash = JSON.stringify(this.currentData);
     this._calculate();
     this.currentData = getSchemaData(this.schema, this.currentData);
+    this.currentDataHash = JSON.stringify(this.currentData);
     const errors = findErrors(this.schema, this.currentData);
-    this._lastErrors = Object.keys(errors).length ? errors : null;
+    this._lastErrors = errors && Object.keys(errors).length ? errors : null;
   }
 
   private _initCalculatedRefs(schema: FlexyFormLayoutSchema[]) {
@@ -165,7 +167,7 @@ export class FlexyForm extends FlexyLayout {
         }
 
         if (value !== calc.control.value) {
-          calc.control.setValue(value, { emitEvent: false });
+          calc.control.setValue(value);
           calc.control.markAsDirty();
         }
       });
@@ -195,7 +197,7 @@ function findErrors(schema: FlexyFormLayoutSchema[], currentData: FlexyFormData)
   for (const item of schema) {
     if (checkIf(item as FlexyFormFieldLayoutSchema, currentData) && (item as FlexyFormFieldLayoutSchema).items) {
       (item as FlexyFormFieldLayoutSchema).items.forEach((aItem, index) => {
-        const arrItemError = findErrors([aItem], get(currentData, (item as FlexyFormFieldLayoutSchema).formName)[index]);
+        const arrItemError = findErrors([aItem], currentData);
         if (arrItemError && Object.values(arrItemError).length) {
           errors[(item as FlexyFormFieldLayoutSchema).formName + '.' + index] = arrItemError;
         }
@@ -227,7 +229,7 @@ function checkIf(fieldSchema: FlexyFormFieldLayoutSchema, currentData: FlexyForm
     if (!ifExpressionsCache[ifName]) {
       ifExpressionsCache[ifName] = jsonata(fieldSchema.if);
     }
-    ret = ifExpressionsCache[ifName].evaluate(currentData);
+    ret = ifExpressionsCache[ifName].evaluate(currentData ? currentData : {});
   } catch (e) {
     console.error(e);
     ret = null;

@@ -1,0 +1,28 @@
+{
+  "filters": [
+    {
+      "field": "asdf",
+      "type": "is",
+      "not": true,
+      "value": null,
+      "valueType": "string",
+      "stringValue": "abc"
+    }
+  ],
+  "policy": {
+    "create": true,
+    "delete": false,
+    "read": true,
+    "write": false,
+    "fields": {
+      "xxx": {
+        "read": true,
+        "write": true
+      },
+      "xxx2": {
+        "read": true,
+        "write": false
+      }
+    }
+  }
+}
