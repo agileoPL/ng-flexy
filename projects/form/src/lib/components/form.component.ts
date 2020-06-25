@@ -12,6 +12,8 @@ export interface FlexyFormChanges {
   data: FlexyFormData;
 }
 
+const CHNAGES_DEBOUNCE_TIME = 50;
+
 @Component({
   selector: 'flexy-form',
   template: `
@@ -22,6 +24,7 @@ export class FlexyFormComponent implements OnInit, OnDestroy {
   @Input() json: FlexyFormLayoutJson;
   @Input() data: FlexyFormData;
   @Input() readonly = false;
+  @Input() changesDebounceTime = CHNAGES_DEBOUNCE_TIME;
 
   @Output() created = new EventEmitter<FlexyForm>();
   @Output() changed = new EventEmitter<FlexyFormChanges>();
@@ -35,9 +38,11 @@ export class FlexyFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.form = this.jsonMapper.createForm(cloneDeep(this.json), this.readonly, this.data);
     this.created.emit(this.form);
-    this._changesSubscription = this.form.currentData$.pipe(skip(1), debounceTime(50)).subscribe(data => {
-      this.changed.emit({ valid: this.form.valid, data });
-    });
+    this._changesSubscription = this.form.currentData$
+      .pipe(skip(1), debounceTime(this.changesDebounceTime || CHNAGES_DEBOUNCE_TIME))
+      .subscribe(data => {
+        this.changed.emit({ valid: this.form.valid, data });
+      });
   }
 
   ngOnDestroy(): void {

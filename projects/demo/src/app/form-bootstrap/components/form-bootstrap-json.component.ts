@@ -1,5 +1,5 @@
-import { ApplicationRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FlexyForm, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJson, FlexyFormChanges } from '@ng-flexy/form';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FlexyForm, FlexyFormChanges, FlexyFormData, FlexyFormJsonMapperService, FlexyFormLayoutJson } from '@ng-flexy/form';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { Subscription } from 'rxjs';
 
@@ -19,11 +19,7 @@ export class DemoFormJsonComponent implements OnInit, OnDestroy {
 
   private _changesSubscription: Subscription;
 
-  constructor(
-    private formJsonMapperService: FlexyFormJsonMapperService,
-    private toastsService: FlexyToastsService,
-    private appRef: ApplicationRef
-  ) {}
+  constructor(private formJsonMapperService: FlexyFormJsonMapperService, private toastsService: FlexyToastsService) {}
 
   ngOnInit() {}
 

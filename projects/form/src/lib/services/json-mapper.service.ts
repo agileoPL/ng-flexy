@@ -4,9 +4,11 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from '../models/lay
 import {
   ARRAY_EXTERNAL_PARAM_INDEX_MARKER,
   ARRAY_EXTERNAL_PARAM_PREFIX,
+  FlexyFormCalcJsonSchema,
   FlexyFormComplexFieldLayoutJsonSchema,
   FlexyFormFieldLayoutJsonSchema,
   FlexyFormFieldType,
+  FlexyFormIfJsonSchema,
   FlexyFormLayoutJson,
   FlexyFormLayoutJsonSchema
 } from '../models/layout-json-schema.model';
@@ -504,9 +506,15 @@ export class FlexyFormJsonMapperService {
     value,
     marker = ARRAY_EXTERNAL_PARAM_INDEX_MARKER
   ) {
-    items.forEach((item: FlexyFormFieldLayoutJsonSchema) => {
-      if (item.name) {
-        item.name = item.name.split(marker).join('' + key);
+    items.forEach(item => {
+      if ((item as FlexyFormFieldLayoutJsonSchema).name) {
+        (item as FlexyFormFieldLayoutJsonSchema).name = (item as FlexyFormFieldLayoutJsonSchema).name.split(marker).join('' + key);
+      }
+      if ((item as FlexyFormIfJsonSchema).if) {
+        (item as FlexyFormIfJsonSchema).if = (item as FlexyFormIfJsonSchema).if.split(marker).join('' + key);
+      }
+      if ((item as FlexyFormCalcJsonSchema).calc) {
+        (item as FlexyFormCalcJsonSchema).calc = (item as FlexyFormCalcJsonSchema).calc.split(marker).join('' + key);
       }
       if (item[SCHEMA_COMPONENT_INPUTS_KEY]) {
         const componentInputs = ['title', 'label', 'legend'];

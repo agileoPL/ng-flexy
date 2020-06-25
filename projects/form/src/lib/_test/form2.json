@@ -1,0 +1,306 @@
+{
+  "schema": [
+    {
+      "component": "array",
+      "properties": {
+        "legend": "Filters",
+        "removeAny": true
+      },
+      "attributes": {
+        "class": "filters"
+      },
+      "name": "filters",
+      "type": "array",
+      "validators": {},
+      "items": {
+        "component": "fieldset",
+        "properties": {
+          "legend": "Filter {%1}"
+        },
+        "children": [
+          {
+            "component": "text",
+            "properties": {
+              "label": "Field"
+            },
+            "name": "field",
+            "validators": {
+              "required": true
+            }
+          },
+          {
+            "component": "select",
+            "properties": {
+              "label": "Type",
+              "options": [
+                {
+                  "value": "is",
+                  "text": "is"
+                },
+                {
+                  "value": "one_of",
+                  "text": "one of"
+                },
+                {
+                  "value": "exists",
+                  "text": "exists"
+                },
+                {
+                  "value": "between",
+                  "text": "between"
+                },
+                {
+                  "value": "gt",
+                  "text": "gt"
+                },
+                {
+                  "value": "gte",
+                  "text": "gte"
+                },
+                {
+                  "value": "lt",
+                  "text": "lt"
+                },
+                {
+                  "value": "lte",
+                  "text": "lte"
+                }
+              ]
+            },
+            "name": "type",
+            "validators": {
+              "required": true
+            }
+          },
+          {
+            "component": "checkbox",
+            "properties": {
+              "label": "NOT"
+            },
+            "name": "not",
+            "validators": {
+              "required": true
+            }
+          },
+          {
+            "component": "hidden",
+            "name": "value"
+          },
+          {
+            "component": "radiolist",
+            "name": "valueType",
+            "properties": {
+              "label": "Value type",
+              "options": [
+                {
+                  "value": "string",
+                  "text": "String"
+                },
+                {
+                  "value": "number",
+                  "text": "Number"
+                },
+                {
+                  "value": "date",
+                  "text": "Date"
+                },
+                {
+                  "value": "boolean",
+                  "text": "Boolean"
+                },
+                {
+                  "value": "strings",
+                  "text": "Array of strings"
+                },
+                {
+                  "value": "numbers",
+                  "text": "Array of numbers"
+                }
+              ]
+            },
+            "validators": {
+              "required": true
+            }
+          },
+          {
+            "if": "filters[{%1}-1].valueType = \"string\"",
+            "children": [
+              {
+                "component": "text",
+                "name": "stringValue",
+                "properties": {
+                  "label": "Value"
+                },
+                "validators": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "if": "filters[{%1}-1].valueType = \"number\"",
+            "children": [
+              {
+                "component": "number",
+                "name": "numberValue",
+                "properties": {
+                  "label": "Value"
+                },
+                "validators": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "if": "filters[{%1}-1].valueType = \"date\"",
+            "children": [
+              {
+                "component": "datepicker",
+                "name": "dateValue",
+                "properties": {
+                  "label": "Value"
+                },
+                "validators": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "if": "filters[{%1}-1].valueType = \"boolean\"",
+            "children": [
+              {
+                "component": "checkbox",
+                "name": "booleanValue",
+                "properties": {
+                  "label": "Value"
+                },
+                "validators": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "if": "filters[{%1}-1].valueType = \"strings\"",
+            "children": [
+              {
+                "component": "array",
+                "properties": {
+                  "legend": "Values",
+                  "removeAny": true
+                },
+                "name": "stringsValue",
+                "type": "array",
+                "validators": {},
+                "items": {
+                  "component": "text",
+                  "validators": {
+                    "required": true
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "if": "filters[{%1}-1].valueType = \"numbers\"",
+            "children": [
+              {
+                "component": "array",
+                "properties": {
+                  "legend": "Values",
+                  "removeAny": true
+                },
+                "name": "numbersValue",
+                "type": "array",
+                "validators": {},
+                "items": {
+                  "component": "number",
+                  "validators": {
+                    "required": true
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "indexDef": "{%1}"
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Policy"
+      },
+      "children": [
+        {
+          "component": "checkbox",
+          "properties": {
+            "label": "Create"
+          },
+          "name": "policy.create"
+        },
+        {
+          "component": "checkbox",
+          "properties": {
+            "label": "Delete"
+          },
+          "name": "policy.delete"
+        },
+        {
+          "component": "checkbox",
+          "properties": {
+            "label": "Read"
+          },
+          "name": "policy.read"
+        },
+        {
+          "component": "checkbox",
+          "properties": {
+            "label": "Write"
+          },
+          "name": "policy.write"
+        },
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Fields policies"
+          },
+          "attributes": {
+            "class": "fields-policies"
+          },
+          "name": "policy.fields",
+          "type": "group",
+          "validators": {},
+          "indexDef": "{g1}",
+          "items": {
+            "component": "fieldset",
+            "attributes": {
+              "class": "policy-field"
+            },
+            "properties": {
+              "legend": "Field path: {g1}"
+            },
+            "children": [
+              {
+                "component": "checkbox",
+                "properties": {
+                  "label": "Read"
+                },
+                "name": ".read"
+              },
+              {
+                "component": "checkbox",
+                "properties": {
+                  "label": "Write"
+                },
+                "name": ".write"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "schema": [
+    {
+      "name": "field",
+      "component": "select-add",
+      "properties": {
+        "label": "Field",
+        "options": [
+          "id",
+          "version",
+          "createdAt",
+          "createdBy",
+          "modifiedAt",
+          "modifiedBy",
+          "formId",
+          "formVersion",
+          "data.available",
+          "data.comment",
+          "data.name",
+          "data.position",
+          "data.success",
+          "data.value"
+        ],
+        "addItem": true
+      }
+    },
+    {
+      "if": "field",
+      "children": [
+        {
+          "name": "type",
+          "component": "hidden",
+          "calc": "$lookup(_typesMap, field)"
+        },
+        {
+          "name": "headerName",
+          "component": "text",
+          "properties": {
+            "label": "Header name"
+          }
+        },
+        {
+          "name": "hidden",
+          "component": "checkbox",
+          "properties": {
+            "label": "Hidden"
+          }
+        },
+        {
+          "if": "$not(hidden)",
+          "children": [
+            {
+              "name": "minWidth",
+              "component": "number",
+              "properties": {
+                "label": "Min width"
+              }
+            },
+            {
+              "name": "cellRenderer",
+              "component": "select2",
+              "properties": {
+                "label": "Cell renderer",
+                "options": [
+                  {
+                    "value": "imageCellRenderer",
+                    "text": "image"
+                  },
+                  {
+                    "value": "filesCellRenderer",
+                    "text": "files"
+                  },
+                  {
+                    "value": "allFilesCellRenderer",
+                    "text": "all files"
+                  },
+                  {
+                    "value": "labelsCellRenderer",
+                    "text": "labels"
+                  },
+                  {
+                    "value": "linkCellRenderer",
+                    "text": "link"
+                  }
+                ]
+              }
+            },
+            {
+              "if": "cellRenderer = \"linkCellRenderer\"",
+              "children": [
+                {
+                  "component": "text",
+                  "name": "cellRendererParams.link",
+                  "properties": {
+                    "label": "Link",
+                    "description": "Use <%= variablePath %> for place for data"
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "select",
+                  "name": "cellRendererParams.target",
+                  "properties": {
+                    "label": "Target",
+                    "options": ["_self", "_black", "_parent"]
+                  },
+                  "validators": {
+                    "required": true
+                  }
+                },
+                {
+                  "component": "text",
+                  "name": "cellRendererParams.title",
+                  "properties": {
+                    "label": "Title"
+                  }
+                },
+                {
+                  "component": "select2",
+                  "name": "cellRendererParams.icon",
+                  "properties": {
+                    "label": "Icon",
+                    "options": [
+                      {
+                        "value": "fa-500px",
+                        "text": "500px",
+                        "prefixHtml": "<i class=\"fa fa-500px\"></i>&nbsp;"
+                      },
+                      {
+                        "value": "fa-address-book",
+                        "text": "Address Book",
+                        "prefixHtml": "<i class=\"fa fa-address-book\"></i>&nbsp;"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "if": "cellRendererParams.icon",
+                  "children": [
+                    {
+                      "component": "checkbox",
+                      "name": "cellRendererParams.onlyIcon",
+                      "properties": {
+                        "label": "Show only icon"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "if": "type = \"date\"",
+              "children": [
+                {
+                  "name": "formatter.name",
+                  "component": "hidden",
+                  "calc": "\"date\""
+                },
+                {
+                  "name": "formatter.dateFormat",
+                  "component": "text",
+                  "properties": {
+                    "label": "Date format",
+                    "default": "M/d/yy, h:mm a"
+                  }
+                }
+              ]
+            },
+            {
+              "if": "type != \"date\"",
+              "children": [
+                {
+                  "name": "_optionsFormatter",
+                  "component": "checkbox",
+                  "properties": {
+                    "label": "Options formatter"
+                  }
+                },
+                {
+                  "if": "_optionsFormatter",
+                  "children": [
+                    {
+                      "name": "formatter.name",
+                      "component": "hidden",
+                      "calc": "\"options\""
+                    },
+                    {
+                      "component": "array",
+                      "name": "formatter.options",
+                      "type": "array",
+                      "properties": {
+                        "legend": "Options",
+                        "draggable": true,
+                        "removeAny": true
+                      },
+                      "validators": {},
+                      "items": {
+                        "component": "fieldset",
+                        "children": [
+                          {
+                            "name": "value",
+                            "component": "number",
+                            "properties": {
+                              "label": "Value"
+                            }
+                          },
+                          {
+                            "name": "text",
+                            "component": "text",
+                            "properties": {
+                              "label": "Text"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "_typesMap",
+      "component": "hidden"
+    }
+  ]
+}
