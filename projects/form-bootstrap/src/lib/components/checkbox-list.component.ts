@@ -40,6 +40,7 @@ export class FlexyFormCheckboxListComponent extends FlexyFormAbstractOptionsComp
 
   @Input() options: SelectOption[];
   @Input() optionsUrl: string;
+  @Input() optionsPath: string;
   @Input() optionsMapper: SelectOptionMapper | string;
   @Input() optionsFilter: FlexyFormOptionsFilter;
   @Input() optionsRawId: string;

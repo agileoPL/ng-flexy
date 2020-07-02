@@ -15,10 +15,13 @@ const jsonata = jsonata_;
 export class FlexyFormControlOptionsService {
   constructor(private httpClient: HttpClient, private logger: FlexyLoggerService) {}
 
-  loadOptions(optionsUrl: string, optionsMapper: SelectOptionMapper | string = null): Observable<SelectOption[]> {
+  loadOptions(optionsUrl: string, optionsMapper: SelectOptionMapper | string = null, optionsPath?: string): Observable<SelectOption[]> {
     if (optionsUrl) {
       return this.httpClient.get(optionsUrl).pipe(
         map(data => {
+          if (data && optionsPath) {
+            data = get(data, optionsPath);
+          }
           const options: SelectOption[] = [];
           if (data && Array.isArray(data) && optionsMapper) {
             if (typeof optionsMapper === 'string') {
