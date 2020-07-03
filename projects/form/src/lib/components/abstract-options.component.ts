@@ -19,6 +19,7 @@ export abstract class FlexyFormAbstractOptionsComponent {
   // inputs
   options: SelectOption[];
   optionsUrl: string;
+  optionsPath: string;
   optionsMapper: SelectOptionMapper | string;
   optionsRawId: string;
   optionsFilter: FlexyFormOptionsFilter;
@@ -35,7 +36,7 @@ export abstract class FlexyFormAbstractOptionsComponent {
   async initOptions() {
     if (this.optionsUrl) {
       this.loading = true;
-      const options = await this.optionsService.loadOptions(this.optionsUrl, this.optionsMapper).toPromise();
+      const options = await this.optionsService.loadOptions(this.optionsUrl, this.optionsMapper, this.optionsPath).toPromise();
       this._optionsCache = options;
       this.loading = false;
       if (this.optionsFilter && this.optionsFilter.filter) {
