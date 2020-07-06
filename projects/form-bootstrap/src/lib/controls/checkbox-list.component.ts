@@ -12,10 +12,10 @@ import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form'
           <input
             *ngIf="option"
             type="checkbox"
-            [id]="name + '-' + option.value"
+            [id]="componentUid + '-' + option.value"
             [value]="option.value"
             [formControl]="localGroupControl.get('opt' + option.value)"
-          /><label for="{{ name + '-' + option.value }}">{{ option.text }}</label>
+          /><label for="{{ componentUid + '-' + option.value }}">{{ option.text }}</label>
         </div>
       </div>
       <flexy-control-readonly *ngIf="readonly" [value]="valuesLabels" [default]="defaultsLabels"></flexy-control-readonly>
@@ -41,10 +41,16 @@ export class FlexyControlCheckboxListComponent implements OnChanges, OnInit, OnD
 
   loading = true;
 
+  componentUid: string;
+
   private controlChangesSubscription: Subscription;
   private localValuesChangesSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {}
+  constructor(private formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {
+    this.componentUid = Math.random()
+      .toString(36)
+      .substr(2, 9);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.initCheckboxesGroup();
