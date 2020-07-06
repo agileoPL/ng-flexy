@@ -10,13 +10,13 @@ import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form'
         <input
           type="radio"
           [formControl]="selectControl"
-          [id]="name + '-' + option.value"
+          [id]="componentUid + '-' + option.value"
           [name]="name"
           [value]="option.value"
           (focus)="focused.emit($event)"
           (click)="clicked.emit($event)"
           (change)="onChange($event)"
-        /><label for="{{ name + '-' + option.value }}">{{ option.text }}</label>
+        /><label for="{{ componentUid + '-' + option.value }}">{{ option.text }}</label>
       </div>
     </div>
     <flexy-control-readonly *ngIf="readonly" [value]="control.value" [default]="default"></flexy-control-readonly>
@@ -37,6 +37,14 @@ export class FlexyControlRadioListComponent implements OnInit {
   @Output() changed = new EventEmitter<Event>();
 
   selectControl: FormControl;
+
+  componentUid: string;
+
+  constructor() {
+    this.componentUid = Math.random()
+      .toString(36)
+      .substr(2, 9);
+  }
 
   ngOnInit() {
     this.selectControl = new FormControl(findRawValue(this.optionsRawId, this.control.value, this.options));
