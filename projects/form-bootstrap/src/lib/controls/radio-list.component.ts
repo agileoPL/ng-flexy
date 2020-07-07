@@ -11,7 +11,7 @@ import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form'
           type="radio"
           [formControl]="selectControl"
           [id]="componentUid + '-' + option.value"
-          [name]="name"
+          [name]="componentUid + '-' + name"
           [value]="option.value"
           (focus)="focused.emit($event)"
           (click)="clicked.emit($event)"
@@ -51,10 +51,7 @@ export class FlexyControlRadioListComponent implements OnInit {
   }
 
   onChange(event) {
-    const value = prepareControlValue(
-      this.optionsRawId,
-      this.options.find(item => item.value === this.selectControl.value)
-    );
+    const value = prepareControlValue(this.optionsRawId, this.options.find(item => item.value === this.selectControl.value));
     this.control.setValue(value);
     this.changed.emit(value);
   }
