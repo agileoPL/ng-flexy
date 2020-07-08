@@ -186,7 +186,10 @@ function findSchema(fieldName: string, schema: FlexyFormLayoutSchema[]): FlexyFo
     if ((item as FlexyFormFieldLayoutSchema).formName && (item as FlexyFormFieldLayoutSchema).formName === fieldName) {
       return item as FlexyFormFieldLayoutSchema;
     } else if (item.children) {
-      return findSchema(fieldName, item.children);
+      const childSchema = findSchema(fieldName, item.children);
+      if (childSchema) {
+        return childSchema;
+      }
     }
   }
   return null;
