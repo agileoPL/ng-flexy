@@ -57,7 +57,7 @@ export class FlexyToastsService {
     }
   }
 
-  private show(toast: FlexyToast): number {
+  show(toast: FlexyToast): number {
     if (this.container) {
       this.container.addToast(toast);
       return toast.id;
