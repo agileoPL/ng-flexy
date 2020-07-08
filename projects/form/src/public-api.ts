@@ -11,6 +11,7 @@ export * from './lib/components/abstract-options.component';
 
 export * from './lib/models/form.data';
 export * from './lib/models/form.model';
+export * from './lib/models/form.utils';
 export * from './lib/models/layout-json-schema.model';
 export * from './lib/models/layout-schema.model';
 export * from './lib/models/select-option.data';
