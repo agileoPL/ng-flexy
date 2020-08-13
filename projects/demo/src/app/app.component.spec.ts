@@ -6,12 +6,16 @@ import { FlexyLoggerModule } from '@ng-flexy/core';
 import { FlexyToastsModule } from '@ng-flexy/toasts';
 import { FlexySkinsModule } from '@ng-flexy/skins';
 import { SUPPORTED_SKINS } from './app.skins';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        }),
         FlexyEnvModule.forRoot({ version: '1.2' }),
         FlexyLoggerModule.forRoot(),
         FlexyToastsModule.forRoot(),
@@ -30,6 +34,6 @@ describe('AppComponent', () => {
   it(`should have as title 'demo'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('NG Flexy Demo');
+    expect(app.title).toEqual('@ng-flexy');
   });
 });

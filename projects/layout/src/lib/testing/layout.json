@@ -2,20 +2,18 @@
   "version": 2,
   "schema": [
     {
-      "properties": { "class": "body" },
+      "attributes": { "class": "body flx-container" },
       "children": [
         {
-          "type": "row",
-          "properties": { "class": "row" },
+          "attributes": { "class": "row" },
           "children": [
             {
-              "type": "col",
-              "properties": { "class": "col-md-6" },
+              "attributes": { "class": "col col-md-6" },
               "children": [
                 {
-                  "type": "component",
                   "component": "custom-cmp",
-                  "componentInputs": {
+                  "attributes": { "class": "component" },
+                  "properties": {
                     "p1": "Text",
                     "p2": 1
                   }
@@ -23,13 +21,11 @@
               ]
             },
             {
-              "type": "col",
-              "properties": { "class": "col-md-6" },
+              "attributes": { "class": "col col-md-6 component" },
               "children": [
                 {
-                  "type": "component",
                   "component": "wrong-cmp",
-                  "componentInputs": {
+                  "properties": {
                     "p1": 1,
                     "p2": "p2"
                   }
@@ -39,38 +35,32 @@
           ]
         },
         {
-          "type": "row",
-          "properties": { "class": "row" },
+          "attributes": { "class": "row" },
           "children": [
             {
-              "type": "col",
-              "properties": { "class": "col-md-6" }
+              "attributes": { "class": "col col-md-6" }
             },
             {
-              "type": "col",
-              "properties": { "class": "col-md-6" }
+              "attributes": { "class": "col col-md-6" }
             }
           ]
         }
       ]
     },
     {
+      "attributes": { "class": "flx-container" },
       "children": [
         {
-          "type": "row",
-          "properties": { "class": "row" },
+          "attributes": { "class": "row" },
           "children": [
             {
-              "type": "col",
-              "properties": { "class": "col-md-4" }
+              "attributes": { "class": "col col-md-4" }
             },
             {
-              "type": "col",
-              "properties": { "class": "col-md-4" }
+              "attributes": { "class": "col col-md-4" }
             },
             {
-              "type": "col",
-              "properties": { "class": "col-md-4" }
+              "attributes": { "class": "col col-md-4" }
             }
           ]
         }

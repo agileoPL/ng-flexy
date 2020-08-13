@@ -79,7 +79,7 @@ describe('Flexy Layout', () => {
 
     expect(page.getComponents(firstCol).length).toBe(1);
 
-    const customCmp = page.getComponent('custom-testing', firstCol);
+    const customCmp = page.getComponent('flexy-custom-testing', firstCol);
 
     expect(customCmp).toBeTruthy();
 
@@ -96,8 +96,8 @@ describe('Flexy Layout', () => {
     const firstRow = page.getRows(firstContainer)[0];
     const col = page.getCols(firstRow)[1];
 
-    expect(page.getComponents(col).length).toBe(1);
-    expect(page.getComponents(col)[0].nativeElement.innerText).toBe('');
+    const customCmp = page.getComponent('wrong-cmp', col);
+    expect(customCmp).toBeFalsy();
   });
 });
 
@@ -132,7 +132,8 @@ class LayoutTestingComponent implements OnInit {
   constructor(private jsonMapperService: FlexyLayoutJsonMapperService) {}
 
   ngOnInit() {
-    this.schema = this.jsonMapperService.map(LAYOUT_SCHEMA);
+    console.log('LAYOUT_SCHEMA', LAYOUT_SCHEMA);
+    this.schema = this.jsonMapperService.map(LAYOUT_SCHEMA.schema);
   }
 }
 
@@ -184,21 +185,21 @@ class Page {
     if (!debugElement) {
       debugElement = this.fixture.debugElement;
     }
-    return debugElement.queryAll(By.css('.flx-row'));
+    return debugElement.queryAll(By.css('.row'));
   }
 
   getCols(debugElement: DebugElement = null): DebugElement[] {
     if (!debugElement) {
       debugElement = this.fixture.debugElement;
     }
-    return debugElement.queryAll(By.css('.flx-col'));
+    return debugElement.queryAll(By.css('.col'));
   }
 
   getComponents(debugElement: DebugElement = null): DebugElement[] {
     if (!debugElement) {
       debugElement = this.fixture.debugElement;
     }
-    return debugElement.queryAll(By.css('.flx-component'));
+    return debugElement.queryAll(By.css('.component'));
   }
 
   getComponent(compoentntName: string, debugElement: DebugElement = null): DebugElement {
