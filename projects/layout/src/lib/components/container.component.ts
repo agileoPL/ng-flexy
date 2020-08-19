@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FlexyLayoutComponentSchema } from '../model/layout-schema.model';
 
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
@@ -10,34 +10,36 @@ const LAYOUT_SCHEMA_KEY = 'layoutSchema';
   `
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlexyContainerComponent {
+export class FlexyContainerComponent implements OnInit {
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;
 
-  @Input() set componentSchema(schema: FlexyLayoutComponentSchema) {
-    if (!schema) {
+  @Input() componentSchema: FlexyLayoutComponentSchema;
+
+  constructor(private resolver: ComponentFactoryResolver) {}
+
+  ngOnInit(): void {
+    if (!this.componentSchema) {
       return;
     }
-    if (!schema.componentType) {
-      console.error('Component schema is incorrect', schema);
+    if (!this.componentSchema.componentType) {
+      console.error('Component schema is incorrect', this.componentSchema);
       return;
     }
 
-    const componentFactory = this.resolver.resolveComponentFactory(schema.componentType);
+    const componentFactory = this.resolver.resolveComponentFactory(this.componentSchema.componentType);
 
     const viewContainerRef = this.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
-    componentRef.instance[LAYOUT_SCHEMA_KEY] = schema;
-    schema.componentRef = componentRef;
+    componentRef.instance[LAYOUT_SCHEMA_KEY] = this.componentSchema;
+    this.componentSchema.componentRef = componentRef;
 
-    if (schema.componentInputs) {
-      Object.keys(schema.componentInputs).forEach(key => {
-        componentRef.instance[key] = schema.componentInputs[key];
+    if (this.componentSchema.componentInputs) {
+      Object.keys(this.componentSchema.componentInputs).forEach(key => {
+        componentRef.instance[key] = this.componentSchema.componentInputs[key];
       });
     }
   }
-
-  constructor(private resolver: ComponentFactoryResolver) {}
 }
