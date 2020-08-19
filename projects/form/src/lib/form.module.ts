@@ -61,14 +61,14 @@ export function provideComponentsFactory(
   ]
 })
 export class FlexyFormsModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyFormsModule> {
     return {
       ngModule: FlexyFormsModule,
       providers: [FlexyFormJsonMapperService, FlexyFormSchemaService]
     };
   }
 
-  static forChild(options?: FlexyFormsOptions): ModuleWithProviders {
+  static forChild(options?: FlexyFormsOptions): ModuleWithProviders<FlexyFormsModule> {
     return {
       ngModule: FlexyFormsModule,
       providers: [

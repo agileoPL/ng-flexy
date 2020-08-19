@@ -51,10 +51,10 @@ export class ExecutionTime {
   lap(message?: string, data?: any) {
     const lap = Date.now() - this._start;
     this._laps.push({
-      lap: lap,
+      lap,
       lapBefore: this._laps.length ? lap - this._laps[this._laps.length - 1].lap : void 0,
-      message: message,
-      data: data
+      message,
+      data
     });
   }
 
@@ -63,8 +63,6 @@ export class ExecutionTime {
   }
 
   toString() {
-    let info = `[${this._id}]: ` + (!this._stop ? 'Not finished' : +((this._stop - this._start) / 1000).toFixed(2));
-
-    return info;
+    return `[${this._id}]: ` + (!this._stop ? 'Not finished' : +((this._stop - this._start) / 1000).toFixed(2));
   }
 }

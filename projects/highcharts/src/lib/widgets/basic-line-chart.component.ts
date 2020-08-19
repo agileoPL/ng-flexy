@@ -80,7 +80,7 @@ const MIN_RANGE = 5;
       [options]="chartOptions"
       [series]="series"
       [resizeable]="resizeable"
-      (onInit)="chartInit($event)"
+      (created)="chartInit($event)"
     ></flexy-chart>
   `
 })
@@ -99,16 +99,16 @@ export class FlexyBasicLineChartComponent implements OnInit, OnChanges {
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes) {
-    if (changes['options'] && this.chartInstance && this.chartOptions) {
+    if (changes.options && this.chartInstance && this.chartOptions) {
       this.chartOptions = cloneDeep(this.options);
       this.chartInstance.update(this.chartOptions);
     }
   }
 
   ngOnInit() {
-    let chartOptions = cloneDeep(this.options);
-    if (chartOptions.chart && chartOptions.chart.type === 'area' && !chartOptions['plotOptions']) {
-      chartOptions['plotOptions'] = {
+    const chartOptions = cloneDeep(this.options);
+    if (chartOptions.chart && chartOptions.chart.type === 'area' && !chartOptions.plotOptions) {
+      chartOptions.plotOptions = {
         area: {
           stacking: 'normal'
         }
@@ -125,7 +125,7 @@ export class FlexyBasicLineChartComponent implements OnInit, OnChanges {
     this.chartInstance.update(this.chartOptions);
     if (this.zoomAble) {
       setTimeout(() => {
-        if (!this.cdr['destroyed']) {
+        if (!this.cdr[`destroyed`]) {
           const axis = this.chartInstance.xAxis[0];
           this.chartZoom = {
             min: axis.dataMin,

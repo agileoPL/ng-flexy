@@ -23,6 +23,7 @@
       >
         <div class="schema-item-body">
           <flexy-form-container
+            *ngIf="form"
             [form]="form"
             [schema]="[componentSchema]"
             [ngClass]="{ 'flexy-removable-list': !readonly && removable && removeAny }"

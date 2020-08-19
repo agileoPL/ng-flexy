@@ -164,7 +164,7 @@ const COMPONENTS = [FlexyTreeNodeComponent];
   exports: [...PUBLIC_COMPONENTS, ...ENTRY_LAYOUT_COMPONENTS, ...FORM_CONTROLS]
 })
 export class FlexyFormsBootstrapModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyFormsBootstrapModule> {
     return {
       ngModule: FlexyFormsBootstrapModule,
       providers: [FlexyTreeService]

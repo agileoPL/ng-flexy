@@ -40,7 +40,7 @@ export class FlexyFieldComponent implements OnInit {
   @Input() labelIcon: string;
   @Input() description: string;
 
-  @ViewChild('fieldContainerRef', { static: false }) fieldContainerRef;
+  @ViewChild('fieldContainerRef') fieldContainerRef;
 
   isRequired: boolean;
 

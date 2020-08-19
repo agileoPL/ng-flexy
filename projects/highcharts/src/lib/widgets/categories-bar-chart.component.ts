@@ -59,15 +59,15 @@ export class FlexyCategoriesBarChartComponent implements OnChanges, OnInit {
   ngOnChanges(changes) {
     if (this.chartOptions) {
       let chartOptions = this.chartOptions;
-      if (changes['options'] && this.chartOptions) {
+      if (changes.options && this.chartOptions) {
         chartOptions = merge(cloneDeep(this.chartOptions), cloneDeep(this.options));
       }
-      if (changes['categories'] && this.chartOptions) {
+      if (changes.categories && this.chartOptions) {
         chartOptions.xAxis.categories = Object.keys(this.categories);
       }
       this.chartOptions = chartOptions;
 
-      if (changes['categories'] && this.chartOptions) {
+      if (changes.categories && this.chartOptions) {
         this.chartSeries = this.prepareSeries(this.categories);
       }
     }
@@ -75,7 +75,7 @@ export class FlexyCategoriesBarChartComponent implements OnChanges, OnInit {
 
   ngOnInit() {
     if (!isEmpty(this.categories)) {
-      let options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
+      const options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
       options.xAxis.categories = Object.keys(this.categories);
       options.series = this.prepareSeries(this.categories);
       this.chartOptions = options;
@@ -88,7 +88,7 @@ export class FlexyCategoriesBarChartComponent implements OnChanges, OnInit {
       return [];
     }
 
-    let series = [];
+    const series = [];
 
     const allSubCategories: string[] = [];
     Object.keys(categories).forEach((categoryId, index) => {
@@ -113,7 +113,7 @@ export class FlexyCategoriesBarChartComponent implements OnChanges, OnInit {
 
     allSubCategories.forEach(name => {
       series.push({
-        name: name,
+        name,
         data: dataByName[name]
       });
     });

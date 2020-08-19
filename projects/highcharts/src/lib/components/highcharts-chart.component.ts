@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import * as Highcharts from 'highcharts';
 
 @Component({
-  selector: 'highcharts-chart',
+  selector: 'flexy-highcharts-chart',
   template: ''
 })
 export class HighchartsChartComponent implements OnInit, OnDestroy {

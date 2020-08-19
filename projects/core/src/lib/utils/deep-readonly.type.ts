@@ -6,7 +6,7 @@ export type DeepReadonly<T> = T extends Primitive
   ? DeepReadonlyMap<K, V>
   : DeepReadonlyObject<T>;
 
-type Primitive = undefined | null | boolean | string | number | Function;
+type Primitive = undefined | null | boolean | string | number;
 interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 interface DeepReadonlyMap<K, V> extends ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>> {}
 type DeepReadonlyObject<T> = {

@@ -15,7 +15,7 @@ import { FlexyEnv } from './env.model';
   ]
 })
 export class FlexyEnvModule {
-  static forRoot(env?: FlexyEnv): ModuleWithProviders {
+  static forRoot(env?: FlexyEnv): ModuleWithProviders<FlexyEnvModule> {
     return {
       ngModule: FlexyEnvModule,
       providers: [

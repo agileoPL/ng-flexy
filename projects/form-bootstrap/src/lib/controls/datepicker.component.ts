@@ -23,8 +23,8 @@ const BS_DATEPICKER_MODES = {
         [bsConfig]="bsConfig"
         [minDate]="minDate"
         [maxDate]="maxDate"
-        (focus)="focus.emit($event)"
-        (click)="click.emit($event)"
+        (focus)="focused.emit($event)"
+        (click)="clicked.emit($event)"
         (bsValueChange)="changed.emit($event)"
         bsDatepicker
       />
@@ -34,7 +34,7 @@ const BS_DATEPICKER_MODES = {
         </button>
       </span>
     </div>
-    <flexy-control-readonly *ngIf="readonly" [value]="control.value | date: format" [default]="default"> </flexy-control-readonly>
+    <flexy-control-readonly *ngIf="readonly" [value]="control.value | date: format" [default]="default"></flexy-control-readonly>
   `
 })
 export class FlexyControlDatepickerComponent implements OnInit {
@@ -62,8 +62,8 @@ export class FlexyControlDatepickerComponent implements OnInit {
   @Input() hideButton: boolean;
   @Input() minMode: string;
 
-  @Output() focus = new EventEmitter<Event>();
-  @Output() click = new EventEmitter<Event>();
+  @Output() focused = new EventEmitter<Event>();
+  @Output() clicked = new EventEmitter<Event>();
   @Output() changed = new EventEmitter<Event>();
 
   ngOnInit() {

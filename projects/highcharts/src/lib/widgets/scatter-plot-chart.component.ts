@@ -88,7 +88,7 @@ const DEFAULT_POINTS_SERIE_OPTIONS: any = {
       [options]="chartOptions"
       [series]="series"
       [resizeable]="resizeable"
-      (onInit)="chartInit($event)"
+      (created)="chartInit($event)"
     ></flexy-chart>
   `
 })

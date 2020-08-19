@@ -12,7 +12,7 @@ const PUBLIC_PIPES = [FlexyEmptyPipe, FlexyTruncatePipe, FlexyCamelCasePipe];
   exports: [...PUBLIC_PIPES]
 })
 export class FlexyPipesModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyPipesModule> {
     return {
       ngModule: FlexyPipesModule,
       providers: []

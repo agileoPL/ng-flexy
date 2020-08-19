@@ -1,8 +1,8 @@
 {
   "name": "@ng-flexy/layout",
-  "version": "3.0.2",
+  "version": "9.1.1",
   "peerDependencies": {
-    "@angular/common": "~8.2.14",
-    "@angular/core": "~8.2.14"
+    "@angular/common": "~9.1.12",
+    "@angular/core": "~9.1.12"
   }
 }

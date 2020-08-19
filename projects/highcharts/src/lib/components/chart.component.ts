@@ -15,12 +15,12 @@ HC_Boost(Highcharts);
   selector: 'flexy-chart',
   template: `
     <div class="no-data" *ngIf="noData">No data.</div>
-    <highcharts-chart
+    <flexy-highcharts-chart
       [constructorType]="'chart'"
       [options]="chartOptions"
       [callbackFunction]="chartCallback"
       [(update)]="updateFlag"
-    ></highcharts-chart>
+    ></flexy-highcharts-chart>
     <div class="actions">
       <ng-container *ngIf="options.chart && (options.chart.type === 'area' || options.chart.type === 'spline') && series.length > 3">
         <a (click)="hideBreakdowns()" title="Hide all">
@@ -48,7 +48,7 @@ export class FlexyChartComponent implements OnInit, OnChanges {
   @Input() resizeable = true;
   @Input() unit: string;
 
-  @Output() onInit = new EventEmitter<any>();
+  @Output() created = new EventEmitter<any>();
 
   chartOptions = {};
   highcharts = Highcharts;
@@ -63,14 +63,14 @@ export class FlexyChartComponent implements OnInit, OnChanges {
   chartCallback = chart => {
     if (!this.chartInstance && chart) {
       this.chartInstance = chart;
-      this.onInit.emit(chart);
+      this.created.emit(chart);
     }
   };
 
   constructor(@Inject(LOCALE_ID) private locale: string) {}
 
   ngOnChanges(changes) {
-    if (changes['options'] && this.chartInstance) {
+    if (changes.options && this.chartInstance) {
       this.chartInstance.yAxis.forEach(axis => {
         axis.update(this.options.yAxis);
       });
@@ -81,10 +81,10 @@ export class FlexyChartComponent implements OnInit, OnChanges {
         this.chartInstance.setSize(undefined, this.options.chart.height, true);
       }
     }
-    if (changes['series'] && this.chartInstance) {
-      let seriesToRemove = [];
+    if (changes.series && this.chartInstance) {
+      const seriesToRemove = [];
       this.chartInstance.series.forEach(element => {
-        let serie = this.series.find(item => item.name === element.name);
+        const serie = this.series.find(item => item.name === element.name);
         if (serie) {
           element.setData(serie.data, false, true);
         } else {
@@ -133,10 +133,10 @@ export class FlexyChartComponent implements OnInit, OnChanges {
   }
 
   private prepareOptions() {
-    let options = this.options ? cloneDeep(this.options) : {};
+    const options = this.options ? cloneDeep(this.options) : {};
     if (this.series) {
       const seriesCount = this.series.length;
-      options['series'] = this.series.map(item => {
+      options.series = this.series.map(item => {
         return {
           ...item,
           boostThreshold: Math.ceil(1500 / seriesCount)
@@ -150,14 +150,14 @@ export class FlexyChartComponent implements OnInit, OnChanges {
         };
       }
     });
-    if (options['plotOptions'] && options['plotOptions']['pie']) {
-      options['plotOptions']['pie']['dataLabels']['formatter'] = this.valueFormatter(this.unit);
+    if (options.plotOptions && options.plotOptions.pie) {
+      options.plotOptions.pie.dataLabels.formatter = this.valueFormatter(this.unit);
     }
-    if (options['plotOptions'] && options['plotOptions']['treemap']) {
-      options['plotOptions']['treemap']['dataLabels']['formatter'] = this.valueFormatter(this.unit);
+    if (options.plotOptions && options.plotOptions.treemap) {
+      options.plotOptions.treemap.dataLabels.formatter = this.valueFormatter(this.unit);
     }
 
-    let expOptions = {
+    const expOptions = {
       type: 'image/png',
       width: 1600,
       sourceHeight: 300,
@@ -175,10 +175,10 @@ export class FlexyChartComponent implements OnInit, OnChanges {
             dataLabels: {
               enabled: true,
               color: 'black',
-              formatter: function() {
-                if (options['plotOptions'] && options['plotOptions']['pie']) {
+              formatter() {
+                if (options.plotOptions && options.plotOptions.pie) {
                   return this.point.name + ': ' + parseFloat(this.point.percentage).toFixed(2) + '%';
-                } else if (options['plotOptions'] && options['plotOptions']['treemap']) {
+                } else if (options.plotOptions && options.plotOptions.treemap) {
                   return this.point.name + ': ' + this.point.value;
                 }
                 return undefined;
@@ -189,14 +189,15 @@ export class FlexyChartComponent implements OnInit, OnChanges {
       }
     };
 
-    if (options['chart']['type'] === 'spline' && options['series'] && options['series'][1] && options['series'][1].type === 'column') {
-      options['series'][1]['color'] = tinycolor2('rgba(26, 188, 156, 0.75)').toString();
-      expOptions.chartOptions.plotOptions['column'] = {
+    if (options.chart.type === 'spline' && options.series && options.series[1] && options.series[1].type === 'column') {
+      options.series[1].color = tinycolor2('rgba(26, 188, 156, 0.75)').toString();
+      const columnField = 'column';
+      expOptions.chartOptions.plotOptions[columnField] = {
         zones: [{ value: 0, color: tinycolor2('rgba(241, 85, 108, 0.75)').toString() }]
       };
     }
 
-    options['exporting'] = merge(options['exporting'], expOptions);
+    options.exporting = merge(options.exporting, expOptions);
 
     this.chartOptions = options;
 
@@ -225,8 +226,8 @@ export class FlexyChartComponent implements OnInit, OnChanges {
         ? unit
         : this.point && this.point.options && this.point.options.unit
         ? this.point.options.unit
-        : this.series && this.series['yAxis'] && this.series['yAxis'].axisTitle
-        ? this.series['yAxis'].axisTitle.textStr
+        : this.series && this.series.yAxis && this.series.yAxis.axisTitle
+        ? this.series.yAxis.axisTitle.textStr
         : '';
       const name = this.key ? this.key + ': ' : this.name ? '' : this.series ? this.series.name + ': ' : '';
       const value = isNumber(this.y) ? this.y : isNumber(this.value) ? this.value : this.point ? this.point.value : null;
@@ -235,7 +236,7 @@ export class FlexyChartComponent implements OnInit, OnChanges {
       const isSplit = this.series && this.series.chart && this.series.chart.tooltip && this.series.chart.tooltip.split;
       const color = !isSplit && this.color && this.series.area ? `<br><span style="color: ${this.color}">\u25CF </span>` : '';
       unit = null;
-      let styleTag = this.point && !!this.point.forecast ? 'i' : 'b';
+      const styleTag = this.point && !!this.point.forecast ? 'i' : 'b';
       return `${color}<span style="white-space: normal">${name}</span><${styleTag}>${percentage}${formatted}</${styleTag}><br>`;
     };
   }

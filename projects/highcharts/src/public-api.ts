@@ -1,6 +1,9 @@
 /*
  * Public API Surface of highcharts
  */
+export * from './lib/components/chart.component';
+export * from './lib/components/highcharts-chart.component';
+export * from './lib/components/stock-chart.component';
 
 export * from './lib/widgets/basic-line-chart.component';
 export * from './lib/widgets/categories-bar-chart.component';

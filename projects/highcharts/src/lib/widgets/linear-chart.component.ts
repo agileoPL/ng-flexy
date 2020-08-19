@@ -83,7 +83,7 @@ const DEFAULT_OPTIONS = Object.freeze({
 @Component({
   selector: 'flexy-linear-chart',
   template: `
-    <flexy-stock-chart *ngIf="chartOptions" [options]="chartOptions" [series]="series" (onInit)="chartInit($event)"></flexy-stock-chart>
+    <flexy-stock-chart *ngIf="chartOptions" [options]="chartOptions" [series]="series" (created)="chartInit($event)"></flexy-stock-chart>
   `
 })
 export class FlexyLinearChartComponent implements OnInit, OnChanges {
@@ -96,7 +96,7 @@ export class FlexyLinearChartComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes) {
-    if (changes['options'] && this.chartInstance && this.chartOptions) {
+    if (changes.options && this.chartInstance && this.chartOptions) {
       this.chartOptions = merge(cloneDeep(this.chartOptions), cloneDeep(this.options));
     }
   }

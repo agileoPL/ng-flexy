@@ -12,8 +12,8 @@ import { FormControl } from '@angular/forms';
       [attr.max]="max"
       [attr.step]="step ? step : 1"
       [attr.placeholder]="default"
-      (focus)="onFocus.emit($event)"
-      (click)="onClick.emit($event)"
+      (focus)="focused.emit($event)"
+      (click)="clicked.emit($event)"
       (change)="onChange($event)"
     />
     <flexy-control-readonly *ngIf="readonly" [value]="percentValue" [default]="default"></flexy-control-readonly>
@@ -36,9 +36,9 @@ export class FlexyControlPercentComponent implements OnInit {
   @Input() step: number;
   @Input() readonly: boolean;
 
-  @Output() onFocus = new EventEmitter<Event>();
-  @Output() onClick = new EventEmitter<Event>();
-  @Output() onChanged = new EventEmitter<Event>();
+  @Output() focused = new EventEmitter<Event>();
+  @Output() clicked = new EventEmitter<Event>();
+  @Output() changed = new EventEmitter<Event>();
 
   percentValue: number;
 
@@ -48,6 +48,6 @@ export class FlexyControlPercentComponent implements OnInit {
 
   onChange(event) {
     this.control.setValue(this.percentValue / 100);
-    this.onChanged.emit(event);
+    this.changed.emit(event);
   }
 }

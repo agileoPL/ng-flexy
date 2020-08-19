@@ -15,7 +15,7 @@ const PIPES = [...PUBLIC_PIPES];
   exports: [...PUBLIC_COMPONENTS, ...PUBLIC_PIPES]
 })
 export class FlexyToastsModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyToastsModule> {
     return {
       ngModule: FlexyToastsModule,
       providers: [FlexyToastsService]

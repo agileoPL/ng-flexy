@@ -9,31 +9,19 @@ import { bindAttributes } from './attr.binder.utils';
 })
 export class FlexyFormAttributesDirective implements OnInit, OnDestroy {
   @Input() flexyForm: FlexyForm;
-  @Input() set componentSchema(schema: FlexyFormFieldLayoutSchema) {
-    this._schema = schema;
-    if (!schema) {
-      return;
-    }
-
-    if (schema.attributes) {
-      bindAttributes(this.componentSchema, this.el.nativeElement, this.renderer, this.flexyForm.currentData);
-    }
-  }
-
-  get componentSchema(): FlexyFormFieldLayoutSchema {
-    return this._schema;
-  }
-
-  private _schema: FlexyFormFieldLayoutSchema;
+  @Input() componentSchema: FlexyFormFieldLayoutSchema;
 
   private _changesSubscription: Subscription;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   ngOnInit() {
-    this._changesSubscription = this.flexyForm.currentData$.subscribe(data => {
-      bindAttributes(this.componentSchema, this.el.nativeElement, this.renderer, data);
-    });
+    if (this.componentSchema && this.componentSchema.attributes) {
+      bindAttributes(this.componentSchema, this.el.nativeElement, this.renderer, this.flexyForm.currentData);
+      this._changesSubscription = this.flexyForm.currentData$.subscribe(data => {
+        bindAttributes(this.componentSchema, this.el.nativeElement, this.renderer, data);
+      });
+    }
   }
 
   ngOnDestroy(): void {

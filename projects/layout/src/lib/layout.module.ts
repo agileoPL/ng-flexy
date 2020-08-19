@@ -35,14 +35,14 @@ export function provideComponentsFactory(map: FlexyLayoutComponentMap, mapperSer
   ]
 })
 export class FlexyLayoutModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyLayoutModule> {
     return {
       ngModule: FlexyLayoutModule,
       providers: [FlexyLayoutJsonMapperService]
     };
   }
 
-  static forChild(componentMap?: FlexyLayoutComponentMap): ModuleWithProviders {
+  static forChild(componentMap?: FlexyLayoutComponentMap): ModuleWithProviders<FlexyLayoutModule> {
     return {
       ngModule: FlexyLayoutModule,
       providers: [

@@ -3,6 +3,6 @@
     <span *ngIf="legend">{{ legend }}</span>
   </h4>
 
-  <flexy-form-container [form]="form" [schema]="layoutSchema.children"></flexy-form-container>
+  <flexy-form-container *ngIf="form" [form]="form" [schema]="layoutSchema.children"></flexy-form-container>
   <flexy-form-field-info *ngIf="layoutSchema.formControl" [control]="layoutSchema.formControl"></flexy-form-field-info>
 </fieldset>

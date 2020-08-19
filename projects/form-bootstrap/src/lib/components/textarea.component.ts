@@ -25,7 +25,7 @@ export class FlexyFormTextareaComponent implements AfterViewInit {
   @Input() description: string;
   @Input() readonly: boolean;
 
-  @ViewChild('inputRef', { static: false }) inputRef;
+  @ViewChild('inputRef') inputRef;
 
   constructor() {}
 

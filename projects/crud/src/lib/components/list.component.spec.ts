@@ -225,7 +225,7 @@ describe('Component: Crud List', () => {
       component.pagination = preparePagination(1, 30, 90);
       component.fields = prepareFields();
       fixture.detectChanges();
-      let searchInput = page.searchTermInput();
+      const searchInput = page.searchTermInput();
       let event;
       let eventCounter = 0;
       const subsc = component.changeFilter.subscribe(fEvent => {
@@ -293,8 +293,8 @@ describe('Component: Crud List', () => {
       expect(page.countFavourites()).toBe(3);
     });
   });
-  let preparePagination = (currentPage = 1, perPage = 10, total = 10) => {
-    let data = [];
+  const preparePagination = (currentPage = 1, perPage = 10, total = 10) => {
+    const data = [];
     for (let i = (currentPage - 1) * perPage; i < Math.min(total, currentPage * perPage); i++) {
       data.push({
         id: i + 1,

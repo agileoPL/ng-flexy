@@ -16,7 +16,7 @@ const EXCLUDED_PARAMS = ['page', 'perPage', 'order', 'orderBy', 'orderDirection'
   templateUrl: './quick-filters.component.html'
 })
 export class FlexyQuickFiltersComponent implements OnInit, OnChanges, AfterViewChecked {
-  @ViewChild('newFilter', { static: false }) private newFilterInput: ElementRef;
+  @ViewChild('newFilter') private newFilterInput: ElementRef;
 
   @Input() listId: string;
   @Input() filter: FlexyListFilter;

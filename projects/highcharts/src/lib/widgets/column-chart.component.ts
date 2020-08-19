@@ -16,10 +16,10 @@ const DEFAULT_OPTIONS = Object.freeze({
     type: 'category',
     labels: {
       rotation: -45,
-      formatter: function() {
+      formatter() {
         const isForecast =
           this.chart && this.chart.series[0] && this.chart.series[0].data[this.pos] && this.chart.series[0].data[this.pos].forecast;
-        let styleTag = isForecast ? 'i' : 'b';
+        const styleTag = isForecast ? 'i' : 'b';
         return `<${styleTag}>${this.value}</${styleTag}>`;
       }
     }
@@ -53,7 +53,7 @@ const DEFAULT_OPTIONS = Object.freeze({
       [options]="chartOptions"
       [resizeable]="resizeable"
       [series]="chartSeries"
-      (onInit)="chartInit($event)"
+      (created)="chartInit($event)"
     ></flexy-chart>
   `
 })
@@ -72,18 +72,18 @@ export class FlexyColumnChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes) {
     if (this.chartOptions && this.chartInstance) {
-      if (changes['height']) {
+      if (changes.height) {
         this.chartOptions.chart.height = this.height;
         this.chartOptions = cloneDeep(this.chartOptions);
       }
-      if (changes['seriesData']) {
+      if (changes.seriesData) {
         this.chartSeries = this.prepareSeries(this.seriesData);
       }
     }
   }
 
   ngOnInit() {
-    let options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
+    const options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
     if (this.height) {
       options.chart.height = this.height;
     }

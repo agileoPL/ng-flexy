@@ -12,7 +12,7 @@ const PUBLIC = [FlexyFeatureToggleDirective];
   exports: [...PUBLIC]
 })
 export class FlexyFeatureToggleModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyFeatureToggleModule> {
     return {
       ngModule: FlexyFeatureToggleModule,
       providers: [FlexyFeatureToggleService]
