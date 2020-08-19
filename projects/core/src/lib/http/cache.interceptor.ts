@@ -1,8 +1,7 @@
-import { AsyncSubject } from 'rxjs';
+import { AsyncSubject, of } from 'rxjs';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
 
 export class FlexyHttpCacheInterceptor implements HttpInterceptor {
   private cache = new Map<string, AsyncSubject<HttpEvent<any>>>();

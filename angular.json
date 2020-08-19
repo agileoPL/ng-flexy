@@ -32,7 +32,8 @@
               { "inject": false, "input": "projects/demo/src/scss/light-skin/index.scss", "bundleName": "styles/default" },
               { "inject": false, "input": "projects/demo/src/scss/dark-skin/index.scss", "bundleName": "styles/dark" }
             ],
-            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"]
+            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"],
+            "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"]
           },
           "configurations": {
             "production": {

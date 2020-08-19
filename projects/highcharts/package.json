@@ -1,9 +1,9 @@
 {
   "name": "@ng-flexy/highcharts",
-  "version": "9.1.1",
+  "version": "10.0.1",
   "peerDependencies": {
-    "@angular/common": "~9.1.12",
-    "@angular/core": "~9.1.12",
+    "@angular/common": "~10.0.10",
+    "@angular/core": "~10.0.10",
     "highcharts": "^6.2.0",
     "tinycolor2": "^1.4.1"
   }
