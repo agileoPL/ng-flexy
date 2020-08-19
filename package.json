@@ -63,7 +63,8 @@
     "highcharts:build": "ng build highcharts && cpx \"projects/highcharts/src/lib/highcharts.scss\" \"dist/highcharts\"",
     "highcharts:watch": "ng build highcharts --watch",
     "graphs:build": "ng build graphs && cpx \"projects/graphs/src/lib/graphs.module.scss\" \"dist/graphs\"",
-    "graphs:watch": "ng build graphs --watch"
+    "graphs:watch": "ng build graphs --watch",
+    "postinstall": "ngcc"
   },
   "dependencies": {
     "@angular/animations": "~9.1.12",
