@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cledar/ng-flexy.git"
+    "url": "git+https://github.com/agileoPL/ng-flexy.git"
   },
   "bugs": {
-    "url": "https://github.com/cledar/ng-flexy/issues"
+    "url": "https://github.com/agileoPL/ng-flexy/issues"
   },
-  "homepage": "https://github.com/cledar/ng-flexy#readme",
+  "homepage": "https://github.com/agileoPL/ng-flexy#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -96,8 +96,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.23",
-    "@angular/cli": "~8.3.23",
+    "@angular-devkit/build-angular": "~0.803.29",
+    "@angular/cli": "~8.3.29",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@types/node": "~8.9.4",
@@ -115,7 +115,7 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3",
-    "@angular-devkit/build-ng-packagr": "~0.801.3",
+    "@angular-devkit/build-ng-packagr": "~0.803.29",
     "cpx": "^1.5.0",
     "husky": "^1.3.1",
     "ng-packagr": "^5.1.0",
