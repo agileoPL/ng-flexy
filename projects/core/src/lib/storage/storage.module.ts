@@ -4,7 +4,7 @@ import { FlexyLocalStorageService } from './local-storage.service';
 
 @NgModule({})
 export class FlexyStorageModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyStorageModule> {
     return {
       ngModule: FlexyStorageModule,
       providers: [FlexySessionStorageService, FlexyLocalStorageService]

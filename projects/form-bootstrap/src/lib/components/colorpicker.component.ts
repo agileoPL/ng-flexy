@@ -25,5 +25,5 @@ export class FlexyFormColorpickerComponent {
   @Input() description: string;
   @Input() readonly: boolean;
 
-  @ViewChild('inputRef', { static: false }) inputRef!: ElementRef;
+  @ViewChild('inputRef') inputRef!: ElementRef;
 }

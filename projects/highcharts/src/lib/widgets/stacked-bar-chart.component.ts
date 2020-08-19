@@ -7,7 +7,7 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'flexy-stacked-bar-chart',
   template: `
-    <flexy-chart [options]="chartOptions" [series]="series" (onInit)="chartInit($event)"></flexy-chart>
+    <flexy-chart [options]="chartOptions" [series]="series" (created)="chartInit($event)"></flexy-chart>
   `
 })
 export class FlexyStackedBarChartComponent implements OnInit {

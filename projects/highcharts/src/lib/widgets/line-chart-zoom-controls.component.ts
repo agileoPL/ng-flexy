@@ -59,7 +59,8 @@ export class FlexyLineChartZoomControlsComponent {
 
   setRange(direction: number, extreme?: boolean) {
     const range = this.zoom.max - this.zoom.min;
-    let min: number, max: number;
+    let min: number;
+    let max: number;
     if (extreme) {
       min = direction < 0 ? this.zoom.dataMin : this.zoom.dataMax - range;
       max = direction < 0 ? this.zoom.dataMin + range : this.zoom.dataMax;
@@ -67,7 +68,7 @@ export class FlexyLineChartZoomControlsComponent {
       min = Math.max(this.zoom.min + direction * range, this.zoom.dataMin);
       max = Math.min(min + range, this.zoom.dataMax);
     }
-    this.changeRange.emit({ min: min, max: max });
+    this.changeRange.emit({ min, max });
   }
 
   setZoom(zoom: number) {
@@ -75,6 +76,6 @@ export class FlexyLineChartZoomControlsComponent {
     const zoomCenter = this.zoom.min + (this.zoom.max - this.zoom.min) / 2;
     const min = Math.max(zoomCenter - newRange / 2, this.zoom.dataMin);
     const max = Math.min(zoomCenter + newRange / 2, this.zoom.dataMax);
-    this.changeRange.emit({ min: min, max: max });
+    this.changeRange.emit({ min, max });
   }
 }

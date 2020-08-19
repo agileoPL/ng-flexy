@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { cloneDeep, merge } from 'lodash';
-import * as Highcharts from 'highcharts';
 
 const DEFAULT_OPTIONS = Object.freeze({
   chart: {
@@ -69,7 +68,7 @@ const DEFAULT_OPTIONS = Object.freeze({
       [options]="chartOptions"
       [series]="series"
       [resizeable]="resizeable"
-      (onInit)="chartInit($event)"
+      (created)="chartInit($event)"
     ></flexy-chart>
   `
 })
@@ -86,7 +85,7 @@ export class FlexyTreemapChartComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes) {
-    if (changes['options'] && this.chartInstance && this.chartOptions) {
+    if (changes.options && this.chartInstance && this.chartOptions) {
       this.chartOptions = merge(cloneDeep(this.chartOptions), cloneDeep(this.options));
     }
   }

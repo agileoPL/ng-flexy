@@ -27,7 +27,7 @@
     "no-redundant-jsdoc": true,
     "no-namespace": false,
     "no-switch-case-fall-through": true,
-    "no-use-before-declare": true,
+    "no-use-before-declare": false,
     "no-var-requires": false,
     "object-literal-key-quotes": [true, "as-needed"],
     "object-literal-sort-keys": false,

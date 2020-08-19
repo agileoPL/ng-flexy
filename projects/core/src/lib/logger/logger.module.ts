@@ -11,7 +11,7 @@ import { FlexyLoggerService } from './logger.service';
   exports: [FlexyLogLevelComponent]
 })
 export class FlexyLoggerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FlexyLoggerModule> {
     return {
       ngModule: FlexyLoggerModule,
       providers: [FlexyLoggerService]

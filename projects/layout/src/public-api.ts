@@ -4,6 +4,8 @@
 
 export * from './lib/components/container.component';
 export * from './lib/components/layout.component';
+export * from './lib/components/container.directive';
+export * from './lib/components/attributes.directive';
 
 export * from './lib/model/component-map.model';
 export * from './lib/model/layout-json-schema.model';

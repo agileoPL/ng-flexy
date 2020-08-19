@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild(FlexyToastsContainerComponent, { static: false }) private toastsContainer!: FlexyToastsContainerComponent;
+  @ViewChild(FlexyToastsContainerComponent) private toastsContainer!: FlexyToastsContainerComponent;
 
   title = '@ng-flexy';
   version: string;

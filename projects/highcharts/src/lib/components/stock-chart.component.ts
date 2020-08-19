@@ -5,20 +5,20 @@ import { cloneDeep } from 'lodash';
 @Component({
   selector: 'flexy-stock-chart',
   template: `
-    <highcharts-chart
+    <flexy-highcharts-chart
       *ngIf="isReady"
       [constructorType]="'stockChart'"
       [options]="chartOptions"
       [callbackFunction]="chartCallback"
       [(update)]="updateFlag"
-    ></highcharts-chart>
+    ></flexy-highcharts-chart>
   `
 })
 export class FlexyStockChartComponent implements OnInit {
   @Input() series: any[];
   @Input() options = {};
 
-  @Output() onInit = new EventEmitter<any>();
+  @Output() created = new EventEmitter<any>();
 
   isReady = false;
   highcharts = Highcharts;
@@ -39,7 +39,7 @@ export class FlexyStockChartComponent implements OnInit {
   }
 
   chartCallback = chart => {
-    this.onInit.emit(chart);
+    this.created.emit(chart);
   };
 
   constructor() {}
@@ -53,8 +53,8 @@ export class FlexyStockChartComponent implements OnInit {
   }
 
   private prepareOptions() {
-    let options = cloneDeep(this.options);
-    options['series'] = this.series;
+    const options = cloneDeep(this.options);
+    options.series = this.series;
     this.chartOptions = options;
   }
 }

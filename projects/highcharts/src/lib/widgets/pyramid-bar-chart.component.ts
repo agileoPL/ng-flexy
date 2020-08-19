@@ -42,7 +42,7 @@ const DEFAULT_OPTIONS = Object.freeze({
       text: null
     },
     labels: {
-      formatter: function() {
+      formatter() {
         return Math.abs(this.value);
       }
     }
@@ -72,7 +72,7 @@ const DEFAULT_OPTIONS = Object.freeze({
       *ngIf="chartOptions && chartSeries"
       [options]="chartOptions"
       [series]="chartSeries"
-      (onInit)="chartInit($event)"
+      (created)="chartInit($event)"
     ></flexy-chart>
   `
 })
@@ -80,7 +80,7 @@ export class FlexyPyramidBarChartComponent implements OnInit, OnChanges {
   @Input() categories: { [categoryName: string]: { [valueName: string]: number } };
   @Input() options: any;
   @Input() unit: string;
-  @Input() hiddenSeries: Array<String>;
+  @Input() hiddenSeries: Array<string>;
 
   chartOptions;
   chartSeries;
@@ -102,7 +102,7 @@ export class FlexyPyramidBarChartComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.categories && Object.values(this.categories).length) {
-      let options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
+      const options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
       options.xAxis[0].categories = Object.keys(this.categories);
       options.xAxis[1].categories = Object.keys(this.categories);
 
@@ -131,7 +131,7 @@ export class FlexyPyramidBarChartComponent implements OnInit, OnChanges {
       });
     });
 
-    let dataByName = {};
+    const dataByName = {};
     Object.keys(categories).forEach((categoryId, index) => {
       allSubCategories.forEach((name, nameIndex) => {
         if (!dataByName[name]) {
@@ -143,7 +143,7 @@ export class FlexyPyramidBarChartComponent implements OnInit, OnChanges {
 
     allSubCategories.forEach(name => {
       series.push({
-        name: name,
+        name,
         data: dataByName[name],
         visible: this.hiddenSeries && this.hiddenSeries.indexOf(name) > -1 ? false : true
       });

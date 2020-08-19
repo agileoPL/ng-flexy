@@ -49,7 +49,7 @@ const DEFAULT_OPTIONS = Object.freeze({
     hideDelay: 0,
     shared: true,
     headerFormat: `<b>{point.key:%b '%Y}</b><br>`,
-    positioner: function(w, h, point) {
+    positioner(w, h, point) {
       return { x: point.plotX - w / 2, y: point.plotY - h };
     }
   },
@@ -83,7 +83,7 @@ const DEFAULT_OPTIONS = Object.freeze({
 @Component({
   selector: 'flexy-mini-line-chart',
   template: `
-    <flexy-chart [unit]="unit" [resizeable]="false" [options]="chartOptions" [series]="series" (onInit)="chartInit($event)"></flexy-chart>
+    <flexy-chart [unit]="unit" [resizeable]="false" [options]="chartOptions" [series]="series" (created)="chartInit($event)"></flexy-chart>
   `
 })
 export class FlexyMiniLineChartComponent implements OnInit, OnChanges {
@@ -97,15 +97,15 @@ export class FlexyMiniLineChartComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnChanges(changes) {
-    if (changes['options'] && this.chartInstance && this.chartOptions) {
+    if (changes.options && this.chartInstance && this.chartOptions) {
       this.chartOptions = merge(cloneDeep(this.chartOptions), cloneDeep(this.options));
     }
   }
 
   ngOnInit() {
-    let chartOptions = cloneDeep(this.options);
-    if (chartOptions.chart && chartOptions.chart.type === 'area' && !chartOptions['plotOptions']) {
-      chartOptions['plotOptions'] = {
+    const chartOptions = cloneDeep(this.options);
+    if (chartOptions.chart && chartOptions.chart.type === 'area' && !chartOptions.plotOptions) {
+      chartOptions.plotOptions = {
         area: {
           stacking: 'normal'
         }

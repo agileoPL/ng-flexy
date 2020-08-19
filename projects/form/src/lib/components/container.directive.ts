@@ -5,45 +5,16 @@ import { Subscription } from 'rxjs';
 import { bindAttributes } from './attr.binder.utils';
 
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
+const LAYOUT_FORM_KEY = 'form';
 
 @Directive({
   selector: '[flexyFormContainer]'
 })
 export class FlexyFormContainerDirective implements OnInit, OnDestroy {
   @Input() flexyForm: FlexyForm;
+
   @Input() set componentSchema(schema: FlexyFormFieldLayoutSchema) {
     this._schema = schema;
-
-    if (!schema) {
-      return;
-    }
-    if (!schema.componentType) {
-      console.error('Component schema is incorrect', schema);
-      return;
-    }
-
-    const componentFactory = this.resolver.resolveComponentFactory(schema.componentType);
-
-    const viewContainerRef = this.vc;
-    viewContainerRef.clear();
-
-    const componentRef = viewContainerRef.createComponent(componentFactory);
-
-    componentRef.instance[LAYOUT_SCHEMA_KEY] = schema;
-    schema.componentRef = componentRef;
-
-    if (schema.componentInputs) {
-      Object.keys(schema.componentInputs).forEach(key => {
-        componentRef.instance[key] = schema.componentInputs[key];
-      });
-    }
-
-    const flexyFormKey = 'form';
-    componentRef.instance[flexyFormKey] = this.flexyForm;
-    this._componentRef = componentRef;
-    if (schema.attributes) {
-      bindAttributes(schema, this._componentRef.location.nativeElement, this.renderer, this.flexyForm.currentData);
-    }
   }
 
   get componentSchema(): FlexyFormFieldLayoutSchema {
@@ -57,6 +28,35 @@ export class FlexyFormContainerDirective implements OnInit, OnDestroy {
   constructor(private vc: ViewContainerRef, private resolver: ComponentFactoryResolver, private renderer: Renderer2) {}
 
   ngOnInit() {
+    if (!this._schema) {
+      return;
+    }
+    if (!this._schema.componentType) {
+      return;
+    }
+
+    const componentFactory = this.resolver.resolveComponentFactory(this._schema.componentType);
+
+    const viewContainerRef = this.vc;
+    viewContainerRef.clear();
+
+    const componentRef = viewContainerRef.createComponent(componentFactory);
+
+    componentRef.instance[LAYOUT_SCHEMA_KEY] = this._schema;
+    componentRef.instance[LAYOUT_FORM_KEY] = this.flexyForm;
+    this._schema.componentRef = componentRef;
+
+    if (this._schema.componentInputs) {
+      Object.keys(this._schema.componentInputs).forEach(key => {
+        componentRef.instance[key] = this._schema.componentInputs[key];
+      });
+    }
+
+    this._componentRef = componentRef;
+    if (this._schema.attributes) {
+      bindAttributes(this._schema, this._componentRef.location.nativeElement, this.renderer, this.flexyForm.currentData);
+    }
+
     this._changesSubscription = this.flexyForm.currentData$.subscribe(data => {
       if (this._componentRef) {
         bindAttributes(this.componentSchema, this._componentRef.location.nativeElement, this.renderer, data);

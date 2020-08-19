@@ -1,17 +1,17 @@
 {
   "name": "@ng-flexy/crud",
-  "version": "3.1.2",
+  "version": "9.1.1",
   "peerDependencies": {
-    "@angular/common": "~8.2.14",
-    "@angular/core": "~8.2.14",
-    "@angular/cdk": "^8.2.3",
-    "@ng-flexy/core": "^0.1.5",
-    "@ng-flexy/layout": "^3.0.1",
-    "@ng-flexy/form": "^3.0.1",
-    "@ng-flexy/toasts": "^0.1.5",
-    "@ngx-translate/core": "^11.0.1",
-    "ngx-bootstrap": "5.5.0",
-    "lodash": "^4.17.14",
-    "moment": "^2.24.0"
+    "@angular/common": "~9.1.12",
+    "@angular/core": "~9.1.12",
+    "@angular/cdk": "^9.2.4",
+    "@ng-flexy/core": "^9.1.1",
+    "@ng-flexy/layout": "^9.1.1",
+    "@ng-flexy/form": "^9.1.1",
+    "@ng-flexy/toasts": "^9.1.1",
+    "@ngx-translate/core": "^12.1.2",
+    "ngx-bootstrap": "5.6.2",
+    "lodash": "^4.17.20",
+    "moment": "^2.27.0"
   }
 }

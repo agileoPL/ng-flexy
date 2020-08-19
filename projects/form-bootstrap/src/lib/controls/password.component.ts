@@ -12,9 +12,9 @@ import { FormControl } from '@angular/forms';
       [attr.maxLength]="maxLength"
       [attr.placeholder]="default"
       [attr.autocomplete]="'new-password'"
-      (focus)="onFocus.emit($event)"
-      (click)="onClick.emit($event)"
-      (change)="onChanged.emit($event)"
+      (focus)="focused.emit($event)"
+      (click)="clicked.emit($event)"
+      (change)="changed.emit($event)"
     />
     <flexy-control-readonly *ngIf="readonly" [value]="control.value" [default]="default"></flexy-control-readonly>
   `,
@@ -29,7 +29,7 @@ export class FlexyControlPasswordComponent {
   @Input() readonly: boolean;
   @Input() autocomplete = '';
 
-  @Output() onFocus = new EventEmitter<Event>();
-  @Output() onClick = new EventEmitter<Event>();
-  @Output() onChanged = new EventEmitter<Event>();
+  @Output() focused = new EventEmitter<Event>();
+  @Output() clicked = new EventEmitter<Event>();
+  @Output() changed = new EventEmitter<Event>();
 }

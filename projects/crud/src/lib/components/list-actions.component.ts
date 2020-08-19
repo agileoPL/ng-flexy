@@ -15,7 +15,7 @@ export class FlexyListActionsComponent {
 
   actionsOn = false;
 
-  @ViewChild('dropdown', { static: false }) set dropdownRef(directive) {
+  @ViewChild('dropdown') set dropdownRef(directive) {
     if (directive) {
       directive.isOpen = true;
       this.changeDetector.markForCheck();

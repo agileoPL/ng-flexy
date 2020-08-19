@@ -17,7 +17,7 @@ const FLEXY_SKIN_DEFAULT_SKIN = 'default';
   ]
 })
 export class FlexySkinsModule {
-  static forRoot(skins?: string[]): ModuleWithProviders {
+  static forRoot(skins?: string[]): ModuleWithProviders<FlexySkinsModule> {
     return {
       ngModule: FlexySkinsModule,
       providers: [

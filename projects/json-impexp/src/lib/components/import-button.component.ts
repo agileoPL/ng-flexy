@@ -17,7 +17,7 @@ export class FlexyJsonImportButtonComponent {
   @Output() uploaded: EventEmitter<object> = new EventEmitter();
   @Output() uploadError: EventEmitter<FlexyJsonImportErrorEnum> = new EventEmitter();
 
-  @ViewChild('file', { static: false }) fileEl: ElementRef;
+  @ViewChild('file') fileEl: ElementRef;
 
   constructor(private jsonImpExpService: FlexyJsonImpExpService) {}
 

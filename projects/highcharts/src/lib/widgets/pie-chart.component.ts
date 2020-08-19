@@ -60,7 +60,7 @@ const DEFAULT_OPTIONS = Object.freeze({
       [options]="chartOptions"
       [series]="chartSeries"
       [resizeable]="resizeable"
-      (onInit)="chartInit($event)"
+      (created)="chartInit($event)"
     ></flexy-chart>
   `
 })
@@ -91,7 +91,7 @@ export class FlexyPieChartComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    let options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
+    const options = merge(cloneDeep(DEFAULT_OPTIONS), this.options);
     options.series = this.prepareSeries(this.seriesData);
     if (this.height) {
       options.chart.height = this.height;

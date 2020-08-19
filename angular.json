@@ -22,23 +22,15 @@
             "main": "projects/demo/src/main.ts",
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "extractCss": true,
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/google-code-prettify/bin/prettify.min.css",
               "projects/demo/src/styles.scss",
-              {
-                "input": "projects/demo/src/scss/light-skin/index.scss",
-                "lazy": true,
-                "bundleName": "styles/default"
-              },
-              {
-                "input": "projects/demo/src/scss/dark-skin/index.scss",
-                "lazy": true,
-                "bundleName": "styles/dark"
-              }
+              { "inject": false, "input": "projects/demo/src/scss/light-skin/index.scss", "bundleName": "styles/default" },
+              { "inject": false, "input": "projects/demo/src/scss/dark-skin/index.scss", "bundleName": "styles/dark" }
             ],
             "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"]
           },
@@ -55,7 +47,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -64,6 +55,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -139,7 +134,7 @@
       "prefix": "flexy",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -148,6 +143,11 @@
           "options": {
             "tsConfig": "projects/freezer/tsconfig.lib.json",
             "project": "projects/freezer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/freezer/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -178,6 +178,11 @@
           "options": {
             "tsConfig": "projects/skins/tsconfig.lib.json",
             "project": "projects/skins/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/skins/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -208,6 +213,11 @@
           "options": {
             "tsConfig": "projects/core/tsconfig.lib.json",
             "project": "projects/core/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/core/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -238,6 +248,11 @@
           "options": {
             "tsConfig": "projects/toasts/tsconfig.lib.json",
             "project": "projects/toasts/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/toasts/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -268,6 +283,11 @@
           "options": {
             "tsConfig": "projects/layout/tsconfig.lib.json",
             "project": "projects/layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/layout/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -298,6 +318,11 @@
           "options": {
             "tsConfig": "projects/form/tsconfig.lib.json",
             "project": "projects/form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/form/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -328,6 +353,11 @@
           "options": {
             "tsConfig": "projects/form-bootstrap/tsconfig.lib.json",
             "project": "projects/form-bootstrap/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/form-bootstrap/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -354,7 +384,7 @@
       "prefix": "flexy",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -363,6 +393,11 @@
           "options": {
             "tsConfig": "projects/json-impexp/tsconfig.lib.json",
             "project": "projects/json-impexp/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/json-impexp/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -393,6 +428,11 @@
           "options": {
             "tsConfig": "projects/crud/tsconfig.lib.json",
             "project": "projects/crud/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/crud/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -419,7 +459,7 @@
       "prefix": "flexy",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -428,6 +468,11 @@
           "options": {
             "tsConfig": "projects/highcharts/tsconfig.lib.json",
             "project": "projects/highcharts/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/highcharts/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -454,7 +499,7 @@
       "prefix": "flexy",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -463,6 +508,11 @@
           "options": {
             "tsConfig": "projects/graphs/tsconfig.lib.json",
             "project": "projects/graphs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/graphs/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {

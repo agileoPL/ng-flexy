@@ -21,7 +21,7 @@ export class DemoFormBootstrapJsonViewerComponent implements OnInit, OnDestroy {
   jsonControl = new FormControl('{}');
   dataControl = new FormControl('{}');
 
-  @ViewChild('formWebPreviewModalTemplate', { static: false }) formWebPreviewModal: TemplateRef<any>;
+  @ViewChild('formWebPreviewModalTemplate') formWebPreviewModal: TemplateRef<any>;
   modalRef: BsModalRef;
   showModal = false;
 

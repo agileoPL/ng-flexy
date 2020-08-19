@@ -1,9 +1,9 @@
 {
   "name": "@ng-flexy/json-impexp",
-  "version": "0.1.4",
+  "version": "9.1.1",
   "peerDependencies": {
-    "@angular/common": "~8.2.14",
-    "@angular/core": "~8.2.14",
+    "@angular/common": "~9.1.12",
+    "@angular/core": "~9.1.12",
     "jszip": "^3.2.2"
   }
 }
