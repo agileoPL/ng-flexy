@@ -2,7 +2,9 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FlexyHttpError } from '../http/error';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlexyErrorHandler implements ErrorHandler {
   constructor(private injector: Injector) {}
 
