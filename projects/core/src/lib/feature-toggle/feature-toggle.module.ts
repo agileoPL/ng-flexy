@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FlexyFeatureToggleDirective } from './feature-toggle.directive';
-import { FlexyFeatureToggleService } from './feature-toggle.service';
 import { FlexyEnvModule } from '../env/env.module';
 
 const PUBLIC = [FlexyFeatureToggleDirective];
@@ -15,7 +14,7 @@ export class FlexyFeatureToggleModule {
   static forRoot(): ModuleWithProviders<FlexyFeatureToggleModule> {
     return {
       ngModule: FlexyFeatureToggleModule,
-      providers: [FlexyFeatureToggleService]
+      providers: []
     };
   }
 }

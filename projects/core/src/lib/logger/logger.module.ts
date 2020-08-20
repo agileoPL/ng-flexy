@@ -3,7 +3,6 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FlexyLogLevelComponent } from './log-level.component';
 import { FlexyStorageModule } from '../storage/storage.module';
-import { FlexyLoggerService } from './logger.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule, FlexyStorageModule],
@@ -14,7 +13,7 @@ export class FlexyLoggerModule {
   static forRoot(): ModuleWithProviders<FlexyLoggerModule> {
     return {
       ngModule: FlexyLoggerModule,
-      providers: [FlexyLoggerService]
+      providers: []
     };
   }
 }
