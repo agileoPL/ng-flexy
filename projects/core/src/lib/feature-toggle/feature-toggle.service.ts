@@ -3,7 +3,9 @@ import { get } from 'lodash';
 import { FlexyEnvValue } from '../env/env.model';
 import { FlexyLoggerService } from '../logger/logger.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlexyFeatureToggleService {
   private _features: any = {};
 

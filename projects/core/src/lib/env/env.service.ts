@@ -3,7 +3,9 @@ import { get, has } from 'lodash';
 import { FlexyEnv, FlexyEnvValue } from './env.model';
 import { FLEXY_ENV_TOKEN } from './env-provider.token';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlexyEnvService {
   private readonly _env: FlexyEnv;
 

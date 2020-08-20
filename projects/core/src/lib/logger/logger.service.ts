@@ -11,7 +11,9 @@ export enum FlexyLoggerLevelEnum {
   Error = 5
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlexyLoggerService {
   get level(): number {
     return this.currentLevel;
