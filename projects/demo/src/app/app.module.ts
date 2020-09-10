@@ -82,7 +82,7 @@ const routes: Routes = [
     RouterModule,
     HttpClientModule,
     FlexySkinsModule.forRoot(SUPPORTED_SKINS),
-    FlexyEnvModule.forRoot({ version: '1.2' }),
+    FlexyEnvModule.forRoot({ version: '10.0.1' }),
     FlexyFeatureToggleModule.forRoot(),
     FlexyLoggerModule.forRoot(),
     FlexyToastsModule.forRoot(),
