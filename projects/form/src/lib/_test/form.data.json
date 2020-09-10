@@ -29,5 +29,18 @@
     }
   ],
   "ParamExt1": 89,
-  "ParamExt2": 23
+  "ParamExt2": 23,
+  "users": {
+    "tony_stark": {
+      "name": "Tony",
+      "surname": "Stark"
+    },
+    "steve_rogers": {
+      "name": "Steve",
+      "surname": "Rogers"
+    }
+  },
+  "names": {
+    "john": "John"
+  }
 }

@@ -192,18 +192,6 @@
                     }
                   }
                 ]
-              },
-              {
-                "component": "text",
-                "name": "::ParamExt%",
-                "properties": {
-                  "label": "External parameter ParamExt{index}",
-                  "type": "number",
-                  "default": 100
-                },
-                "validators": {
-                  "min": 1
-                }
               }
             ]
           },
@@ -211,6 +199,85 @@
             "minItems": 0,
             "maxItems": 4
           }
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Groups of users"
+      },
+      "attributes": {
+        "class": "users-group"
+      },
+      "children": [
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Users"
+          },
+          "name": "users",
+          "type": "group",
+          "validators": {},
+          "items": {
+            "component": "fieldset",
+            "properties": {
+              "legend": "User {g1}"
+            },
+            "children": [
+              {
+                "component": "text",
+                "properties": {
+                  "label": "First name"
+                },
+                "name": ".name",
+                "validators": {
+                  "required": true
+                }
+              },
+              {
+                "component": "text",
+                "properties": {
+                  "label": "Last name"
+                },
+                "name": ".surname",
+                "validators": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          "indexDef": "{g1}"
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Groups of names"
+      },
+      "attributes": {
+        "class": "names-group"
+      },
+      "children": [
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Names"
+          },
+          "name": "names",
+          "type": "group",
+          "validators": {},
+          "items": {
+            "component": "text",
+            "properties": {
+              "label": "Name"
+            },
+            "validators": {
+              "required": true
+            }
+          },
+          "indexDef": "{g1}"
         }
       ]
     }

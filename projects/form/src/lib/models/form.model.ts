@@ -71,6 +71,7 @@ export class FlexyForm extends FlexyLayout {
     return data;
   }
 
+  // @deprecated
   getDirtyData(): FlexyFormData {
     const data = cloneDeep(getSchemaData(this.schema, this.currentData, FlexyFormDataMode.Dirty));
     this._clearHiddenData(data);

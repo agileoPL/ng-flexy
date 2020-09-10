@@ -78,7 +78,7 @@ describe('Flexy Forms', () => {
       fixture.detectChanges();
 
       expect(component).toBeTruthy();
-      expect(component.schema.length).toBe(4);
+      expect(component.schema.length).toBe(5);
 
       // check group 1
       expect(component.schema[0].children.length).toBe(2);
@@ -106,7 +106,7 @@ describe('Flexy Forms', () => {
       fixture.detectChanges();
 
       expect(component).toBeTruthy();
-      expect(component.schema.length).toBe(4);
+      expect(component.schema.length).toBe(5);
 
       // check group 2
       const group2 = component.schema[1] as FlexyFormFieldLayoutSchema;
@@ -135,7 +135,7 @@ describe('Flexy Forms', () => {
       fixture.detectChanges();
 
       expect(component).toBeTruthy();
-      expect(component.schema.length).toBe(4);
+      expect(component.schema.length).toBe(5);
 
       // check group 3 simple array
       const group3 = component.schema[2] as FlexyFormFieldLayoutSchema;
@@ -168,7 +168,7 @@ describe('Flexy Forms', () => {
       fixture.detectChanges();
 
       expect(component).toBeTruthy();
-      expect(component.schema.length).toBe(4);
+      expect(component.schema.length).toBe(5);
 
       // check group 4 complex array with external props auto indexing "%"
       const group4 = component.schema[3] as FlexyFormFieldLayoutSchema;
@@ -225,7 +225,7 @@ describe('Flexy Forms', () => {
       fixture.detectChanges();
 
       expect(component).toBeTruthy();
-      expect(component.schema.length).toBe(4);
+      expect(component.schema.length).toBe(5);
 
       const group4 = component.schema[3] as FlexyFormFieldLayoutSchema;
 
@@ -316,30 +316,16 @@ describe('Flexy Forms', () => {
       expect(component.getAllData()[`paramMultiComplex`][complexArrayIndex][`arrayFieldset`][`P2`]).toEqual(
         data.paramMultiComplex[complexArrayIndex].arrayFieldset.P2
       );
-
-      // complex array with external
-      // TODO !!! not working
-      // const arrayExternalParam = itemFieldset.children[5] as FlexyFormFieldLayoutSchema;
-      // arrayExternalParam.formControl.setValue(55);
-      // arrayExternalParam.formControl.markAsDirty();
-      // fixture.detectChanges();
-      // data['ParamExt' + (complexArrayIndex + 1)] = 55;
-      //
-      // // console.log(Object.keys(FORM_DATA));
-      // console.log(JSON.stringify(component.getAllData()));
-      //
-      // expect(component.getAllData()['ParamExt' + (complexArrayIndex + 1)]).toEqual(data['ParamExt' + (complexArrayIndex + 1)]);
     });
   }));
 
+  // dirty data is deprecated
   xit('should get dirty data from form', async(() => {
     fixture.whenRenderingDone().then(() => {
       fixture.detectChanges();
 
       const data: any = {};
       expect(component).toBeTruthy();
-      console.log(JSON.stringify(component.getDirtyData()));
-      console.log(data);
       expect(component.getDirtyData()).toEqual(data);
 
       const p1FormControl = (component.schema[0].children[0] as FlexyFormFieldLayoutSchema).formControl as FormControl;
@@ -409,6 +395,44 @@ describe('Flexy Forms', () => {
       expect(component.getDirtyData()).toEqual(data);
     });
   }));
+
+  it('should add new group complex element', async(() => {
+    fixture.whenRenderingDone().then(() => {
+      fixture.detectChanges();
+      expect(component).toBeTruthy();
+      expect(component.getAllData()[`users`]).toEqual(FORM_DATA.users);
+      page.addNewGroupKey('.users-group', 'hulk');
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(Object.keys(component.getAllData()[`users`])).toContain('hulk');
+
+        page.removeFirstGroup('.users-group');
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(Object.keys(component.getAllData()[`users`])).not.toContain('tony_stark');
+        });
+      });
+    });
+  }));
+
+  it('should add new group simple element', async(() => {
+    fixture.whenRenderingDone().then(() => {
+      fixture.detectChanges();
+      expect(component).toBeTruthy();
+      expect(component.getAllData()[`names`]).toEqual(FORM_DATA.names);
+      page.addNewGroupKey('.names-group', 'brat');
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(Object.keys(component.getAllData()[`names`])).toContain('brat');
+
+        page.removeFirstGroup('.names-group');
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(Object.keys(component.getAllData()[`names`])).not.toContain('john');
+        });
+      });
+    });
+  }));
 });
 
 @Component({
@@ -473,5 +497,22 @@ class Page {
 
   constructor(fixture: ComponentFixture<FormTestingComponent>) {
     this.fixture = fixture;
+  }
+
+  addNewGroupKey(groupClassName: string, keyName: string) {
+    const el: HTMLInputElement = this.fixture.nativeElement.querySelector(groupClassName + ' .t2e-add-group-key');
+
+    const e: Event = document.createEvent('Event');
+    e.initEvent('input', false, false);
+    el.value = keyName;
+    el.dispatchEvent(e);
+
+    const addBtn: HTMLButtonElement = this.fixture.nativeElement.querySelector(groupClassName + ' .t2e-add-group-btn');
+    addBtn.click();
+  }
+
+  removeFirstGroup(groupClassName: string) {
+    const el: HTMLButtonElement = this.fixture.nativeElement.querySelector(groupClassName + ' .e2e-btn-delete-group-item');
+    el.click();
   }
 }

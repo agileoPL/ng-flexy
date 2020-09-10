@@ -337,7 +337,6 @@ export namespace FlexyFormsValidators {
         };
       }
       const min: FormControl = getControl(minPath, control);
-      console.log('min', min.value, 'val', control.value, !!min, !!control.valid, Math.abs(control.value) > min.value);
       if (min && control.valid && min.valid && Math.abs(control.value) >= min.value) {
         return null;
       }

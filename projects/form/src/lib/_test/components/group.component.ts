@@ -47,8 +47,8 @@ import { isRequired } from '../../ultils/utils';
         >
           Add
         </button>
-        <input class="key-control-text" [formControl]="addFormControl" (keyup.enter)="addNew($event)" />
-        <button type="button" [disabled]="!addFormControl.valid" class="btn btn-info btn-outline btn-sm add-item" (click)="addNew($event)">
+        <input class="key-control-text t2e-add-group-key" [formControl]="addFormControl" />
+        <button type="button" class="btn btn-info btn-outline btn-sm add-item t2e-add-group-btn" (click)="addNew($event)">
           Add
         </button>
         <button type="button" class="btn btn-link btn-sm cancel" (click)="isAddFormVisible = false">
@@ -98,10 +98,14 @@ export class CustomFormGroupComponent implements OnInit {
   }
 
   addNew(event) {
+    console.log('addNew', event, this.addFormControl);
     event.stopPropagation();
     event.preventDefault();
     if (this.addFormControl.valid) {
       const key = this.addFormControl.value;
+
+      console.log('key', key);
+
       this.addFormControl.reset();
       if (
         this.schemaService.addGroupItemToSchema(this.layoutSchema, key, this.jsonSchema, this.parentGroupName + '.' + key, this.readonly)
