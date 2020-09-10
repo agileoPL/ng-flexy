@@ -167,7 +167,7 @@ export class FlexyQuickFiltersComponent implements OnInit, OnChanges, AfterViewC
 
   private createFormGroup() {
     return this.formBuilder.group({
-      filterValue: ['', [Validators.required, FlexyFormsValidators.noWhitespaceValidator]]
+      filterValue: ['', [Validators.required]]
     });
   }
 

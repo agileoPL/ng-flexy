@@ -1,8 +1,26 @@
 import { FormControl, ValidatorFn, FormArray } from '@angular/forms';
 import { cloneDeep, uniq } from 'lodash';
+import { shift } from 'ngx-bootstrap/positioning/modifiers';
+import { timepickerReducer } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
+
+type ControlPath = (string | number)[] | string;
+
+export interface CrossFieldsOptions {
+  lower: {
+    name: string;
+    path: ControlPath;
+  };
+  greater: {
+    name: string;
+    path: ControlPath;
+  };
+}
 
 export namespace FlexyFormsValidators {
   export function notEmptyValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     if (FlexyFormsValidators.isEmpty(control)) {
       return {
         'not-empty': true
@@ -12,6 +30,9 @@ export namespace FlexyFormsValidators {
   }
 
   export function noWhitespaceValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     if ((control.value || '').trim().length === 0) {
       return { whitespace: true };
     }
@@ -19,6 +40,9 @@ export namespace FlexyFormsValidators {
   }
 
   export function emailValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     const re = new RegExp(
       [
         '^(([^<>()\\[\\]\\\\.,;:!#\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:!#\\s@"]+)*)|(".+"))@',
@@ -36,25 +60,10 @@ export namespace FlexyFormsValidators {
     return null;
   }
 
-  export function emailWithSubdomainValidator(control: FormControl) {
-    const re = new RegExp(
-      [
-        '^(([^<>()\\[\\]\\\\.,;:!#\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:!#\\s@"]+)*)|(".+"))@',
-        '((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)',
-        '+[a-zA-Z]{2,}))$'
-      ].join('')
-    );
-    if (!FlexyFormsValidators.isEmpty(control) && !re.test(control.value)) {
-      return {
-        'invalid-email': {
-          currentValue: control.value
-        }
-      };
-    }
-    return null;
-  }
-
   export function booleanValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     if (!FlexyFormsValidators.isEmpty(control) && typeof control.value !== 'boolean') {
       return {
         'invalid-boolean': {
@@ -67,6 +76,9 @@ export namespace FlexyFormsValidators {
   }
 
   export function integerValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     const re = /^-?\d+$/;
     if (!FlexyFormsValidators.isEmpty(control) && !re.test(control.value)) {
       return {
@@ -81,6 +93,16 @@ export namespace FlexyFormsValidators {
 
   export function minValidator(min: number): ValidatorFn {
     return (control: FormControl) => {
+      if (!control) {
+        return null;
+      }
+      if (!(min || min === 0)) {
+        return {
+          'invalid-min': {
+            wrongConfiguration: true
+          }
+        };
+      }
       const notNumber = FlexyFormsValidators.numberValidator(control);
       if (notNumber) {
         return notNumber;
@@ -99,6 +121,16 @@ export namespace FlexyFormsValidators {
 
   export function maxValidator(max: number): ValidatorFn {
     return (control: FormControl) => {
+      if (!control) {
+        return null;
+      }
+      if (!(max || max === 0)) {
+        return {
+          'invalid-max': {
+            wrongConfiguration: true
+          }
+        };
+      }
       const notNumber = FlexyFormsValidators.numberValidator(control);
       if (notNumber) {
         return notNumber;
@@ -116,6 +148,9 @@ export namespace FlexyFormsValidators {
   }
 
   export function numberValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     const re = /^-?(\d+\.?\d*)$|^(\d*\.?\d+)$/;
     if (!FlexyFormsValidators.isEmpty(control) && !re.test(control.value)) {
       return {
@@ -130,7 +165,17 @@ export namespace FlexyFormsValidators {
 
   export function minLengthArray(min: number) {
     return (control: FormControl): { [key: string]: any } => {
-      if (control.value && control.value.length >= min) {
+      if (!control) {
+        return null;
+      }
+      if (!(min || min === 0)) {
+        return {
+          'min-length-array': {
+            wrongConfiguration: true
+          }
+        };
+      }
+      if (control.value && Array.isArray(control.value) && control.value.length >= min) {
         return null;
       }
       return {
@@ -144,6 +189,16 @@ export namespace FlexyFormsValidators {
 
   export function maxLengthArray(max: number) {
     return (control: FormControl): { [key: string]: any } => {
+      if (!control) {
+        return null;
+      }
+      if (!(max || max === 0)) {
+        return {
+          'max-length-array': {
+            wrongConfiguration: true
+          }
+        };
+      }
       if (control.value && control.value.length <= max) {
         return null;
       }
@@ -157,6 +212,9 @@ export namespace FlexyFormsValidators {
   }
 
   export function isEmpty(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     if (!control.value || (Array.isArray(control.value) && control.value.length === 0)) {
       return true;
     } else {
@@ -165,6 +223,9 @@ export namespace FlexyFormsValidators {
   }
 
   export function urlValidator(control: FormControl) {
+    if (!control) {
+      return null;
+    }
     const re = new RegExp(
       [
         '((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[\\-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9\\.\\-]',
@@ -182,13 +243,20 @@ export namespace FlexyFormsValidators {
     return null;
   }
 
-  export function crossFieldValidator(fields: { [key: string]: { name: string; path: any[] } }) {
+  export function crossFieldValidator(fields: CrossFieldsOptions) {
     return (control: FormControl): { [key: string]: any } => {
-      if (!(fields.lower && fields.greater && control)) {
+      if (!control) {
         return null;
       }
-      const lower: FormControl = getControl(fields.lower.path, cloneDeep(control));
-      const greater: FormControl = getControl(fields.greater.path, cloneDeep(control));
+      if (!(fields && fields.lower && fields.greater)) {
+        return {
+          'cross-field-invalid': {
+            wrongConfiguration: true
+          }
+        };
+      }
+      const lower: FormControl = getControl(fields.lower.path, control);
+      const greater: FormControl = getControl(fields.greater.path, control);
 
       if (!(greater && greater.valid && lower && lower.valid && greater.value < lower.value)) {
         return null;
@@ -196,18 +264,29 @@ export namespace FlexyFormsValidators {
       return {
         'cross-field-invalid': {
           greater: fields.greater.name,
-          lower: fields.lower.name
+          greaterPath: fields.greater.path,
+          greaterValue: greater && greater.value,
+          lower: fields.lower.name,
+          lowerPath: fields.lower.path,
+          lowerValue: lower && lower.value
         }
       };
     };
   }
 
-  export function crossFieldMinValidator(minPath: any[]) {
+  export function crossFieldMinValidator(minPath: ControlPath) {
     return (control: FormControl): { [key: string]: any } => {
-      if (!(minPath && control)) {
+      if (!control) {
         return null;
       }
-      const min: FormControl = getControl(minPath, cloneDeep(control));
+      if (!minPath) {
+        return {
+          'invalid-min': {
+            wrongConfiguration: true
+          }
+        };
+      }
+      const min: FormControl = getControl(minPath, control);
       if (!(min && control.valid && control.value < min.value)) {
         return null;
       }
@@ -220,12 +299,19 @@ export namespace FlexyFormsValidators {
     };
   }
 
-  export function crossFieldMaxValidator(maxPath: any[]) {
+  export function crossFieldMaxValidator(maxPath: ControlPath) {
     return (control: FormControl): { [key: string]: any } => {
-      if (!(maxPath && control)) {
+      if (!control) {
         return null;
       }
-      const max: FormControl = getControl(maxPath, cloneDeep(control));
+      if (!maxPath) {
+        return {
+          'invalid-max': {
+            wrongConfiguration: true
+          }
+        };
+      }
+      const max: FormControl = getControl(maxPath, control);
       if (!(max && control.valid && control.value > max.value)) {
         return null;
       }
@@ -238,27 +324,43 @@ export namespace FlexyFormsValidators {
     };
   }
 
-  export function crossFieldAbsoluteMinValidator(minPath: any[]) {
+  export function crossFieldAbsoluteMinValidator(minPath: ControlPath) {
     return (control: FormControl): { [key: string]: any } => {
-      if (!(minPath && control)) {
+      if (!control) {
         return null;
       }
-      const min: FormControl = getControl(minPath, cloneDeep(control));
-      if (!(min && control.valid && control.value < 0 && Math.abs(control.value) > min.value)) {
+      if (!minPath) {
+        return {
+          'absolute-min-invalid': {
+            wrongConfiguration: true
+          }
+        };
+      }
+      const min: FormControl = getControl(minPath, control);
+      console.log('min', min.value, 'val', control.value, !!min, !!control.valid, Math.abs(control.value) > min.value);
+      if (min && control.valid && min.valid && Math.abs(control.value) >= min.value) {
         return null;
       }
       return {
         'absolute-min-invalid': {
-          min: -Math.round(min.value)
+          min: min.value,
+          currentValue: control.value
         }
       };
     };
   }
 
-  export function forbiddenValuesValidator(forbiddenValues: [string | number]) {
+  export function forbiddenValuesValidator(forbiddenValues: (string | number)[]) {
     return (control: FormControl): { [key: string]: any } => {
-      if (!(forbiddenValues && control)) {
+      if (!control) {
         return null;
+      }
+      if (!forbiddenValues) {
+        return {
+          'forbidden-value': {
+            wrongConfiguration: true
+          }
+        };
       }
       if (!forbiddenValues.includes(control.value)) {
         return null;
@@ -271,10 +373,17 @@ export namespace FlexyFormsValidators {
     };
   }
 
-  export function arrayUniqueFieldsValidator(data: { path: any[]; fieldName: string }) {
+  export function arrayUniqueFieldsValidator(data: { path: ControlPath; fieldName: string }) {
     return (control: FormArray): { [key: string]: any } => {
-      if (!(data.path && data.path.length && control && control.controls)) {
+      if (!control || !control.controls) {
         return null;
+      }
+      if (!(data && data.path)) {
+        return {
+          'value-duplicate': {
+            wrongConfiguration: true
+          }
+        };
       }
       const comparedValues = [];
       control.controls.forEach(item => {
@@ -294,8 +403,25 @@ export namespace FlexyFormsValidators {
     };
   }
 
-  function getControl(path: any[], control): FormControl {
-    path.forEach(i => {
+  function getControl(path: ControlPath, control): FormControl {
+    let arrayPath: (string | number)[] = [];
+    if (Array.isArray(path)) {
+      arrayPath = path;
+    } else {
+      const parents: (string | number)[] = path.split('../');
+      const sPath = parents.pop() as string;
+      const stringPath = sPath.split('.').map(i => {
+        if (i.match(/^[0-9]+$/)) {
+          return parseInt(i, 10);
+        } else {
+          return i;
+        }
+      });
+      parents.fill('../');
+      parents.push(...stringPath);
+      arrayPath = parents;
+    }
+    arrayPath.forEach(i => {
       if (control && control.parent && i === '../') {
         control = control.parent;
       } else if (control && control.controls) {

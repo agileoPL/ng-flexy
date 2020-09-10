@@ -42,7 +42,6 @@ const DEFAULT_VALIDATORS_MAP: FlexyFormValidatorsMap = {
   integer: () => FlexyFormsValidators.integerValidator,
   boolean: () => FlexyFormsValidators.booleanValidator,
   email: () => FlexyFormsValidators.emailValidator,
-  emailWithSubdomain: () => FlexyFormsValidators.emailWithSubdomainValidator,
   noWhitespace: () => FlexyFormsValidators.noWhitespaceValidator,
   notEmpty: () => FlexyFormsValidators.notEmptyValidator,
   pattern: data => Validators.pattern(data),
