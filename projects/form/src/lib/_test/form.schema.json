@@ -1,0 +1,218 @@
+{
+  "schema": [
+    {
+      "children": [
+        {
+          "component": "text",
+          "name": "p1",
+          "properties": {
+            "label": "First param"
+          },
+          "validators": {
+            "required": true,
+            "maxLength": 30
+          }
+        },
+        {
+          "component": "text",
+          "name": "p2",
+          "properties": {
+            "label": "Second param"
+          },
+          "validators": {
+            "required": true,
+            "maxLength": 30
+          }
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Fieldset"
+      },
+      "name": "p3",
+      "type": "group",
+      "children": [
+        {
+          "properties": {
+            "class": "col-md-6"
+          },
+          "children": [
+            {
+              "component": "text",
+              "name": ".x1",
+              "properties": {
+                "label": "P3 / X1"
+              },
+              "validators": {
+                "maxLength": 30
+              }
+            }
+          ]
+        },
+        {
+          "type": "col",
+          "properties": {
+            "class": "col-md-6"
+          },
+          "children": [
+            {
+              "component": "text",
+              "name": ".x2",
+              "properties": {
+                "label": "P3 / X2"
+              },
+              "validators": {
+                "maxLength": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "component": "array",
+          "name": "paramMulti",
+          "type": "array",
+          "properties": {
+            "legend": "Array parameters"
+          },
+          "items": {
+            "type": "component",
+            "component": "text",
+            "properties": {
+              "default": "abc",
+              "description": "abc",
+              "readonly": true
+            },
+            "validators": {
+              "required": true,
+              "maxLength": 30
+            }
+          },
+          "validators": {
+            "maxItems": 6,
+            "minItems": 0
+          }
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "component": "array",
+          "name": "paramMultiComplex",
+          "type": "array",
+          "properties": {
+            "legend": "Tablica złożych fieldsetów"
+          },
+          "items": {
+            "component": "fieldset",
+            "children": [
+              {
+                "component": "text",
+                "name": "arrayParam1",
+                "properties": {
+                  "type": "number",
+                  "label": "Parametr 1"
+                },
+                "validators": {
+                  "min": 1
+                }
+              },
+              {
+                "component": "text",
+                "name": "arrayParam2",
+                "properties": {
+                  "label": "Parametr 2",
+                  "type": "number",
+                  "default": 100
+                },
+                "validators": {
+                  "min": 1
+                }
+              },
+              {
+                "component": "text",
+                "name": "arrayParam3",
+                "properties": {
+                  "label": "Parametr 3",
+                  "type": "number",
+                  "default": 4.5
+                },
+                "validators": {
+                  "min": 1
+                }
+              },
+              {
+                "component": "text",
+                "name": "arrayParam4",
+                "properties": {
+                  "label": "Parametr 4",
+                  "type": "number",
+                  "default": 4.5,
+                  "readonly": true
+                },
+                "validators": {
+                  "min": 1
+                }
+              },
+              {
+                "component": "fieldset",
+                "name": "arrayFieldset",
+                "type": "group",
+                "properties": {
+                  "legend": "Sub fieldset"
+                },
+                "children": [
+                  {
+                    "component": "text",
+                    "name": ".P1",
+                    "properties": {
+                      "label": "Fiedlset 1"
+                    },
+                    "validators": {
+                      "maxLength": 30,
+                      "required": true
+                    }
+                  },
+                  {
+                    "component": "text",
+                    "name": ".P2",
+                    "properties": {
+                      "label": "Fiedlset 2",
+                      "type": "number",
+                      "default": 100
+                    },
+                    "validators": {
+                      "min": 1
+                    }
+                  }
+                ]
+              },
+              {
+                "component": "text",
+                "name": "::ParamExt%",
+                "properties": {
+                  "label": "External parameter ParamExt{index}",
+                  "type": "number",
+                  "default": 100
+                },
+                "validators": {
+                  "min": 1
+                }
+              }
+            ]
+          },
+          "validators": {
+            "minItems": 0,
+            "maxItems": 4
+          }
+        }
+      ]
+    }
+  ]
+}
