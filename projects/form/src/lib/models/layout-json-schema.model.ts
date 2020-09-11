@@ -1,7 +1,6 @@
 import { FlexyLayoutComponentJsonSchema, FlexyLayoutJson, FlexyLayoutGridJsonSchema } from '@ng-flexy/layout';
 
-export const ARRAY_EXTERNAL_PARAM_INDEX_MARKER = '{%}';
-export const ARRAY_EXTERNAL_PARAM_PREFIX = '::';
+export const COMPLEX_TYPE_INDEX_MARKER = '{%}';
 
 export enum FlexyFormFieldType {
   String = 'string',

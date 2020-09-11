@@ -1,7 +1,6 @@
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-schema.model';
 import { FlexyFormData } from './form.data';
 import { AbstractControl, FormArray, FormControl } from '@angular/forms';
-import { ARRAY_EXTERNAL_PARAM_PREFIX } from './layout-json-schema.model';
 import { defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
 import * as jsonata_ from 'jsonata';
 
@@ -63,7 +62,7 @@ export function calculate(calcExp: string, data: any) {
     }
     value = calculatedExpresionCache[calcExp].evaluate(data);
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     value = null;
   }
   return value;
@@ -151,7 +150,7 @@ function checkIf(fieldSchema: FlexyFormFieldLayoutSchema, currentData: FlexyForm
     }
     ret = ifExpressionsCache[ifName].evaluate(currentData ? currentData : {});
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     ret = null;
   }
   return !!ret;
@@ -165,20 +164,7 @@ function getArrayData(fieldSchema: FlexyFormFieldLayoutSchema, currentData: Flex
       if (item.children) {
         const itemData = getSchemaData(item.children, currentData, mode);
         if (!isEmpty(itemData)) {
-          Object.keys(itemData).forEach(key => {
-            if (key.substr(0, 2) === ARRAY_EXTERNAL_PARAM_PREFIX) {
-              const path = key.substring(2);
-              if (has(data, path)) {
-                set(data, path, defaultsDeep(data[path], itemData[key]));
-              } else {
-                set(data, path, itemData[key]);
-              }
-              delete itemData[key];
-            }
-          });
-          if (!isEmpty(itemData)) {
-            arrayData['' + index] = itemData;
-          }
+          arrayData['' + index] = itemData;
         }
       } else {
         arrayData['' + index] = (item as FlexyFormFieldLayoutSchema).formControl.value;

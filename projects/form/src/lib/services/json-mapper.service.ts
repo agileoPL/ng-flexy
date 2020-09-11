@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from '../models/layout-schema.model';
 import {
-  ARRAY_EXTERNAL_PARAM_INDEX_MARKER,
-  ARRAY_EXTERNAL_PARAM_PREFIX,
+  COMPLEX_TYPE_INDEX_MARKER,
   FlexyFormCalcJsonSchema,
   FlexyFormComplexFieldLayoutJsonSchema,
   FlexyFormFieldLayoutJsonSchema,
@@ -114,13 +113,13 @@ export class FlexyFormJsonMapperService {
   ): FlexyFormFieldLayoutSchema {
     const citems = cloneDeep(items);
 
-    this.populateExternalControlNameIndex([citems], index + 1, value, itemKeyDef);
+    this.populateComplexTypeIndexMarker([citems], index + 1, value, itemKeyDef);
 
     const isComplex = citems && !!citems.children;
     let schema: FlexyFormLayoutSchema;
 
     if (isComplex) {
-      const withRootValues = { ...value, ...this.prepareArrayRootData(citems.children, formData) };
+      const withRootValues = { ...value };
       const groupSchema = this._jsonLayoutItemMap({}, '' + index, parentSchema);
       groupSchema.children = this.map([citems], readonlyMode, withRootValues, control as FormGroup, groupSchema);
 
@@ -152,13 +151,13 @@ export class FlexyFormJsonMapperService {
   ): FlexyFormFieldLayoutSchema {
     const citems = cloneDeep(items);
 
-    this.populateExternalControlNameIndex([citems], key, value, itemKeyDef);
+    this.populateComplexTypeIndexMarker([citems], key, value, itemKeyDef);
 
     const isComplex = citems && !!citems.children;
     let schema: FlexyFormFieldLayoutSchema;
 
     if (isComplex) {
-      const withRootValues = { ...value, ...this.prepareArrayRootData(citems.children, formData) };
+      const withRootValues = { ...value };
       const groupSchema = this.map([citems], readonlyMode, withRootValues, control as FormGroup, null)[0] as FlexyFormFieldLayoutSchema;
       schema = groupSchema;
     } else {
@@ -315,7 +314,7 @@ export class FlexyFormJsonMapperService {
             schemaJson.type = FlexyFormFieldType.Group;
           }
           schemaJson[SCHEMA_GROUP_KEY] = key;
-          this.populateExternalControlNameIndex([schemaJson], key, formGroupData[key], groupJsonItem.indexDef);
+          this.populateComplexTypeIndexMarker([schemaJson], key, formGroupData[key], groupJsonItem.indexDef);
           groupJsonItem.children.push(schemaJson as FlexyFormLayoutJsonSchema);
         });
       }
@@ -490,20 +489,11 @@ export class FlexyFormJsonMapperService {
     return formSchema as FlexyFormFieldLayoutSchema[];
   }
 
-  private prepareArrayRootData(schema: FlexyFormLayoutJsonSchema[], formData: FlexyFormData) {
-    const data = cloneDeep(formData);
-    const rootData = {};
-    Object.keys(data).forEach(key => {
-      rootData[ARRAY_EXTERNAL_PARAM_PREFIX + key] = data[key];
-    });
-    return rootData;
-  }
-
-  private populateExternalControlNameIndex(
+  private populateComplexTypeIndexMarker(
     items: FlexyFormLayoutJsonSchema[],
     key: number | string,
     value,
-    marker = ARRAY_EXTERNAL_PARAM_INDEX_MARKER
+    marker = COMPLEX_TYPE_INDEX_MARKER
   ) {
     items.forEach(item => {
       if ((item as FlexyFormFieldLayoutJsonSchema).name) {
@@ -525,10 +515,10 @@ export class FlexyFormJsonMapperService {
       }
 
       if (item.children) {
-        this.populateExternalControlNameIndex(item.children as FlexyFormFieldLayoutJsonSchema[], key, value, marker);
+        this.populateComplexTypeIndexMarker(item.children as FlexyFormFieldLayoutJsonSchema[], key, value, marker);
       }
       if ((item as FlexyFormComplexFieldLayoutJsonSchema).items) {
-        this.populateExternalControlNameIndex([(item as FlexyFormComplexFieldLayoutJsonSchema).items], key, value, marker);
+        this.populateComplexTypeIndexMarker([(item as FlexyFormComplexFieldLayoutJsonSchema).items], key, value, marker);
       }
     });
   }

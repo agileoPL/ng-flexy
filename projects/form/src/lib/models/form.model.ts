@@ -58,6 +58,8 @@ export class FlexyForm extends FlexyLayout {
     this._initCalculatedRefs(schema);
     this._originalData = cloneDeep(data);
     this._setCurrentData();
+    // refresh attributes
+    this._setCurrentData();
 
     // jump to next tick
     // setTimeout(() => {
@@ -71,6 +73,7 @@ export class FlexyForm extends FlexyLayout {
     return data;
   }
 
+  // @deprecated
   getDirtyData(): FlexyFormData {
     const data = cloneDeep(getSchemaData(this.schema, this.currentData, FlexyFormDataMode.Dirty));
     this._clearHiddenData(data);
