@@ -14,13 +14,13 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './models/layo
 import { FlexyForm } from './models/form.model';
 import { FlexyFormLayoutJson } from './models/layout-json-schema.model';
 import { FlexyFormData } from './models/form.data';
-import { TestingCustomModule } from './_test/components/custom-components.module';
-import { TestingCustomComponent } from './_test/components/custom.component';
-import { CustomFormFieldsetComponent } from './_test/components/fieldset.component';
-import { CustomFormGroupComponent } from './_test/components/group.component';
-import { CustomFormArrayComponent } from './_test/components/array.component';
-import { CustomFormTextComponent } from './_test/components/text.component';
-import { CustomFormNumberComponent } from './_test/components/number.component';
+import { TestingCustomModule } from './_test/components/custom-components.module.spec';
+import { TestingCustomComponent } from './_test/components/custom.component.spec';
+import { CustomFormFieldsetComponent } from './_test/components/fieldset.component.spec';
+import { CustomFormGroupComponent } from './_test/components/group.component.spec';
+import { CustomFormArrayComponent } from './_test/components/array.component.spec';
+import { CustomFormTextComponent } from './_test/components/text.component.spec';
+import { CustomFormNumberComponent } from './_test/components/number.component.spec';
 
 const FORM_DATA = require('./_test/form.data.json');
 const FORM_SCHEMA = require('./_test/form.schema.json');
