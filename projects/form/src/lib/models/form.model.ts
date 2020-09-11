@@ -58,6 +58,8 @@ export class FlexyForm extends FlexyLayout {
     this._initCalculatedRefs(schema);
     this._originalData = cloneDeep(data);
     this._setCurrentData();
+    // refresh attributes
+    this._setCurrentData();
 
     // jump to next tick
     // setTimeout(() => {

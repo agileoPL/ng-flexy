@@ -7,6 +7,9 @@ import { CustomFormTextComponent } from './text.component';
 import { CustomFormArrayComponent } from './array.component';
 import { CustomFormGroupComponent } from './group.component';
 import { TestingCustomComponent } from './custom.component';
+import { CustomFormNumberComponent } from './number.component';
+import { CustomFieldControlInfoComponent } from './field-info.component';
+import { CustomFieldComponent } from './field.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, FlexyFormsModule],
@@ -15,14 +18,20 @@ import { TestingCustomComponent } from './custom.component';
     CustomFormFieldsetComponent,
     CustomFormTextComponent,
     CustomFormArrayComponent,
-    CustomFormGroupComponent
+    CustomFormGroupComponent,
+    CustomFormNumberComponent,
+    CustomFieldControlInfoComponent,
+    CustomFieldComponent
   ],
   exports: [
     TestingCustomComponent,
     CustomFormFieldsetComponent,
     CustomFormTextComponent,
     CustomFormArrayComponent,
-    CustomFormGroupComponent
+    CustomFormGroupComponent,
+    CustomFormNumberComponent,
+    CustomFieldControlInfoComponent,
+    CustomFieldComponent
   ]
 })
 export class TestingCustomModule {}

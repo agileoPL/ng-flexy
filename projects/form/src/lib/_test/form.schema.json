@@ -4,9 +4,14 @@
       "children": [
         {
           "component": "text",
+          "id": "p1",
           "name": "p1",
           "properties": {
             "label": "First param"
+          },
+          "attributes": {
+            "class": "p1-container",
+            "id": "p1"
           },
           "validators": {
             "required": true,
@@ -35,7 +40,7 @@
       "type": "group",
       "children": [
         {
-          "properties": {
+          "attributes": {
             "class": "col-md-6"
           },
           "children": [
@@ -44,6 +49,10 @@
               "name": ".x1",
               "properties": {
                 "label": "P3 / X1"
+              },
+              "attributes": {
+                "class": "p3-x1-container",
+                "id": "p3-x1"
               },
               "validators": {
                 "maxLength": 30
@@ -80,6 +89,9 @@
           "properties": {
             "legend": "Array parameters"
           },
+          "attributes": {
+            "id": "simpleArray"
+          },
           "items": {
             "type": "component",
             "component": "text",
@@ -107,7 +119,11 @@
           "name": "paramMultiComplex",
           "type": "array",
           "properties": {
-            "legend": "Tablica złożych fieldsetów"
+            "legend": "Tablica złożych fieldsetów",
+            "removeAny": true
+          },
+          "attributes": {
+            "id": "complexArray"
           },
           "items": {
             "component": "fieldset",
@@ -278,6 +294,435 @@
             }
           },
           "indexDef": "{g1}"
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Calculations & conditions"
+      },
+      "children": [
+        {
+          "attributes": {
+            "class": "container-fluid"
+          },
+          "children": [
+            {
+              "attributes": {
+                "class": "row"
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "id": "r1-a1-el",
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.a = 1",
+                      "background-color: BlueViolet;": "r1.a = 2",
+                      "background-color: CornflowerBlue;": "r1.a = 3",
+                      "background-color: Crimson;": "r1.a = 4",
+                      "background-color: DarkCyan;": "r1.a = 5",
+                      "background-color: ForestGreen;": "r1.a > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.a",
+                  "properties": {
+                    "label": "A"
+                  }
+                },
+                {
+                  "component": "number",
+                  "name": "r1.b",
+                  "properties": {
+                    "label": "B"
+                  },
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.b = 1",
+                      "background-color: BlueViolet;": "r1.b = 2",
+                      "background-color: CornflowerBlue;": "r1.b = 3",
+                      "background-color: Crimson;": "r1.b = 4",
+                      "background-color: DarkCyan;": "r1.b = 5",
+                      "background-color: ForestGreen;": "r1.b > 5"
+                    }
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.c = 1",
+                      "background-color: BlueViolet;": "r1.c = 2",
+                      "background-color: CornflowerBlue;": "r1.c = 3",
+                      "background-color: Crimson;": "r1.c = 4",
+                      "background-color: DarkCyan;": "r1.c = 5",
+                      "background-color: ForestGreen;": "r1.c > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.c",
+                  "properties": {
+                    "label": "C"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.d = 1",
+                      "background-color: BlueViolet;": "r1.d = 2",
+                      "background-color: CornflowerBlue;": "r1.d = 3",
+                      "background-color: Crimson;": "r1.d = 4",
+                      "background-color: DarkCyan;": "r1.d = 5",
+                      "background-color: ForestGreen;": "r1.d > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.d",
+                  "properties": {
+                    "label": "D"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.e = 1",
+                      "background-color: BlueViolet;": "r1.e = 2",
+                      "background-color: CornflowerBlue;": "r1.e = 3",
+                      "background-color: Crimson;": "r1.e = 4",
+                      "background-color: DarkCyan;": "r1.e = 5",
+                      "background-color: ForestGreen;": "r1.e > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.e",
+                  "properties": {
+                    "label": "E"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.sum = 5",
+                      "background-color: BlueViolet;": "r1.sum = 6",
+                      "background-color: CornflowerBlue;": "r1.sum = 7",
+                      "background-color: Crimson;": "r1.sum = 8",
+                      "background-color: DarkCyan;": "r1.sum = 9",
+                      "background-color: ForestGreen;": "r1.sum > 9"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.sum",
+                  "calc": "$sum([r1.a,r1.b,r1.c,r1.d,r1.e])",
+                  "properties": {
+                    "label": "Sum row 1",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "attributes": {
+                "class": "row"
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.a",
+                  "properties": {
+                    "label": "A"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.b",
+                  "properties": {
+                    "label": "B"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.c",
+                  "properties": {
+                    "label": "C"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.d",
+                  "properties": {
+                    "label": "D"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.e",
+                  "properties": {
+                    "label": "E"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.sum",
+                  "calc": "$sum([r2.a,r2.b,r2.c,r2.d,r2.e])",
+                  "properties": {
+                    "label": "Sum row 2",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "attributes": {
+                "class": "row"
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.a",
+                  "properties": {
+                    "label": "A"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.b",
+                  "properties": {
+                    "label": "B"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.c",
+                  "properties": {
+                    "label": "C"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.d",
+                  "properties": {
+                    "label": "D"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.e",
+                  "properties": {
+                    "label": "E"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.sum",
+                  "calc": "$sum([r3.a,r3.b,r3.c,r3.d,r3.e])",
+                  "properties": {
+                    "label": "Sum row 3",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "attributes": {
+                "class": "row"
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.a",
+                  "calc": "$sum([r1.a,r2.a,r3.a])",
+                  "properties": {
+                    "label": "Sum col A",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.b",
+                  "calc": "$sum([r1.b,r2.b,r3.b])",
+                  "properties": {
+                    "label": "Sum col B",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.c",
+                  "calc": "$sum([r1.c,r2.c,r3.c])",
+                  "properties": {
+                    "label": "Sum col C",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.d",
+                  "calc": "$sum([r1.d,r2.d,r3.d])",
+                  "properties": {
+                    "label": "Sum col D",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.e",
+                  "calc": "$sum([r1.e,r2.e,r3.e])",
+                  "properties": {
+                    "label": "Sum col E",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.sum",
+                  "calc": "$sum([sum.a,sum.b,sum.c,sum.d,sum.e])",
+                  "properties": {
+                    "label": "Sum of Sum",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "isSuccess",
+              "calc": "sum.sum > 0 and sum.sum < 20"
+            },
+            {
+              "if": "sum.sum > 0 and sum.sum < 20",
+              "children": [
+                {
+                  "component": "text",
+                  "calc": "sum.sum",
+                  "attributes": {
+                    "class": {
+                      "alert": "isSuccess",
+                      "alert-success": "isSuccess",
+                      "d-block": "isSuccess",
+                      "t2e-success-alert": "isSuccess"
+                    }
+                  },
+                  "properties": {
+                    "label": "Success: sum is under 20",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "isWarning",
+              "calc": "sum.sum >= 20"
+            },
+            {
+              "if": "sum.sum >= 20",
+              "children": [
+                {
+                  "id": "sum_warning",
+                  "component": "text",
+                  "calc": "sum.sum",
+                  "attributes": {
+                    "class": {
+                      "alert": "isWarning",
+                      "alert-warning": "isWarning",
+                      "d-block": "isWarning",
+                      "t2e-warning-alert": "isWarning"
+                    }
+                  },
+                  "properties": {
+                    "label": "Warning: sum is over 20",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "if": "r1.a > 1",
+              "children": [
+                {
+                  "id": "sum_warning",
+                  "component": "text",
+                  "calc": "r1.a * 1000",
+                  "properties": {
+                    "label": "R1A > 1",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "if": "r1.a > 10",
+              "children": [
+                {
+                  "id": "sum_warning",
+                  "component": "text",
+                  "calc": "r1.a",
+                  "properties": {
+                    "label": "R1A > 10:",
+                    "readonly": true
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }

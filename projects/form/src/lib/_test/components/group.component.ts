@@ -98,14 +98,10 @@ export class CustomFormGroupComponent implements OnInit {
   }
 
   addNew(event) {
-    console.log('addNew', event, this.addFormControl);
     event.stopPropagation();
     event.preventDefault();
     if (this.addFormControl.valid) {
       const key = this.addFormControl.value;
-
-      console.log('key', key);
-
       this.addFormControl.reset();
       if (
         this.schemaService.addGroupItemToSchema(this.layoutSchema, key, this.jsonSchema, this.parentGroupName + '.' + key, this.readonly)

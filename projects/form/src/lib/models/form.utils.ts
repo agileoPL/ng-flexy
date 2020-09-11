@@ -62,7 +62,7 @@ export function calculate(calcExp: string, data: any) {
     }
     value = calculatedExpresionCache[calcExp].evaluate(data);
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     value = null;
   }
   return value;
@@ -150,7 +150,7 @@ function checkIf(fieldSchema: FlexyFormFieldLayoutSchema, currentData: FlexyForm
     }
     ret = ifExpressionsCache[ifName].evaluate(currentData ? currentData : {});
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     ret = null;
   }
   return !!ret;

@@ -2,28 +2,28 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '../../models/layout-schema.model';
 
 @Component({
-  selector: 'flexy-form-text',
+  selector: 'flexy-form-number',
   template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <input
         class="form-control"
-        type="text"
+        type="number"
         [formControl]="layoutSchema.formControl"
-        [attr.minLength]="minLength"
-        [attr.maxLength]="maxLength"
+        [attr.min]="min"
+        [attr.max]="max"
         [attr.placeholder]="default"
       />
     </flexy-form-field>
   `
 })
-export class CustomFormTextComponent {
+export class CustomFormNumberComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;
 
   @Input() default: string;
   @Input() label: string;
   @Input() description: string;
-  @Input() minLength: number;
-  @Input() maxLength: number;
+  @Input() min: number;
+  @Input() max: number;
   @Input() readonly: boolean;
 
   @ViewChild('inputRef') inputRef;

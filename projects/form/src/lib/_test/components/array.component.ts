@@ -37,7 +37,7 @@ import { FormArray } from '@angular/forms';
               tooltip="Remove item"
               (click)="removeItem(index)"
             >
-              <i class="flexy-icon-remove"></i>
+              Remove
             </button>
           </flexy-form-container>
         </div>
@@ -55,7 +55,7 @@ import { FormArray } from '@angular/forms';
         <button
           *ngIf="!removeAny"
           type="button"
-          class="btn btn-danger btn-outline btn-sm remove-item"
+          class="btn btn-danger btn-outline btn-sm remove-item t2e-array-remove-last-btn"
           [disabled]="!showRemoveButton"
           (click)="removeLast()"
         >
@@ -141,6 +141,7 @@ export class CustomFormArrayComponent implements OnInit {
       );
 
       this.enableButtons();
+      this.changeDetectorRef.detectChanges();
     }
   }
 
@@ -148,6 +149,7 @@ export class CustomFormArrayComponent implements OnInit {
     this.layoutSchema.items.splice(index, 1);
     (this.layoutSchema.formControl as FormArray).removeAt(index);
     this.layoutSchema.formControl.markAsDirty();
+    this.changeDetectorRef.detectChanges();
   }
 
   removeLast() {
