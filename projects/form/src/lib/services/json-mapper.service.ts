@@ -18,7 +18,7 @@ import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyFormsValidators } from '../validators/validators.utils';
 import { FlexyValidatorsData } from '../models/validators.data';
 import { FlexyForm } from '../models/form.model';
-import { parseFormJson } from './json-mapper.utils';
+import { parseFormJson, replaceMarker } from './json-mapper.utils';
 
 export interface FlexyFormValidatorsMap {
   [name: string]: (data?) => ValidatorFn;
@@ -497,19 +497,35 @@ export class FlexyFormJsonMapperService {
   ) {
     items.forEach(item => {
       if ((item as FlexyFormFieldLayoutJsonSchema).name) {
-        (item as FlexyFormFieldLayoutJsonSchema).name = (item as FlexyFormFieldLayoutJsonSchema).name.split(marker).join('' + key);
+        (item as FlexyFormFieldLayoutJsonSchema).name = replaceMarker((item as FlexyFormFieldLayoutJsonSchema).name, marker, key);
       }
       if ((item as FlexyFormIfJsonSchema).if) {
-        (item as FlexyFormIfJsonSchema).if = (item as FlexyFormIfJsonSchema).if.split(marker).join('' + key);
+        (item as FlexyFormIfJsonSchema).if = replaceMarker((item as FlexyFormIfJsonSchema).if, marker, key);
       }
       if ((item as FlexyFormCalcJsonSchema).calc) {
-        (item as FlexyFormCalcJsonSchema).calc = (item as FlexyFormCalcJsonSchema).calc.split(marker).join('' + key);
+        (item as FlexyFormCalcJsonSchema).calc = replaceMarker((item as FlexyFormCalcJsonSchema).calc, marker, key);
+      }
+      if (item.attributes) {
+        Object.keys(item.attributes).forEach(attr => {
+          if (typeof item.attributes[attr] === 'string') {
+            item.attributes[attr] = replaceMarker('' + item.attributes[attr], marker, key);
+          } else if (typeof item.attributes[attr] === 'object') {
+            Object.keys(item.attributes[attr]).forEach(attrVal => {
+              const replaced = replaceMarker(attrVal, marker, key);
+              item.attributes[attr][attrVal] = replaceMarker('' + item.attributes[attr][attrVal], marker, key);
+              if (replaced !== attrVal) {
+                item.attributes[attr][replaced] = item.attributes[attr][attrVal];
+                delete item.attributes[attr][attrVal];
+              }
+            });
+          }
+        });
       }
       if (item[SCHEMA_COMPONENT_INPUTS_KEY]) {
         const componentInputs = ['title', 'label', 'legend'];
         componentInputs.forEach(propName => {
           if (item[SCHEMA_COMPONENT_INPUTS_KEY][propName]) {
-            item[SCHEMA_COMPONENT_INPUTS_KEY][propName] = item[SCHEMA_COMPONENT_INPUTS_KEY][propName].split(marker).join(key);
+            item[SCHEMA_COMPONENT_INPUTS_KEY][propName] = replaceMarker(item[SCHEMA_COMPONENT_INPUTS_KEY][propName], marker, key);
           }
         });
       }

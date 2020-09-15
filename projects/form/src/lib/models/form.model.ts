@@ -5,7 +5,7 @@ import { FlexyFormData } from './form.data';
 import { cloneDeep, merge } from 'lodash';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { HIDDEN_CALC_GROUP_NAME } from '../services/json-mapper.utils';
-import { calculate, findErrors, findRemoved, findSchema, FlexyFormDataMode, getSchemaData } from './form.utils';
+import { calculate, clearEmptyArrayAndObjects, findErrors, findRemoved, findSchema, FlexyFormDataMode, getSchemaData } from './form.utils';
 
 interface CalcRefs {
   [name: string]: {
@@ -77,8 +77,10 @@ export class FlexyForm extends FlexyLayout {
   getDirtyData(): FlexyFormData {
     const data = cloneDeep(getSchemaData(this.schema, this.currentData, FlexyFormDataMode.Dirty));
     this._clearHiddenData(data);
+    clearEmptyArrayAndObjects(data);
     const allData = this.getAllData();
     const removed = findRemoved(allData, this._originalData);
+    clearEmptyArrayAndObjects(removed);
     return merge(data, removed);
   }
 

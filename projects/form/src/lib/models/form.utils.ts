@@ -1,7 +1,7 @@
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './layout-schema.model';
 import { FlexyFormData } from './form.data';
 import { AbstractControl, FormArray, FormControl } from '@angular/forms';
-import { defaultsDeep, get, has, isEmpty, merge, set } from 'lodash';
+import { get, has, merge, set } from 'lodash';
 import * as jsonata_ from 'jsonata';
 
 const jsonata = jsonata_;
@@ -84,7 +84,7 @@ export function getSchemaData(schemas: FlexyFormLayoutSchema[], currentData: Fle
 
           if (mode === FlexyFormDataMode.All) {
             set(data, fieldSchema.formName, Object.values(arrayData));
-          } else if (!isEmpty(arrayData)) {
+          } else if (!isInputEmpty(arrayData)) {
             set(data, fieldSchema.formName, arrayData);
           }
         }
@@ -103,19 +103,19 @@ export function findRemoved(allData, originalData) {
   if (originalData) {
     Object.keys(originalData).forEach(key => {
       const path = key;
-      if (!isEmpty(originalData[key]) && isEmpty(allData[key])) {
+      if (!isInputEmpty(originalData[key]) && isInputEmpty(allData[key])) {
         set(removed, path, null);
       } else if (originalData[key] && Array.isArray(originalData[key])) {
         originalData[key].forEach((item, index) => {
-          if (!isEmpty(item) && isEmpty(allData[key][index])) {
+          if (!isInputEmpty(item) && isInputEmpty(allData[key][index])) {
             if (!has(removed, path)) {
               set(removed, path, {});
             }
             const v = get(removed, path);
             v['' + index] = null;
-          } else if (item && typeof item === 'object') {
+          } else if (item && isObject(item)) {
             const founded = findRemoved(allData[key][index], item);
-            if (founded && !isEmpty(founded)) {
+            if (founded && !isInputEmpty(founded)) {
               if (!has(removed, path)) {
                 set(removed, path, {});
               }
@@ -124,18 +124,33 @@ export function findRemoved(allData, originalData) {
             }
           }
         });
-
-        // TODO
-        // clear empty ARRAY
-      } else if (originalData[key] && typeof originalData[key] === 'object') {
+      } else if (originalData[key] && isObject(originalData[key])) {
         const founded = findRemoved(allData[key], originalData[key]);
-        if (founded && !isEmpty(founded)) {
+        if (founded && !isInputEmpty(founded)) {
           set(removed, path, founded);
         }
       }
     });
   }
   return removed;
+}
+
+export function clearEmptyArrayAndObjects(data: { [key: string]: any }) {
+  if (data) {
+    if (isObject(data)) {
+      Object.keys(data).forEach(key => {
+        if (isEmptyStructure(data[key])) {
+          delete data[key];
+        } else if (isObject(data[key])) {
+          clearEmptyArrayAndObjects(data[key]);
+        }
+      });
+    }
+  }
+}
+
+function isObject(a) {
+  return !!a && a.constructor === Object;
 }
 
 function checkIf(fieldSchema: FlexyFormFieldLayoutSchema, currentData: FlexyFormData): boolean {
@@ -163,7 +178,7 @@ function getArrayData(fieldSchema: FlexyFormFieldLayoutSchema, currentData: Flex
     if (!itemFormControl || checkSchemaData(itemFormControl, mode)) {
       if (item.children) {
         const itemData = getSchemaData(item.children, currentData, mode);
-        if (!isEmpty(itemData)) {
+        if (!isInputEmpty(itemData)) {
           arrayData['' + index] = itemData;
         }
       } else {
@@ -184,6 +199,26 @@ function checkSchemaData(control: AbstractControl, mode: FlexyFormDataMode) {
   );
 }
 
-function isEmpty(v) {
-  return v === null || v === void 0 || v === '';
+function isInputEmpty(v) {
+  return v === void 0 || v === '';
+}
+
+function isEmptyStructure(data: any) {
+  let ret = true;
+  if (Array.isArray(data)) {
+    if (data.length > 0) {
+      data.forEach(item => {
+        ret = ret && isEmptyStructure(item);
+      });
+    }
+  } else if (isObject(data)) {
+    if (Object.keys(data).length > 0) {
+      Object.keys(data).forEach(key => {
+        ret = ret && isEmptyStructure(data[key]);
+      });
+    }
+  } else {
+    return isInputEmpty(data);
+  }
+  return ret;
 }

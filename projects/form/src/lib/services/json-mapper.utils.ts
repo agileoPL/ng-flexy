@@ -118,3 +118,7 @@ export function parseFormVersion1Item(item: any): FlexyFormLayoutJsonSchema {
 
   return schema;
 }
+
+export function replaceMarker(s: string, marker: string, key: string | number) {
+  return s.split(marker).join('' + key);
+}
