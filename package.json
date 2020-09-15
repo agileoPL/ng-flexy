@@ -38,7 +38,7 @@
     "core:watch": "ng build core --watch",
     "form:build": "ng build form",
     "form:watch": "ng build form --watch",
-    "form:test": "ng test form",
+    "form:test": "ng test form --code-coverage",
     "form-bootstrap:build": "ng build form-bootstrap && cpx \"projects/form-bootstrap/src/lib/*.scss\" \"dist/form-bootstrap\"",
     "form-bootstrap:watch": "ng build form-bootstrap --watch",
     "form-bootstrap-scss:watch": "cpx \"projects/form-bootstrap/src/lib/*.scss\" \"dist/form-bootstrap\" --watch",

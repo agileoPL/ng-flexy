@@ -1,0 +1,396 @@
+[
+  {
+    "component": "example-dynamic",
+    "componentInputs": {
+      "val": "Text inputs value"
+    }
+  },
+  {
+    "type": "row",
+    "properties": { "class": "row" },
+    "children": [
+      {
+        "type": "col",
+        "properties": { "class": "col-md-6" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": "p1",
+            "componentInputs": {
+              "label": "first param",
+              "type": "text"
+            },
+            "validators": {
+              "required": true,
+              "maxLength": 30
+            }
+          }
+        ]
+      },
+      {
+        "type": "col",
+        "properties": { "class": "col-md-6" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": "p2",
+            "componentInputs": {
+              "label": "second param",
+              "type": "text"
+            },
+            "validators": {
+              "required": true,
+              "maxLength": 30
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "component",
+    "component": "fieldset",
+    "componentInputs": {
+      "legend": "Grouped X"
+    },
+    "properties": { "class": "row" },
+    "controlGroupName": "groupedX",
+    "children": [
+      {
+        "type": "col",
+        "properties": { "class": "col-md-6" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": "x1",
+            "componentInputs": {
+              "label": "x param 1",
+              "type": "text"
+            },
+            "validators": {
+              "maxLength": 30
+            }
+          }
+        ]
+      },
+      {
+        "type": "col",
+        "properties": { "class": "col-md-6" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": "x2",
+            "componentInputs": {
+              "label": "x param 2",
+              "type": "text"
+            },
+            "validators": {
+              "maxLength": 30
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "row",
+    "children": [
+      {
+        "type": "col",
+        "properties": { "class": "col-md-12" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": "p3",
+            "componentInputs": {
+              "label": "third param",
+              "type": "text"
+            },
+            "validators": {
+              "required": true,
+              "maxLength": 30
+            }
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "type": "container",
+    "properties": { "class": "container-fluid" },
+    "children": [
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "container",
+            "properties": { "class": "col-md-6" },
+            "children": [
+              {
+                "component": "example-dynamic",
+                "componentInputs": {
+                  "val": "Test 1"
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "properties": { "class": "col-md-6" },
+            "children": [
+              {
+                "component": "example-dynamic",
+                "componentInputs": {
+                  "val": "Test 2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "children": [
+          {
+            "type": "container",
+            "properties": { "class": "col-md-6" },
+            "children": [
+              {
+                "component": "text",
+                "componentInputs": {
+                  "label": "first param",
+                  "type": "text"
+                },
+                "controlName": "param1",
+                "validators": {
+                  "maxLength": 30
+                }
+              }
+            ]
+          },
+          {
+            "type": "container",
+            "properties": { "class": "col-md-6" },
+            "children": [
+              {
+                "component": "text",
+                "componentInputs": {
+                  "type": "number",
+                  "label": "Second param",
+                  "description": "Lorem ipsum..."
+                },
+                "controlName": "param2",
+                "validators": {
+                  "maxLength": 30
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "row",
+        "properties": { "class": "row" },
+        "children": [
+          {
+            "gridClass": "col-12",
+            "children": [
+              {
+                "component": "textarea",
+                "componentInputs": {
+                  "label": "Param 3"
+                },
+                "controlName": "param3",
+                "validators": {
+                  "maxLength": 3000
+                }
+              },
+              {
+                "component": "checkbox",
+                "componentInputs": {
+                  "label": "Param 4",
+                  "placeholder": "Lorem ipsum..."
+                },
+                "controlName": "param4",
+                "validators": {
+                  "required": true
+                }
+              },
+              {
+                "component": "custom-control",
+                "componentInputs": {
+                  "type": "text",
+                  "label": "Param 5"
+                },
+                "controlName": "param5"
+              },
+              {
+                "component": "text",
+                "componentInputs": {
+                  "type": "text",
+                  "label": "Param 6"
+                },
+                "controlName": "param6",
+                "validators": {
+                  "maxLength": 30
+                }
+              },
+              {
+                "component": "array",
+                "controlArrayName": "paramMulti",
+                "componentInputs": {
+                  "legend": "Tablica prostych inputów"
+                },
+                "items": {
+                  "type": "component",
+                  "component": "text",
+                  "componentInputs": {
+                    "placeholder": "abc",
+                    "description": "abc",
+                    "readonly": true
+                  },
+                  "validators": {
+                    "required": true,
+                    "maxLength": 30
+                  }
+                },
+                "validators": {
+                  "maxItems": 6,
+                  "minItems": 1
+                }
+              },
+              {
+                "component": "array",
+                "controlArrayName": "paramMultiComplex",
+                "componentInputs": {
+                  "legend": "Tablica złożych fieldsetów"
+                },
+                "items": {
+                  "component": "fieldset",
+                  "children": [
+                    {
+                      "component": "text",
+                      "controlName": "arrayParam1",
+                      "componentInputs": {
+                        "type": "number",
+                        "label": "Parametr 1"
+                      },
+                      "validators": {
+                        "min": 1
+                      }
+                    },
+                    {
+                      "component": "text",
+                      "controlName": "arrayParam2",
+                      "componentInputs": {
+                        "label": "Parametr 2",
+                        "type": "number",
+                        "default": 100
+                      },
+                      "validators": {
+                        "min": 1
+                      }
+                    },
+                    {
+                      "component": "text",
+                      "controlName": "arrayParam3",
+                      "componentInputs": {
+                        "label": "Parametr 3",
+                        "type": "number",
+                        "default": 4.5
+                      },
+                      "validators": {
+                        "min": 1
+                      }
+                    },
+                    {
+                      "component": "text",
+                      "controlName": "arrayParam4",
+                      "componentInputs": {
+                        "label": "Parametr 4",
+                        "type": "number",
+                        "default": 4.5,
+                        "readonly": true
+                      },
+                      "validators": {
+                        "min": 1
+                      }
+                    },
+                    {
+                      "component": "fieldset",
+                      "controlGroupName": "arrayFieldset",
+                      "componentInputs": {
+                        "legend": "Sub fieldset"
+                      },
+                      "children": [
+                        {
+                          "component": "text",
+                          "controlName": "P1",
+                          "componentInputs": {
+                            "type": "number",
+                            "label": "Fiedlset 1"
+                          },
+                          "validators": {
+                            "min": 1
+                          }
+                        },
+                        {
+                          "component": "text",
+                          "controlName": "P2",
+                          "componentInputs": {
+                            "label": "Fiedlset 2",
+                            "type": "number",
+                            "default": 100
+                          },
+                          "validators": {
+                            "min": 1
+                          }
+                        },
+                        {
+                          "component": "text",
+                          "controlName": "P3",
+                          "componentInputs": {
+                            "label": "Fiedlset 3",
+                            "type": "number",
+                            "default": 4.5
+                          },
+                          "validators": {
+                            "min": 1
+                          }
+                        },
+                        {
+                          "component": "text",
+                          "controlName": "P4",
+                          "componentInputs": {
+                            "label": "Fiedlset 4",
+                            "type": "number",
+                            "default": 4.5,
+                            "readonly": true
+                          },
+                          "validators": {
+                            "min": 1
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "validators": [
+                  {
+                    "type": "maxItems",
+                    "params": 255
+                  },
+                  {
+                    "type": "minItems",
+                    "params": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

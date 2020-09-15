@@ -246,6 +246,9 @@
                 "properties": {
                   "label": "First name"
                 },
+                "attributes": {
+                  "id": "inputName{g1}"
+                },
                 "name": ".name",
                 "validators": {
                   "required": true
@@ -260,6 +263,28 @@
                 "validators": {
                   "required": true
                 }
+              },
+              {
+                "if": "users.{g1} and users.{g1}.name and users.{g1}.name = 'Steve'",
+                "children": [
+                  {
+                    "component": "text",
+                    "attributes": {
+                      "id": "inputEmail{g1}",
+                      "class": {
+                        "inputEmail{g1}": "users.{g1} and users.{g1}.email"
+                      }
+                    },
+                    "properties": {
+                      "label": "email"
+                    },
+                    "name": ".email"
+                  }
+                ]
+              },
+              {
+                "calc": "$length(users.{g1}.name)",
+                "name": "users.{g1}.nameLength"
               }
             ]
           },
@@ -289,11 +314,14 @@
             "properties": {
               "label": "Name"
             },
+            "attributes": {
+              "id": "names-group-{gn1}"
+            },
             "validators": {
               "required": true
             }
           },
-          "indexDef": "{g1}"
+          "indexDef": "{gn1}"
         }
       ]
     },

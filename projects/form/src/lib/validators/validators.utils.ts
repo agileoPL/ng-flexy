@@ -406,9 +406,9 @@ export namespace FlexyFormsValidators {
     let arrayPath: (string | number)[] = [];
     if (Array.isArray(path)) {
       arrayPath = path;
-    } else {
-      const parents: (string | number)[] = path.split('../');
-      const sPath = parents.pop() as string;
+    } else if (path) {
+      const parents: (string | number)[] = ('' + path).indexOf('../') !== -1 ? path.split('../') : [path];
+      const sPath = '' + parents.pop();
       const stringPath = sPath.split('.').map(i => {
         if (i.match(/^[0-9]+$/)) {
           return parseInt(i, 10);

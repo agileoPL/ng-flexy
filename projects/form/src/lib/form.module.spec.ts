@@ -14,13 +14,14 @@ import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './models/layo
 import { FlexyForm } from './models/form.model';
 import { FlexyFormLayoutJson } from './models/layout-json-schema.model';
 import { FlexyFormData } from './models/form.data';
-import { TestingCustomModule } from './_test/components/custom-components.module';
-import { TestingCustomComponent } from './_test/components/custom.component';
-import { CustomFormFieldsetComponent } from './_test/components/fieldset.component';
-import { CustomFormGroupComponent } from './_test/components/group.component';
-import { CustomFormArrayComponent } from './_test/components/array.component';
-import { CustomFormTextComponent } from './_test/components/text.component';
-import { CustomFormNumberComponent } from './_test/components/number.component';
+import { TestingCustomModule } from './_test/components/custom-components.module.spec';
+import { TestingCustomComponent } from './_test/components/custom.component.spec';
+import { CustomFormFieldsetComponent } from './_test/components/fieldset.component.spec';
+import { CustomFormGroupComponent } from './_test/components/group.component.spec';
+import { CustomFormArrayComponent } from './_test/components/array.component.spec';
+import { CustomFormTextComponent } from './_test/components/text.component.spec';
+import { CustomFormNumberComponent } from './_test/components/number.component.spec';
+import { type } from 'os';
 
 const FORM_DATA = require('./_test/form.data.json');
 const FORM_SCHEMA = require('./_test/form.schema.json');
@@ -369,7 +370,9 @@ describe('Flexy Forms', () => {
       fixture.whenRenderingDone().then(() => {
         fixture.detectChanges();
         expect(component).toBeTruthy();
-        expect(component.getAllData()[`users`]).toEqual(FORM_DATA.users);
+
+        expect(component.getAllData()[`users`][`steve_rogers`][`name`]).toEqual('Steve');
+
         page.addNewGroupKey('.users-group', 'hulk');
         fixture.detectChanges();
         fixture.whenStable().then(() => {
@@ -379,6 +382,42 @@ describe('Flexy Forms', () => {
           fixture.detectChanges();
           fixture.whenStable().then(() => {
             expect(Object.keys(component.getAllData()[`users`])).not.toContain('tony_stark');
+          });
+        });
+      });
+    }));
+
+    it('should work expressions if, calc, attributes in group complex element', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+
+        expect(component.getAllData()[`users`][`steve_rogers`][`name`]).toEqual('Steve');
+
+        const tonyStartEmailElement = page.findSteveEmailInputElement();
+        expect(tonyStartEmailElement).toBeTruthy();
+        expect(page.findByClass('inputEmailsteve_rogers')).toBeNull();
+
+        page.updateElement(tonyStartEmailElement, 'steve@rogers.com');
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(page.findByClass('inputEmailsteve_rogers')).not.toBeNull();
+          expect(component.getAllData()[`users`][`steve_rogers`][`email`]).toBe('steve@rogers.com');
+
+          const tonyStartNameInput = page.findSteveNameInputElement();
+          page.updateElement(tonyStartNameInput, 'Steve1');
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            const tonyStartEmailElement2 = page.findSteveEmailInputElement();
+            expect(tonyStartEmailElement2).toBeFalsy();
+            expect(component.getAllData()[`users`][`steve_rogers`][`email`]).not.toBeDefined();
+
+            page.updateElement(tonyStartNameInput, 'Steve');
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+              const tonyStartEmailElement3 = page.findSteveEmailInputElement();
+              expect(tonyStartEmailElement3).toBeTruthy();
+            });
           });
         });
       });
@@ -402,6 +441,13 @@ describe('Flexy Forms', () => {
             expect(Object.keys(component.getAllData()[`names`])).not.toContain('john');
           });
         });
+      });
+    }));
+
+    xit('should remove group element', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        // TODO
       });
     }));
   });
@@ -466,6 +512,191 @@ describe('Flexy Forms', () => {
             });
           });
         });
+      });
+    }));
+  });
+
+  describe('Dirty data', () => {
+    const calculatedData = {
+      users: {
+        tony_stark: { nameLength: 4 },
+        steve_rogers: { nameLength: 5 }
+      },
+      r1: { sum: 5 },
+      r2: { sum: 5 },
+      r3: { sum: 5 },
+      sum: { a: 3, b: 3, c: 3, d: 3, e: 3, sum: 15 },
+      isSuccess: true,
+      isWarning: false
+    };
+
+    describe('Init form', () => {
+      it('should return only calculated fields if exists', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+          expect(component.getDirtyData()).toEqual(calculatedData);
+        });
+      }));
+    });
+
+    describe('Simple form', () => {
+      it('should return only changed values', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+
+          const tDirtyData = cloneDeep(calculatedData);
+
+          page.p1Update('test1');
+          tDirtyData.p1 = 'test1';
+          expect(component.getDirtyData()).toEqual(tDirtyData);
+
+          page.p3x1Update('test2');
+          tDirtyData.p3 = { x1: 'test2' };
+          expect(component.getDirtyData()).toEqual(tDirtyData);
+        });
+      }));
+    });
+
+    describe('Array type', () => {
+      it('should add item', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+
+          page.complexArrayAddNewItem();
+
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            const tDirtyData = cloneDeep(calculatedData);
+            expect(component.getDirtyData()).toEqual(tDirtyData);
+
+            const el = page.complexArrayGetLastInput();
+            page.updateElement(el, 'xxx');
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+              tDirtyData[`paramMultiComplex`] = {
+                2: {
+                  arrayFieldset: { P2: 'xxx' }
+                }
+              };
+              expect(component.getDirtyData()).toEqual(tDirtyData);
+            });
+          });
+        });
+      }));
+
+      it('should remove item', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+          page.complexArrayRemoveItem(1);
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            const tDirtyData = cloneDeep(calculatedData);
+            tDirtyData[`paramMultiComplex`] = {
+              1: null
+            };
+            expect(component.getDirtyData()).toEqual(tDirtyData);
+          });
+        });
+      }));
+    });
+
+    describe('Group type', () => {
+      it('should return only new added key/value element', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+
+          page.addNewGroupKey('.names-group', 'brat');
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            page.controlByIdUpdate('names-group-brat', 'Pit');
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+              const tDirtyData = cloneDeep(calculatedData);
+              tDirtyData.names = {
+                brat: 'Pit'
+              };
+              expect(component.getDirtyData()).toEqual(tDirtyData);
+            });
+          });
+        });
+      }));
+
+      it('should return only key=null for removed', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+
+          page.addNewGroupKey('.names-group', 'brat');
+          fixture.detectChanges();
+          fixture.whenStable().then(() => {
+            page.removeFirstGroup('.names-group');
+            fixture.detectChanges();
+            fixture.whenStable().then(() => {
+              const tDirtyData = cloneDeep(calculatedData);
+              tDirtyData.names = { john: null };
+              expect(component.getDirtyData()).toEqual(tDirtyData);
+            });
+          });
+        });
+      }));
+    });
+
+    describe('If & Calc expresions', () => {
+      it('should calculate init cal data', async(() => {
+        fixture.whenRenderingDone().then(() => {
+          fixture.detectChanges();
+          const tDirtyData = cloneDeep(calculatedData);
+          page.calcSetR1A1El(123);
+          fixture.detectChanges();
+
+          tDirtyData.r1.a = 123;
+          tDirtyData.r1.sum = 127;
+          tDirtyData.isSuccess = false;
+          tDirtyData.isWarning = true;
+          tDirtyData.sum.a = 125;
+          tDirtyData.sum.sum = 137;
+          expect(component.getDirtyData()).toEqual(tDirtyData);
+        });
+      }));
+    });
+  });
+
+  describe('Form model', () => {
+    it('should check field control schema for control name', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+
+        expect(component.flexyForm.containsFieldSchema('p1')).toBeTruthy();
+        expect(component.flexyForm.containsFieldSchema('pxxxx')).toBeFalsy();
+      });
+    }));
+
+    it('should return field control schema for control name', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+
+        const p1Schema = component.flexyForm.getFieldSchema('p1');
+        expect(p1Schema).not.toBeNull();
+        expect(p1Schema.formName).toBe('p1');
+        expect(p1Schema.componentId).toBe('p1');
+        expect(p1Schema.componentName).toBe('text');
+        expect(p1Schema.componentType.name).toBe('CustomFormTextComponent');
+        expect(p1Schema.formControl instanceof FormControl).toBeTruthy();
+
+        expect(component.flexyForm.getFieldSchema('pxxxx')).toBeNull();
+      });
+    }));
+
+    it('should return field control instance for control name', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+
+        const p1Ins: CustomFormTextComponent = component.flexyForm.getFieldInstance('p1');
+
+        expect(p1Ins).not.toBeNull();
+        expect(p1Ins instanceof CustomFormTextComponent).toBeTruthy();
+        expect(p1Ins.layoutSchema).not.toBeNull();
+
+        expect(component.flexyForm.getFieldInstance('pxxxx')).toBeNull();
       });
     }));
   });
@@ -537,6 +768,20 @@ class Page {
 
   findByClass(className: string): HTMLInputElement {
     return this.fixture.nativeElement.querySelector('.' + className);
+  }
+
+  controlByIdUpdate(id: string, value: any) {
+    const inputEl = this.fixture.nativeElement.querySelector(`#${id} input`);
+    if (inputEl) {
+      this.updateElement(inputEl, value);
+    }
+  }
+
+  controlByClassUpdate(className: string, value: any) {
+    const inputEl = this.fixture.nativeElement.querySelector(`.${className} input`);
+    if (inputEl) {
+      this.updateElement(inputEl, value);
+    }
   }
 
   findById(id: string): HTMLInputElement {
@@ -625,5 +870,13 @@ class Page {
   calcSetR1A1El(val: number) {
     const el: HTMLInputElement = this.fixture.nativeElement.querySelector('#r1-a1-el input');
     this.updateElement(el, val);
+  }
+
+  findSteveNameInputElement(): HTMLInputElement {
+    return this.fixture.nativeElement.querySelector('#inputNamesteve_rogers input');
+  }
+
+  findSteveEmailInputElement(): HTMLInputElement {
+    return this.fixture.nativeElement.querySelector('#inputEmailsteve_rogers input');
   }
 }

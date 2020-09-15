@@ -1,0 +1,115 @@
+{
+  "schema": [
+    {
+      "children": [
+        {
+          "component": "text",
+          "name": "s1",
+          "properties": {
+            "label": "String param 1"
+          },
+          "validators": {
+            "required": true,
+            "maxLength": 30,
+            "minLength": 10,
+            "noWhitespace": true,
+            "notEmpty": true,
+            "pattern": "[a-zA-Z0-9]+"
+          }
+        },
+        {
+          "component": "text",
+          "name": "email",
+          "properties": {
+            "label": "Email param"
+          },
+          "validators": {
+            "email": true
+          }
+        },
+        {
+          "component": "checkbox",
+          "name": "checkbox1",
+          "properties": {
+            "label": "Checkbox"
+          },
+          "validators": {
+            "boolean": true
+          }
+        },
+        {
+          "component": "number",
+          "name": "n1",
+          "properties": {
+            "label": "Number param 1"
+          },
+          "validators": {
+            "required": true,
+            "min": 10,
+            "max": 20,
+            "number": true,
+            "integer": true
+          }
+        },
+        {
+          "component": "number",
+          "name": "v1",
+          "properties": {
+            "label": "V1"
+          },
+          "validators": {
+            "required": true,
+            "number": true,
+            "crossFieldMax": "../n1"
+          }
+        },
+        {
+          "component": "number",
+          "name": "v2",
+          "properties": {
+            "label": "V2"
+          },
+          "validators": {
+            "required": true,
+            "number": true,
+            "crossField": {
+              "lower": { "name": "v1", "path": "../v1" },
+              "greater": { "name": "v2", "path": "../v2" }
+            },
+            "crossFieldMin": "../n1"
+          }
+        },
+        {
+          "component": "number",
+          "name": "v3",
+          "properties": {
+            "label": "V3"
+          },
+          "validators": {
+            "crossFieldAbsoluteMin": "../n1"
+          }
+        },
+        {
+          "component": "number",
+          "name": "v4",
+          "properties": {
+            "label": "V4"
+          },
+          "validators": {
+            "forbiddenValues": [1, 2, 3]
+          }
+        },
+        {
+          "component": "number",
+          "name": "v4",
+          "properties": {
+            "label": "V4"
+          },
+          "validators": {
+            "forbiddenValues": [1, 2, 3]
+          }
+        }
+      ]
+    }
+  ]
+}
