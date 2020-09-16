@@ -7,11 +7,17 @@ export class FlexyOptionsMapperPipe implements PipeTransform {
   constructor() {}
 
   transform(value: FlexyModel<any>[], mapper: { value: string; text: string }): SelectOptionData[] {
-    return value.map(item => {
-      return {
-        value: item[mapper.value],
-        text: item[mapper.text]
-      };
-    });
+    if (!value || !Array.isArray(value) || !mapper || !mapper.value || !mapper.text) {
+      return [];
+    } else {
+      return value
+        .filter(item => !!item && item[mapper.value])
+        .map(item => {
+          return {
+            value: item[mapper.value],
+            text: item[mapper.text]
+          };
+        });
+    }
   }
 }
