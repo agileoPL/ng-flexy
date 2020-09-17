@@ -1,15 +1,15 @@
-import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, OnInit, Type } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
+import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutJsonMapperService, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { cloneDeep, set } from 'lodash';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexyFormsModule } from './form.module';
+import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import { FlexyFormsModule, provideComponentsFactory } from './form.module';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './models/layout-schema.model';
 import { FlexyForm } from './models/form.model';
 import { FlexyFormLayoutJson } from './models/layout-json-schema.model';
@@ -22,6 +22,7 @@ import { CustomFormArrayComponent } from './_test/components/array.component.spe
 import { CustomFormTextComponent } from './_test/components/text.component.spec';
 import { CustomFormNumberComponent } from './_test/components/number.component.spec';
 import { type } from 'os';
+import { FlexyFormJsonMapperService } from './services/json-mapper.service';
 
 const FORM_DATA = require('./_test/form.data.json');
 const FORM_SCHEMA = require('./_test/form.schema.json');
@@ -697,6 +698,62 @@ describe('Flexy Forms', () => {
         expect(p1Ins.layoutSchema).not.toBeNull();
 
         expect(component.flexyForm.getFieldInstance('pxxxx')).toBeNull();
+      });
+    }));
+  });
+
+  describe('Module forChild', () => {
+    it('should add new flexy validator', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+
+        const moduleWithProviders1 = FlexyFormsModule.forChild({});
+        expect(moduleWithProviders1.providers[0][`useValue`]).toEqual({});
+
+        const moduleWithProviders2 = FlexyFormsModule.forChild({
+          validatorsMap: {},
+          componentsMap: {}
+        });
+        expect(moduleWithProviders2.providers[0][`useValue`]).toEqual({
+          validatorsMap: {},
+          componentsMap: {}
+        });
+
+        const layoutMapperService = fixture.debugElement.injector.get(FlexyLayoutJsonMapperService);
+        const mapperService = fixture.debugElement.injector.get(FlexyFormJsonMapperService);
+
+        provideComponentsFactory(
+          {
+            validatorsMap: {
+              newRequired: (data?) => Validators.required
+            }
+          },
+          layoutMapperService,
+          mapperService
+        );
+
+        expect(mapperService.supportedValidators).toContain('newRequired');
+      });
+    }));
+
+    it('should add new flexy component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+
+        const layoutMapperService = fixture.debugElement.injector.get(FlexyLayoutJsonMapperService);
+        const mapperService = fixture.debugElement.injector.get(FlexyFormJsonMapperService);
+
+        provideComponentsFactory(
+          {
+            componentsMap: {
+              newText: CustomFormTextComponent
+            }
+          },
+          layoutMapperService,
+          mapperService
+        );
+
+        expect(layoutMapperService.supportedComponents).toContain('newText');
       });
     }));
   });

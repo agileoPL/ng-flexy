@@ -7,14 +7,18 @@ import { parseFormJson } from './layout-json-mapper.utils';
 
 @Injectable()
 export class FlexyLayoutJsonMapperService {
-  private componentsMap: FlexyLayoutComponentMap = {};
+  get supportedComponents(): string[] {
+    return Object.keys(this._componentsMap);
+  }
+
+  private _componentsMap: FlexyLayoutComponentMap = {};
 
   constructor(@Inject(FLEXY_LAYOUT_COMPONENT_MAP) componentMap) {
     if (componentMap && componentMap.length) {
       componentMap
         .reduce((a, b) => a.concat(b), [])
         .forEach(map => {
-          Object.assign(this.componentsMap, map);
+          Object.assign(this._componentsMap, map);
         });
     }
   }
@@ -25,7 +29,7 @@ export class FlexyLayoutJsonMapperService {
 
   assignMap(map: FlexyLayoutComponentMap) {
     if (map) {
-      Object.assign(this.componentsMap, map);
+      Object.assign(this._componentsMap, map);
     }
   }
 
@@ -50,8 +54,8 @@ export class FlexyLayoutJsonMapperService {
     };
     if ((jsonItem as FlexyLayoutComponentJsonSchema).component) {
       const componentJsonItem = jsonItem as FlexyLayoutComponentJsonSchema;
-      if (this.componentsMap && this.componentsMap[componentJsonItem.component]) {
-        (schemaItem as FlexyLayoutComponentSchema).componentType = this.componentsMap[componentJsonItem.component];
+      if (this._componentsMap && this._componentsMap[componentJsonItem.component]) {
+        (schemaItem as FlexyLayoutComponentSchema).componentType = this._componentsMap[componentJsonItem.component];
         (schemaItem as FlexyLayoutComponentSchema).componentName = componentJsonItem.component;
         (schemaItem as FlexyLayoutComponentSchema).componentId = componentJsonItem.id;
         (schemaItem as FlexyLayoutComponentSchema).componentInputs = componentJsonItem.properties ? componentJsonItem.properties : {};
