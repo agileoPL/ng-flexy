@@ -14,8 +14,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FlexyFormLayoutJson } from '../../../form/src/lib/models/layout-json-schema.model';
 import { FlexyFormData } from '../../../form/src/lib/models/form.data';
 import { TestingCustomComponent } from '../../../form/src/lib/_test/components/custom.component.spec';
-import { FlexyToastsError } from '../../../toasts/src/lib/error';
-import { FlexyToast, FlexyToastOptions } from '../../../toasts/src/lib/toast.model';
+import { FakeToastsService } from '../testing/mocks/toasts.service.spec';
 
 const FORM_DATA = require('../testing/form/form.data.json');
 const FORM_SCHEMA = require('../testing/form/form.schema.json');
@@ -697,40 +696,5 @@ class Page {
 
   findSteveEmailInputElement(): HTMLInputElement {
     return this.fixture.nativeElement.querySelector('#inputEmailsteve_rogers input');
-  }
-}
-
-export class FakeToastsService {
-  constructor() {}
-
-  error(message: string, title?: string, options?: FlexyToastOptions): number {
-    return this.show(new FlexyToast('error', message, title, options));
-  }
-
-  info(message: string, title?: string, options?: FlexyToastOptions): number {
-    return this.show(new FlexyToast('info', message, title, options));
-  }
-
-  success(message: string, title?: string, options?: FlexyToastOptions): number {
-    return this.show(new FlexyToast('success', message, title, options));
-  }
-
-  warning(message: string, title?: string, options?: FlexyToastOptions): number {
-    return this.show(new FlexyToast('warning', message, title, options));
-  }
-
-  confirm(message: string, title: string, callback: () => void): number {
-    callback();
-    return this.show(new FlexyToast('confirm', message, title));
-  }
-
-  remove(toastId) {}
-
-  show(toast: FlexyToast): number {
-    if (true) {
-      return toast.id;
-    } else {
-      throw new FlexyToastsError('ToastsContainer is not defined');
-    }
   }
 }

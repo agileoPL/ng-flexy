@@ -48,14 +48,12 @@ export class FlexyFormArrayComponent implements OnInit {
     }
     if (
       this.jsonSchema &&
+      this.jsonSchema.validators &&
       this.jsonSchema.validators.minItems &&
       (!this.layoutSchema.items || this.layoutSchema.items.length < this.jsonSchema.validators.minItems)
     ) {
       if (!this.readonly) {
-        const minLength = Math.max(
-          this.layoutSchema.items && this.layoutSchema.items.length ? this.layoutSchema.items.length : 0,
-          this.jsonSchema.validators.minItems
-        );
+        const minLength = this.jsonSchema.validators.minItems - (this.layoutSchema.items ? this.layoutSchema.items.length : 0);
 
         for (let i = 0; i < minLength; i++) {
           this.addNew();
@@ -142,7 +140,7 @@ export class FlexyFormArrayComponent implements OnInit {
   }
 
   isDraggable(): boolean {
-    return !this.readonly && this.draggable && this.layoutSchema.items.length > 1;
+    return !this.readonly && this.draggable && this.layoutSchema.items && this.layoutSchema.items.length > 1;
   }
 
   private enableButtons() {
