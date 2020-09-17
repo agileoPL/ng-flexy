@@ -1,210 +1,758 @@
-[
-  {
-    "children": [
-      {
-        "component": "text",
-        "controlName": "p1",
-        "componentInputs": {
-          "label": "First param"
-        },
-        "validators": {
-          "required": true,
-          "maxLength": 30
-        }
-      },
-      {
-        "component": "text",
-        "controlName": "p2",
-        "componentInputs": {
-          "label": "Second param"
-        },
-        "validators": {
-          "required": true,
-          "maxLength": 30
-        }
-      }
-    ]
-  },
-  {
-    "type": "component",
-    "component": "fieldset",
-    "componentInputs": {
-      "legend": "Fieldset"
-    },
-    "controlGroupName": "p3",
-    "children": [
-      {
-        "type": "col",
-        "properties": { "class": "col-md-6" },
-        "children": [
-          {
-            "component": "text",
-            "controlName": ".x1",
-            "componentInputs": {
-              "label": "P3 / X1"
-            },
-            "validators": {
-              "maxLength": 30
-            }
-          }
-        ]
-      },
-      {
-        "type": "col",
-        "properties": { "class": "col-md-6" },
-        "children": [
-          {
-            "component": "text",
-            "controlName": ".x2",
-            "componentInputs": {
-              "label": "P3 / X2"
-            },
-            "validators": {
-              "maxLength": 30
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "children": [
-      {
-        "component": "array",
-        "controlArrayName": "paramMulti",
-        "componentInputs": {
-          "legend": "Array parameters"
-        },
-        "items": {
-          "type": "component",
+{
+  "schema": [
+    {
+      "children": [
+        {
           "component": "text",
-          "componentInputs": {
-            "default": "abc",
-            "description": "abc",
-            "readonly": true
+          "id": "p1",
+          "name": "p1",
+          "properties": {
+            "label": "First param"
+          },
+          "attributes": {
+            "class": "p1-container",
+            "id": "p1"
           },
           "validators": {
             "required": true,
             "maxLength": 30
           }
         },
-        "validators": {
-          "maxItems": 6,
-          "minItems": 0
+        {
+          "component": "text",
+          "name": "p2",
+          "properties": {
+            "label": "Second param"
+          },
+          "validators": {
+            "required": true,
+            "maxLength": 30
+          }
         }
-      }
-    ]
-  },
-  {
-    "children": [
-      {
-        "component": "array",
-        "controlArrayName": "paramMultiComplex",
-        "componentInputs": {
-          "legend": "Tablica złożych fieldsetów"
-        },
-        "items": {
-          "component": "fieldset",
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Fieldset"
+      },
+      "name": "p3",
+      "type": "group",
+      "children": [
+        {
+          "attributes": {
+            "class": "col-md-6"
+          },
           "children": [
             {
               "component": "text",
-              "controlName": "arrayParam1",
-              "componentInputs": {
-                "type": "number",
-                "label": "Parametr 1"
+              "name": ".x1",
+              "properties": {
+                "label": "P3 / X1"
+              },
+              "attributes": {
+                "class": "p3-x1-container",
+                "id": "p3-x1"
               },
               "validators": {
-                "min": 1
+                "maxLength": 30
               }
-            },
+            }
+          ]
+        },
+        {
+          "type": "col",
+          "properties": {
+            "class": "col-md-6"
+          },
+          "children": [
             {
               "component": "text",
-              "controlName": "arrayParam2",
-              "componentInputs": {
-                "label": "Parametr 2",
-                "type": "number",
-                "default": 100
+              "name": ".x2",
+              "properties": {
+                "label": "P3 / X2"
               },
               "validators": {
-                "min": 1
+                "maxLength": 30
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "component": "array",
+          "name": "paramMulti",
+          "type": "array",
+          "properties": {
+            "legend": "Array parameters"
+          },
+          "attributes": {
+            "id": "simpleArray"
+          },
+          "items": {
+            "type": "component",
+            "component": "text",
+            "properties": {
+              "default": "abc",
+              "description": "abc",
+              "readonly": true
             },
-            {
-              "component": "text",
-              "controlName": "arrayParam3",
-              "componentInputs": {
-                "label": "Parametr 3",
-                "type": "number",
-                "default": 4.5
+            "validators": {
+              "required": true,
+              "maxLength": 30
+            }
+          },
+          "validators": {
+            "maxItems": 6,
+            "minItems": 0
+          }
+        }
+      ]
+    },
+    {
+      "children": [
+        {
+          "component": "array",
+          "name": "paramMultiComplex",
+          "type": "array",
+          "properties": {
+            "legend": "Tablica złożych fieldsetów",
+            "removeAny": true
+          },
+          "attributes": {
+            "id": "complexArray"
+          },
+          "items": {
+            "component": "fieldset",
+            "children": [
+              {
+                "component": "text",
+                "name": "arrayParam1",
+                "properties": {
+                  "type": "number",
+                  "label": "Parametr 1"
+                },
+                "validators": {
+                  "min": 1
+                }
               },
-              "validators": {
-                "min": 1
-              }
-            },
-            {
-              "component": "text",
-              "controlName": "arrayParam4",
-              "componentInputs": {
-                "label": "Parametr 4",
-                "type": "number",
-                "default": 4.5,
-                "readonly": true
+              {
+                "component": "text",
+                "name": "arrayParam2",
+                "properties": {
+                  "label": "Parametr 2",
+                  "type": "number",
+                  "default": 100
+                },
+                "validators": {
+                  "min": 1
+                }
               },
-              "validators": {
-                "min": 1
+              {
+                "component": "text",
+                "name": "arrayParam3",
+                "properties": {
+                  "label": "Parametr 3",
+                  "type": "number",
+                  "default": 4.5
+                },
+                "validators": {
+                  "min": 1
+                }
+              },
+              {
+                "component": "text",
+                "name": "arrayParam4",
+                "properties": {
+                  "label": "Parametr 4",
+                  "type": "number",
+                  "default": 4.5,
+                  "readonly": true
+                },
+                "validators": {
+                  "min": 1
+                }
+              },
+              {
+                "component": "fieldset",
+                "name": "arrayFieldset",
+                "type": "group",
+                "properties": {
+                  "legend": "Sub fieldset"
+                },
+                "children": [
+                  {
+                    "component": "text",
+                    "name": ".P1",
+                    "properties": {
+                      "label": "Fiedlset 1"
+                    },
+                    "validators": {
+                      "maxLength": 30,
+                      "required": true
+                    }
+                  },
+                  {
+                    "component": "text",
+                    "name": ".P2",
+                    "properties": {
+                      "label": "Fiedlset 2",
+                      "type": "number",
+                      "default": 100
+                    },
+                    "validators": {
+                      "min": 1
+                    }
+                  }
+                ]
               }
+            ]
+          },
+          "validators": {
+            "minItems": 0,
+            "maxItems": 4
+          }
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Groups of users"
+      },
+      "attributes": {
+        "class": "users-group"
+      },
+      "children": [
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Users"
+          },
+          "name": "users",
+          "type": "group",
+          "validators": {},
+          "items": {
+            "component": "fieldset",
+            "properties": {
+              "legend": "User {g1}"
             },
+            "children": [
+              {
+                "component": "text",
+                "properties": {
+                  "label": "First name"
+                },
+                "attributes": {
+                  "id": "inputName{g1}"
+                },
+                "name": ".name",
+                "validators": {
+                  "required": true
+                }
+              },
+              {
+                "component": "text",
+                "properties": {
+                  "label": "Last name"
+                },
+                "name": ".surname",
+                "validators": {
+                  "required": true
+                }
+              },
+              {
+                "if": "users.{g1} and users.{g1}.name and users.{g1}.name = 'Steve'",
+                "children": [
+                  {
+                    "component": "text",
+                    "attributes": {
+                      "id": "inputEmail{g1}",
+                      "class": {
+                        "inputEmail{g1}": "users.{g1} and users.{g1}.email"
+                      }
+                    },
+                    "properties": {
+                      "label": "email"
+                    },
+                    "name": ".email"
+                  }
+                ]
+              },
+              {
+                "calc": "$length(users.{g1}.name)",
+                "name": "users.{g1}.nameLength"
+              }
+            ]
+          },
+          "indexDef": "{g1}"
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Groups of names"
+      },
+      "attributes": {
+        "class": "names-group"
+      },
+      "children": [
+        {
+          "component": "group",
+          "properties": {
+            "legend": "Names"
+          },
+          "name": "names",
+          "type": "group",
+          "validators": {},
+          "items": {
+            "component": "text",
+            "properties": {
+              "label": "Name"
+            },
+            "attributes": {
+              "id": "names-group-{gn1}"
+            },
+            "validators": {
+              "required": true
+            }
+          },
+          "indexDef": "{gn1}"
+        }
+      ]
+    },
+    {
+      "component": "fieldset",
+      "properties": {
+        "legend": "Calculations & conditions"
+      },
+      "children": [
+        {
+          "attributes": {
+            "class": "container-fluid"
+          },
+          "children": [
             {
-              "component": "fieldset",
-              "controlGroupName": "arrayFieldset",
-              "componentInputs": {
-                "legend": "Sub fieldset"
+              "attributes": {
+                "class": "row"
               },
               "children": [
                 {
-                  "component": "text",
-                  "controlName": ".P1",
-                  "componentInputs": {
-                    "label": "Fiedlset 1"
+                  "attributes": {
+                    "id": "r1-a1-el",
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.a = 1",
+                      "background-color: BlueViolet;": "r1.a = 2",
+                      "background-color: CornflowerBlue;": "r1.a = 3",
+                      "background-color: Crimson;": "r1.a = 4",
+                      "background-color: DarkCyan;": "r1.a = 5",
+                      "background-color: ForestGreen;": "r1.a > 5"
+                    }
                   },
-                  "validators": {
-                    "maxLength": 30,
-                    "required": true
+                  "component": "number",
+                  "name": "r1.a",
+                  "properties": {
+                    "label": "A"
                   }
                 },
                 {
-                  "component": "text",
-                  "controlName": ".P2",
-                  "componentInputs": {
-                    "label": "Fiedlset 2",
-                    "type": "number",
-                    "default": 100
+                  "component": "number",
+                  "name": "r1.b",
+                  "properties": {
+                    "label": "B"
                   },
-                  "validators": {
-                    "min": 1
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.b = 1",
+                      "background-color: BlueViolet;": "r1.b = 2",
+                      "background-color: CornflowerBlue;": "r1.b = 3",
+                      "background-color: Crimson;": "r1.b = 4",
+                      "background-color: DarkCyan;": "r1.b = 5",
+                      "background-color: ForestGreen;": "r1.b > 5"
+                    }
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.c = 1",
+                      "background-color: BlueViolet;": "r1.c = 2",
+                      "background-color: CornflowerBlue;": "r1.c = 3",
+                      "background-color: Crimson;": "r1.c = 4",
+                      "background-color: DarkCyan;": "r1.c = 5",
+                      "background-color: ForestGreen;": "r1.c > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.c",
+                  "properties": {
+                    "label": "C"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.d = 1",
+                      "background-color: BlueViolet;": "r1.d = 2",
+                      "background-color: CornflowerBlue;": "r1.d = 3",
+                      "background-color: Crimson;": "r1.d = 4",
+                      "background-color: DarkCyan;": "r1.d = 5",
+                      "background-color: ForestGreen;": "r1.d > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.d",
+                  "properties": {
+                    "label": "D"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.e = 1",
+                      "background-color: BlueViolet;": "r1.e = 2",
+                      "background-color: CornflowerBlue;": "r1.e = 3",
+                      "background-color: Crimson;": "r1.e = 4",
+                      "background-color: DarkCyan;": "r1.e = 5",
+                      "background-color: ForestGreen;": "r1.e > 5"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.e",
+                  "properties": {
+                    "label": "E"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2",
+                    "style": {
+                      "background-color: Aquamarine;": "r1.sum = 5",
+                      "background-color: BlueViolet;": "r1.sum = 6",
+                      "background-color: CornflowerBlue;": "r1.sum = 7",
+                      "background-color: Crimson;": "r1.sum = 8",
+                      "background-color: DarkCyan;": "r1.sum = 9",
+                      "background-color: ForestGreen;": "r1.sum > 9"
+                    }
+                  },
+                  "component": "number",
+                  "name": "r1.sum",
+                  "calc": "$sum([r1.a,r1.b,r1.c,r1.d,r1.e])",
+                  "properties": {
+                    "label": "Sum row 1",
+                    "readonly": true
                   }
                 }
               ]
             },
             {
-              "component": "text",
-              "controlName": "::ParamExt%",
-              "componentInputs": {
-                "label": "External parameter ParamExt{index}",
-                "type": "number",
-                "default": 100
+              "attributes": {
+                "class": "row"
               },
-              "validators": {
-                "min": 1
-              }
+              "children": [
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.a",
+                  "properties": {
+                    "label": "A"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.b",
+                  "properties": {
+                    "label": "B"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.c",
+                  "properties": {
+                    "label": "C"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.d",
+                  "properties": {
+                    "label": "D"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.e",
+                  "properties": {
+                    "label": "E"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r2.sum",
+                  "calc": "$sum([r2.a,r2.b,r2.c,r2.d,r2.e])",
+                  "properties": {
+                    "label": "Sum row 2",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "attributes": {
+                "class": "row"
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.a",
+                  "properties": {
+                    "label": "A"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.b",
+                  "properties": {
+                    "label": "B"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.c",
+                  "properties": {
+                    "label": "C"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.d",
+                  "properties": {
+                    "label": "D"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.e",
+                  "properties": {
+                    "label": "E"
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "r3.sum",
+                  "calc": "$sum([r3.a,r3.b,r3.c,r3.d,r3.e])",
+                  "properties": {
+                    "label": "Sum row 3",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "attributes": {
+                "class": "row"
+              },
+              "children": [
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.a",
+                  "calc": "$sum([r1.a,r2.a,r3.a])",
+                  "properties": {
+                    "label": "Sum col A",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.b",
+                  "calc": "$sum([r1.b,r2.b,r3.b])",
+                  "properties": {
+                    "label": "Sum col B",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.c",
+                  "calc": "$sum([r1.c,r2.c,r3.c])",
+                  "properties": {
+                    "label": "Sum col C",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.d",
+                  "calc": "$sum([r1.d,r2.d,r3.d])",
+                  "properties": {
+                    "label": "Sum col D",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.e",
+                  "calc": "$sum([r1.e,r2.e,r3.e])",
+                  "properties": {
+                    "label": "Sum col E",
+                    "readonly": true
+                  }
+                },
+                {
+                  "attributes": {
+                    "class": "col-2"
+                  },
+                  "component": "number",
+                  "name": "sum.sum",
+                  "calc": "$sum([sum.a,sum.b,sum.c,sum.d,sum.e])",
+                  "properties": {
+                    "label": "Sum of Sum",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "isSuccess",
+              "calc": "sum.sum > 0 and sum.sum < 20"
+            },
+            {
+              "if": "sum.sum > 0 and sum.sum < 20",
+              "children": [
+                {
+                  "component": "text",
+                  "calc": "sum.sum",
+                  "attributes": {
+                    "class": {
+                      "alert": "isSuccess",
+                      "alert-success": "isSuccess",
+                      "d-block": "isSuccess",
+                      "t2e-success-alert": "isSuccess"
+                    }
+                  },
+                  "properties": {
+                    "label": "Success: sum is under 20",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "name": "isWarning",
+              "calc": "sum.sum >= 20"
+            },
+            {
+              "if": "sum.sum >= 20",
+              "children": [
+                {
+                  "id": "sum_warning",
+                  "component": "text",
+                  "calc": "sum.sum",
+                  "attributes": {
+                    "class": {
+                      "alert": "isWarning",
+                      "alert-warning": "isWarning",
+                      "d-block": "isWarning",
+                      "t2e-warning-alert": "isWarning"
+                    }
+                  },
+                  "properties": {
+                    "label": "Warning: sum is over 20",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "if": "r1.a > 1",
+              "children": [
+                {
+                  "id": "sum_warning",
+                  "component": "text",
+                  "calc": "r1.a * 1000",
+                  "properties": {
+                    "label": "R1A > 1",
+                    "readonly": true
+                  }
+                }
+              ]
+            },
+            {
+              "if": "r1.a > 10",
+              "children": [
+                {
+                  "id": "sum_warning",
+                  "component": "text",
+                  "calc": "r1.a",
+                  "properties": {
+                    "label": "R1A > 10:",
+                    "readonly": true
+                  }
+                }
+              ]
             }
           ]
-        },
-        "validators": {
-          "minItems": 0,
-          "maxItems": 4
         }
-      }
-    ]
-  }
-]
+      ]
+    }
+  ]
+}

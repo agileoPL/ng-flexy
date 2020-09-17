@@ -42,6 +42,7 @@
     "form-bootstrap:build": "ng build form-bootstrap && cpx \"projects/form-bootstrap/src/lib/*.scss\" \"dist/form-bootstrap\"",
     "form-bootstrap:watch": "ng build form-bootstrap --watch",
     "form-bootstrap-scss:watch": "cpx \"projects/form-bootstrap/src/lib/*.scss\" \"dist/form-bootstrap\" --watch",
+    "form-bootstrap:test": "ng test form-bootstrap --code-coverage",
     "crud:build": "ng build crud && cpx \"projects/crud/src/lib/*.scss\" \"dist/crud\"",
     "crud:watch": "ng build crud --watch",
     "crud-scss:watch": "cpx \"projects/crud/src/lib/*.scss\" \"dist/crud\" --watch",
