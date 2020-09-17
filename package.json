@@ -67,7 +67,7 @@
     "graphs:watch": "ng build graphs --watch",
     "postinstall": "ngcc",
     "distr-build": "npm run demo:build",
-    "distr-coverage": "ng test toasts --watch=false --browsers=ChromeHeadless --code-coverage && ng test form --watch=false --browsers=ChromeHeadless --code-coverage",
+    "distr-coverage": "ng test toasts --watch=false --browsers=ChromeHeadless --code-coverage && ng test form --watch=false --browsers=ChromeHeadless --code-coverage && ng test form-bootstrap --watch=false --browsers=ChromeHeadless --code-coverage",
     "distr-copy-coverage": "cpx \"coverage/**/*\" \"dist/demo/coverage\"",
     "distr": "npm run distr-build && npm run distr-coverage && npm run distr-copy-coverage && firebase deploy"
   },
