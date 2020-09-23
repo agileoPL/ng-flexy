@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/form-bootstrap",
-  "version": "10.0.2",
+  "version": "10.0.3",
   "peerDependencies": {
     "@angular/common": "~10.0.10",
     "@angular/core": "~10.0.10",
