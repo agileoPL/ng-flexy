@@ -1,6 +1,7 @@
 {
   "p1": "P1 Param",
   "p2": "P2 Param",
+  "chips1": ["a", "b", "c"],
   "p3": {
     "x1": "P3/X1 Param",
     "x2": "P3/X2 Param"
@@ -28,6 +29,38 @@
       }
     }
   ],
-  "ParamExt1": 89,
-  "ParamExt2": 23
+  "users": {
+    "tony_stark": {
+      "name": "Tony",
+      "surname": "Stark"
+    },
+    "steve_rogers": {
+      "name": "Steve",
+      "surname": "Rogers"
+    }
+  },
+  "names": {
+    "john": "John"
+  },
+  "r1": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 1,
+    "e": 1
+  },
+  "r2": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 1,
+    "e": 1
+  },
+  "r3": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 1,
+    "e": 1
+  }
 }

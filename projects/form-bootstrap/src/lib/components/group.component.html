@@ -30,21 +30,20 @@
     <button
       type="button"
       *ngIf="!isAddFormVisible"
-      class="btn btn-info btn-outline btn-sm add-item"
+      class="btn btn-info btn-outline btn-sm add-item t2e-show-add-group-btn"
       (click)="isAddFormVisible = true; focusOnNewInput()"
     >
       <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
     </button>
     <flexy-form-field *ngIf="isAddFormVisible" class="input-group" [control]="addFormControl">
       <div class="input-group">
-        <flexy-control-text class="key-control-text" [control]="addFormControl" (entered)="addNew($event)"></flexy-control-text>
+        <flexy-control-text
+          class="key-control-text t2e-add-group-key"
+          [control]="addFormControl"
+          (entered)="addNew($event)"
+        ></flexy-control-text>
         <span class="input-group-btn input-group-append">
-          <button
-            type="button"
-            [disabled]="!addFormControl.valid"
-            class="btn btn-info btn-outline btn-sm add-item"
-            (click)="addNew($event)"
-          >
+          <button type="button" class="btn btn-info btn-outline btn-sm add-item t2e-add-group-btn" (click)="addNew($event)">
             {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
           </button>
         </span>

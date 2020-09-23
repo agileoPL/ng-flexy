@@ -5,8 +5,13 @@
       <span *ngIf="isRequired" class="isRequired" [tooltip]="'FLEXY_FORM_FIELD_IS_REQUIRED' | translate">(<b>*</b>)</span>
     </span>
 
-    <div class="actions" *ngIf="!readonly && layoutSchema?.items?.length > 10">
-      <button type="button" class="btn btn-info btn-outline btn-sm" [disabled]="!showAddButton" (click)="addNew(); focusOnAdded()">
+    <div class="actions" *ngIf="addable && !readonly && layoutSchema?.items?.length > 10">
+      <button
+        type="button"
+        class="btn btn-info btn-outline btn-sm t2e-array-top-add-btn"
+        [disabled]="!showAddButton"
+        (click)="addNew(); focusOnAdded()"
+      >
         <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
       </button>
     </div>
@@ -47,8 +52,9 @@
       </div>
     </div>
 
-    <span class="actions" *ngIf="!readonly && removable">
+    <span class="actions" *ngIf="!readonly">
       <button
+        *ngIf="addable"
         type="button"
         class="btn btn-info btn-outline btn-sm bottom-button add-item t2e-array-add-btn"
         [disabled]="!showAddButton"
@@ -57,9 +63,9 @@
         <i class="flexy-icon-plus"></i> {{ 'FLEXY_FORM_ARRAY_ADD' | translate }}
       </button>
       <button
-        *ngIf="!removeAny"
+        *ngIf="removable && !removeAny && layoutSchema.items?.length"
         type="button"
-        class="btn btn-danger btn-outline btn-sm remove-item"
+        class="btn btn-danger btn-outline btn-sm remove-item t2e-array-remove-last-btn"
         [disabled]="!showRemoveButton"
         (click)="removeLast()"
       >
