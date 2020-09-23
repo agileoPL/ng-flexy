@@ -85,77 +85,11 @@ export class FlexyFormGroupComponent implements OnInit {
 
   private prepareNewKey() {
     if (this.jsonSchema.indexGenPattern) {
-      return this._randomKey(this.jsonSchema.indexGenPattern);
+      return randomKey(this.jsonSchema.indexGenPattern);
     } else {
       return void 0;
     }
   }
-
-  /**
-   * schema is string /(([a-zA-Z0-9]*){([sd])\.?([0-9]*)}+([a-zA-Z0-9]*))/gys
-   * supported {s}: string {d}: number with defined size (default :8 max 32) {s.2}
-   *
-   * for example:
-   *
-   * AA{d.2}BB{s}
-   *
-   * generate: AA23BBasewASDq
-   */
-  private _randomKey(schema: string) {
-    let newKey = '';
-    const re = /(([a-zA-Z0-9]*){([sd])\.?([0-9]*)}+([a-zA-Z0-9]*))/gy;
-    let xArray = re.exec(schema);
-    while (xArray) {
-      newKey += xArray[2] + this._generateRandom(xArray[3], parseInt(xArray[4], 10)) + xArray[5];
-      xArray = re.exec(schema);
-    }
-    return newKey;
-  }
-
-  private _generateRandom(type: string, length: number) {
-    if (!length) {
-      length = 2;
-    }
-    length = Math.min(length, 32);
-    const shuffleSource =
-      type === 'd' ? '12345678901234567890123456789012345678901234567890' : 'abcdefghijklmnoprqstwxzABCDEFGHIJKLMNOPRQSTWXZ';
-
-    const s = this._shuffle(shuffleSource.split(''));
-    if (length) {
-      s.length = length;
-    }
-    return s.join('');
-  }
-
-  private _shuffle(array) {
-    let counter = array.length;
-
-    // While there are elements in the array
-    while (counter > 0) {
-      // Pick a random index
-      const index = Math.floor(Math.random() * counter);
-
-      // Decrease counter by 1
-      counter--;
-
-      // And swap the last element with it
-      const temp = array[counter];
-      array[counter] = array[index];
-      array[index] = temp;
-    }
-
-    return array;
-  }
-
-  // private validateKey(): string {
-  //   const err = this.schemaService.validateGroupKey(this.defineKey, this.jsonSchema);
-  //   if (err) {
-  //     return err;
-  //   } else if (Object.keys((<FormGroup>this.layoutSchema.formControl).controls).indexOf(this.defineKey) !== -1) {
-  //     return 'exist';
-  //   }
-  //   return null;
-  // }
 
   private keyValidator(jsonSchema, layoutSchema): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -168,4 +102,60 @@ export class FlexyFormGroupComponent implements OnInit {
       return null;
     };
   }
+}
+
+/**
+ * schema is string /(([a-zA-Z0-9]*){([sd])\.?([0-9]*)}+([a-zA-Z0-9]*))/gys
+ * supported {s}: string {d}: number with defined size (default :8 max 32) {s.2}
+ *
+ * for example:
+ *
+ * AA{d.2}BB{s}
+ *
+ * generate: AA23BBasewASDq
+ */
+function randomKey(schema: string) {
+  let newKey = '';
+  const re = /(([a-zA-Z0-9_-]*){([sd])\.?([0-9]*)}+([a-zA-Z0-9]*))/gy;
+  let xArray = re.exec(schema);
+  while (xArray) {
+    newKey += xArray[2] + generateRandom(xArray[3], parseInt(xArray[4], 10)) + xArray[5];
+    xArray = re.exec(schema);
+  }
+  return newKey;
+}
+
+function generateRandom(type: string, length: number) {
+  if (!length) {
+    length = 2;
+  }
+  length = Math.min(length, 32);
+  const shuffleSource =
+    type === 'd' ? '12345678901234567890123456789012345678901234567890' : 'abcdefghijklmnoprqstwxzABCDEFGHIJKLMNOPRQSTWXZ';
+
+  const s = shuffle(shuffleSource.split(''));
+  if (length) {
+    s.length = length;
+  }
+  return s.join('');
+}
+
+function shuffle(array) {
+  let counter = array.length;
+
+  // While there are elements in the array
+  while (counter > 0) {
+    // Pick a random index
+    const index = Math.floor(Math.random() * counter);
+
+    // Decrease counter by 1
+    counter--;
+
+    // And swap the last element with it
+    const temp = array[counter];
+    array[counter] = array[index];
+    array[index] = temp;
+  }
+
+  return array;
 }

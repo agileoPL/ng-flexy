@@ -15,6 +15,16 @@ import { FlexyFormLayoutJson } from '../../../form/src/lib/models/layout-json-sc
 import { FlexyFormData } from '../../../form/src/lib/models/form.data';
 import { TestingCustomComponent } from '../../../form/src/lib/_test/components/custom.component.spec';
 import { FakeToastsService } from '../testing/mocks/toasts.service.spec';
+import { By } from '@angular/platform-browser';
+import { FlexyFieldComponent } from './components/field.component';
+import { FlexyFormCheckboxListComponent } from './components/checkbox-list.component';
+import { FlexyFormCheckboxComponent } from './components/checkbox.component';
+import { FlexyFormChipsComponent } from './components/chips.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexyFormRadioListComponent } from './components/radio-list.component';
+import { FlexyFormSelectComponent } from './components/select.component';
+import { FlexyFormSelect2Component } from './components/select2.component';
+import { FlexyFormTabsComponent } from './components/tabs.component';
 
 const FORM_DATA = require('../testing/form/form.data.json');
 const FORM_SCHEMA = require('../testing/form/form.schema.json');
@@ -30,6 +40,7 @@ describe('Flexy Forms', () => {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        BrowserAnimationsModule,
         HttpClientTestingModule,
         TooltipModule.forRoot(),
         FlexyLayoutModule.forRoot(),
@@ -74,7 +85,7 @@ describe('Flexy Forms', () => {
         expect(component.schema.length).toBe(7);
 
         // check group 1
-        expect(component.schema[0].children.length).toBe(2);
+        expect(component.schema[0].children.length).toBe(3);
 
         expect((component.schema[0] as FlexyFormFieldLayoutSchema).formName).toBeUndefined();
         expect((component.schema[0] as FlexyFormFieldLayoutSchema).id).toBe('0');
@@ -406,6 +417,16 @@ describe('Flexy Forms', () => {
         });
       });
     }));
+    it('should auto generate key based on indexGenPattern option', async(() => {
+      fixture.detectChanges();
+      expect(component).toBeTruthy();
+      page.showAddNewGroupKeyForm('.names-group');
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        expect(page.getGroupRenderedKey('.names-group')).toMatch(/genKey_[0-9]{2}_[a-zA-Z]{4}/i);
+      });
+    }));
   });
 
   describe('Editable group of objects - "Group" type of fields', () => {
@@ -426,6 +447,150 @@ describe('Flexy Forms', () => {
       flush();
     }));
   });
+
+  describe('Field component', () => {
+    it('should render field container', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFieldComponent>('#p1 flexy-form-field');
+        expect(fieldComponent).toBeTruthy();
+      });
+    }));
+
+    it('should focus first input or textarea', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFieldComponent>('#p1 flexy-form-field');
+        fieldComponent.focusControl();
+        const el = page.p1InputElement();
+        expect(document.activeElement === el).toBeTruthy();
+        fixture.detectChanges();
+        const fieldComponent2 = page.findComponentInstanceByCss<FlexyFieldComponent>('#p3 flexy-form-field');
+        fieldComponent2.focusControl();
+        const el2 = page.bySelector('#p3 textarea');
+        expect(document.activeElement === el2).toBeTruthy();
+      });
+    }));
+
+    it('should display errors', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        page.p1Update('');
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          fixture.detectChanges();
+          const el = page.bySelector('#p1 .field-info-error');
+          expect(el.textContent.trim()).toBe('FLEXY_FORM_VALIDATION_REQUIRED');
+        });
+      });
+    }));
+  });
+
+  describe('checkboxlist component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormCheckboxListComponent>('flexy-form-checkbox-list#cb1');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormCheckboxListComponent).toBeTruthy();
+      });
+    }));
+  });
+
+  describe('checkbox component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormCheckboxComponent>('flexy-form-checkbox#cb2');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormCheckboxComponent).toBeTruthy();
+      });
+    }));
+
+    it('should can toggle', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormCheckboxComponent>('flexy-form-checkbox#cb2');
+        expect(fieldComponent).toBeTruthy();
+        const initVal = !!fieldComponent.layoutSchema.formControl.value;
+        fieldComponent.toogle();
+        fixture.detectChanges();
+        expect(fieldComponent.layoutSchema.formControl.value).toBe(!initVal);
+      });
+    }));
+  });
+
+  describe('chips component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormChipsComponent>('flexy-form-chips#chips1');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormChipsComponent).toBeTruthy();
+      });
+    }));
+  });
+
+  fdescribe('radiolist component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormRadioListComponent>('flexy-form-radio-list#radiolist1');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormRadioListComponent).toBeTruthy();
+      });
+    }));
+  });
+
+  fdescribe('select component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormSelectComponent>('flexy-form-select#select1');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormSelectComponent).toBeTruthy();
+      });
+    }));
+  });
+
+  fdescribe('advanced select component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormSelect2Component>('flexy-form-select2#select2');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormSelect2Component).toBeTruthy();
+      });
+    }));
+  });
+
+  fdescribe('tabs component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormTabsComponent>('flexy-form-tabs#tabs1');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormSelect2Component).toBeTruthy();
+      });
+    }));
+  });
+
+  /*tabs.component.ts
+  60%	3/5	0%	0/2	0%	0/3	50%	2/4
+  tags.component.ts*/
+  // tree-node.component.ts
+  // tree.component.ts
 
   describe('Calc & If expressions', () => {
     it('should calculate init cal data', async(() => {
@@ -556,8 +721,15 @@ class Page {
     this.fixture = fixture;
   }
 
+  bySelector(selector: string): HTMLInputElement {
+    return this.fixture.nativeElement.querySelector(selector);
+  }
+
   findByClass(className: string): HTMLInputElement {
     return this.fixture.nativeElement.querySelector('.' + className);
+  }
+  findById(id: string): HTMLInputElement {
+    return this.fixture.nativeElement.querySelector('#' + id);
   }
 
   controlByIdUpdate(id: string, value: any) {
@@ -574,8 +746,8 @@ class Page {
     }
   }
 
-  findById(id: string): HTMLInputElement {
-    return this.fixture.nativeElement.querySelector('#' + id);
+  findComponentInstanceByCss<T>(selector: string): T {
+    return this.fixture.debugElement.query(By.css(selector)).componentInstance as T;
   }
 
   p1InputElement(): HTMLInputElement {
@@ -633,6 +805,11 @@ class Page {
   showAddNewGroupKeyForm(groupClassName: string) {
     const elShow: HTMLInputElement = this.fixture.nativeElement.querySelector(groupClassName + ' .t2e-show-add-group-btn');
     elShow.click();
+  }
+
+  getGroupRenderedKey(groupClassName: string) {
+    const el: HTMLInputElement = this.fixture.nativeElement.querySelector(groupClassName + ' .t2e-add-group-key input');
+    return el.value;
   }
 
   addNewGroupKey(groupClassName: string, keyName: string) {

@@ -28,6 +28,139 @@
             "required": true,
             "maxLength": 30
           }
+        },
+        {
+          "component": "textarea",
+          "name": "p3",
+          "attributes": {
+            "id": "p3"
+          },
+          "properties": {
+            "label": "Second param"
+          },
+          "validators": {
+            "required": true,
+            "maxLength": 30
+          }
+        },
+        {
+          "component": "checkbox",
+          "name": "cb2",
+          "attributes": {
+            "id": "cb2"
+          },
+          "properties": {
+            "label": "Checkbox 2",
+            "description": "Only checkbox"
+          },
+          "validators": {
+            "required": true
+          }
+        },
+        {
+          "component": "checkboxlist",
+          "name": "cb1",
+          "attributes": {
+            "id": "cb1"
+          },
+          "properties": {
+            "label": "Checkbox 1",
+            "description": "Options",
+            "options": [
+              {
+                "value": 1,
+                "text": "Value 1"
+              },
+              {
+                "value": 2,
+                "text": "Value 2"
+              }
+            ]
+          }
+        },
+        {
+          "component": "chips",
+          "name": "chips1",
+          "attributes": {
+            "id": "chips1"
+          },
+          "properties": {
+            "label": "Chips",
+            "description": "Options"
+          }
+        },
+        {
+          "component": "radiolist",
+          "name": "rl1",
+          "attributes": {
+            "id": "radiolist1"
+          },
+          "properties": {
+            "label": "Radiolist 1",
+            "description": "Options",
+            "options": [
+              {
+                "value": 1,
+                "text": "Value 1"
+              },
+              {
+                "value": 2,
+                "text": "Value 2"
+              }
+            ]
+          }
+        },
+        {
+          "component": "select",
+          "name": "select1",
+          "attributes": {
+            "id": "select1"
+          },
+          "properties": {
+            "label": "Simple select",
+            "default": 1,
+            "options": [
+              {
+                "value": 1,
+                "text": "Value 1"
+              },
+              {
+                "value": 2,
+                "text": "Value 2"
+              }
+            ]
+          }
+        },
+        {
+          "component": "select2",
+          "name": "select2",
+          "attributes": {
+            "id": "select2"
+          },
+          "properties": {
+            "label": "Advanced select",
+            "options": [
+              {
+                "value": 1,
+                "text": "Value 1"
+              },
+              {
+                "value": 2,
+                "text": "Value 2"
+              }
+            ]
+          }
+        },
+        {
+          "component": "tabs",
+          "name": "tabs1",
+          "attributes": {
+            "id": "tabs1"
+          },
+          "properties": {
+            "label": "Tabs",
+            "children": []
+          }
         }
       ]
     },
@@ -321,7 +454,8 @@
               "required": true
             }
           },
-          "indexDef": "{gn1}"
+          "indexDef": "{gn1}",
+          "indexGenPattern": "genKey_{d.2}_{s.4}"
         }
       ]
     },
