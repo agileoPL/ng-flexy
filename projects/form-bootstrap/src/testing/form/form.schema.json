@@ -153,13 +153,75 @@
         },
         {
           "component": "tabs",
-          "name": "tabs1",
           "attributes": {
             "id": "tabs1"
           },
           "properties": {
-            "label": "Tabs",
-            "children": []
+            "label": "Tabs"
+          },
+          "children": [
+            {
+              "id": "tab1",
+              "component": "fieldset",
+              "properties": {
+                "legend": "Tab 1"
+              },
+              "children": [
+                {
+                  "id": "tab1",
+                  "component": "text",
+                  "name": "ti1",
+                  "properties": {
+                    "label": "Tab 1"
+                  },
+                  "attributes": {
+                    "id": "tab1input"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "tab2",
+              "component": "fieldset",
+              "name": "ti1",
+              "properties": {
+                "legend": "Tab 2"
+              },
+              "children": [
+                {
+                  "id": "tab2",
+                  "component": "text",
+                  "name": "ti1",
+                  "properties": {
+                    "label": "Tab 2"
+                  },
+                  "attributes": {
+                    "id": "tab2input"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "component": "tags",
+          "name": "tags1",
+          "attributes": {
+            "id": "tags1"
+          },
+          "properties": {
+            "label": "Tags",
+            "default": 1,
+            "options": [
+              {
+                "value": "a",
+                "text": "Value A"
+              },
+              {
+                "value": "b",
+                "text": "Value B"
+              }
+            ]
           }
         }
       ]

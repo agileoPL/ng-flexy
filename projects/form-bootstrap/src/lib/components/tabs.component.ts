@@ -6,7 +6,7 @@ const SCHEMA_COMPONENT_ID_KEY = 'componentId';
 @Component({
   selector: 'flexy-form-tabs',
   template: `
-    <ng-container *ngIf="layoutSchema && layoutSchema.children">
+    <ng-container *ngIf="layoutSchema && layoutSchema.children && layoutSchema.children.length">
       <tabset>
         <tab
           *ngFor="let schema of layoutSchema.children"
@@ -16,8 +16,10 @@ const SCHEMA_COMPONENT_ID_KEY = 'componentId';
           (selectTab)="setActiveTab($event)"
         ></tab>
       </tabset>
-      <ng-container *ngFor="let schema of layoutSchema.children">
-        <flexy-layout *ngIf="activeTab === schema.componentId" [schema]="schema.children"></flexy-layout>
+      <ng-container *ngIf="activeTab">
+        <ng-container *ngFor="let schema of layoutSchema.children">
+          <flexy-layout *ngIf="activeTab === schema.componentId" [schema]="schema.children"></flexy-layout>
+        </ng-container>
       </ng-container>
     </ng-container>
   `
@@ -30,10 +32,14 @@ export class FlexyFormTabsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.activeTab = this.layoutSchema.children[0] ? this.layoutSchema.children[0][SCHEMA_COMPONENT_ID_KEY] : null;
+    this.activeTab =
+      this.layoutSchema.children && this.layoutSchema.children[0] ? this.layoutSchema.children[0][SCHEMA_COMPONENT_ID_KEY] : null;
   }
 
   setActiveTab(tab) {
-    this.activeTab = tab.id;
+    this.activeTab = null;
+    setTimeout(() => {
+      this.activeTab = tab.id;
+    });
   }
 }

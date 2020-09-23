@@ -25,6 +25,8 @@ import { FlexyFormRadioListComponent } from './components/radio-list.component';
 import { FlexyFormSelectComponent } from './components/select.component';
 import { FlexyFormSelect2Component } from './components/select2.component';
 import { FlexyFormTabsComponent } from './components/tabs.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { FlexyFormTagsComponent } from './components/tags.component';
 
 const FORM_DATA = require('../testing/form/form.data.json');
 const FORM_SCHEMA = require('../testing/form/form.schema.json');
@@ -46,6 +48,7 @@ describe('Flexy Forms', () => {
         FlexyLayoutModule.forRoot(),
         FlexyFormsModule.forRoot(),
         FlexyFormsBootstrapModule.forRoot(),
+        TabsModule.forRoot(),
         TranslateModule.forRoot({
           loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
         })
@@ -85,7 +88,7 @@ describe('Flexy Forms', () => {
         expect(component.schema.length).toBe(7);
 
         // check group 1
-        expect(component.schema[0].children.length).toBe(3);
+        expect(component.schema[0].children.length).toBe(11);
 
         expect((component.schema[0] as FlexyFormFieldLayoutSchema).formName).toBeUndefined();
         expect((component.schema[0] as FlexyFormFieldLayoutSchema).id).toBe('0');
@@ -538,7 +541,7 @@ describe('Flexy Forms', () => {
     }));
   });
 
-  fdescribe('radiolist component', () => {
+  describe('radiolist component', () => {
     it('should render component', async(() => {
       fixture.whenRenderingDone().then(() => {
         fixture.detectChanges();
@@ -550,7 +553,7 @@ describe('Flexy Forms', () => {
     }));
   });
 
-  fdescribe('select component', () => {
+  describe('select component', () => {
     it('should render component', async(() => {
       fixture.whenRenderingDone().then(() => {
         fixture.detectChanges();
@@ -562,7 +565,7 @@ describe('Flexy Forms', () => {
     }));
   });
 
-  fdescribe('advanced select component', () => {
+  describe('advanced select component', () => {
     it('should render component', async(() => {
       fixture.whenRenderingDone().then(() => {
         fixture.detectChanges();
@@ -574,23 +577,30 @@ describe('Flexy Forms', () => {
     }));
   });
 
-  fdescribe('tabs component', () => {
+  describe('tabs component', () => {
     it('should render component', async(() => {
       fixture.whenRenderingDone().then(() => {
         fixture.detectChanges();
         expect(component).toBeTruthy();
         const fieldComponent = page.findComponentInstanceByCss<FlexyFormTabsComponent>('flexy-form-tabs#tabs1');
         expect(fieldComponent).toBeTruthy();
-        expect(fieldComponent instanceof FlexyFormSelect2Component).toBeTruthy();
+        expect(page.findById('tab1input')).toBeTruthy();
+        expect(page.findById('tab2input')).toBeFalsy();
       });
     }));
   });
 
-  /*tabs.component.ts
-  60%	3/5	0%	0/2	0%	0/3	50%	2/4
-  tags.component.ts*/
-  // tree-node.component.ts
-  // tree.component.ts
+  describe('tags component', () => {
+    it('should render component', async(() => {
+      fixture.whenRenderingDone().then(() => {
+        fixture.detectChanges();
+        expect(component).toBeTruthy();
+        const fieldComponent = page.findComponentInstanceByCss<FlexyFormTagsComponent>('flexy-form-tags#tags1');
+        expect(fieldComponent).toBeTruthy();
+        expect(fieldComponent instanceof FlexyFormTagsComponent).toBeTruthy();
+      });
+    }));
+  });
 
   describe('Calc & If expressions', () => {
     it('should calculate init cal data', async(() => {
