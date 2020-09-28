@@ -28,9 +28,11 @@ export class FlexyLayoutJsonMapperService {
   }
 
   assignMap(map: FlexyLayoutComponentMap) {
+    console.log('assignMap', map);
     if (map) {
       Object.assign(this._componentsMap, map);
     }
+    console.log('after assignMap', this._componentsMap);
   }
 
   map(json: FlexyLayoutJsonSchema[], parentSchema: FlexyLayoutSchema = null): FlexyLayoutSchema[] {

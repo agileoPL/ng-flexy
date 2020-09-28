@@ -19,10 +19,19 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexyFormsMaterialModule, FLEXY_FORM_CONTROLS_JSON_MAPPER as materialMapper } from '@ng-flexy/form-material';
+import { MatButtonModule } from '@angular/material/button';
 
 export function translateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());
 }
+
+const formsComponents = { ...FLEXY_FORM_CONTROLS_JSON_MAPPER };
+
+Object.keys(materialMapper).forEach(key => {
+  formsComponents['mat-' + key] = materialMapper[key];
+});
 
 const routes: Routes = [
   {
@@ -58,6 +67,10 @@ const routes: Routes = [
     loadChildren: () => import('./form-bootstrap/form-bootstrap.module').then(m => m.DemoFormBootstrapModule)
   },
   {
+    path: 'form-material',
+    loadChildren: () => import('./form-material/form-material.module').then(m => m.DemoFormMaterialModule)
+  },
+  {
     path: 'json-impexp',
     loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
   },
@@ -89,19 +102,22 @@ const routes: Routes = [
     FlexyLayoutModule.forRoot(),
     FlexyFormsModule.forRoot(),
     FlexyFormsBootstrapModule.forRoot(),
+    FlexyFormsMaterialModule.forRoot(),
     FlexyJsonImpExpModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),
     TooltipModule.forRoot(),
     RouterModule.forRoot(routes),
     BsDatepickerModule.forRoot(),
+    MatButtonModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: translateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     {
@@ -117,7 +133,7 @@ const routes: Routes = [
     {
       provide: FLEXY_LAYOUT_COMPONENT_MAP,
       multi: true,
-      useValue: FLEXY_FORM_CONTROLS_JSON_MAPPER
+      useValue: formsComponents
     }
   ],
   bootstrap: [AppComponent]

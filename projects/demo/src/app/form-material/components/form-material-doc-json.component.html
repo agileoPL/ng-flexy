@@ -1,0 +1,50 @@
+<h1>{{ title }}</h1>
+<p class="bd-lead">
+  {{ description }}
+</p>
+
+<h3>Demo</h3>
+<div class="bd-example">
+  <demo-material-form-json *ngIf="json && data" [title]="title" [jsonSchema]="json" [data]="data"></demo-material-form-json>
+</div>
+
+<h3>Usage</h3>
+
+<tabset>
+  <tab heading="Form schema">
+    <demo-pretty-code *ngIf="json" [code]="json | json"></demo-pretty-code>
+  </tab>
+  <tab heading="Init data">
+    <demo-pretty-code *ngIf="data" [code]="data | json"></demo-pretty-code>
+  </tab>
+  <tab heading="demo component">
+    <demo-pretty-code [code]="demoComponentContent"></demo-pretty-code>
+  </tab>
+  <tab heading="demo html">
+    <demo-pretty-code [code]="demoHtmlContent"></demo-pretty-code>
+  </tab>
+</tabset>
+
+<h3>Configuration - custom components</h3>
+
+<tabset>
+  <tab heading="Init form controls">
+    <demo-pretty-code
+      code="import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
+
+@NgModule({
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    FlexyLayoutModule.forChild({
+      figure: DemoCustomFigureComponent,
+      ...FLEXY_FORM_CONTROLS_JSON_MAPPER
+    }),
+    FlexyFormsBootstrapModule,
+    FlexyFormsModule
+  ],
+  entryComponents: [DemoCustomFigureComponent]
+  }"
+    ></demo-pretty-code>
+  </tab>
+</tabset>
