@@ -1,11 +1,11 @@
 {
   "name": "@ng-flexy/core",
-  "version": "10.0.3",
+  "version": "12.0.1",
   "peerDependencies": {
-    "@angular/common": "~10.0.10",
-    "@angular/core": "~10.0.10",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
-    "rxjs": "^6.5.4"
+    "@angular/common": "~12.2.14",
+    "@angular/core": "~12.2.14",
+    "rxjs": "~6.5.4"
   }
 }

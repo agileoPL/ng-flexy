@@ -1,0 +1,222 @@
+[
+  {
+    "children": [
+      {
+        "component": "text",
+        "controlName": "p1",
+        "componentInputs": {
+          "label": "First param"
+        },
+        "validators": {
+          "required": true,
+          "maxLength": 30
+        }
+      },
+      {
+        "component": "text",
+        "controlName": "p2",
+        "componentInputs": {
+          "label": "Second param"
+        },
+        "validators": {
+          "required": true,
+          "maxLength": 30
+        }
+      }
+    ]
+  },
+  {
+    "type": "component",
+    "component": "fieldset",
+    "componentInputs": {
+      "legend": "Fieldset"
+    },
+    "controlGroupName": "p3",
+    "children": [
+      {
+        "type": "col",
+        "properties": { "class": "col-md-6" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": ".x1",
+            "componentInputs": {
+              "label": "P3 / X1"
+            },
+            "validators": {
+              "maxLength": 30
+            }
+          }
+        ]
+      },
+      {
+        "type": "col",
+        "properties": { "class": "col-md-6" },
+        "children": [
+          {
+            "component": "text",
+            "controlName": ".x2",
+            "componentInputs": {
+              "label": "P3 / X2"
+            },
+            "validators": {
+              "maxLength": 30
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "children": [
+      {
+        "component": "array",
+        "controlArrayName": "paramMulti",
+        "componentInputs": {
+          "legend": "Array parameters"
+        },
+        "items": {
+          "type": "component",
+          "component": "text",
+          "componentInputs": {
+            "default": "abc",
+            "description": "abc",
+            "readonly": true
+          },
+          "validators": {
+            "required": true,
+            "maxLength": 30
+          }
+        },
+        "validators": [
+          {
+            "type": "maxItems",
+            "params": 6
+          },
+          {
+            "type": "minItems",
+            "params": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "children": [
+      {
+        "component": "array",
+        "controlArrayName": "paramMultiComplex",
+        "componentInputs": {
+          "legend": "Tablica złożych fieldsetów"
+        },
+        "items": {
+          "component": "fieldset",
+          "children": [
+            {
+              "component": "text",
+              "controlName": "arrayParam1",
+              "componentInputs": {
+                "type": "number",
+                "label": "Parametr 1"
+              },
+              "validators": {
+                "min": 1
+              }
+            },
+            {
+              "component": "text",
+              "controlName": "arrayParam2",
+              "componentInputs": {
+                "label": "Parametr 2",
+                "type": "number",
+                "default": 100
+              },
+              "validators": {
+                "min": 1
+              }
+            },
+            {
+              "component": "text",
+              "controlName": "arrayParam3",
+              "componentInputs": {
+                "label": "Parametr 3",
+                "type": "number",
+                "default": 4.5
+              },
+              "validators": {
+                "min": 1
+              }
+            },
+            {
+              "component": "text",
+              "controlName": "arrayParam4",
+              "componentInputs": {
+                "label": "Parametr 4",
+                "type": "number",
+                "default": 4.5,
+                "readonly": true
+              },
+              "validators": {
+                "min": 1
+              }
+            },
+            {
+              "component": "fieldset",
+              "controlGroupName": "arrayFieldset",
+              "componentInputs": {
+                "legend": "Sub fieldset"
+              },
+              "children": [
+                {
+                  "component": "text",
+                  "controlName": "P1",
+                  "componentInputs": {
+                    "label": "Fiedlset 1"
+                  },
+                  "validators": {
+                    "maxLength": 30,
+                    "required": true
+                  }
+                },
+                {
+                  "component": "text",
+                  "controlName": "P2",
+                  "componentInputs": {
+                    "label": "Fiedlset 2",
+                    "type": "number",
+                    "default": 100
+                  },
+                  "validators": {
+                    "min": 1
+                  }
+                }
+              ]
+            },
+            {
+              "component": "text",
+              "controlName": "::ParamExt%",
+              "componentInputs": {
+                "label": "External parameter ParamExt{index}",
+                "type": "number",
+                "default": 100
+              },
+              "validators": {
+                "min": 1
+              }
+            }
+          ]
+        },
+        "validators": [
+          {
+            "type": "minItems",
+            "params": 0
+          },
+          {
+            "type": "maxItems",
+            "params": 4
+          }
+        ]
+      }
+    ]
+  }
+]

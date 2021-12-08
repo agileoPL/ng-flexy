@@ -1,9 +1,9 @@
 {
   "name": "@ng-flexy/skins",
-  "version": "10.0.1",
+  "version": "12.0.1",
   "peerDependencies": {
-    "@angular/common": "~10.0.10",
-    "@angular/core": "~10.0.10",
-    "@ng-flexy/core": "^10.0.1"
+    "@angular/common": "~12.2.14",
+    "@angular/core": "~12.2.14",
+    "@ng-flexy/core": "^12.0.1"
   }
 }

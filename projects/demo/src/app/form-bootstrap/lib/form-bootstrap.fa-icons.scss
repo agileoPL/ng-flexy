@@ -1,0 +1,23 @@
+@import '~font-awesome/scss/variables';
+
+[class*='flexy-icon-'],
+[class^='flexy-icon-'] {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.flexy-icon-plus:before {
+  content: $fa-var-plus;
+}
+.flexy-icon-calendar:before {
+  content: $fa-var-calendar;
+}
+.flexy-icon-remove:before {
+  content: $fa-var-times;
+}
+.flexy-icon-move:before {
+  content: $fa-var-arrows-alt;
+}

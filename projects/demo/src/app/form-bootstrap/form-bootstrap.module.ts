@@ -10,7 +10,6 @@ import { DemoFormJsonComponent } from './components/form-bootstrap-json.componen
 import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexyFormsBootstrapModule } from '@ng-flexy/form-bootstrap';
 import { DemoFormBootstrapDocSelect2Component } from './components/form-bootstrap-doc-select2.component';
 import { DemoFormBootstrapJsonViewerComponent } from './components/form-bootstrap-json-viewer.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -19,6 +18,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { DemoFormBootstrapDocRadioListComponent } from './components/form-bootstrap-doc-radio-list.component';
 import { DemoComOptionsAbleComponent } from './components/com-options-able.component';
 import { DemoFormBootstrapDocCheckboxListComponent } from './components/form-bootstrap-doc-checkbox-list.component';
+import { FlexyFormsBootstrapModule } from './lib/form-bootstrap.module';
 
 const routes: Routes = [
   {

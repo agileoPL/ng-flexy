@@ -1,0 +1,295 @@
+flexy-form-field,
+flexy-form-array {
+  .isRequired {
+    font-size: 10px;
+    color: gray;
+    vertical-align: top;
+    font-weight: normal;
+  }
+
+  .isRequired b {
+    font-weight: normal;
+    color: #a81a20;
+    line-height: normal;
+    vertical-align: top;
+  }
+}
+
+.flexy-form-control {
+  @extend .form-control;
+}
+
+.flexy-form-flat {
+}
+
+.flexy-form-vertical {
+  flexy-form-field {
+    .flexy-field {
+      @extend .row;
+      @extend .form-group;
+
+      .flexy-field-label {
+        @extend .col-3;
+        @extend .col-form-label;
+        @extend .text-right;
+      }
+
+      .flexy-field-control {
+        @extend .col-9;
+      }
+    }
+  }
+
+  flexy-form-checkbox {
+    flexy-form-field {
+      .flexy-form-checkbox-container {
+        @extend .form-check;
+      }
+      .flexy-form-checkbox-label {
+        @extend .form-check-label;
+      }
+      .flexy-form-checkbox-label > input {
+        @extend .form-check-input;
+      }
+    }
+  }
+
+  flexy-control-select2 {
+    display: block;
+    min-width: 200px;
+  }
+}
+
+.flexy-form-horizontal {
+  flexy-form-field {
+    .flexy-field {
+      .flexy-field-label {
+        @extend .col-form-label;
+      }
+
+      .flexy-field-control {
+      }
+    }
+  }
+
+  flexy-form-checkbox {
+    flexy-form-field {
+      .flexy-form-checkbox-container {
+        @extend .form-check;
+      }
+      .flexy-form-checkbox-label {
+        @extend .form-check-label;
+      }
+      .flexy-form-checkbox-label > input {
+        @extend .form-check-input;
+      }
+    }
+  }
+
+  flexy-control-select2 {
+    display: block;
+    min-width: 200px;
+  }
+}
+
+.flexy-form-inline {
+  @extend .form-inline;
+  flexy-form-field {
+    .flexy-field {
+      @extend .mb-2;
+      @extend .mr-sm-2;
+      @extend .mb-sm-0;
+      .flexy-field-label {
+      }
+      .flexy-field-control {
+      }
+    }
+  }
+}
+
+fieldset {
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+ng-select {
+  .ng-select-container {
+    border-radius: $input-border-radius !important;
+  }
+  &.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+    border-color: $input-focus-border-color !important;
+    box-shadow: $input-focus-box-shadow !important;
+  }
+  &.ng-select-multiple {
+    .ng-value {
+      background-color: $body-bg !important;
+      color: $body-color;
+      padding-left: 6px;
+      padding-bottom: 2px;
+      .ng-value-icon {
+        border-left: none !important;
+        &:hover {
+          background: none !important;
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+}
+flexy-form-field.readonly .flexy-field-control {
+  padding-top: 7px;
+}
+
+.bs-datepicker {
+  background: $body-bg;
+  color: $body-color;
+  &.mode-quarter {
+    counter-reset: number;
+    tr {
+      counter-increment: number;
+      td {
+        &:not(:last-child) {
+          display: none;
+        }
+        span {
+          color: rgba(0, 0, 0, 0);
+          &:before {
+            color: $body-color;
+            content: 'Q' counter(number);
+            z-index: 100;
+          }
+        }
+      }
+    }
+  }
+  .bs-datepicker-head {
+    background-color: $primary;
+  }
+  .bs-datepicker-body {
+    border-color: $light;
+    table td {
+      color: $body-color;
+      &.is-highlighted:not(.disabled):not(.selected) {
+        span {
+          background-color: $primary;
+        }
+        &,
+        span:before {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+.flexy-form-array-draggable-item {
+  background: $body-bg;
+  position: relative;
+  .drag-handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &.cdk-drag-preview {
+    .flexy-field {
+      display: flex;
+      margin-bottom: 16px;
+      margin-right: -15px;
+      margin-left: -15px;
+    }
+    .flexy-field-label {
+      flex: 0 0 25%;
+      max-width: 25%;
+      text-align: right;
+      padding: 7px 15px;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+    .flexy-field-control {
+      flex: 0 0 75%;
+      max-width: 75%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+}
+
+.ng-value.cdk-drag-preview {
+  font-size: 0.9em;
+  background-color: $body-bg !important;
+  color: $body-color;
+  padding-left: 6px;
+  padding-bottom: 2px;
+  .ng-value-icon {
+    border-left: none !important;
+    &:hover {
+      background: none !important;
+      transform: scale(1.5);
+    }
+  }
+}
+
+.flexy-removable-list {
+  position: relative;
+  display: block;
+  button.delete-item {
+    position: absolute;
+    right: 0;
+    padding: 0 5px;
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+}
+
+flexy-form-draggable-select {
+  .draggable-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+  }
+  table.drag-container {
+    width: 100%;
+    border-collapse: collapse;
+    tbody {
+      width: 100%;
+    }
+  }
+  flexy-control-select2 {
+    .ng-value,
+    .ng-clear-wrapper {
+      display: none;
+    }
+  }
+}
+.flexy-form-select-draggable-item {
+  display: table-row;
+  border: 1px solid $input-border-color;
+  background: $input-bg;
+  color: $input-color;
+  td:not(.draggable-item-remove) {
+    padding: $input-padding-y $input-padding-x;
+  }
+  .draggable-item-remove {
+    width: 45px;
+  }
+  .unknown-value {
+    font-style: italic;
+  }
+  &.cdk-drag-preview {
+    .delete-select-item {
+      display: none;
+    }
+  }
+}
+
+flexy-control-radio-list,
+flexy-control-checkbox-list {
+  & > .input-group.form-control {
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+    display: block;
+  }
+}
