@@ -81,7 +81,6 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@ng-select/ng-select": "^5.1.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "bootstrap": "^4.6.1",
