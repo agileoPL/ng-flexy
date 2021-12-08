@@ -5,7 +5,9 @@ import { FlexyFormFieldLayoutSchema } from '../models/layout-schema.model';
 import { FlexyFormJsonMapperService } from './json-mapper.service';
 import { FlexyFormComplexFieldLayoutJsonSchema, FlexyFormFieldType } from '../models/layout-json-schema.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlexyFormSchemaService {
   constructor(private jsonMapperService: FlexyFormJsonMapperService) {}
 

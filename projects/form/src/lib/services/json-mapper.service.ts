@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from '../models/layout-schema.model';
 import {
@@ -19,6 +19,7 @@ import { FlexyFormsValidators } from '../validators/validators.utils';
 import { FlexyValidatorsData } from '../models/validators.data';
 import { FlexyForm } from '../models/form.model';
 import { parseFormJson, replaceMarker } from './json-mapper.utils';
+import { FLEXY_FORM_VALIDATORS } from '../form-options.token';
 
 export interface FlexyFormValidatorsMap {
   [name: string]: (data?) => ValidatorFn;
@@ -54,7 +55,9 @@ const DEFAULT_VALIDATORS_MAP: FlexyFormValidatorsMap = {
   maxItems: data => FlexyFormsValidators.maxLengthArray(data)
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class FlexyFormJsonMapperService {
   static controlCounter = 0;
 
@@ -65,10 +68,15 @@ export class FlexyFormJsonMapperService {
   private _validatorsMap = DEFAULT_VALIDATORS_MAP;
 
   constructor(
+    @Optional() @Inject(FLEXY_FORM_VALIDATORS) validatorsMap: FlexyFormValidatorsMap,
     private jsonLayoutMapper: FlexyLayoutJsonMapperService,
     private formBuilder: FormBuilder,
     private logger: FlexyLoggerService
-  ) {}
+  ) {
+    if (validatorsMap) {
+      Object.assign(this._validatorsMap, validatorsMap);
+    }
+  }
 
   createForm(json: FlexyFormLayoutJson, readonlyMode = false, formData: FlexyFormData): FlexyForm {
     this.logger.debug('createForm');
@@ -227,10 +235,6 @@ export class FlexyFormJsonMapperService {
     }
 
     return schema;
-  }
-
-  assignValidators(validatorsMap: FlexyFormValidatorsMap) {
-    Object.assign(this._validatorsMap, validatorsMap);
   }
 
   private map(

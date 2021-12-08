@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { FLEXY_SKINS_LIST_TOKEN } from './skins.provider-token';
 import { FlexyLoggerService } from '@ng-flexy/core';
 
@@ -14,7 +14,7 @@ export class FlexySkinsService {
     switch: (skin: string) => boolean;
   } = window[SKIN_STATE_WINDOW_NAME];
 
-  constructor(@Inject(FLEXY_SKINS_LIST_TOKEN) supportedSkins, private logger: FlexyLoggerService) {
+  constructor(@Optional() @Inject(FLEXY_SKINS_LIST_TOKEN) supportedSkins, private logger: FlexyLoggerService) {
     this.supported = supportedSkins;
     const currentSkin = this.skinStateService.getCurrent();
     this.logger.debug('Current skin: ' + currentSkin);

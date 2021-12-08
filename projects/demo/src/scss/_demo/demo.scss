@@ -2,12 +2,10 @@
 
 @import '~@ng-flexy/freezer/freezer';
 @import '~@ng-flexy/toasts/toasts.module';
-@import '~@ng-flexy/form-bootstrap/form-bootstrap.module';
-@import '~@ng-flexy/form-bootstrap/form-bootstrap.fa-icons';
 @import '~@ng-flexy/json-impexp/json-impexp';
-@import '~@ng-flexy/highcharts/highcharts';
-@import '~@ng-flexy/graphs/graphs.module';
-@import '~@ng-flexy/crud/crud.module';
+
+@import '../../app/form-bootstrap/lib/form-bootstrap.module';
+@import '../../app/form-bootstrap/lib/form-bootstrap.fa-icons';
 
 @import '../../app/layout/components/layout-json.component';
 @import '../../app/json-impexp/json-impexp-example.component.scss';

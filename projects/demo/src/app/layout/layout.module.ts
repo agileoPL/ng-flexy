@@ -35,7 +35,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     TabsModule,
     FlexyLoggerModule,
-    FlexyLayoutModule.forChild({ 'lm-figure': DemoCustomFigureComponent })
+    FlexyLayoutModule, // .forChild({ 'lm-figure': DemoCustomFigureComponent })
   ],
   entryComponents: [DemoCustomFigureComponent],
   declarations: [
@@ -44,6 +44,13 @@ const routes: Routes = [
     DemoLayoutDocJsonComponent,
     DemoLayoutJsonComponent,
     DemoCustomFigureComponent
+  ],
+  providers: [
+    // {
+    //   provide: FLEXY_LAYOUT_COMPONENT_MAP,
+    //   multi: true,
+    //   useValue: { 'lm-figure': DemoCustomFigureComponent }
+    // }
   ]
 })
 export class DemoLayoutModule {}

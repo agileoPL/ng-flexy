@@ -1,6 +1,6 @@
 {
   "name": "@ng-flexy/demo",
-  "version": "9.1.1",
+  "version": "12.0.1",
   "description": "Flexy components and tools to build Angular 8+ applications",
   "keywords": [
     "Angular",
@@ -75,13 +75,11 @@
     "bootstrap": "^4.6.1",
     "font-awesome": "^4.7.0",
     "google-code-prettify": "^1.0.5",
-    "highcharts": "^8.2.0",
     "jsonata": "^1.8.5",
     "jszip": "^3.7.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",
-    "ngx-nvd3": "^1.0.9",
     "primeicons": "^5.0.0",
     "primeng": "^12.2.3",
     "rxjs": "~6.5.4",
@@ -109,6 +107,9 @@
     "codelyzer": "^6.0.0",
     "cpx": "^1.5.0",
     "eslint": "^7.26.0",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jsdoc": "latest",
+    "eslint-plugin-prefer-arrow": "latest",
     "husky": "^1.3.1",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -122,12 +123,10 @@
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "protractor": "~7.0.0",
+    "raw-loader": "^4.0.2",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.3",
-    "typescript": "~4.3.5",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jsdoc": "latest",
-    "eslint-plugin-prefer-arrow": "latest"
+    "typescript": "~4.3.5"
   },
   "optionalDependencies": {
     "@ng-flexy/core": "file:dist/core",

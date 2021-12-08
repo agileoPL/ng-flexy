@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Component, Input, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FlexySkinsModule } from '@ng-flexy/skins';
 import { SUPPORTED_SKINS } from './app.skins';
@@ -9,7 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
-import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
+import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -18,7 +18,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from './form-bootstrap/lib/form-bootstrap.module';
+import { FLEXY_LAYOUT_COMPONENT_MAP } from '../../../layout/src/lib/services/component-map.service';
+import { DemoCustomFigureComponent } from './form/components/custom-figure.component';
+import { DemoCustomInputComponent } from './form/components/custom-input.component';
 
 export function translateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());
@@ -61,22 +65,22 @@ const routes: Routes = [
     path: 'json-impexp',
     loadChildren: () => import('./json-impexp/json-impexp.module').then(m => m.DemoJsonImpExpModule)
   },
-  {
-    path: 'highcharts',
-    loadChildren: () => import('./highcharts/highcharts.module').then(m => m.DemoHighchartsModule)
-  },
-  {
-    path: 'graphs',
-    loadChildren: () => import('./graphs/graphs.module').then(m => m.DemoGraphsModule)
-  },
-  {
-    path: 'crud',
-    loadChildren: () => import('./crud/crud.module').then(m => m.DemoCrudModule)
-  }
 ];
 
+@Component({
+  selector: 'demo-custom-form-figure',
+  template: `
+    <figure>{{ title }}</figure>
+  `
+})
+export class DemoCustomFormFigureComponent {
+  @Input() title: string;
+}
+
+
 @NgModule({
-  declarations: [AppComponent, DemoHomeComponent],
+  declarations: [AppComponent, DemoHomeComponent, DemoCustomFormFigureComponent],
+  exports: [DemoCustomFormFigureComponent],
   imports: [
     BrowserModule,
     RouterModule,
@@ -86,9 +90,14 @@ const routes: Routes = [
     FlexyFeatureToggleModule.forRoot(),
     FlexyLoggerModule.forRoot(),
     FlexyToastsModule.forRoot(),
-    FlexyLayoutModule.forRoot(),
-    FlexyFormsModule.forRoot(),
     FlexyFormsBootstrapModule.forRoot(),
+    FlexyLayoutModule.forRoot({
+      'lm-figure': DemoCustomFigureComponent,
+      'fm-figure': DemoCustomFigureComponent,
+      'fm-text': DemoCustomInputComponent,
+      ...FLEXY_FORM_CONTROLS_JSON_MAPPER,
+    }),
+    FlexyFormsModule.forRoot(),
     FlexyJsonImpExpModule,
     ModalModule.forRoot(),
     TabsModule.forRoot(),

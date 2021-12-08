@@ -42,10 +42,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     TabsModule,
     FlexyLoggerModule,
-    FlexyLayoutModule.forChild({
-      'fm-figure': DemoCustomFigureComponent,
-      'fm-text': DemoCustomInputComponent
-    }),
+    FlexyLayoutModule,
     FlexyFormsModule
   ],
   entryComponents: [DemoCustomFigureComponent, DemoCustomInputComponent],

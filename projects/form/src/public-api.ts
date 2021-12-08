@@ -31,4 +31,5 @@ export * from './lib/ultils/utils';
 
 export * from './lib/validators/validators.utils';
 
+export * from './lib/form-options.token';
 export * from './lib/form.module';

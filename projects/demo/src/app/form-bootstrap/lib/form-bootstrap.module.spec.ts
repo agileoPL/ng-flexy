@@ -2,7 +2,14 @@ import { Component, NO_ERRORS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
-import { FlexyForm, FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema, FlexyFormsModule } from '@ng-flexy/form';
+import {
+  FlexyForm,
+  FlexyFormData,
+  FlexyFormFieldLayoutSchema,
+  FlexyFormLayoutJson,
+  FlexyFormLayoutSchema,
+  FlexyFormsModule
+} from '@ng-flexy/form';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { FlexyToastsService } from '@ng-flexy/toasts';
@@ -22,9 +29,7 @@ import { FlexyFormSelectComponent } from './components/select.component';
 import { FlexyFormSelect2Component } from './components/select2.component';
 import { FlexyFormTabsComponent } from './components/tabs.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { FlexyFormTagsComponent } from './components/tags.component';
 import { TestingCustomComponent } from '../../../../../form/src/lib/_test/components/custom.component.spec';
-import { FlexyFormData, FlexyFormLayoutJson } from '@ng-flexy/form';
 
 const FORM_DATA = require('../testing/form/form.data.json');
 const FORM_SCHEMA = require('../testing/form/form.schema.json');
@@ -572,18 +577,6 @@ describe('Flexy Forms', () => {
         expect(fieldComponent).toBeTruthy();
         expect(page.findById('tab1input')).toBeTruthy();
         expect(page.findById('tab2input')).toBeFalsy();
-      });
-    }));
-  });
-
-  describe('tags component', () => {
-    it('should render component', async(() => {
-      fixture.whenRenderingDone().then(() => {
-        fixture.detectChanges();
-        expect(component).toBeTruthy();
-        const fieldComponent = page.findComponentInstanceByCss<FlexyFormTagsComponent>('flexy-form-tags#tags1');
-        expect(fieldComponent).toBeTruthy();
-        expect(fieldComponent instanceof FlexyFormTagsComponent).toBeTruthy();
       });
     }));
   });

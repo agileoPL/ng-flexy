@@ -32,14 +32,14 @@
               "node_modules/google-code-prettify/bin/prettify.min.css",
               "projects/demo/src/styles.scss",
               {
-                "inject": true,
+                "inject": false,
                 "input": "projects/demo/src/scss/light-skin/index.scss",
-                "bundleName": "styles/default"
+                "bundleName": "styles-default"
               },
               {
-                "inject": true,
+                "inject": false,
                 "input": "projects/demo/src/scss/dark-skin/index.scss",
-                "bundleName": "styles/dark"
+                "bundleName": "styles-dark"
               }
             ],
             "scripts": [
@@ -122,18 +122,15 @@
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/demo/src/styles.scss",
-              "node_modules/primeicons/primeicons.css",
-              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css,",
               {
                 "input": "projects/demo/src/scss/light-skin/index.scss",
-                "inject": true,
-                "bundleName": "styles/default"
+                "inject": false,
+                "bundleName": "styles-default"
               },
               {
                 "input": "projects/demo/src/scss/dark-skin/index.scss",
-                "inject": true,
-                "bundleName": "styles/dark"
+                "inject": false,
+                "bundleName": "styles-dark"
               }
             ],
             "scripts": [

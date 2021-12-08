@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { get, has } from 'lodash';
 import { FlexyEnv, FlexyEnvValue } from './env.model';
 import { FLEXY_ENV_TOKEN } from './env-provider.token';
@@ -9,7 +9,7 @@ import { FLEXY_ENV_TOKEN } from './env-provider.token';
 export class FlexyEnvService {
   private readonly _env: FlexyEnv;
 
-  constructor(@Inject(FLEXY_ENV_TOKEN) env) {
+  constructor(@Optional() @Inject(FLEXY_ENV_TOKEN) env) {
     this._env = env;
   }
 

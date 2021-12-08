@@ -45,10 +45,8 @@ import { FlexyTreeNodeComponent } from './components/tree-node.component';
 import { FlexyTreeService } from './services/tree.service';
 import { FlexyFormsTextareaAutosizeDirective } from './directives/textarea-autosize.directive';
 import { FlexyControlTreeSelectComponent } from './controls/tree-select.component';
-import { FlexyFormTagsComponent } from './components/tags.component';
 import { FlexyFormTabsComponent } from './components/tabs.component';
 import { FlexyFormDraggableSelectComponent } from './components/draggable-select.component';
-import { FlexyControlTagsComponent } from './controls/tags.component';
 import { FlexyControlDraggableSelectComponent } from './controls/draggable-select.component';
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 import { FlexyFormJsonFileComponent } from './components/json-file.component';
@@ -74,7 +72,6 @@ export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   daterangepicker: FlexyFormDaterangepickerComponent,
   radiolist: FlexyFormRadioListComponent,
   colorpicker: FlexyFormColorpickerComponent,
-  tags: FlexyFormTagsComponent,
   checkboxlist: FlexyFormCheckboxListComponent,
   treeselect: FlexyFormTreeSelectComponent,
   label: FlexyFormLabelComponent,
@@ -100,7 +97,6 @@ const ENTRY_LAYOUT_COMPONENTS = [
   FlexyFormDaterangepickerComponent,
   FlexyFormRadioListComponent,
   FlexyFormColorpickerComponent,
-  FlexyFormTagsComponent,
   FlexyFormCheckboxListComponent,
   FlexyFormTreeSelectComponent,
   FlexyFormLabelComponent,
@@ -123,7 +119,6 @@ const FORM_CONTROLS = [
   FlexyControlDaterangepickerComponent,
   FlexyControlRadioListComponent,
   FlexyControlColorpickerComponent,
-  FlexyControlTagsComponent,
   FlexyControlCheckboxListComponent,
   FlexyControlTreeSelectComponent,
   FlexyControlPercentComponent,

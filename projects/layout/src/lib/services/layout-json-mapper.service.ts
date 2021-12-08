@@ -1,26 +1,23 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { FlexyLayoutComponentSchema, FlexyLayoutSchema } from '../model/layout-schema.model';
 import { FlexyLayoutComponentMap } from '../model/component-map.model';
-import { FlexyLayoutComponentJsonSchema, FlexyLayoutJson, FlexyLayoutJsonSchema } from '../model/layout-json-schema.model';
-import { FLEXY_LAYOUT_COMPONENT_MAP } from './component-map.service';
+import {
+  FlexyLayoutComponentJsonSchema,
+  FlexyLayoutJson,
+  FlexyLayoutJsonSchema
+} from '../model/layout-json-schema.model';
 import { parseFormJson } from './layout-json-mapper.utils';
+import { FLEXY_COMPONENTS_MAP } from '../layout-options.token';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class FlexyLayoutJsonMapperService {
   get supportedComponents(): string[] {
-    return Object.keys(this._componentsMap);
+    return Object.keys(this.componentMap);
   }
 
-  private _componentsMap: FlexyLayoutComponentMap = {};
-
-  constructor(@Inject(FLEXY_LAYOUT_COMPONENT_MAP) componentMap) {
-    if (componentMap && componentMap.length) {
-      componentMap
-        .reduce((a, b) => a.concat(b), [])
-        .forEach(map => {
-          Object.assign(this._componentsMap, map);
-        });
-    }
+  constructor(@Optional() @Inject(FLEXY_COMPONENTS_MAP) private componentMap: FlexyLayoutComponentMap) {
   }
 
   parse(json: FlexyLayoutJson): FlexyLayoutSchema[] {
@@ -29,11 +26,12 @@ export class FlexyLayoutJsonMapperService {
 
   assignMap(map: FlexyLayoutComponentMap) {
     if (map) {
-      Object.assign(this._componentsMap, map);
+      Object.assign(this.componentMap, map);
     }
   }
 
   map(json: FlexyLayoutJsonSchema[], parentSchema: FlexyLayoutSchema = null): FlexyLayoutSchema[] {
+    console.log({xx: this.componentMap})
     const schema: FlexyLayoutSchema[] = [];
     if (json) {
       json.forEach((jsonItem, index) => {
@@ -54,8 +52,8 @@ export class FlexyLayoutJsonMapperService {
     };
     if ((jsonItem as FlexyLayoutComponentJsonSchema).component) {
       const componentJsonItem = jsonItem as FlexyLayoutComponentJsonSchema;
-      if (this._componentsMap && this._componentsMap[componentJsonItem.component]) {
-        (schemaItem as FlexyLayoutComponentSchema).componentType = this._componentsMap[componentJsonItem.component];
+      if (this.componentMap && this.componentMap[componentJsonItem.component]) {
+        (schemaItem as FlexyLayoutComponentSchema).componentType = this.componentMap[componentJsonItem.component];
         (schemaItem as FlexyLayoutComponentSchema).componentName = componentJsonItem.component;
         (schemaItem as FlexyLayoutComponentSchema).componentId = componentJsonItem.id;
         (schemaItem as FlexyLayoutComponentSchema).componentInputs = componentJsonItem.properties ? componentJsonItem.properties : {};
