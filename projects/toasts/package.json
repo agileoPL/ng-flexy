@@ -1,9 +1,9 @@
 {
   "name": "@ng-flexy/toasts",
-  "version": "12.0.1",
+  "version": "12.0.1-alpha.1",
   "peerDependencies": {
     "@angular/common": "~12.2.14",
     "@angular/core": "~12.2.14",
-    "@ng-flexy/core": "^12.0.1"
+    "@ng-flexy/core": "^12.0.1-alpha.1"
   }
 }

@@ -1,13 +1,13 @@
 {
   "name": "@ng-flexy/form",
-  "version": "12.0.1",
+  "version": "12.0.1-alpha.1",
   "peerDependencies": {
     "@angular/common": "~12.2.14",
     "@angular/core": "~12.2.14",
     "@angular/cdk": "^12.2.13",
     "rxjs": "~6.5.4",
-    "@ng-flexy/core": "^12.0.1",
-    "@ng-flexy/layout": "^12.0.1",
+    "@ng-flexy/core": "^12.0.1-alpha.1",
+    "@ng-flexy/layout": "^12.0.1-alpha.1",
     "@ngx-translate/core": "^12.1.2",
     "lodash": "^4.17.20",
     "jsonata": "^1.7.0"
