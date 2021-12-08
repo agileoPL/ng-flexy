@@ -23,17 +23,37 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
             "aot": true,
-            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
-            "extractCss": true,
+            "assets": [
+              "projects/demo/src/favicon.ico",
+              "projects/demo/src/assets",
+              "projects/demo/src/i18n"
+            ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/google-code-prettify/bin/prettify.min.css",
               "projects/demo/src/styles.scss",
-              { "inject": false, "input": "projects/demo/src/scss/light-skin/index.scss", "bundleName": "styles/default" },
-              { "inject": false, "input": "projects/demo/src/scss/dark-skin/index.scss", "bundleName": "styles/dark" }
+              {
+                "inject": true,
+                "input": "projects/demo/src/scss/light-skin/index.scss",
+                "bundleName": "styles/default"
+              },
+              {
+                "inject": true,
+                "input": "projects/demo/src/scss/dark-skin/index.scss",
+                "bundleName": "styles/dark"
+              }
             ],
-            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"],
-            "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"]
+            "scripts": [
+              "node_modules/@ng-flexy/skins/scripts/skin-switcher.js",
+              "node_modules/google-code-prettify/bin/prettify.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "highcharts",
+              "tinycolor2",
+              "d3",
+              "nvd3"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,7 +66,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -89,22 +108,28 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.spec.json",
             "karmaConfig": "projects/demo/karma.conf.js",
-            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
+            "assets": [
+              "projects/demo/src/favicon.ico",
+              "projects/demo/src/assets",
+              "projects/demo/src/i18n"
+            ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/demo/src/styles.scss",
               {
                 "input": "projects/demo/src/scss/light-skin/index.scss",
-                "inject": false,
+                "inject": true,
                 "bundleName": "styles/default"
               },
               {
                 "input": "projects/demo/src/scss/dark-skin/index.scss",
-                "inject": false,
+                "inject": true,
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": ["projects/skins/src/scripts/skin-switcher.js"]
+            "scripts": [
+              "projects/skins/src/scripts/skin-switcher.js"
+            ]
           }
         },
         "lint": {
@@ -140,7 +165,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/freezer/tsconfig.lib.json",
             "project": "projects/freezer/ng-package.json"
@@ -175,7 +200,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/skins/tsconfig.lib.json",
             "project": "projects/skins/ng-package.json"
@@ -210,7 +235,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/core/tsconfig.lib.json",
             "project": "projects/core/ng-package.json"
@@ -245,7 +270,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/toasts/tsconfig.lib.json",
             "project": "projects/toasts/ng-package.json"
@@ -280,7 +305,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/layout/tsconfig.lib.json",
             "project": "projects/layout/ng-package.json"
@@ -315,7 +340,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/form/tsconfig.lib.json",
             "project": "projects/form/ng-package.json"
@@ -350,7 +375,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/form-bootstrap/tsconfig.lib.json",
             "project": "projects/form-bootstrap/ng-package.json"
@@ -390,7 +415,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/json-impexp/tsconfig.lib.json",
             "project": "projects/json-impexp/ng-package.json"
@@ -425,7 +450,7 @@
       "prefix": "flexy",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/crud/tsconfig.lib.json",
             "project": "projects/crud/ng-package.json"
@@ -465,7 +490,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/highcharts/tsconfig.lib.json",
             "project": "projects/highcharts/ng-package.json"
@@ -505,7 +530,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/graphs/tsconfig.lib.json",
             "project": "projects/graphs/ng-package.json"
