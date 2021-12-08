@@ -4,7 +4,6 @@
 export { FlexyFormArrayComponent } from './lib/components/array.component';
 export { FlexyFormCheckboxComponent } from './lib/components/checkbox.component';
 export { FlexyFormCheckboxListComponent } from './lib/components/checkbox-list.component';
-export { FlexyFormChipsComponent } from './lib/components/chips.component';
 export { FlexyFormColorpickerComponent } from './lib/components/colorpicker.component';
 export { FlexyFormDatepickerComponent } from './lib/components/datepicker.component';
 export { FlexyFormDaterangepickerComponent } from './lib/components/daterangepicker.component';
@@ -32,7 +31,6 @@ export { FlexyFormTreeSelectComponent } from './lib/components/tree-select.compo
 
 export { FlexyControlCheckboxComponent } from './lib/controls/checkbox.component';
 export { FlexyControlCheckboxListComponent } from './lib/controls/checkbox-list.component';
-export { FlexyControlChipsComponent } from './lib/controls/chips.component';
 export { FlexyControlColorpickerComponent } from './lib/controls/colorpicker.component';
 export { FlexyControlDatepickerComponent } from './lib/controls/datepicker.component';
 export { FlexyControlDaterangepickerComponent } from './lib/controls/daterangepicker.component';

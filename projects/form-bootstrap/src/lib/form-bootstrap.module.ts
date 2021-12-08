@@ -5,7 +5,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexyLayoutComponentMap, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { TagInputModule } from 'ngx-chips';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FlexyControlCheckboxComponent } from './controls/checkbox.component';
@@ -49,10 +48,8 @@ import { FlexyFormsTextareaAutosizeDirective } from './directives/textarea-autos
 import { FlexyControlTreeSelectComponent } from './controls/tree-select.component';
 import { FlexyFormTagsComponent } from './components/tags.component';
 import { FlexyFormTabsComponent } from './components/tabs.component';
-import { FlexyFormChipsComponent } from './components/chips.component';
 import { FlexyFormDraggableSelectComponent } from './components/draggable-select.component';
 import { FlexyControlTagsComponent } from './controls/tags.component';
-import { FlexyControlChipsComponent } from './controls/chips.component';
 import { FlexyControlDraggableSelectComponent } from './controls/draggable-select.component';
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 import { FlexyFormJsonFileComponent } from './components/json-file.component';
@@ -84,7 +81,6 @@ export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   tabs: FlexyFormTabsComponent,
   percent: FlexyFormPercentComponent,
   password: FlexyFormPasswordComponent,
-  chips: FlexyFormChipsComponent,
   draggableselect: FlexyFormDraggableSelectComponent,
   jsonfile: FlexyFormJsonFileComponent,
   hidden: FlexyFormHiddenComponent
@@ -111,7 +107,6 @@ const ENTRY_LAYOUT_COMPONENTS = [
   FlexyFormTabsComponent,
   FlexyFormPercentComponent,
   FlexyFormPasswordComponent,
-  FlexyFormChipsComponent,
   FlexyFormDraggableSelectComponent,
   FlexyFormJsonFileComponent,
   FlexyFormHiddenComponent
@@ -133,7 +128,6 @@ const FORM_CONTROLS = [
   FlexyControlTreeSelectComponent,
   FlexyControlPercentComponent,
   FlexyControlPasswordComponent,
-  FlexyControlChipsComponent,
   FlexyControlDraggableSelectComponent,
   FlexyControlJsonFileComponent,
   FlexyControlHiddenComponent
@@ -154,7 +148,6 @@ const COMPONENTS = [FlexyTreeNodeComponent];
     FlexyLayoutModule,
     FlexyFormsModule,
     NgSelectModule,
-    TagInputModule,
     BsDatepickerModule,
     FlexyJsonImpExpModule,
     DragDropModule

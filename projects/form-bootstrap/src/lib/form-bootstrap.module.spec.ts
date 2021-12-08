@@ -19,7 +19,6 @@ import { By } from '@angular/platform-browser';
 import { FlexyFieldComponent } from './components/field.component';
 import { FlexyFormCheckboxListComponent } from './components/checkbox-list.component';
 import { FlexyFormCheckboxComponent } from './components/checkbox.component';
-import { FlexyFormChipsComponent } from './components/chips.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexyFormRadioListComponent } from './components/radio-list.component';
 import { FlexyFormSelectComponent } from './components/select.component';
@@ -525,18 +524,6 @@ describe('Flexy Forms', () => {
         fieldComponent.toogle();
         fixture.detectChanges();
         expect(fieldComponent.layoutSchema.formControl.value).toBe(!initVal);
-      });
-    }));
-  });
-
-  describe('chips component', () => {
-    it('should render component', async(() => {
-      fixture.whenRenderingDone().then(() => {
-        fixture.detectChanges();
-        expect(component).toBeTruthy();
-        const fieldComponent = page.findComponentInstanceByCss<FlexyFormChipsComponent>('flexy-form-chips#chips1');
-        expect(fieldComponent).toBeTruthy();
-        expect(fieldComponent instanceof FlexyFormChipsComponent).toBeTruthy();
       });
     }));
   });

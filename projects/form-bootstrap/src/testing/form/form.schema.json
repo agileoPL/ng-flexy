@@ -79,17 +79,6 @@
           }
         },
         {
-          "component": "chips",
-          "name": "chips1",
-          "attributes": {
-            "id": "chips1"
-          },
-          "properties": {
-            "label": "Chips",
-            "description": "Options"
-          }
-        },
-        {
           "component": "radiolist",
           "name": "rl1",
           "attributes": {

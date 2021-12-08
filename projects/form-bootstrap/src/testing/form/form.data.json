@@ -1,7 +1,6 @@
 {
   "p1": "P1 Param",
   "p2": "P2 Param",
-  "chips1": ["a", "b", "c"],
   "p3": {
     "x1": "P3/X1 Param",
     "x2": "P3/X2 Param"
