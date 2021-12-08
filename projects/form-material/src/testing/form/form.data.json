@@ -1,0 +1,66 @@
+{
+  "p1": "P1 Param",
+  "p2": "P2 Param",
+  "chips1": ["a", "b", "c"],
+  "p3": {
+    "x1": "P3/X1 Param",
+    "x2": "P3/X2 Param"
+  },
+  "paramMulti": ["M1 Param", "M2 Param", "M3 Param", "M4 Param"],
+  "paramMultiComplex": [
+    {
+      "arrayParam1": 2,
+      "arrayParam2": 30,
+      "arrayParam3": 9.9,
+      "arrayParam4": 3.2,
+      "arrayFieldset": {
+        "P1": "Complex AF P1",
+        "P2": "Complex AF P2"
+      }
+    },
+    {
+      "arrayParam1": 6,
+      "arrayParam2": 20,
+      "arrayParam3": 29.2,
+      "arrayParam4": 33.1,
+      "arrayFieldset": {
+        "P1": "Complex AF P1 / 2",
+        "P2": "Complex AF P2 / 2"
+      }
+    }
+  ],
+  "users": {
+    "tony_stark": {
+      "name": "Tony",
+      "surname": "Stark"
+    },
+    "steve_rogers": {
+      "name": "Steve",
+      "surname": "Rogers"
+    }
+  },
+  "names": {
+    "john": "John"
+  },
+  "r1": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 1,
+    "e": 1
+  },
+  "r2": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 1,
+    "e": 1
+  },
+  "r3": {
+    "a": 1,
+    "b": 1,
+    "c": 1,
+    "d": 1,
+    "e": 1
+  }
+}

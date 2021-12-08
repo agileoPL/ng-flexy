@@ -31,6 +31,7 @@ export enum DemoModules {
   Freezer = 'Freezer',
   Layout = 'Layout',
   Form = 'Form',
+  FormMaterial = 'FormMaterial',
   FormBootstrap = 'FormBootstrap',
   JsonImpExp = 'JsonImpExp',
   Highcharts = 'Highcharts',
@@ -66,6 +67,12 @@ export class DocLayoutComponent implements OnInit, OnDestroy {
       url: '/form',
       regexp: /\/form([?;]?|$)/,
       label: DemoModules.Form
+    },
+    {
+      id: DemoModules.FormMaterial,
+      url: '/form-material',
+      regexp: /\/form-material([?;]?|$)/,
+      label: 'Form material controls'
     },
     {
       id: DemoModules.FormBootstrap,

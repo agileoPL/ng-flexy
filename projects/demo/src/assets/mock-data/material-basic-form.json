@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 2,
+  "schema": [
+    {
+      "component": "mat-grid",
+      "properties": {
+        "cols": 3,
+        "rowHeight": "100px"
+      },
+      "children": [
+        {
+          "component": "mat-text",
+          "properties": {
+            "label": "First name",
+            "cols": 1,
+            "rows": 1
+          },
+          "name": "name",
+          "validators": {
+            "required": true
+          }
+        },
+        {
+          "component": "mat-text",
+          "properties": {
+            "label": "Last name",
+            "cols": 2,
+            "rows": 1
+          },
+          "name": "surname",
+          "validators": {
+            "required": true
+          }
+        }
+      ]
+    }
+  ]
+}

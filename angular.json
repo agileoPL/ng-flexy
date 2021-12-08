@@ -26,11 +26,20 @@
             "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "extractCss": true,
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/google-code-prettify/bin/prettify.min.css",
               "projects/demo/src/styles.scss",
-              { "inject": false, "input": "projects/demo/src/scss/light-skin/index.scss", "bundleName": "styles/default" },
-              { "inject": false, "input": "projects/demo/src/scss/dark-skin/index.scss", "bundleName": "styles/dark" }
+              {
+                "inject": false,
+                "input": "projects/demo/src/scss/light-skin/index.scss",
+                "bundleName": "styles/default"
+              },
+              {
+                "inject": false,
+                "input": "projects/demo/src/scss/dark-skin/index.scss",
+                "bundleName": "styles/dark"
+              }
             ],
             "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"],
             "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"]
@@ -91,6 +100,7 @@
             "karmaConfig": "projects/demo/karma.conf.js",
             "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/demo/src/styles.scss",
               {
@@ -373,6 +383,41 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": ["projects/form-bootstrap/tsconfig.lib.json", "projects/form-bootstrap/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "form-material": {
+      "projectType": "library",
+      "root": "projects/form-material",
+      "sourceRoot": "projects/form-material/src",
+      "prefix": "flexy",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/form-material/tsconfig.lib.json",
+            "project": "projects/form-material/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/form-material/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/form-material/src/test.ts",
+            "tsConfig": "projects/form-material/tsconfig.spec.json",
+            "karmaConfig": "projects/form-material/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["projects/form-material/tsconfig.lib.json", "projects/form-material/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }

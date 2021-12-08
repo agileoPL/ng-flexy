@@ -32,6 +32,8 @@
       "@ng-flexy/form/*": ["dist/form/*"],
       "@ng-flexy/form-bootstrap": ["dist/form-bootstrap"],
       "@ng-flexy/form-bootstrap/*": ["dist/form-bootstrap/*"],
+      "@ng-flexy/form-material": ["dist/form-material"],
+      "@ng-flexy/form-material/*": ["dist/form-material/*"],
       "@ng-flexy/json-impexp": ["dist/json-impexp"],
       "@ng-flexy/json-impexp/*": ["dist/json-impexp/*"],
       "@ng-flexy/crud": ["dist/crud"],
