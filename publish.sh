@@ -9,6 +9,9 @@ npm run $1:build
 node ci-scripts/publisher.js $1
 
 cd dist/$1
-tar -czvf $1.tar.gz ./
+#tar -czvf $1.tar.gz ./
+#cd ../..
+#npm publish --access=public ./dist/$1/$1.tar.gz
+npm publish --access=public
+#npm publish --access=public --tag alpha
 cd ../..
-npm publish --access=public ./dist/$1/$1.tar.gz
