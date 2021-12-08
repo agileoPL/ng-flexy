@@ -22,7 +22,6 @@
             "main": "projects/demo/src/main.ts",
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
-            "aot": true,
             "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
@@ -40,7 +39,13 @@
               }
             ],
             "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"],
-            "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"]
+            "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -69,7 +74,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
