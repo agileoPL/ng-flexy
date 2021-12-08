@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexyLayoutComponentMap, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FlexyControlCheckboxComponent } from './controls/checkbox.component';
@@ -59,6 +58,7 @@ import { FlexyFormHiddenComponent } from './components/hidden.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,
@@ -147,10 +147,10 @@ const COMPONENTS = [FlexyTreeNodeComponent];
     TranslateModule,
     FlexyLayoutModule,
     FlexyFormsModule,
-    NgSelectModule,
     BsDatepickerModule,
     FlexyJsonImpExpModule,
-    DragDropModule
+    DragDropModule,
+    MultiSelectModule
   ],
   declarations: [...COMPONENTS, ...PUBLIC_COMPONENTS, ...ENTRY_LAYOUT_COMPONENTS, ...FORM_CONTROLS],
   entryComponents: ENTRY_LAYOUT_COMPONENTS,

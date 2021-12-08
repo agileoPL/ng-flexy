@@ -11,7 +11,7 @@
       "@ng-flexy/json-impexp": "@ng-flexy/json-impexp",
       "@ng-flexy/toasts": "@ng-flexy/toasts",
       "ngx-bootstrap": "ngx-bootstrap",
-      "@ng-select/ng-select": "@ng-select/ng-select",
+      "primeng": "primeng",
       "moment": "moment",
       "lodash": "lodash"
     }

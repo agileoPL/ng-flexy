@@ -23,11 +23,7 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "projects/demo/src/favicon.ico",
-              "projects/demo/src/assets",
-              "projects/demo/src/i18n"
-            ],
+            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/google-code-prettify/bin/prettify.min.css",
@@ -43,17 +39,8 @@
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": [
-              "node_modules/@ng-flexy/skins/scripts/skin-switcher.js",
-              "node_modules/google-code-prettify/bin/prettify.min.js"
-            ],
-            "allowedCommonJsDependencies": [
-              "lodash",
-              "highcharts",
-              "tinycolor2",
-              "d3",
-              "nvd3"
-            ]
+            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"],
+            "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"]
           },
           "configurations": {
             "production": {
@@ -108,14 +95,13 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.spec.json",
             "karmaConfig": "projects/demo/karma.conf.js",
-            "assets": [
-              "projects/demo/src/favicon.ico",
-              "projects/demo/src/assets",
-              "projects/demo/src/i18n"
-            ],
+            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/demo/src/styles.scss",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css,",
               {
                 "input": "projects/demo/src/scss/light-skin/index.scss",
                 "inject": true,
@@ -127,9 +113,7 @@
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": [
-              "projects/skins/src/scripts/skin-switcher.js"
-            ]
+            "scripts": ["projects/skins/src/scripts/skin-switcher.js"]
           }
         },
         "lint": {

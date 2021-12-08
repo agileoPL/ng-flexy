@@ -4,32 +4,39 @@ import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } fro
 
 @Component({
   template: `
-    <ng-select
+    <p-multiSelect
       *ngIf="!readonly && optionsData"
-      #select
-      [ngClass]="{ 'ng-select-multiple': multiple }"
+      [options]="optionsData"
       [formControl]="selectControl"
-      [items]="optionsData"
-      [placeholder]="placeholder"
-      bindLabel="text"
-      bindValue="value"
-      [multiple]="multiple"
-      [addTag]="addItem"
-      [hideSelected]="hideSelected"
-      [searchFn]="enableSearchByValue ? customSearchFn : null"
-      [virtualScroll]="virtualScroll"
-      [loading]="loading"
-      [loadingText]="loadingText"
-      (change)="onChange($event)"
-    >
-      <ng-template ng-label-tmp let-item="item" let-clear="clear">
-        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span> <span title="{{ item.text }}">{{ item.text }}</span>
-        <span class="ng-value-icon right t2e-unselect-value" (click)="clear(item)">×</span>
-      </ng-template>
-      <ng-template ng-option-tmp let-item="item" let-index="index">
-        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span> <span title="{{ item.text }}">{{ item.text }}</span>
-      </ng-template>
-    </ng-select>
+      optionLabel="text"
+      optionValue="value"
+    ></p-multiSelect>
+    <!--    <ng-select-->
+    <!--      -->
+    <!--      #select-->
+    <!--      [ngClass]="{ 'ng-select-multiple': multiple }"-->
+    <!--      [formControl]="selectControl"-->
+    <!--      [items]="optionsData"-->
+    <!--      [placeholder]="placeholder"-->
+    <!--      bindLabel="text"-->
+    <!--      bindValue="value"-->
+    <!--      [multiple]="multiple"-->
+    <!--      [addTag]="addItem"-->
+    <!--      [hideSelected]="hideSelected"-->
+    <!--      [searchFn]="enableSearchByValue ? customSearchFn : null"-->
+    <!--      [virtualScroll]="virtualScroll"-->
+    <!--      [loading]="loading"-->
+    <!--      [loadingText]="loadingText"-->
+    <!--      (change)="onChange($event)"-->
+    <!--    >-->
+    <!--      <ng-template ng-label-tmp let-item="item" let-clear="clear">-->
+    <!--        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span> <span title="{{ item.text }}">{{ item.text }}</span>-->
+    <!--        <span class="ng-value-icon right t2e-unselect-value" (click)="clear(item)">×</span>-->
+    <!--      </ng-template>-->
+    <!--      <ng-template ng-option-tmp let-item="item" let-index="index">-->
+    <!--        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span> <span title="{{ item.text }}">{{ item.text }}</span>-->
+    <!--      </ng-template>-->
+    <!--    </ng-select>-->
     <flexy-control-readonly *ngIf="readonly" [value]="getReadonlyInfo(control?.value)" [default]="default"> </flexy-control-readonly>
   `,
   selector: 'flexy-control-select2',
