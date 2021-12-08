@@ -58,12 +58,10 @@ export class CrudListOrderByComponent implements OnInit {
   ngOnInit() {
     this.orderByOptions = this.fields
       .filter(item => !!item.sortable)
-      .map(item => {
-        return {
+      .map(item => ({
           key: item.key,
           label: item.label
-        };
-      });
+        }));
   }
 
   setOrderBy(field: string, direction = FlexyOrderDirectionEnum.Asc) {

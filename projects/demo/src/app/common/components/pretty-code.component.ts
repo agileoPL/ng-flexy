@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 
-export declare var PR: any;
+export declare const PR: any;
 
 @Component({
   selector: 'demo-pretty-code',

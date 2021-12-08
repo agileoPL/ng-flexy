@@ -13,7 +13,7 @@ export interface FlexyToastOptions {
 
 export interface FlexyToastOptionsButton {
   label: string;
-  class?: object;
+  class?: {[className: string]: any};
   callback?: (toast: FlexyToast, event: any) => void;
 }
 

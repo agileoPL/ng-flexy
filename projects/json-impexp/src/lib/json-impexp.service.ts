@@ -10,9 +10,9 @@ export enum FlexyJsonImportErrorEnum {
 export class FlexyJsonImpExpService {
   importFromJson(
     input: HTMLInputElement,
-    validatorCallback?: (json: object) => boolean,
+    validatorCallback?: (json: {[k: string]: any}) => boolean,
     multipleFiles = false
-  ): Promise<object | object[]> {
+  ): Promise<{[k: string]: any} | {[k: string]: any}[]> {
     let files: FileList;
     let fr: FileReader;
     let multipleJson = [];
@@ -86,13 +86,13 @@ export class FlexyJsonImpExpService {
     }
   }
 
-  exportToJson(name: string, json: object) {
+  exportToJson(name: string, json: {[k: string]: any}) {
     const filename = this.prepareFileName(name, 'json');
     const jsonStr = JSON.stringify(json);
     this.downloadFile(filename, 'data:text/plain;charset=utf-8,', encodeURIComponent(jsonStr));
   }
 
-  exportToJsonZip(zipName: string, namePath: string, multipleJson: object[]) {
+  exportToJsonZip(zipName: string, namePath: string, multipleJson: {[k: string]: any}[]) {
     const filename = this.prepareFileName(zipName, 'zip');
     const jszip = new JSZip();
     multipleJson.forEach((el, index) =>
@@ -127,7 +127,7 @@ export class FlexyJsonImpExpService {
     document.body.removeChild(element);
   }
 
-  private validateImport(json, validatorCallback?: (json: object) => boolean): boolean {
+  private validateImport(json, validatorCallback?: (json: {[k: string]: any}) => boolean): boolean {
     let isValid = false;
     if (validatorCallback) {
       isValid = json && validatorCallback(json);

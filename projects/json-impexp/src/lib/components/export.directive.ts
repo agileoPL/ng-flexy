@@ -6,7 +6,7 @@ import { FlexyJsonImpExpService } from '../json-impexp.service';
 })
 export class FlexyJsonExportDirective implements OnInit {
   @Input() name: string;
-  @Input() json: object;
+  @Input() json: {[k: string]: any};
 
   constructor(private jsonImpExpService: FlexyJsonImpExpService) {}
 

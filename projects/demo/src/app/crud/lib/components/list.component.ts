@@ -52,7 +52,7 @@ export class FlexyListComponent implements OnInit, OnChanges, AfterContentInit, 
   } = {};
 
   @Input() fields: FlexyListField<FlexyModel<FlexyData>>[];
-  @Input() fieldDefaultActionCallback: (model: FlexyModel<FlexyData>) => {};
+  @Input() fieldDefaultActionCallback: (model: FlexyModel<FlexyData>) => {[name: string]: any};
 
   @Input() isSearchTermVisible = true;
   @Input() areCheckboxesVisible = false;

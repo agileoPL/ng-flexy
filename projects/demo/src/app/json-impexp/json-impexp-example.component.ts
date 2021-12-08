@@ -7,12 +7,12 @@ import { FlexyToastsService } from '@ng-flexy/toasts';
   templateUrl: 'json-impexp-example.component.html'
 })
 export class DemoJsonImpExpExampleComponent {
-  imported: object | object[];
+  imported: {[k: string]: any} | {[k: string]: any}[];
   enableMultiple: boolean;
 
   constructor(private jsonImpExpService: FlexyJsonImpExpService, private toastsService: FlexyToastsService) {}
 
-  importedJson(json: object) {
+  importedJson(json: {[k: string]: any}) {
     this.toastsService.success(`JSON has been imported`);
     this.imported = json;
   }
@@ -26,6 +26,6 @@ export class DemoJsonImpExpExampleComponent {
   }
 
   exportToZip() {
-    this.jsonImpExpService.exportToJsonZip('export-example', null, this.imported as object[]);
+    this.jsonImpExpService.exportToJsonZip('export-example', null, this.imported as {[k: string]: any}[]);
   }
 }

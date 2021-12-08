@@ -12,12 +12,10 @@ export class FlexyOptionsMapperPipe implements PipeTransform {
     } else {
       return value
         .filter(item => !!item && item[mapper.value])
-        .map(item => {
-          return {
+        .map(item => ({
             value: item[mapper.value],
             text: item[mapper.text]
-          };
-        });
+          }));
     }
   }
 }

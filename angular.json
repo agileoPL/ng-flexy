@@ -22,7 +22,11 @@
             "main": "projects/demo/src/main.ts",
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
-            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
+            "assets": [
+              "projects/demo/src/favicon.ico",
+              "projects/demo/src/assets",
+              "projects/demo/src/i18n"
+            ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/google-code-prettify/bin/prettify.min.css",
@@ -38,8 +42,17 @@
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": ["node_modules/@ng-flexy/skins/scripts/skin-switcher.js", "node_modules/google-code-prettify/bin/prettify.min.js"],
-            "allowedCommonJsDependencies": ["lodash", "highcharts", "tinycolor2", "d3", "nvd3"],
+            "scripts": [
+              "node_modules/@ng-flexy/skins/scripts/skin-switcher.js",
+              "node_modules/google-code-prettify/bin/prettify.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "highcharts",
+              "tinycolor2",
+              "d3",
+              "nvd3"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -101,7 +114,11 @@
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.spec.json",
             "karmaConfig": "projects/demo/karma.conf.js",
-            "assets": ["projects/demo/src/favicon.ico", "projects/demo/src/assets", "projects/demo/src/i18n"],
+            "assets": [
+              "projects/demo/src/favicon.ico",
+              "projects/demo/src/assets",
+              "projects/demo/src/i18n"
+            ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
               "projects/demo/src/styles.scss",
@@ -119,14 +136,18 @@
                 "bundleName": "styles/dark"
               }
             ],
-            "scripts": ["projects/skins/src/scripts/skin-switcher.js"]
+            "scripts": [
+              "projects/skins/src/scripts/skin-switcher.js"
+            ]
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/demo/tsconfig.app.json", "projects/demo/tsconfig.spec.json", "projects/demo/e2e/tsconfig.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/demo/**/*.ts",
+              "projects/demo/**/*.html"
+            ]
           }
         },
         "e2e": {
@@ -175,10 +196,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/freezer/tsconfig.lib.json", "projects/freezer/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/freezer/**/*.ts",
+              "projects/freezer/**/*.html"
+            ]
           }
         }
       }
@@ -210,10 +233,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/skins/tsconfig.lib.json", "projects/skins/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/skins/**/*.ts",
+              "projects/skins/**/*.html"
+            ]
           }
         }
       }
@@ -245,10 +270,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/core/tsconfig.lib.json", "projects/core/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/core/**/*.ts",
+              "projects/core/**/*.html"
+            ]
           }
         }
       }
@@ -280,10 +307,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/toasts/tsconfig.lib.json", "projects/toasts/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/toasts/**/*.ts",
+              "projects/toasts/**/*.html"
+            ]
           }
         }
       }
@@ -315,10 +344,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/layout/tsconfig.lib.json", "projects/layout/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/layout/**/*.ts",
+              "projects/layout/**/*.html"
+            ]
           }
         }
       }
@@ -350,10 +381,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/form/tsconfig.lib.json", "projects/form/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/form/**/*.ts",
+              "projects/form/**/*.html"
+            ]
           }
         }
       }
@@ -387,8 +420,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/form-bootstrap/tsconfig.lib.json", "projects/form-bootstrap/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/form-bootstrap/tsconfig.lib.json",
+              "projects/form-bootstrap/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -425,10 +463,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/json-impexp/tsconfig.lib.json", "projects/json-impexp/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/json-impexp/**/*.ts",
+              "projects/json-impexp/**/*.html"
+            ]
           }
         }
       }
@@ -462,8 +502,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/crud/tsconfig.lib.json", "projects/crud/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/crud/tsconfig.lib.json",
+              "projects/crud/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -502,8 +547,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/highcharts/tsconfig.lib.json", "projects/highcharts/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/highcharts/tsconfig.lib.json",
+              "projects/highcharts/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -542,8 +592,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/graphs/tsconfig.lib.json", "projects/graphs/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "projects/graphs/tsconfig.lib.json",
+              "projects/graphs/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

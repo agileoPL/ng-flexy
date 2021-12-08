@@ -7,6 +7,6 @@ export interface FlexyListField<M> {
   sortable?: boolean;
   templateRef?: TemplateRef<M> | string;
   cssClass?: { [key: string]: boolean };
-  clickAction?: (item: FlexyModel<any>) => {};
+  clickAction?: (item: FlexyModel<any>) => {[name: string]: any};
   hidden?: boolean;
 }

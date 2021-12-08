@@ -171,7 +171,12 @@ function checkIf(fieldSchema: FlexyFormFieldLayoutSchema, currentData: FlexyForm
   return !!ret;
 }
 
-function getArrayData(fieldSchema: FlexyFormFieldLayoutSchema, currentData: FlexyFormData, mode: FlexyFormDataMode, data: {}) {
+function getArrayData(
+  fieldSchema: FlexyFormFieldLayoutSchema,
+  currentData: FlexyFormData,
+  mode: FlexyFormDataMode,
+  data: {[name: string]: any}
+) {
   const arrayData = {};
   fieldSchema.items.forEach((item: FlexyFormLayoutSchema, index) => {
     const itemFormControl = (item as FlexyFormFieldLayoutSchema).formControl;

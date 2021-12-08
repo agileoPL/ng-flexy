@@ -17,7 +17,7 @@ export class FlexyControlJsonFileComponent implements OnInit {
   @Input() readonly: boolean;
   @Input() name: string;
 
-  json: object;
+  json: {[k: string]: any};
 
   constructor() {}
 
@@ -29,7 +29,7 @@ export class FlexyControlJsonFileComponent implements OnInit {
     }
   }
 
-  setJson(json: object) {
+  setJson(json: {[k: string]: any}) {
     this.control.setValue(JSON.stringify(json));
     this.control.markAsDirty();
     this.json = json;

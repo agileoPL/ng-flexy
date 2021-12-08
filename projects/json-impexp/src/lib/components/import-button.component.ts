@@ -11,10 +11,10 @@ import { FlexyJsonImpExpService, FlexyJsonImportErrorEnum } from '../json-impexp
   `
 })
 export class FlexyJsonImportButtonComponent {
-  @Input() validatorCallback: (json: object) => boolean;
+  @Input() validatorCallback: (json: {[k: string]: any}) => boolean;
   @Input() multiple: boolean;
 
-  @Output() uploaded: EventEmitter<object> = new EventEmitter();
+  @Output() uploaded: EventEmitter<{[k: string]: any}> = new EventEmitter();
   @Output() uploadError: EventEmitter<FlexyJsonImportErrorEnum> = new EventEmitter();
 
   @ViewChild('file') fileEl: ElementRef;

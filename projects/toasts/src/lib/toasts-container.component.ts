@@ -40,7 +40,7 @@ export class FlexyToastsContainerComponent implements OnInit, OnDestroy, AfterVi
   positionClass = 'toasts-top-right';
 
   private cancelButton: HTMLElement = null;
-  private _timeoutRefs: { [toasId: number]: any } = {};
+  private timeoutRefs: { [toasId: number]: any } = {};
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -76,10 +76,10 @@ export class FlexyToastsContainerComponent implements OnInit, OnDestroy, AfterVi
   }
 
   ngOnDestroy(): void {
-    if (this._timeoutRefs) {
-      Object.keys(this._timeoutRefs).forEach(key => {
-        if (this._timeoutRefs[key]) {
-          clearTimeout(this._timeoutRefs[key]);
+    if (this.timeoutRefs) {
+      Object.keys(this.timeoutRefs).forEach(key => {
+        if (this.timeoutRefs[key]) {
+          clearTimeout(this.timeoutRefs[key]);
         }
       });
     }
@@ -92,16 +92,14 @@ export class FlexyToastsContainerComponent implements OnInit, OnDestroy, AfterVi
     }
     const lifeTime = toast.options && toast.options.toastLife !== void 0 ? toast.options.toastLife : this.options.toastLife;
     if (lifeTime > 0) {
-      this._timeoutRefs[toast.id] = setTimeout(() => {
-        delete this._timeoutRefs[toast.id];
+      this.timeoutRefs[toast.id] = setTimeout(() => {
+        delete this.timeoutRefs[toast.id];
         this.removeToast(toast.id);
       }, lifeTime);
     }
   }
 
   removeToast(toastId: number) {
-    this.toasts = this.toasts.filter((toast: FlexyToast) => {
-      return toast.id !== toastId;
-    });
+    this.toasts = this.toasts.filter((toast: FlexyToast) => toast.id !== toastId);
   }
 }

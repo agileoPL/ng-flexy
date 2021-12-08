@@ -309,8 +309,7 @@ describe('Component: Crud List', () => {
     };
     return pagination;
   };
-  const prepareFields = () => {
-    return [
+  const prepareFields = () => ([
       {
         key: 'id',
         label: 'Id'
@@ -319,8 +318,7 @@ describe('Component: Crud List', () => {
         key: 'name',
         label: 'Name'
       }
-    ];
-  };
+    ]);
 });
 
 @Component({

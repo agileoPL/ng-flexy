@@ -30,11 +30,13 @@ import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } fro
     <!--      (change)="onChange($event)"-->
     <!--    >-->
     <!--      <ng-template ng-label-tmp let-item="item" let-clear="clear">-->
-    <!--        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span> <span title="{{ item.text }}">{{ item.text }}</span>-->
+    <!--        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span>
+                <span title="{{ item.text }}">{{ item.text }}</span>-->
     <!--        <span class="ng-value-icon right t2e-unselect-value" (click)="clear(item)">×</span>-->
     <!--      </ng-template>-->
     <!--      <ng-template ng-option-tmp let-item="item" let-index="index">-->
-    <!--        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span> <span title="{{ item.text }}">{{ item.text }}</span>-->
+    <!--        <span *ngIf="item['prefixHtml']" [innerHTML]="item['prefixHtml']"></span>
+                <span title="{{ item.text }}">{{ item.text }}</span>-->
     <!--      </ng-template>-->
     <!--    </ng-select>-->
     <flexy-control-readonly *ngIf="readonly" [value]="getReadonlyInfo(control?.value)" [default]="default"> </flexy-control-readonly>

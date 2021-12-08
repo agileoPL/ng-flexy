@@ -22,7 +22,7 @@ const MAX_NUMBER_OF_VISIBLE_PAGES = 10;
           <a class="page-link t2e-btn-page-first" (click)="goToPage(firstPage); $event.stopPropagation()">{{ firstPage }}</a>
         </li>
         <li *ngIf="firstPageDots" class="page-item"><span class="page-link t2e-first-page-dots">...</span></li>
-        <li *ngFor="let page of pages" class="page-item" [ngClass]="{ active: currentPage == page }">
+        <li *ngFor="let page of pages" class="page-item" [ngClass]="{ active: currentPage === page }">
           <a class="page-link t2e-btn-page" (click)="goToPage(page); $event.stopPropagation()">{{ page }}</a>
         </li>
         <li *ngIf="lastPageDots" class="page-item"><span class="page-link t2e-last-page-dots">...</span></li>

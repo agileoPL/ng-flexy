@@ -51,15 +51,14 @@ export class FlexyTreeComponent implements OnInit, OnDestroy, OnChanges {
 
   private prepareItems(nodes: FlexyTreeModelNode[]): TreeNode[] {
     if (nodes && nodes.length) {
-      return nodes.map((node: any) => {
-        return {
+      return nodes.map((node: any) => ({
           model: node,
           isExpanded: !!this.findSelectedInChildren(node.children, this.selectedId),
           isSelected: this.selectedId === node.id,
           isReadonly: this.readonlyId === node.id,
           children: node.children ? this.prepareItems(node.children) : null
-        };
-      });
+        })
+      );
     }
     return null;
   }

@@ -193,21 +193,17 @@ describe('Component: FlexyPaginationComponent', () => {
     expect(page.lastPageDots()).toBeNull();
   });
 
-  const getLargePagination = () => {
-    return new FlexyPagination({
-      currentPage: 10,
-      perPage: 10,
-      total: 400
-    });
-  };
+  const getLargePagination = () => new FlexyPagination({
+    currentPage: 10,
+    perPage: 10,
+    total: 400
+  });
 
-  const getSmallPagination = () => {
-    return new FlexyPagination({
-      currentPage: 1,
-      perPage: 10,
-      total: 10
-    });
-  };
+  const getSmallPagination = () => new FlexyPagination({
+    currentPage: 1,
+    perPage: 10,
+    total: 10
+  });
 });
 
 @Component({
