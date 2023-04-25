@@ -413,18 +413,6 @@
             "tsConfig": "projects/form-bootstrap/tsconfig.spec.json",
             "karmaConfig": "projects/form-bootstrap/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/form-bootstrap/tsconfig.lib.json",
-              "projects/form-bootstrap/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -495,18 +483,6 @@
             "tsConfig": "projects/crud/tsconfig.spec.json",
             "karmaConfig": "projects/crud/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/crud/tsconfig.lib.json",
-              "projects/crud/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -540,18 +516,6 @@
             "tsConfig": "projects/highcharts/tsconfig.spec.json",
             "karmaConfig": "projects/highcharts/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/highcharts/tsconfig.lib.json",
-              "projects/highcharts/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -584,18 +548,6 @@
             "main": "projects/graphs/src/test.ts",
             "tsConfig": "projects/graphs/tsconfig.spec.json",
             "karmaConfig": "projects/graphs/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/graphs/tsconfig.lib.json",
-              "projects/graphs/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
