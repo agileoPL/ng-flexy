@@ -388,34 +388,6 @@
         }
       }
     },
-    "form-bootstrap": {
-      "projectType": "library",
-      "root": "projects/form-bootstrap",
-      "sourceRoot": "projects/form-bootstrap/src",
-      "prefix": "flexy",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/form-bootstrap/tsconfig.lib.json",
-            "project": "projects/form-bootstrap/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/form-bootstrap/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/form-bootstrap/src/test.ts",
-            "tsConfig": "projects/form-bootstrap/tsconfig.spec.json",
-            "karmaConfig": "projects/form-bootstrap/karma.conf.js"
-          }
-        }
-      }
-    },
     "json-impexp": {
       "projectType": "library",
       "root": "projects/json-impexp",
@@ -552,6 +524,5 @@
         }
       }
     }
-  },
-  "defaultProject": "demo"
+  }
 }
