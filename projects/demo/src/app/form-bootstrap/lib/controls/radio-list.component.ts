@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form';
 
 @Component({
-  template: `
+    template: `
     <div *ngIf="!readonly" class="input-group form-control">
       <div *ngFor="let option of options" class="radioItem">
         <span *ngIf="option.prefixHtml" [innerHTML]="option.prefixHtml"></span>
@@ -21,7 +21,8 @@ import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form'
     </div>
     <flexy-control-readonly *ngIf="readonly" [value]="control.value" [default]="default"></flexy-control-readonly>
   `,
-  selector: 'flexy-control-radio-list'
+    selector: 'flexy-control-radio-list',
+    standalone: false
 })
 export class FlexyControlRadioListComponent implements OnInit {
   @Input() control: FormControl;

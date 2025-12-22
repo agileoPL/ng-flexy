@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-percent',
-  template: `
+    selector: 'flexy-form-percent',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <div class="addon" *ngIf="prefix">{{ prefix }}</div>
       <flexy-control-percent
@@ -18,8 +18,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       <div class="addon" *ngIf="suffix">{{ suffix }}</div>
     </flexy-form-field>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .addon {
         display: inline-block;
       }
@@ -27,7 +27,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
         display: inline-block;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 export class FlexyFormPercentComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

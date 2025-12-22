@@ -10,8 +10,8 @@ const BS_DATEPICKER_MODES = {
 };
 
 @Component({
-  selector: 'flexy-control-datepicker',
-  template: `
+    selector: 'flexy-control-datepicker',
+    template: `
     <div class="input-group" *ngIf="!readonly">
       <input
         #dp="bsDatepicker"
@@ -35,7 +35,8 @@ const BS_DATEPICKER_MODES = {
       </span>
     </div>
     <flexy-control-readonly *ngIf="readonly" [value]="control.value | date: format" [default]="default"></flexy-control-readonly>
-  `
+  `,
+    standalone: false
 })
 export class FlexyControlDatepickerComponent implements OnInit {
   bsConfig: {

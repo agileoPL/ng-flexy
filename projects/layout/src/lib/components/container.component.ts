@@ -4,11 +4,13 @@ import { FlexyLayoutComponentSchema } from '../model/layout-schema.model';
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 
 @Component({
-  selector: 'flexy-container',
-  template: `
+    selector: 'flexy-container',
+    template: `
     <ng-template #viewContainerRef class="containerRef"></ng-template>
   `
-  // changeDetection: ChangeDetectionStrategy.OnPush
+    // changeDetection: ChangeDetectionStrategy.OnPush
+    ,
+    standalone: false
 })
 export class FlexyContainerComponent implements OnInit {
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true }) viewContainerRef: ViewContainerRef;

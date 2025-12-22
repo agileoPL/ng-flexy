@@ -3,7 +3,8 @@ import { FlexyLayoutComponentSchema } from '../model/layout-schema.model';
 import { bindAttributes } from './attr.binder.utils';
 
 @Directive({
-  selector: '[flexyAttributes]'
+    selector: '[flexyAttributes]',
+    standalone: false
 })
 export class FlexyAttributesDirective {
   @Input() set componentSchema(schema: FlexyLayoutComponentSchema) {

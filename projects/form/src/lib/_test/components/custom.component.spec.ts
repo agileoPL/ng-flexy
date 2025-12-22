@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { FlexyFormLayoutSchema } from '../../models/layout-schema.model';
 
 @Component({
-  selector: 'flexy-custom-testing',
-  template: `
+    selector: 'flexy-custom-testing',
+    template: `
     <div>{{ p1 }}{{ p2 }}</div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host {
         background-color: deeppink;
         margin: 2px;
@@ -15,7 +15,8 @@ import { FlexyFormLayoutSchema } from '../../models/layout-schema.model';
         display: block;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 export class TestingCustomComponent {
   @Input() layoutSchema: FlexyFormLayoutSchema[];

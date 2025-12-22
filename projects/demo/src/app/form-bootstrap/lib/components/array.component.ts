@@ -9,8 +9,9 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { isRequired as checkIfRequired } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-array',
-  templateUrl: './array.component.html'
+    selector: 'flexy-form-array',
+    templateUrl: './array.component.html',
+    standalone: false
 })
 export class FlexyFormArrayComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

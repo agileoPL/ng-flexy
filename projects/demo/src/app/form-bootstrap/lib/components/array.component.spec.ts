@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyForm, FlexyFormJsonMapperService, FlexyFormsModule } from '@ng-flexy/form';
@@ -14,6 +14,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FlexyFormArrayComponent } from './array.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TestingCustomComponent } from '../../../../../../form/src/lib/_test/components/custom.component.spec';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const FORM_SCHEMA = require('../../testing/form/arrays.schema.json');
 
@@ -25,34 +26,33 @@ describe('Component array control', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
+    // declarations: [FormTestingComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientTestingModule,
         DragDropModule,
         TooltipModule.forRoot(),
         FlexyLayoutModule.forRoot(),
         FlexyFormsModule.forRoot(),
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
-        })
-      ],
-      providers: [
+            loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })],
+    providers: [
         FlexyLoggerService,
         {
-          provide: FlexyToastsService,
-          useClass: FakeToastsService
+            provide: FlexyToastsService,
+            useClass: FakeToastsService
         },
         {
-          provide: FLEXY_LAYOUT_COMPONENT_MAP,
-          multi: true,
-          useValue: { 'custom-cmp': TestingCustomComponent, ...FLEXY_FORM_CONTROLS_JSON_MAPPER }
-        }
-      ],
-      // declarations: [FormTestingComponent],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
+            provide: FLEXY_LAYOUT_COMPONENT_MAP,
+            multi: true,
+            useValue: { 'custom-cmp': TestingCustomComponent, ...FLEXY_FORM_CONTROLS_JSON_MAPPER }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(FlexyFormArrayComponent);

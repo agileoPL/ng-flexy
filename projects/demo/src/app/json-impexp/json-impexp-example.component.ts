@@ -3,8 +3,9 @@ import { FlexyJsonImpExpService, FlexyJsonImportErrorEnum } from '@ng-flexy/json
 import { FlexyToastsService } from '@ng-flexy/toasts';
 
 @Component({
-  selector: 'demo-json-impexp-example',
-  templateUrl: 'json-impexp-example.component.html'
+    selector: 'demo-json-impexp-example',
+    templateUrl: 'json-impexp-example.component.html',
+    standalone: false
 })
 export class DemoJsonImpExpExampleComponent {
   imported: {[k: string]: any} | {[k: string]: any}[];

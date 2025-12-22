@@ -2,8 +2,8 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-colorpicker',
-  template: `
+    selector: 'flexy-form-colorpicker',
+    template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
       [name]="layoutSchema.formName"
@@ -14,7 +14,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       <flexy-control-colorpicker [readonly]="readonly" [default]="default" [list]="list" [control]="layoutSchema.formControl">
       </flexy-control-colorpicker>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormColorpickerComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

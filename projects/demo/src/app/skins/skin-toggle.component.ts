@@ -3,10 +3,11 @@ import { Skins } from '../app.skins';
 import { FlexySkinsService } from '@ng-flexy/skins';
 
 @Component({
-  selector: 'demo-skin-toggle',
-  template: `
+    selector: 'demo-skin-toggle',
+    template: `
     <button class="btn btn-primary" (click)="toggleSkin()" role="button">Toggle skin</button>
-  `
+  `,
+    standalone: false
 })
 export class DemoSkinToggleComponent {
   constructor(private skinService: FlexySkinsService) {}

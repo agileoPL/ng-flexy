@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'flexy-control-checkbox',
-  template: `
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'flexy-control-checkbox',
+    template: `
     <a
       *ngIf="!readonly && onlyLabel"
       (focus)="onFocus($event)"
@@ -44,7 +44,8 @@ import { FormControl } from '@angular/forms';
         <span *ngIf="!readonly && !control.dirty">default</span>
       </small>
     </div>
-  `
+  `,
+    standalone: false
 })
 export class FlexyControlCheckboxComponent implements OnInit {
   @Input() control: FormControl;

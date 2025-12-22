@@ -5,11 +5,12 @@ import { FlexyTreeService } from '../services/tree.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'flexy-tree',
-  template: `
+    selector: 'flexy-tree',
+    template: `
     <flexy-tree-node *ngIf="nodes" [nodes]="nodes" [templateRef]="templateRef"></flexy-tree-node>
   `,
-  providers: [FlexyTreeService]
+    providers: [FlexyTreeService],
+    standalone: false
 })
 export class FlexyTreeComponent implements OnInit, OnDestroy, OnChanges {
   @Input() tree: FlexyTreeModelNode[] = [];

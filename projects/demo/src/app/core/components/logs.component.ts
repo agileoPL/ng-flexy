@@ -2,10 +2,11 @@ import { FlexyLoggerLevelEnum, FlexyLoggerService } from '@ng-flexy/core';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-logs',
-  template: `
+    selector: 'demo-logs',
+    template: `
     <flexy-log-level></flexy-log-level>
-  `
+  `,
+    standalone: false
 })
 export class DemoLogsComponent {
   constructor(private logger: FlexyLoggerService) {

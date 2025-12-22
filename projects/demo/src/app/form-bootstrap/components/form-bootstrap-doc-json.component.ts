@@ -4,8 +4,9 @@ import { FlexyFormData, FlexyFormLayoutJson } from '@ng-flexy/form';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'demo-form-doc-json',
-  templateUrl: './form-bootstrap-doc-json.component.html'
+    selector: 'demo-form-doc-json',
+    templateUrl: './form-bootstrap-doc-json.component.html',
+    standalone: false
 })
 export class DemoFormBootstrapDocJsonComponent implements OnInit {
   demoComponentContent = require('!!raw-loader!./form-bootstrap-json.component.ts').default;

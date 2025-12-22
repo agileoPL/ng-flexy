@@ -4,8 +4,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 const SCHEMA_COMPONENT_ID_KEY = 'componentId';
 
 @Component({
-  selector: 'flexy-form-tabs',
-  template: `
+    selector: 'flexy-form-tabs',
+    template: `
     <ng-container *ngIf="layoutSchema && layoutSchema.children && layoutSchema.children.length">
       <tabset>
         <tab
@@ -22,7 +22,8 @@ const SCHEMA_COMPONENT_ID_KEY = 'componentId';
         </ng-container>
       </ng-container>
     </ng-container>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormTabsComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

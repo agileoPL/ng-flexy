@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-core-doc-model',
-  templateUrl: './core-doc-model.component.html'
+    selector: 'demo-core-doc-model',
+    templateUrl: './core-doc-model.component.html',
+    standalone: false
 })
 export class DemoCoreDocModelComponent {
   userModelContent = require('!!raw-loader!../models/user.model.ts').default;

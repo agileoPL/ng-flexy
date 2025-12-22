@@ -12,8 +12,9 @@ import { FlexyToastsService } from '@ng-flexy/toasts';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'flexy-form-group',
-  templateUrl: './group.component.html'
+    selector: 'flexy-form-group',
+    templateUrl: './group.component.html',
+    standalone: false
 })
 export class FlexyFormGroupComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

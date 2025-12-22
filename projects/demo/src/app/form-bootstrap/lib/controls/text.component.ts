@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  template: `
+    template: `
     <input
       *ngIf="!readonly"
       class="form-control"
@@ -19,7 +19,8 @@ import { FormControl } from '@angular/forms';
     />
     <flexy-control-readonly *ngIf="readonly" [value]="control.value" [default]="default"></flexy-control-readonly>
   `,
-  selector: 'flexy-control-text'
+    selector: 'flexy-control-text',
+    standalone: false
 })
 export class FlexyControlTextComponent {
   @Input() control: FormControl;

@@ -7,7 +7,7 @@ import { FlexyToastsService } from '@ng-flexy/toasts';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { cloneDeep, set } from 'lodash';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { FlexyFormsModule, provideComponentsFactory } from './form.module';
 import { FlexyFormFieldLayoutSchema, FlexyFormLayoutSchema } from './models/layout-schema.model';
@@ -23,6 +23,7 @@ import { CustomFormTextComponent } from './_test/components/text.component.spec'
 import { CustomFormNumberComponent } from './_test/components/number.component.spec';
 import { type } from 'os';
 import { FlexyFormJsonMapperService } from './services/json-mapper.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const FORM_DATA = require('./_test/form.data.json');
 const FORM_SCHEMA = require('./_test/form.schema.json');
@@ -34,38 +35,37 @@ describe('Flexy Forms', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
+    declarations: [FormTestingComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientTestingModule,
         TestingCustomModule,
         TooltipModule.forRoot(),
         FlexyLayoutModule.forRoot(),
         FlexyFormsModule.forRoot(),
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
-        })
-      ],
-      providers: [
+            loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })],
+    providers: [
         FlexyLoggerService,
         FlexyToastsService,
         {
-          provide: FLEXY_LAYOUT_COMPONENT_MAP,
-          multi: true,
-          useValue: {
-            'custom-cmp': TestingCustomComponent,
-            fieldset: CustomFormFieldsetComponent,
-            text: CustomFormTextComponent,
-            number: CustomFormNumberComponent,
-            array: CustomFormArrayComponent,
-            group: CustomFormGroupComponent
-          }
-        }
-      ],
-      declarations: [FormTestingComponent],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
+            provide: FLEXY_LAYOUT_COMPONENT_MAP,
+            multi: true,
+            useValue: {
+                'custom-cmp': TestingCustomComponent,
+                fieldset: CustomFormFieldsetComponent,
+                text: CustomFormTextComponent,
+                number: CustomFormNumberComponent,
+                array: CustomFormArrayComponent,
+                group: CustomFormGroupComponent
+            }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(FormTestingComponent);
@@ -760,12 +760,12 @@ describe('Flexy Forms', () => {
 });
 
 @Component({
-  selector: 'flexy-forms-testing',
-  template: `
+    selector: 'flexy-forms-testing',
+    template: `
     <flexy-form *ngIf="jsonSchema" [json]="jsonSchema" [data]="data" (created)="onInitForm($event)"></flexy-form>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host ::ng-deep .flx-container {
         background-color: burlywood;
         margin: 2px;
@@ -784,7 +784,8 @@ describe('Flexy Forms', () => {
         padding: 10px;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 class FormTestingComponent implements OnInit {
   schema: FlexyFormLayoutSchema[];

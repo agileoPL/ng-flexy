@@ -2,13 +2,14 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 import { FlexyJsonImpExpService, FlexyJsonImportErrorEnum } from '../json-impexp.service';
 
 @Component({
-  selector: 'flexy-json-import-button',
-  template: `
+    selector: 'flexy-json-import-button',
+    template: `
     <input type="file" accept="application/json {{ multiple ? ', application/zip' : '' }}" #file [multiple]="multiple" />
     <a role="button" class="t2e-json-import-btn" (click)="importFromJson($event)">
       <ng-content></ng-content>
     </a>
-  `
+  `,
+    standalone: false
 })
 export class FlexyJsonImportButtonComponent {
   @Input() validatorCallback: (json: {[k: string]: any}) => boolean;

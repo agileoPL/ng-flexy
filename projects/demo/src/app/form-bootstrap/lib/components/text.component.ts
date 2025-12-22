@@ -2,8 +2,8 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-text',
-  template: `
+    selector: 'flexy-form-text',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <flexy-control-text
         [minLength]="minLength"
@@ -14,7 +14,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       >
       </flexy-control-text>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormTextComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

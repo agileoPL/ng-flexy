@@ -3,8 +3,8 @@ import { FlexyForm } from '../models/form.model';
 import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
 
 @Component({
-  selector: 'flexy-form-container',
-  template: `
+    selector: 'flexy-form-container',
+    template: `
     <ng-template #tmplRef let-schema let-form="form">
       <ng-container *ngFor="let schemaItem of schema">
         <ng-container *flexyFormIf="{ schema: schemaItem, form: form }">
@@ -28,8 +28,10 @@ import { FlexyFormLayoutSchema } from '../models/layout-schema.model';
     <ng-content></ng-content>
     <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schema, form: form }"></ng-container>
   `
-  // ,
-  // changeDetection: ChangeDetectionStrategy.OnPush
+    // ,
+    // changeDetection: ChangeDetectionStrategy.OnPush
+    ,
+    standalone: false
 })
 export class FlexyFormContainerComponent {
   @Input() form: FlexyForm;

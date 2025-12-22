@@ -25,8 +25,9 @@ const SUB_PAGES = [
 ];
 
 @Component({
-  selector: 'demo-core-doc',
-  templateUrl: './core-doc.component.html'
+    selector: 'demo-core-doc',
+    templateUrl: './core-doc.component.html',
+    standalone: false
 })
 export class DemoCoreDocComponent {
   subPages = SUB_PAGES;

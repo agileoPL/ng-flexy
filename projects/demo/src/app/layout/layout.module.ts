@@ -37,7 +37,6 @@ const routes: Routes = [
     FlexyLoggerModule,
     FlexyLayoutModule, // .forChild({ 'lm-figure': DemoCustomFigureComponent })
   ],
-  entryComponents: [DemoCustomFigureComponent],
   declarations: [
     DemoLayoutDocComponent,
     DemoLayoutDocInfoComponent,

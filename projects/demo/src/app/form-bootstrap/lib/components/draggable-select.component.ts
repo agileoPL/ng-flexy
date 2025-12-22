@@ -3,8 +3,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 import { SelectOption } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-draggable-select',
-  template: `
+    selector: 'flexy-form-draggable-select',
+    template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
       [name]="layoutSchema.formName"
@@ -24,7 +24,8 @@ import { SelectOption } from '@ng-flexy/form';
       >
       </flexy-control-draggable-select>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormDraggableSelectComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

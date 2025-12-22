@@ -4,7 +4,8 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'demo-core-doc-info',
-  templateUrl: './core-doc-info.component.html'
+    selector: 'demo-core-doc-info',
+    templateUrl: './core-doc-info.component.html',
+    standalone: false
 })
 export class DemoCoreDocInfoComponent {}

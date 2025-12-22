@@ -4,8 +4,9 @@ import { FlexyToastsContainerComponent, FlexyToastsService } from '@ng-flexy/toa
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'demo-root',
-  templateUrl: './app.component.html'
+    selector: 'demo-root',
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(FlexyToastsContainerComponent) private toastsContainer!: FlexyToastsContainerComponent;

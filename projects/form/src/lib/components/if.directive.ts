@@ -8,7 +8,8 @@ import * as jsonata_ from 'jsonata';
 const jsonata = jsonata_;
 
 @Directive({
-  selector: '[flexyFormIf]'
+    selector: '[flexyFormIf]',
+    standalone: false
 })
 export class FlexyFlexyFormIfDirective implements OnInit {
   @Input() flexyFormIf: { schema: FlexyFormLayoutSchema; form: FlexyForm };

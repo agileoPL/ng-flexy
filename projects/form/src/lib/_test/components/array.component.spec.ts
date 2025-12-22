@@ -6,8 +6,8 @@ import { FlexyFormJsonMapperService } from '../../services/json-mapper.service';
 import { FormArray } from '@angular/forms';
 
 @Component({
-  selector: 'flexy-form-array',
-  template: `
+    selector: 'flexy-form-array',
+    template: `
     <h4 *ngIf="legend || (!readonly && layoutSchema?.items?.length > 10)">
       <span *ngIf="legend">
         {{ legend }}
@@ -66,7 +66,8 @@ import { FormArray } from '@angular/forms';
         No data
       </p>
     </ng-container>
-  `
+  `,
+    standalone: false
 })
 export class CustomFormArrayComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

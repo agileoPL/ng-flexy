@@ -12,8 +12,8 @@ import { HttpClient } from '@angular/common/http';
 import { FlexyLoggerService } from '@ng-flexy/core';
 
 @Component({
-  selector: 'flexy-form-select2',
-  template: `
+    selector: 'flexy-form-select2',
+    template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
       [name]="layoutSchema.formName"
@@ -42,7 +42,8 @@ import { FlexyLoggerService } from '@ng-flexy/core';
         <div class="input-group-addon" *ngIf="suffix">{{ suffix }}</div>
       </div>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormSelect2Component extends FlexyFormAbstractOptionsComponent implements OnInit, OnDestroy {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

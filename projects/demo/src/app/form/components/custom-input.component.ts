@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'demo-form-text',
-  template: `
+    selector: 'demo-form-text',
+    template: `
     <input
       class="form-control"
       type="text"
@@ -12,7 +12,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       [attr.maxLength]="maxLength"
       [attr.placeholder]="placeholder"
     />
-  `
+  `,
+    standalone: false
 })
 export class DemoCustomInputComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

@@ -17,7 +17,7 @@ import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-tran
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { cloneDeep } from 'lodash';
 import { FLEXY_FORM_CONTROLS_JSON_MAPPER, FlexyFormsBootstrapModule } from './form-bootstrap.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { FakeToastsService } from '../testing/mocks/toasts.service.spec';
 import { By } from '@angular/platform-browser';
 import { FlexyFieldComponent } from './components/field.component';
@@ -30,6 +30,7 @@ import { FlexyFormSelect2Component } from './components/select2.component';
 import { FlexyFormTabsComponent } from './components/tabs.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TestingCustomComponent } from '../../../../../form/src/lib/_test/components/custom.component.spec';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const FORM_DATA = require('../testing/form/form.data.json');
 const FORM_SCHEMA = require('../testing/form/form.schema.json');
@@ -41,36 +42,35 @@ describe('Flexy Forms', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
+    declarations: [FormTestingComponent],
+    schemas: [NO_ERRORS_SCHEMA],
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        HttpClientTestingModule,
         TooltipModule.forRoot(),
         FlexyLayoutModule.forRoot(),
         FlexyFormsModule.forRoot(),
         FlexyFormsBootstrapModule.forRoot(),
         TabsModule.forRoot(),
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
-        })
-      ],
-      providers: [
+            loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })],
+    providers: [
         FlexyLoggerService,
         {
-          provide: FlexyToastsService,
-          useClass: FakeToastsService
+            provide: FlexyToastsService,
+            useClass: FakeToastsService
         },
         {
-          provide: FLEXY_LAYOUT_COMPONENT_MAP,
-          multi: true,
-          useValue: { 'custom-cmp': TestingCustomComponent, ...FLEXY_FORM_CONTROLS_JSON_MAPPER }
-        }
-      ],
-      declarations: [FormTestingComponent],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
+            provide: FLEXY_LAYOUT_COMPONENT_MAP,
+            multi: true,
+            useValue: { 'custom-cmp': TestingCustomComponent, ...FLEXY_FORM_CONTROLS_JSON_MAPPER }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(FormTestingComponent);
@@ -647,12 +647,12 @@ describe('Flexy Forms', () => {
 });
 
 @Component({
-  selector: 'flexy-forms-testing',
-  template: `
+    selector: 'flexy-forms-testing',
+    template: `
     <flexy-form *ngIf="jsonSchema" [json]="jsonSchema" [data]="data" (created)="onInitForm($event)"></flexy-form>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host ::ng-deep .flx-container {
         background-color: burlywood;
         margin: 2px;
@@ -671,7 +671,8 @@ describe('Flexy Forms', () => {
         padding: 10px;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 class FormTestingComponent implements OnInit {
   schema: FlexyFormLayoutSchema[];

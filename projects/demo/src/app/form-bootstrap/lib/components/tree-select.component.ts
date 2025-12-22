@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-tree-select',
-  template: `
+    selector: 'flexy-form-tree-select',
+    template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
       [name]="layoutSchema.formName"
@@ -22,7 +22,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       >
       </flexy-control-tree-select>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormTreeSelectComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

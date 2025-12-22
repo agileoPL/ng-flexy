@@ -4,8 +4,9 @@ import { FlexyLayoutJsonMapperService, FlexyLayoutSchema } from '@ng-flexy/layou
 const LAYOUT_SCHEMA = require('./layout.json');
 
 @Component({
-  selector: 'demo-layout-json',
-  templateUrl: './layout-json.component.html'
+    selector: 'demo-layout-json',
+    templateUrl: './layout-json.component.html',
+    standalone: false
 })
 export class DemoLayoutJsonComponent implements OnInit {
   schema: FlexyLayoutSchema[];

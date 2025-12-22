@@ -2,7 +2,8 @@ import { Directive, Input, TemplateRef, ViewContainerRef, OnInit } from '@angula
 import { FlexyFeatureToggleService } from './feature-toggle.service';
 
 @Directive({
-  selector: '[flexyFeatureToggle]'
+    selector: '[flexyFeatureToggle]',
+    standalone: false
 })
 export class FlexyFeatureToggleDirective implements OnInit {
   @Input() flexyFeatureToggle: string;

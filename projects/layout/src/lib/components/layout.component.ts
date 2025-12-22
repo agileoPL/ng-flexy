@@ -4,8 +4,8 @@ import { FlexyLayoutSchema } from '../model/layout-schema.model';
 // TODO TOHINK - if & from control is from ng-flexy/form
 
 @Component({
-  selector: 'flexy-layout',
-  template: `
+    selector: 'flexy-layout',
+    template: `
     <ng-template #tmplRef let-schema>
       <ng-container *ngFor="let schemaItem of schema">
         <ng-container *ngIf="!schemaItem['if'] || (schemaItem['formControl'] && schemaItem['formControl'].value)">
@@ -24,7 +24,9 @@ import { FlexyLayoutSchema } from '../model/layout-schema.model';
     <ng-content></ng-content>
     <ng-container *ngTemplateOutlet="tmplRef; context: { $implicit: schema }"></ng-container>
   `
-  // changeDetection: ChangeDetectionStrategy.OnPush
+    // changeDetection: ChangeDetectionStrategy.OnPush
+    ,
+    standalone: false
 })
 export class FlexyLayoutComponent {
   @Input() schema: FlexyLayoutSchema[];

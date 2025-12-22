@@ -4,8 +4,9 @@ import { User } from '../models/user.model';
 import { UserData } from '../models/user.data';
 
 @Component({
-  selector: 'demo-models-users',
-  templateUrl: './users.component.html'
+    selector: 'demo-models-users',
+    templateUrl: './users.component.html',
+    standalone: false
 })
 export class DemoModelsUsersComponent implements OnInit {
   @Input() id: string;

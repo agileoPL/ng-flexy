@@ -2,8 +2,8 @@ import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-textarea',
-  template: `
+    selector: 'flexy-form-textarea',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <textarea
         #inputRef
@@ -15,7 +15,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       ></textarea>
       <flexy-control-readonly *ngIf="readonly" [value]="layoutSchema.formControl.value" [default]="default"></flexy-control-readonly>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormTextareaComponent implements AfterViewInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

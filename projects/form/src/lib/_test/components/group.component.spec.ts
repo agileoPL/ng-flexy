@@ -8,8 +8,8 @@ import { FlexyFormSchemaService } from '../../services/schema.service';
 import { isRequired } from '../../ultils/utils';
 
 @Component({
-  selector: 'flexy-form-group',
-  template: `
+    selector: 'flexy-form-group',
+    template: `
     <fieldset [ngClass]="{ 'fieldset-invalid': layoutSchema.formControl && !layoutSchema.formControl.valid }">
       <h4>
         <span *ngIf="legend">
@@ -60,7 +60,8 @@ import { isRequired } from '../../ultils/utils';
         No data
       </p>
     </fieldset>
-  `
+  `,
+    standalone: false
 })
 export class CustomFormGroupComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

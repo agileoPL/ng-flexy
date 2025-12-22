@@ -2,7 +2,8 @@ import { Directive, HostListener, Input, OnInit } from '@angular/core';
 import { FlexyJsonImpExpService } from '../json-impexp.service';
 
 @Directive({
-  selector: '[flexyJsonExport]'
+    selector: '[flexyJsonExport]',
+    standalone: false
 })
 export class FlexyJsonExportDirective implements OnInit {
   @Input() name: string;

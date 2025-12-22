@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ng update:*)",
+      "Bash(npx ng update:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(node_modules/.bin/ng update:*)",
+      "Bash(node_modules/.bin/ng:*)",
+      "Bash(npm run build:projects:*)",
+      "Bash(npm run core:build:*)",
+      "Bash(npm run freezer:build:*)",
+      "Bash(npm run skins:build:*)",
+      "Bash(npm run toasts:build:*)",
+      "Bash(npm run json-impexp:build:*)",
+      "Bash(npm run layout:build:*)",
+      "Bash(npm run form:build:*)",
+      "Bash(npm run demo:build:*)",
+      "Bash(cat:*)"
+    ]
+  }
+}

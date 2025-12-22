@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  template: `
+    template: `
     <input
       *ngIf="!readonly"
       class="form-control"
@@ -18,14 +18,15 @@ import { FormControl } from '@angular/forms';
     />
     <flexy-control-readonly *ngIf="readonly" [value]="percentValue" [default]="default"></flexy-control-readonly>
   `,
-  selector: 'flexy-control-percent',
-  styles: [
-    `
+    selector: 'flexy-control-percent',
+    styles: [
+        `
       input {
         width: 10em;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 export class FlexyControlPercentComponent implements OnInit {
   @Input() control: FormControl;

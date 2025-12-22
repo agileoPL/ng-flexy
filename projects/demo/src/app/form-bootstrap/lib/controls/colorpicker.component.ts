@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  template: `
+    template: `
     <div class="form-control color-picker-container">
       <div class="form-control color-picker-input">
         <input
@@ -24,7 +24,8 @@ import { FormControl } from '@angular/forms';
     </div>
     <flexy-control-readonly *ngIf="readonly" [value]="control.value" [default]="default"></flexy-control-readonly>
   `,
-  selector: 'flexy-control-colorpicker'
+    selector: 'flexy-control-colorpicker',
+    standalone: false
 })
 export class FlexyControlColorpickerComponent {
   @Input() control: FormControl;

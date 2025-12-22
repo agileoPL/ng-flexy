@@ -8,7 +8,8 @@ const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 const LAYOUT_FORM_KEY = 'form';
 
 @Directive({
-  selector: '[flexyFormContainer]'
+    selector: '[flexyFormContainer]',
+    standalone: false
 })
 export class FlexyFormContainerDirective implements OnInit, OnDestroy {
   @Input() flexyForm: FlexyForm;

@@ -4,11 +4,12 @@ import { FLEXY_LAYOUT_COMPONENT_MAP, FlexyLayoutModule } from '@ng-flexy/layout'
 import { FlexyLoggerService } from '@ng-flexy/core';
 import { TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestingCustomModule } from '../_test/components/custom-components.module.spec';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FlexyToastsService } from '@ng-flexy/toasts';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 const FORM_SCHEMA = require('../_test/form-with-all-validators.json');
 
@@ -17,30 +18,28 @@ describe('Defaults validators map', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      // Provide both the service-to-test and its (spy) dependency
-      imports: [
-        CommonModule,
+    imports: [CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientTestingModule,
         TestingCustomModule,
         TooltipModule.forRoot(),
         FlexyLayoutModule.forRoot(),
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
-        })
-      ],
-      providers: [
+            loader: { provide: TranslateLoader, useClass: TranslateFakeLoader }
+        })],
+    providers: [
         FlexyFormJsonMapperService,
         FlexyLoggerService,
         FlexyToastsService,
         {
-          provide: FLEXY_LAYOUT_COMPONENT_MAP,
-          multi: true,
-          useValue: {}
-        }
-      ]
-    });
+            provide: FLEXY_LAYOUT_COMPONENT_MAP,
+            multi: true,
+            useValue: {}
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     // Inject both the service-to-test and its (spy) dependency
     mapperService = TestBed.inject(FlexyFormJsonMapperService);
   });

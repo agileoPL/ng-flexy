@@ -1,14 +1,15 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  template: `
+    template: `
     <span>
       <ng-container *ngIf="!isHtml">{{ value }}</ng-container>
       <span *ngIf="isHtml" [innerHTML]="value"></span>
       <i *ngIf="value === null || value === undefined">{{ default }}</i>
     </span>
   `,
-  selector: 'flexy-control-readonly'
+    selector: 'flexy-control-readonly',
+    standalone: false
 })
 export class FlexyControlReadonlyComponent {
   @Input() value: string | number;

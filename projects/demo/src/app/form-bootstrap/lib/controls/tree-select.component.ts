@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  template: `
+    template: `
     <div *ngIf="!readonly">
       <flexy-tree
         [tree]="dataTree"
@@ -16,7 +16,8 @@ import { FormControl } from '@angular/forms';
     </div>
     <flexy-control-readonly *ngIf="readonly" [value]="control.value" [default]="default"></flexy-control-readonly>
   `,
-  selector: 'flexy-control-tree-select'
+    selector: 'flexy-control-tree-select',
+    standalone: false
 })
 export class FlexyControlTreeSelectComponent implements OnInit {
   @Input() control: FormControl;

@@ -3,8 +3,8 @@ import { AbstractControl } from '@angular/forms';
 import { isRequired as checkIfRequired } from '../../ultils/utils';
 
 @Component({
-  selector: 'flexy-form-field',
-  template: `
+    selector: 'flexy-form-field',
+    template: `
     <div
       class="flexy-field"
       [ngClass]="{
@@ -31,7 +31,8 @@ import { isRequired as checkIfRequired } from '../../ultils/utils';
         <flexy-form-field-info *ngIf="control" [control]="control" [description]="description"></flexy-form-field-info>
       </div>
     </div>
-  `
+  `,
+    standalone: false
 })
 export class CustomFieldComponent implements OnInit {
   @Input() control: AbstractControl;

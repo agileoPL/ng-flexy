@@ -39,8 +39,9 @@ export enum DemoModules {
 }
 
 @Component({
-  selector: 'demo-doc-layout',
-  templateUrl: './doc-layout.component.html'
+    selector: 'demo-doc-layout',
+    templateUrl: './doc-layout.component.html',
+    standalone: false
 })
 export class DocLayoutComponent implements OnInit, OnDestroy {
   @Input() activeModule: DemoModules;

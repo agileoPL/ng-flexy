@@ -9,8 +9,9 @@ const SUB_PAGES = [
 ];
 
 @Component({
-  selector: 'demo-form-doc',
-  templateUrl: './form-doc.component.html'
+    selector: 'demo-form-doc',
+    templateUrl: './form-doc.component.html',
+    standalone: false
 })
 export class DemoFormDocComponent {
   subPages = SUB_PAGES;

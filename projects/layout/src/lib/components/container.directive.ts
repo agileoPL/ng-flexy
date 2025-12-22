@@ -5,7 +5,8 @@ import { bindAttributes } from './attr.binder.utils';
 const LAYOUT_SCHEMA_KEY = 'layoutSchema';
 
 @Directive({
-  selector: '[flexyContainer]'
+    selector: '[flexyContainer]',
+    standalone: false
 })
 export class FlexyContainerDirective {
   @Input() set componentSchema(schema: FlexyLayoutComponentSchema) {

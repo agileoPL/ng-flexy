@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'flexyEmpty' })
+@Pipe({
+    name: 'flexyEmpty',
+    standalone: false
+})
 export class FlexyEmptyPipe implements PipeTransform {
   transform(value, emptyMark = '---'): string {
     if (value || value === 0) {

@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { DemoModules } from '../common/components/doc-layout.component';
 
 @Component({
-  selector: 'demo-skins-doc',
-  templateUrl: 'skins-doc.component.html'
+    selector: 'demo-skins-doc',
+    templateUrl: 'skins-doc.component.html',
+    standalone: false
 })
 export class DemoSkinsDocComponent {
   activeModule = DemoModules.Skins;

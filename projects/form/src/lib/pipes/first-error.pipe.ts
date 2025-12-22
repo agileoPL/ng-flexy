@@ -4,7 +4,10 @@ import { FlexyLoggerService } from '@ng-flexy/core';
 
 const REQUIRED_PATTERN_KEY = 'requiredPattern';
 
-@Pipe({ name: 'firstError' })
+@Pipe({
+    name: 'firstError',
+    standalone: false
+})
 export class FlexyFormFirstErrorPipe implements PipeTransform {
   constructor(private translateService: TranslateService, private logger: FlexyLoggerService) {}
 

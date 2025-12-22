@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-datepicker',
-  template: `
+    selector: 'flexy-form-datepicker',
+    template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
       [name]="layoutSchema.formName"
@@ -26,7 +26,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       >
       </flexy-control-datepicker>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormDatepickerComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

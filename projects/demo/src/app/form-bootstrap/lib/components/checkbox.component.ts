@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-checkbox',
-  template: `
+    selector: 'flexy-form-checkbox',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <label (click)="toogle()" role="button">
         <flexy-control-checkbox
@@ -16,7 +16,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
         <span *ngIf="suffix"> {{ suffix }}</span>
       </label>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormCheckboxComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

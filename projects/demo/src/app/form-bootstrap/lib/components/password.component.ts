@@ -2,8 +2,8 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-password',
-  template: `
+    selector: 'flexy-form-password',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <flexy-control-password
         [minLength]="minLength"
@@ -14,7 +14,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       >
       </flexy-control-password>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormPasswordComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

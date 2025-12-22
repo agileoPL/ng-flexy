@@ -34,7 +34,7 @@ export class FlexyForm extends FlexyLayout {
   isStarted = false;
 
   // TODO to think change to private
-  readonly schema: FlexyFormLayoutSchema[];
+  declare readonly schema: FlexyFormLayoutSchema[];
   readonly formGroup: FormGroup;
 
   private readonly _originalData: FlexyFormData;

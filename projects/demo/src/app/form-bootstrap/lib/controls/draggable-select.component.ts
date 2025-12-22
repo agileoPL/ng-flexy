@@ -4,8 +4,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'flexy-control-draggable-select',
-  template: `
+    selector: 'flexy-control-draggable-select',
+    template: `
     <div class="draggable-list-container">
       <table cdkDropList class="drag-container" [cdkDropListDisabled]="!isDraggable()" (cdkDropListDropped)="drop($event)">
         <tr
@@ -52,7 +52,8 @@ import { FormControl } from '@angular/forms';
       [enableSearchByValue]="enableSearchByValue"
       (changed)="showSelect = false"
     ></flexy-control-select2>
-  `
+  `,
+    standalone: false
 })
 export class FlexyControlDraggableSelectComponent implements OnInit {
   @Input() control: FormControl;

@@ -124,12 +124,13 @@ class Page {
 }
 
 @Component({
-  selector: 'flexy-forms-testing',
-  template: `
+    selector: 'flexy-forms-testing',
+    template: `
     <h2>flexy-toasts-container:</h2>
     <flexy-toasts-container></flexy-toasts-container>
   `,
-  styles: [``]
+    styles: [``],
+    standalone: false
 })
 class FormTestingComponent implements OnInit, AfterViewInit {
   @ViewChild(FlexyToastsContainerComponent, { static: true }) toastsContainer: FlexyToastsContainerComponent;

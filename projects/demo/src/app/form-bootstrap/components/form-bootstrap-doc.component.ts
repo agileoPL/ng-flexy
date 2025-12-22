@@ -138,8 +138,9 @@ const SUB_PAGES = [
 ];
 
 @Component({
-  selector: 'demo-form-doc',
-  templateUrl: './form-bootstrap-doc.component.html'
+    selector: 'demo-form-doc',
+    templateUrl: './form-bootstrap-doc.component.html',
+    standalone: false
 })
 export class DemoFormBootstrapDocComponent {
   subPages = SUB_PAGES;

@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { SelectOption, SelectOptionData } from '@ng-flexy/form';
 
 @Component({
-  template: `
+    template: `
     <select
       *ngIf="!readonly"
       class="form-control"
@@ -20,7 +20,8 @@ import { SelectOption, SelectOptionData } from '@ng-flexy/form';
     <flexy-control-readonly *ngIf="readonly" [value]="getOptionText(control.value)" [default]="getOptionText(default)">
     </flexy-control-readonly>
   `,
-  selector: 'flexy-control-select'
+    selector: 'flexy-control-select',
+    standalone: false
 })
 export class FlexyControlSelectComponent implements OnInit {
   @Input() control: FormControl;

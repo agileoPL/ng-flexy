@@ -7,8 +7,9 @@ import { debounceTime } from 'rxjs/operators';
 const FORM_SCHEMA = require('./form.json');
 
 @Component({
-  selector: 'demo-form-json',
-  templateUrl: './form-json.component.html'
+    selector: 'demo-form-json',
+    templateUrl: './form-json.component.html',
+    standalone: false
 })
 export class DemoFormJsonComponent implements OnInit {
   schema: FlexyLayoutSchema[];

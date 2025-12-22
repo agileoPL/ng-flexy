@@ -45,7 +45,6 @@ const routes: Routes = [
     FlexyLayoutModule,
     FlexyFormsModule
   ],
-  entryComponents: [DemoCustomFigureComponent, DemoCustomInputComponent],
   declarations: [
     DemoFormDocComponent,
     DemoFormDocInfoComponent,

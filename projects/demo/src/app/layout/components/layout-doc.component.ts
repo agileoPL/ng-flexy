@@ -9,8 +9,9 @@ const SUB_PAGES = [
 ];
 
 @Component({
-  selector: 'demo-layout-doc',
-  templateUrl: './layout-doc.component.html'
+    selector: 'demo-layout-doc',
+    templateUrl: './layout-doc.component.html',
+    standalone: false
 })
 export class DemoLayoutDocComponent {
   subPages = SUB_PAGES;

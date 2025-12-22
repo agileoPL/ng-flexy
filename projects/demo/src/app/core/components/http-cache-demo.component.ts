@@ -3,12 +3,13 @@ import { FlexyToastsService } from '@ng-flexy/toasts';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'demo-http-cache',
-  template: `
+    selector: 'demo-http-cache',
+    template: `
     <button class="btn btn-primary" (click)="loadData()">Load posts</button> &nbsp;
     <button class="btn btn-info" (click)="loadData(false)">Load posts without cache</button> &nbsp;
     <button class="btn btn-success" (click)="addPost()">Add post and clear cache</button>
-  `
+  `,
+    standalone: false
 })
 export class DemoHttpCacheComponent {
   constructor(private toastsService: FlexyToastsService, private httpClient: HttpClient) {}

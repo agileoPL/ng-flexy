@@ -3,8 +3,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 import { SelectOption } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-select',
-  template: `
+    selector: 'flexy-form-select',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <div class="input-group">
         <div class="input-group-addon" *ngIf="prefix">{{ prefix }}</div>
@@ -17,7 +17,8 @@ import { SelectOption } from '@ng-flexy/form';
         <div class="input-group-addon" *ngIf="suffix">{{ suffix }}</div>
       </div>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormSelectComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

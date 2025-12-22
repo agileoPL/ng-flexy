@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { DemoModules } from '../common/components/doc-layout.component';
 
 @Component({
-  selector: 'demo-json-impexp-doc',
-  templateUrl: 'json-impexp-doc.component.html',
-  styles: []
+    selector: 'demo-json-impexp-doc',
+    templateUrl: 'json-impexp-doc.component.html',
+    styles: [],
+    standalone: false
 })
 export class DemoJsonImpExpDocComponent {
   activeModule = DemoModules.JsonImpExp;

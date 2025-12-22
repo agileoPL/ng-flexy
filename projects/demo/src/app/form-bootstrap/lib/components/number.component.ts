@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-number',
-  template: `
+    selector: 'flexy-form-number',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <div class="addon" *ngIf="prefix">{{ prefix }}</div>
       <flexy-control-number
@@ -19,8 +19,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
       <div class="addon" *ngIf="suffix">{{ suffix }}</div>
     </flexy-form-field>
   `,
-  styles: [
-    `
+    styles: [
+        `
       .addon {
         display: inline-block;
       }
@@ -28,7 +28,8 @@ import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
         display: inline-block;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 export class FlexyFormNumberComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

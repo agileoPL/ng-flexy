@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 import { bindAttributes } from './attr.binder.utils';
 
 @Directive({
-  selector: '[flexyFormAttributes]'
+    selector: '[flexyFormAttributes]',
+    standalone: false
 })
 export class FlexyFormAttributesDirective implements OnInit, OnDestroy {
   @Input() flexyForm: FlexyForm;

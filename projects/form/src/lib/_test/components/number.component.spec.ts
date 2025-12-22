@@ -2,8 +2,8 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '../../models/layout-schema.model';
 
 @Component({
-  selector: 'flexy-form-number',
-  template: `
+    selector: 'flexy-form-number',
+    template: `
     <flexy-form-field [control]="layoutSchema.formControl" [label]="label" [description]="description" [ngClass]="{ readonly: readonly }">
       <input
         class="form-control"
@@ -14,7 +14,8 @@ import { FlexyFormFieldLayoutSchema } from '../../models/layout-schema.model';
         [attr.placeholder]="default"
       />
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class CustomFormNumberComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

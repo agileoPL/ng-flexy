@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FlexyToastsService } from '@ng-flexy/toasts';
 
 @Component({
-  selector: 'demo-toasts-types',
-  templateUrl: 'toasts-types.component.html'
+    selector: 'demo-toasts-types',
+    templateUrl: 'toasts-types.component.html',
+    standalone: false
 })
 export class DemoToastsTypesComponent implements OnInit {
   constructor(private toastsService: FlexyToastsService) {}

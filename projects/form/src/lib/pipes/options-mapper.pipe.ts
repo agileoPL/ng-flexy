@@ -2,7 +2,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FlexyModel } from '@ng-flexy/core';
 import { SelectOptionData } from '../models/select-option.data';
 
-@Pipe({ name: 'flexyOptions' })
+@Pipe({
+    name: 'flexyOptions',
+    standalone: false
+})
 export class FlexyOptionsMapperPipe implements PipeTransform {
   constructor() {}
 

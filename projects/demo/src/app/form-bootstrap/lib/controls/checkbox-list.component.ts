@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form';
 
 @Component({
-  template: `
+    template: `
     <ng-container *ngIf="!loading && options">
       <div *ngIf="!readonly" class="input-group form-control">
         <div *ngFor="let option of options; let i = index" class="checkboxItem">
@@ -21,7 +21,8 @@ import { SelectOption, findRawValue, prepareControlValue } from '@ng-flexy/form'
       <flexy-control-readonly *ngIf="readonly" [value]="valuesLabels" [default]="defaultsLabels"></flexy-control-readonly>
     </ng-container>
   `,
-  selector: 'flexy-control-checkbox-list'
+    selector: 'flexy-control-checkbox-list',
+    standalone: false
 })
 export class FlexyControlCheckboxListComponent implements OnChanges, OnInit, OnDestroy {
   @Input() control: FormControl;

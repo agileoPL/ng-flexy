@@ -10,8 +10,8 @@ import {
 import { FlexyLoggerService } from '@ng-flexy/core';
 
 @Component({
-  selector: 'flexy-form-radio-list',
-  template: `
+    selector: 'flexy-form-radio-list',
+    template: `
     <flexy-form-field
       [control]="layoutSchema.formControl"
       [name]="layoutSchema.formName"
@@ -31,7 +31,8 @@ import { FlexyLoggerService } from '@ng-flexy/core';
       >
       </flexy-control-radio-list>
     </flexy-form-field>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormRadioListComponent extends FlexyFormAbstractOptionsComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

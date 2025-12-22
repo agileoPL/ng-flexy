@@ -15,10 +15,11 @@ export interface FlexyFormChanges {
 const CHNAGES_DEBOUNCE_TIME = 50;
 
 @Component({
-  selector: 'flexy-form',
-  template: `
+    selector: 'flexy-form',
+    template: `
     <flexy-form-container *ngIf="form" [form]="form" [schema]="form.schema"></flexy-form-container>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormComponent implements OnInit, OnDestroy {
   @Input() json: FlexyFormLayoutJson;

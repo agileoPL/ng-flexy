@@ -4,8 +4,9 @@ import { FlexyToastsService } from '@ng-flexy/toasts';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'demo-form-json',
-  templateUrl: './form-bootstrap-json.component.html'
+    selector: 'demo-form-json',
+    templateUrl: './form-bootstrap-json.component.html',
+    standalone: false
 })
 export class DemoFormJsonComponent implements OnInit, OnDestroy {
   @Input() title: string;

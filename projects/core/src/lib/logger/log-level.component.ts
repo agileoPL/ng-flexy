@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { FlexyLoggerLevelEnum, FlexyLoggerService } from './logger.service';
 
 @Component({
-  selector: 'flexy-log-level',
-  template: `
+    selector: 'flexy-log-level',
+    template: `
     <div>
       <b>LogLevel:</b>
       <select [ngModel]="logLevel" (ngModelChange)="changeLogLevel($event)" (click)="$event.stopPropagation()">
         <option *ngFor="let item of logLevels" [ngValue]="item.value">{{ item.text }}</option>
       </select>
     </div>
-  `
+  `,
+    standalone: false
 })
 export class FlexyLogLevelComponent {
   logLevel: number;

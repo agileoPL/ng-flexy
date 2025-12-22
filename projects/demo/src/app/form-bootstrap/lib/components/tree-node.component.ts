@@ -4,8 +4,8 @@ import { FlexyTreeService } from '../services/tree.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'flexy-tree-node',
-  template: `
+    selector: 'flexy-tree-node',
+    template: `
     <ul class="tree" *ngIf="nodes">
       <li class="node" *ngFor="let item of nodes" [ngClass]="{ active: item.isSelected && !item.isReadonly, readonly: item.isReadonly }">
         <a
@@ -29,7 +29,8 @@ import { Subscription } from 'rxjs';
         </div>
       </li>
     </ul>
-  `
+  `,
+    standalone: false
 })
 export class FlexyTreeNodeComponent implements OnInit, OnDestroy {
   @Input() nodes: TreeNode[];

@@ -6,8 +6,8 @@ const moment = momentNs;
 const DATEPICKER_THEMES = ['theme-default', 'theme-green', 'theme-blue', 'theme-dark-blue', 'theme-red', 'theme-orange'];
 
 @Component({
-  selector: 'flexy-control-daterangepicker',
-  template: `
+    selector: 'flexy-control-daterangepicker',
+    template: `
     <div class="input-group" *ngIf="!readonly">
       <input
         #drp="bsDaterangepicker"
@@ -31,7 +31,8 @@ const DATEPICKER_THEMES = ['theme-default', 'theme-green', 'theme-blue', 'theme-
       </span>
     </div>
     <flexy-control-readonly *ngIf="readonly" [value]="readonlyValue" [default]="defaultRange"></flexy-control-readonly>
-  `
+  `,
+    standalone: false
 })
 export class FlexyControlDaterangepickerComponent implements OnInit {
   @Input() control: FormControl;

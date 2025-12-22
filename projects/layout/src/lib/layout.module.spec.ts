@@ -102,12 +102,12 @@ describe('Flexy Layout', () => {
 });
 
 @Component({
-  selector: 'flexy-layout-testing',
-  template: `
+    selector: 'flexy-layout-testing',
+    template: `
     <flexy-layout [schema]="schema"></flexy-layout>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host ::ng-deep .flx-container {
         background-color: burlywood;
         margin: 2px;
@@ -124,7 +124,8 @@ describe('Flexy Layout', () => {
         padding: 10px;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 class LayoutTestingComponent implements OnInit {
   schema: FlexyLayoutSchema[];
@@ -138,12 +139,12 @@ class LayoutTestingComponent implements OnInit {
 }
 
 @Component({
-  selector: 'flexy-custom-testing',
-  template: `
+    selector: 'flexy-custom-testing',
+    template: `
     <div>{{ p1 }}{{ p2 }}</div>
   `,
-  styles: [
-    `
+    styles: [
+        `
       :host {
         background-color: deeppink;
         margin: 2px;
@@ -151,7 +152,8 @@ class LayoutTestingComponent implements OnInit {
         display: block;
       }
     `
-  ]
+    ],
+    standalone: false
 })
 class TestingCustomComponent {
   @Input() layoutSchema: FlexyLayoutSchema[];

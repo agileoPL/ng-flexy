@@ -8,8 +8,8 @@ const DEFAULT_OPTIONS: FlexyToastsOptions = {
 };
 
 @Component({
-  selector: 'flexy-toasts-container',
-  template: `
+    selector: 'flexy-toasts-container',
+    template: `
     <div class="{{ positionClass }} t2e-toasts-container">
       <div *ngFor="let toast of toasts" class="toast-container toast-container-{{ toast.type }}">
         <div class="toast toast-{{ toast.type }} e2e-toast-{{ toast.type }}">
@@ -30,7 +30,8 @@ const DEFAULT_OPTIONS: FlexyToastsOptions = {
         </div>
       </div>
     </div>
-  `
+  `,
+    standalone: false
 })
 export class FlexyToastsContainerComponent implements OnInit, OnDestroy, AfterViewChecked {
   @Input() options: FlexyToastsOptions;

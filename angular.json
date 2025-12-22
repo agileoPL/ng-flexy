@@ -93,18 +93,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build"
+            "buildTarget": "demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "demo:build:production"
+              "buildTarget": "demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo:build"
+            "buildTarget": "demo:build"
           }
         },
         "test": {
@@ -426,100 +426,6 @@
               "projects/json-impexp/**/*.ts",
               "projects/json-impexp/**/*.html"
             ]
-          }
-        }
-      }
-    },
-    "crud": {
-      "projectType": "library",
-      "root": "projects/crud",
-      "sourceRoot": "projects/crud/src",
-      "prefix": "flexy",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/crud/tsconfig.lib.json",
-            "project": "projects/crud/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/crud/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/crud/src/test.ts",
-            "tsConfig": "projects/crud/tsconfig.spec.json",
-            "karmaConfig": "projects/crud/karma.conf.js"
-          }
-        }
-      }
-    },
-    "highcharts": {
-      "projectType": "library",
-      "root": "projects/highcharts",
-      "sourceRoot": "projects/highcharts/src",
-      "prefix": "flexy",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/highcharts/tsconfig.lib.json",
-            "project": "projects/highcharts/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/highcharts/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/highcharts/src/test.ts",
-            "tsConfig": "projects/highcharts/tsconfig.spec.json",
-            "karmaConfig": "projects/highcharts/karma.conf.js"
-          }
-        }
-      }
-    },
-    "graphs": {
-      "projectType": "library",
-      "root": "projects/graphs",
-      "sourceRoot": "projects/graphs/src",
-      "prefix": "flexy",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/graphs/tsconfig.lib.json",
-            "project": "projects/graphs/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/graphs/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/graphs/src/test.ts",
-            "tsConfig": "projects/graphs/tsconfig.spec.json",
-            "karmaConfig": "projects/graphs/karma.conf.js"
           }
         }
       }

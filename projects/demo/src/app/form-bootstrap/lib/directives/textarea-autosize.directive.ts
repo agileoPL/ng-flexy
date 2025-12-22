@@ -3,7 +3,8 @@
 import { ElementRef, HostListener, Directive, AfterContentChecked } from '@angular/core';
 
 @Directive({
-  selector: 'textarea[flexyAutosize]'
+    selector: 'textarea[flexyAutosize]',
+    standalone: false
 })
 export class FlexyFormsTextareaAutosizeDirective implements AfterContentChecked {
   @HostListener('input', ['$event.target']) onInput(textArea: HTMLTextAreaElement): void {

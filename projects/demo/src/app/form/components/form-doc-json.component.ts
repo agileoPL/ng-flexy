@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-form-doc-json',
-  templateUrl: './form-doc-json.component.html'
+    selector: 'demo-form-doc-json',
+    templateUrl: './form-doc-json.component.html',
+    standalone: false
 })
 export class DemoFormDocJsonComponent {
   jsonContent = require('./form.json');

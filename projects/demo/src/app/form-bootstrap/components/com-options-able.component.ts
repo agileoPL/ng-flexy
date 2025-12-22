@@ -252,13 +252,14 @@ function prepareData(componentName) {
 }
 
 @Component({
-  selector: 'demo-com-options-able',
-  template: `
+    selector: 'demo-com-options-able',
+    template: `
     <form class="flexy-form-vertical">
       <flexy-form [json]="jsonSchema" [data]="data" (created)="onCreated($event)"></flexy-form>
       <button class="btn btn-primary" (click)="onSave()">Save</button>
     </form>
-  `
+  `,
+    standalone: false
 })
 export class DemoComOptionsAbleComponent implements OnInit {
   @Input() componentName = 'select2';

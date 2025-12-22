@@ -2,8 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FlexyForm, FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-fieldset',
-  templateUrl: './fieldset.component.html'
+    selector: 'flexy-form-fieldset',
+    templateUrl: './fieldset.component.html',
+    standalone: false
 })
 export class FlexyFormFieldsetComponent implements OnInit {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

@@ -2,12 +2,13 @@ import { FlexyFeatureToggleService, FlexyLoggerLevelEnum, FlexyLoggerService } f
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-toggle-feature',
-  template: `
+    selector: 'demo-toggle-feature',
+    template: `
     <div *flexyFeatureToggle="'feature_1'">Feature 1</div>
     <div *flexyFeatureToggle="'feature_2'">Feature 2</div>
     <div *flexyFeatureToggle="'feature_3'">Feature 3</div>
-  `
+  `,
+    standalone: false
 })
 export class DemoToggleFeatureComponent {
   constructor(private featureToggleService: FlexyFeatureToggleService) {

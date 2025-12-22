@@ -2,15 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'flexy-control-json-file',
-  template: `
+    selector: 'flexy-control-json-file',
+    template: `
     <ng-container *ngIf="!readonly">
       <flexy-json-import-button class="btn btn-primary" (uploaded)="setJson($event)">Upload</flexy-json-import-button>
     </ng-container>
     <ng-container *ngIf="json">
       <button type="button" flexyJsonExport [name]="name" [json]="json" class="btn btn-link">Download file</button>
     </ng-container>
-  `
+  `,
+    standalone: false
 })
 export class FlexyControlJsonFileComponent implements OnInit {
   @Input() control: FormControl;

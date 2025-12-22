@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } from '@ng-flexy/form';
 
 @Component({
-  template: `
+    template: `
     <p-multiSelect
       *ngIf="!readonly && optionsData"
       [options]="optionsData"
@@ -41,8 +41,9 @@ import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } fro
     <!--    </ng-select>-->
     <flexy-control-readonly *ngIf="readonly" [value]="getReadonlyInfo(control?.value)" [default]="default"> </flexy-control-readonly>
   `,
-  selector: 'flexy-control-select2',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'flexy-control-select2',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FlexyControlSelect2Component implements OnInit, OnChanges {
   @Input() control: FormControl;

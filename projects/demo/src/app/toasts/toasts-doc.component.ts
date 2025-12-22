@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { DemoModules } from '../common/components/doc-layout.component';
 
 @Component({
-  selector: 'demo-toasts-doc',
-  templateUrl: 'toasts-doc.component.html',
-  styles: []
+    selector: 'demo-toasts-doc',
+    templateUrl: 'toasts-doc.component.html',
+    styles: [],
+    standalone: false
 })
 export class DemoToastsDocComponent {
   activeModule = DemoModules.Toasts;

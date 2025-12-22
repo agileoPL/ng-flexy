@@ -1,7 +1,5 @@
 import { FormControl, ValidatorFn, FormArray } from '@angular/forms';
 import { cloneDeep, uniq } from 'lodash';
-import { shift } from 'ngx-bootstrap/positioning/modifiers';
-import { timepickerReducer } from 'ngx-bootstrap/timepicker/reducer/timepicker.reducer';
 
 type ControlPath = (string | number)[] | string;
 

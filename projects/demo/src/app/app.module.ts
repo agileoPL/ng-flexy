@@ -6,7 +6,7 @@ import { SUPPORTED_SKINS } from './app.skins';
 import { FlexyEnvModule, FlexyFeatureToggleModule, FlexyHttpCacheInterceptor, FlexyLoggerModule } from '@ng-flexy/core';
 import { FlexyToastsModule } from '@ng-flexy/toasts';
 import { RouterModule, Routes } from '@angular/router';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
@@ -68,67 +68,62 @@ const routes: Routes = [
 ];
 
 @Component({
-  selector: 'demo-custom-form-figure',
-  template: `
+    selector: 'demo-custom-form-figure',
+    template: `
     <figure>{{ title }}</figure>
-  `
+  `,
+    standalone: false
 })
 export class DemoCustomFormFigureComponent {
   @Input() title: string;
 }
 
 
-@NgModule({
-  declarations: [AppComponent, DemoHomeComponent, DemoCustomFormFigureComponent],
-  exports: [DemoCustomFormFigureComponent],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    HttpClientModule,
-    FlexySkinsModule.forRoot(SUPPORTED_SKINS),
-    FlexyEnvModule.forRoot({ version: '10.0.1' }),
-    FlexyFeatureToggleModule.forRoot(),
-    FlexyLoggerModule.forRoot(),
-    FlexyToastsModule.forRoot(),
-    FlexyFormsBootstrapModule.forRoot(),
-    FlexyLayoutModule.forRoot({
-      'lm-figure': DemoCustomFigureComponent,
-      'fm-figure': DemoCustomFigureComponent,
-      'fm-text': DemoCustomInputComponent,
-      ...FLEXY_FORM_CONTROLS_JSON_MAPPER,
-    }),
-    FlexyFormsModule.forRoot(),
-    FlexyJsonImpExpModule,
-    ModalModule.forRoot(),
-    TabsModule.forRoot(),
-    TooltipModule.forRoot(),
-    RouterModule.forRoot(routes),
-    BsDatepickerModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: translateLoader,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FlexyHttpCacheInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: FlexyHttpFreezerInterceptor,
-      multi: true
-    },
-    {
-      provide: FLEXY_LAYOUT_COMPONENT_MAP,
-      multi: true,
-      useValue: FLEXY_FORM_CONTROLS_JSON_MAPPER
-    }
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [AppComponent, DemoHomeComponent, DemoCustomFormFigureComponent],
+    exports: [DemoCustomFormFigureComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        RouterModule,
+        FlexySkinsModule.forRoot(SUPPORTED_SKINS),
+        FlexyEnvModule.forRoot({ version: '10.0.1' }),
+        FlexyFeatureToggleModule.forRoot(),
+        FlexyLoggerModule.forRoot(),
+        FlexyToastsModule.forRoot(),
+        FlexyFormsBootstrapModule.forRoot(),
+        FlexyLayoutModule.forRoot({
+            'lm-figure': DemoCustomFigureComponent,
+            'fm-figure': DemoCustomFigureComponent,
+            'fm-text': DemoCustomInputComponent,
+            ...FLEXY_FORM_CONTROLS_JSON_MAPPER,
+        }),
+        FlexyFormsModule.forRoot(),
+        FlexyJsonImpExpModule,
+        ModalModule.forRoot(),
+        TabsModule.forRoot(),
+        TooltipModule.forRoot(),
+        RouterModule.forRoot(routes),
+        BsDatepickerModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: translateLoader,
+                deps: [HttpClient]
+            }
+        })], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: FlexyHttpCacheInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: FlexyHttpFreezerInterceptor,
+            multi: true
+        },
+        {
+            provide: FLEXY_LAYOUT_COMPONENT_MAP,
+            multi: true,
+            useValue: FLEXY_FORM_CONTROLS_JSON_MAPPER
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule {}

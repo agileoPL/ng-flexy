@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 import { FlexyFormFieldLayoutSchema } from '@ng-flexy/form';
 
 @Component({
-  selector: 'flexy-form-label',
-  template: `
+    selector: 'flexy-form-label',
+    template: `
     <label>{{ label }}</label>
-  `
+  `,
+    standalone: false
 })
 export class FlexyFormLabelComponent {
   @Input() layoutSchema: FlexyFormFieldLayoutSchema;

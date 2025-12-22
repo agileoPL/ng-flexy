@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { DemoModules } from '../common/components/doc-layout.component';
 
 @Component({
-  selector: 'demo-freezer-doc',
-  templateUrl: 'freezer-doc.component.html',
-  styles: []
+    selector: 'demo-freezer-doc',
+    templateUrl: 'freezer-doc.component.html',
+    styles: [],
+    standalone: false
 })
 export class DemoFreezerDocComponent {
   activeModule = DemoModules.Freezer;
