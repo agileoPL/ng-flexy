@@ -1,4 +1,4 @@
-@import '~font-awesome/scss/variables';
+// @import 'font-awesome/scss/variables'; // TODO: Fix Font Awesome import after Angular 20 migration
 
 [class*='flexy-icon-'],
 [class^='flexy-icon-'] {
@@ -10,14 +10,14 @@
 }
 
 .flexy-icon-plus:before {
-  content: $fa-var-plus;
+  content: "\f067"; // fa-plus
 }
 .flexy-icon-calendar:before {
-  content: $fa-var-calendar;
+  content: "\f073"; // fa-calendar
 }
 .flexy-icon-remove:before {
-  content: $fa-var-times;
+  content: "\f00d"; // fa-times
 }
 .flexy-icon-move:before {
-  content: $fa-var-arrows-alt;
+  content: "\f0b2"; // fa-arrows-alt
 }

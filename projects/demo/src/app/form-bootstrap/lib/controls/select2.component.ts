@@ -4,13 +4,17 @@ import { findRawValue, prepareControlValue, SelectOption, SelectOptionData } fro
 
 @Component({
     template: `
-    <p-multiSelect
-      *ngIf="!readonly && optionsData"
-      [options]="optionsData"
-      [formControl]="selectControl"
-      optionLabel="text"
-      optionValue="value"
-    ></p-multiSelect>
+    <!-- TODO: Replace with appropriate select component -->
+    <div *ngIf="!readonly && optionsData">
+      Select component removed - PrimeNG MultiSelect needs migration
+    </div>
+    <!--    <p-multiSelect-->
+    <!--      *ngIf="!readonly && optionsData"-->
+    <!--      [options]="optionsData"-->
+    <!--      [formControl]="selectControl"-->
+    <!--      optionLabel="text"-->
+    <!--      optionValue="value"-->
+    <!--    ></p-multiSelect>-->
     <!--    <ng-select-->
     <!--      -->
     <!--      #select-->

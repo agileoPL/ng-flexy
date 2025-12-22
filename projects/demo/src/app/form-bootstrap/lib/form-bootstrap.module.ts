@@ -56,7 +56,6 @@ import { FlexyFormHiddenComponent } from './components/hidden.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { MultiSelect } from 'primeng/multiselect';
 
 export const FLEXY_FORM_CONTROLS_JSON_MAPPER: FlexyLayoutComponentMap = {
   number: FlexyFormNumberComponent,
@@ -144,8 +143,7 @@ const COMPONENTS = [FlexyTreeNodeComponent];
     FlexyFormsModule,
     BsDatepickerModule,
     FlexyJsonImpExpModule,
-    DragDropModule,
-    MultiSelect
+    DragDropModule
   ],
   declarations: [...COMPONENTS, ...PUBLIC_COMPONENTS, ...ENTRY_LAYOUT_COMPONENTS, ...FORM_CONTROLS],
   exports: [...PUBLIC_COMPONENTS, ...ENTRY_LAYOUT_COMPONENTS, ...FORM_CONTROLS]

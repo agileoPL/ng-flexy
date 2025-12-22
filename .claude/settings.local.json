@@ -16,7 +16,8 @@
       "Bash(npm run layout:build:*)",
       "Bash(npm run form:build:*)",
       "Bash(npm run demo:build:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npm run demo:*)"
     ]
   }
 }

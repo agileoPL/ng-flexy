@@ -11,7 +11,7 @@ import { DemoHomeComponent } from './home/home.component';
 import { FlexyHttpFreezerInterceptor } from '@ng-flexy/freezer';
 import { FlexyLayoutModule } from '@ng-flexy/layout';
 import { FlexyFormsModule } from '@ng-flexy/form';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateHttpLoader, provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { FlexyJsonImpExpModule } from '@ng-flexy/json-impexp';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -24,8 +24,8 @@ import { FLEXY_LAYOUT_COMPONENT_MAP } from '../../../layout/src/lib/services/com
 import { DemoCustomFigureComponent } from './form/components/custom-figure.component';
 import { DemoCustomInputComponent } from './form/components/custom-input.component';
 
-export function translateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './i18n/', '.json?build=__TODO_BUILD_ID' + Date.now());
+export function translateLoader() {
+  return new TranslateHttpLoader();
 }
 
 const routes: Routes = [
@@ -105,10 +105,13 @@ export class DemoCustomFormFigureComponent {
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: translateLoader,
-                deps: [HttpClient]
+                useFactory: translateLoader
             }
         })], providers: [
+        provideTranslateHttpLoader({
+            prefix: './i18n/',
+            suffix: '.json'
+        }),
         {
             provide: HTTP_INTERCEPTORS,
             useClass: FlexyHttpCacheInterceptor,
